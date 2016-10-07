@@ -25,30 +25,64 @@
         <vaadin.version>7.7.3</vaadin.version>
         <vaadinWidgetsetsDirectory>${resourceDirectory}/VAADIN/widgetsets</vaadinWidgetsetsDirectory>
         <resourceDirectory>${basedir}/src/main/resources</resourceDirectory>
+        <start-class>de.baleipzig.iris.starter.DemoApplication</start-class>
     </properties>
 
     <dependencies>
+        <!--spring boot-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
+        <!--vaadin deps-->
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-spring-boot-starter</artifactId>
             <version>1.0.1</version>
         </dependency>
         <dependency>
+
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-client-compiler</artifactId>
             <version>${vaadin.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-servlets</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-util</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        <!--lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.10</version>
         </dependency>
+
+
+
+
     </dependencies>
 
     <dependencyManagement>
