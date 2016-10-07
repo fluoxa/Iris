@@ -1,4 +1,4 @@
-package de.baleipzig.iris;
+package de.baleipzig.iris.ui;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
@@ -8,11 +8,8 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.UI;
 import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- * Created by dgl on 06.10.2016.
- */
 @Theme("iris")
-@SpringUI(path = "")
+@SpringUI(path = "main")
 public class IrisUi extends UI {
 
     private HorizontalLayout mainLayout = new HorizontalLayout();
@@ -26,8 +23,6 @@ public class IrisUi extends UI {
         button.addClickListener(event -> System.out.println("adfasdfdsaf"));
 
         mainLayout.addComponent(button);
-
-
         this.setContent(mainLayout);
     }
 
