@@ -1,6 +1,7 @@
 package de.baleipzig.iris.model.neuralnet.layer;
 
 import de.baleipzig.iris.common.Dimension;
+import de.baleipzig.iris.common.StripFunctor;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 
 import java.util.Vector;
@@ -113,36 +114,14 @@ public class Layer implements ILayer {
         if(maxThreadNumber > layerSizeX)
             maxThreadNumber = layerSizeX;
 
-        class ArrayParallelizer extends Thread {
+        StripFunctor[] threads = new StripFunctor[maxThreadNumber];
 
-            private int threadId = 0;
-            private int maxThreads = 1;
-
-            private ArrayParallelizer(int id, int threads){
-                threadId = id;
-                maxThreads = threads;
-            }
-
-            @Override
-            public void run(){
-                if( threadId > maxThreads )
-                    return;
-
-                int start = threadId * layerSizeX / maxThreads;
-                int end = (threadId+1) * layerSizeX / maxThreads;
-                for( int i = start; i < end; ++i )
-                    for( int j = 0; j < layerSizeY; ++j ) {
-                        INode obj = layer.elementAt(j).elementAt(i);
-                        if (obj != null)
-                            func.accept(obj);
-                    }
-            }
-        }
-
-        ArrayParallelizer[] threads = new ArrayParallelizer[maxThreadNumber];
+        int stripSize = layerSizeX / maxThreadNumber;
 
         for( int threadId = 0; threadId < maxThreadNumber; threadId++ ) {
-            threads[threadId] = new ArrayParallelizer(threadId, maxThreadNumber);
+            int start = threadId * stripSize;
+            int end = (threadId + 1) * stripSize;
+            threads[threadId] = new StripFunctor<>(start, end, layer, func);
             threads[threadId].start();
         }
 
