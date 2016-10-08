@@ -2,7 +2,6 @@ package de.baleipzig.iris.model.neuralnet.node;
 
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.function.DoubleFunction;
 
 @Data
-@AllArgsConstructor
 public class Node implements INode {
 
     //region -- member --
@@ -35,6 +33,13 @@ public class Node implements INode {
 
         parentAxons = new ArrayList<>();
         childAxons = new ArrayList<>();
+    }
+
+    public Node(DoubleFunction<Double> func){
+
+        parentAxons = new ArrayList<>();
+        childAxons = new ArrayList<>();
+        activationFunction = func;
     }
 
     //endregion

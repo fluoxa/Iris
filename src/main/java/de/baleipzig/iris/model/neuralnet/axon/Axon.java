@@ -1,11 +1,11 @@
 package de.baleipzig.iris.model.neuralnet.axon;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
+@NoArgsConstructor
 public class Axon implements IAxon {
 
     private double weight;
