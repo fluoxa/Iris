@@ -29,6 +29,7 @@ public class ConsoleRunner {
         // Layer: layer
         // NeuralNet: alles
 
+        String sinnloseAenderung;
 
         DoubleFunction<Double> func = ActivationFunctions::sigmoid;
 
