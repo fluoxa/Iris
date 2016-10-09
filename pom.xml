@@ -46,6 +46,19 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
+        <!--spring data fuer mongo db-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
+        <!-- jackson für xml mapping-->
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>jackson-xml-databind</artifactId>
+            <version>0.6.2</version>
+        </dependency>
+
         <!--vaadin deps-->
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -172,5 +185,20 @@
             </build>
         </profile>
     </profiles>
+
+    <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>
