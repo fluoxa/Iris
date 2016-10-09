@@ -23,7 +23,7 @@ public class ConsoleRunner {
         // koennte man auch durch ein enum ersetzen und über ne factory später
         // holen, laesst sich vielleicht leichter persistieren al nen funtionspointer
 
-        // die daten die gespeicher werden muessen
+        // die daten, die gespeichert werden muessen
         // Axon: alles
         // Node: aktivierungsfunktion + bias + childAxons + parentAxons
         // Layer: layer

@@ -12,7 +12,7 @@ public interface ILayer {
     void clear();
     void resize(Dimension dim);
     void addNode(INode nodeCandidate);
-    void removeNode(INode nodeCandidate);
+    void removeNode(INode node);
 
     INode getNode(int x, int y);
 

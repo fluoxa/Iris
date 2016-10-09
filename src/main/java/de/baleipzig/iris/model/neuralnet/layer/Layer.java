@@ -39,6 +39,8 @@ public class Layer implements ILayer {
 
         Dimension dim = this.dim();
 
+        layer.clear();
+
         for(int i = 0; i < dim.getY(); i++){
 
             Vector<INode> row = new Vector<>();
@@ -97,7 +99,6 @@ public class Layer implements ILayer {
         return layer.elementAt(y).elementAt(x);
     }
 
-    @Override
     public void applyToLayerNodes(Consumer<INode> func) {
 
         int layerSizeX = this.dim().getX();
