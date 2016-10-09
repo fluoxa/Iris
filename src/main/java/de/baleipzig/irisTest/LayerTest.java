@@ -1,10 +1,11 @@
 package de.baleipzig.irisTest;
 
-
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.model.neuralnet.layer.Layer;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -18,6 +19,7 @@ public class LayerTest {
 
     private INode node = mock(INode.class);
     private INode node2 = mock(INode.class);
+    private int counter = 0;
 
     @DataProvider(name = "dim_returnsCorrectDim")
     public static Object[][] dimensions() {
@@ -38,8 +40,8 @@ public class LayerTest {
 
         Dimension result = layer.dim();
 
-        Assert.assertEquals(x, result.getX());
-        Assert.assertEquals(y, result.getY());
+        Assert.assertEquals(result.getX(), x);
+        Assert.assertEquals(result.getY(), y);
     }
 
     @Test
@@ -52,8 +54,8 @@ public class LayerTest {
 
         layer.clear();
 
-        Assert.assertEquals(3, layer.dim().getX());
-        Assert.assertEquals(2, layer.dim().getY());
+        Assert.assertEquals(layer.dim().getX(), 3);
+        Assert.assertEquals(layer.dim().getY(), 2);
 
         for(int i = 0; i < 2; i++)
             for(int j = 0; j < 3; j++)
@@ -69,10 +71,22 @@ public class LayerTest {
         layer.addNode(node);
         layer.addNode(node2);
 
-        Assert.assertEquals(node, layer.getNode(0,0));
-        Assert.assertEquals(node2, layer.getNode(1,0));
+        Assert.assertEquals(layer.getNode(0,0),node);
+        Assert.assertEquals(layer.getNode(1,0),node2);
         Assert.assertNull(layer.getNode(1,1));
         Assert.assertNull(layer.getNode(0,1));
+    }
+
+    @Test
+    public void addNode_LayerDoesNotContainNode2_WhenLayerIsFull(){
+
+        Layer layer = new Layer();
+        layer.resize(new Dimension(1,1));
+        layer.addNode(node);
+
+        layer.addNode(node2);
+
+        Assert.assertNotEquals(layer.getNode(0,0), node2);
     }
 
     @Test
@@ -85,7 +99,7 @@ public class LayerTest {
 
         layer.removeNode(node2);
 
-        Assert.assertEquals(node, layer.getNode(0,0));
+        Assert.assertEquals(layer.getNode(0,0),node);
         Assert.assertNull(layer.getNode(1,0));
         Assert.assertNull(layer.getNode(1,1));
         Assert.assertNull(layer.getNode(0,1));
@@ -101,21 +115,45 @@ public class LayerTest {
 
         INode result = layer.getNode(1,0);
 
-        Assert.assertEquals(node2, result);
+        Assert.assertEquals(result, node2);
     }
 
     @Test
     public void applyToLayerNodes_AppliesFunctionToEveryLayerNode(){
 
         Layer layer = new Layer();
-        layer.resize(new Dimension(1,2));
+        layer.resize(new Dimension(1,3));
         layer.addNode(node);
         layer.addNode(node2);
-        Consumer<INode> func = x -> x.setState(3.);
+        Consumer<INode> func = x -> {x.setState(3.); this.counter++;};
 
         layer.applyToLayerNodes(func);
 
+        Assert.assertEquals(this.counter, 2);
         verify(node, times(1)).setState(3.);
         verify(node2, times(1)).setState(3.);
+    }
+
+    @DataProvider(name = "applyToLayerNodes_DoesNothing_WhenArrayIsEmpty")
+    public static Object[][] applyToLayerNodes_data() {
+        return new Object[][] {
+                {new Dimension(0,1)},
+                {new Dimension(1,0)},
+                {new Dimension(0,0)},
+                {new Dimension(2,3)}
+        };
+    }
+
+    @Test(dataProvider = "applyToLayerNodes_DoesNothing_WhenArrayIsEmpty")
+    public void applyToLayerNodes_DoesNothing_WhenArrayIsEmptyOrZeroSized(Dimension dim){
+
+        Layer layer = new Layer();
+        layer.resize(dim);
+        this.counter = 0;
+        Consumer<INode> func = (x) -> {x.setState(3.); this.counter++;};
+
+        layer.applyToLayerNodes(func);
+
+        Assert.assertEquals(counter, 0);
     }
 }
