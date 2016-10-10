@@ -13,7 +13,7 @@ import com.vaadin.ui.VerticalLayout;
 import de.baleipzig.iris.persistence.entity.neuralnet.AxonEntity;
 import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetEntity;
 import de.baleipzig.iris.persistence.entity.neuralnet.NodeEntity;
-import de.baleipzig.iris.persistence.repository.NeuralNetEntityRepository;
+import de.baleipzig.iris.persistence.repository.INeuralNetEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +25,7 @@ public class DefaultView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "";
 
     @Autowired
-    NeuralNetEntityRepository repository;
+    INeuralNetEntityRepository repository;
 
     @PostConstruct
     void init() {
@@ -51,8 +51,8 @@ public class DefaultView extends VerticalLayout implements View {
                 if(parentNodeId != childNodeId) {
                     AxonEntity axonEntity = new AxonEntity();
                     axonEntity.setWeight(Math.random());
-                    axonEntity.setParentNode(parentNodeId);
-                    axonEntity.setChildNode(childNodeId);
+                    axonEntity.setParentNodeId(parentNodeId);
+                    axonEntity.setChildNodeId(childNodeId);
                     neuralNetEntity.getAxons().put(parentNodeId + "-" + childNodeId ,axonEntity);
                 }
             });

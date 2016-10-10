@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 public interface ILayer {
 
-    Dimension dim();
+    Dimension getDim();
 
     void clear();
     void resize(Dimension dim);

@@ -1,19 +1,15 @@
-package de.baleipzig.irisTest;
+package de.baleipzig.iris;
 
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.model.neuralnet.layer.Layer;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.function.Consumer;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class LayerTest {
 
@@ -32,20 +28,30 @@ public class LayerTest {
         };
     }
 
+    @DataProvider(name = "applyToLayerNodes_DoesNothing_WhenArrayIsEmpty")
+    public static Object[][] applyToLayerNodes_data() {
+        return new Object[][]{
+                {new Dimension(0, 1)},
+                {new Dimension(1, 0)},
+                {new Dimension(0, 0)},
+                {new Dimension(2, 3)}
+        };
+    }
+
     @Test(dataProvider = "dim_returnsCorrectDim")
     public void dim_returnsCorrectDim(Dimension dim, int x, int y){
 
         Layer layer = new Layer();
         layer.resize(dim);
 
-        Dimension result = layer.dim();
+        Dimension result = layer.getDim();
 
         Assert.assertEquals(result.getX(), x);
         Assert.assertEquals(result.getY(), y);
     }
 
     @Test
-    public void clear_LayerIsResetWithNullEntries_AfterCallingClear(){
+    public void clear_LayerIsResetWithNullEntries_AfterCallingClear() {
 
         Layer layer = new Layer();
         layer.resize(new Dimension(3,2));
@@ -54,8 +60,8 @@ public class LayerTest {
 
         layer.clear();
 
-        Assert.assertEquals(layer.dim().getX(), 3);
-        Assert.assertEquals(layer.dim().getY(), 2);
+        Assert.assertEquals(layer.getDim().getX(), 3);
+        Assert.assertEquals(layer.getDim().getY(), 2);
 
         for(int i = 0; i < 2; i++)
             for(int j = 0; j < 3; j++)
@@ -132,16 +138,6 @@ public class LayerTest {
         Assert.assertEquals(this.counter, 2);
         verify(node, times(1)).setState(3.);
         verify(node2, times(1)).setState(3.);
-    }
-
-    @DataProvider(name = "applyToLayerNodes_DoesNothing_WhenArrayIsEmpty")
-    public static Object[][] applyToLayerNodes_data() {
-        return new Object[][] {
-                {new Dimension(0,1)},
-                {new Dimension(1,0)},
-                {new Dimension(0,0)},
-                {new Dimension(2,3)}
-        };
     }
 
     @Test(dataProvider = "applyToLayerNodes_DoesNothing_WhenArrayIsEmpty")

@@ -28,7 +28,7 @@ public class Layer implements ILayer {
 
     //region -- methods --
 
-    public Dimension dim() {
+    public Dimension getDim() {
 
         return layer.size() == 0 || (layer.size() == 1 && layer.elementAt(0).size() == 0) ?
                         new Dimension(0,0) :
@@ -37,7 +37,7 @@ public class Layer implements ILayer {
 
     public void clear() {
 
-        Dimension dim = this.dim();
+        Dimension dim = this.getDim();
 
         layer.clear();
 
@@ -55,7 +55,7 @@ public class Layer implements ILayer {
     public void resize(Dimension dim) {
 
         Vector<Vector<INode>> tmp = new Vector<>();
-        Dimension crtDim = this.dim();
+        Dimension crtDim = this.getDim();
 
         for(int i = 0; i < dim.getY(); i++){
 
@@ -77,7 +77,7 @@ public class Layer implements ILayer {
 
     public void addNode(INode nodeCandidate) {
 
-        Dimension dim = this.dim();
+        Dimension dim = this.getDim();
         for(int i = 0; i < dim.getY(); i++)
             for(int j = 0; j < dim.getX(); j++)
                 if(layer.elementAt(i).elementAt(j) == null){
@@ -88,7 +88,7 @@ public class Layer implements ILayer {
 
     public void removeNode(INode node) {
 
-        Dimension dim = this.dim();
+        Dimension dim = this.getDim();
         for(int i = 0; i < dim.getY(); i++)
             for(int j = 0; j < dim.getX(); j++)
                 if(layer.elementAt(i).elementAt(j) == node)
@@ -101,8 +101,8 @@ public class Layer implements ILayer {
 
     public void applyToLayerNodes(Consumer<INode> func) {
 
-        int layerSizeX = this.dim().getX();
-        int layerSizeY = this.dim().getY();
+        int layerSizeX = this.getDim().getX();
+        int layerSizeY = this.getDim().getY();
 
         if(layerSizeX * layerSizeY == 0)
             return;

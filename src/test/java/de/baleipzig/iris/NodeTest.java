@@ -1,4 +1,4 @@
-package de.baleipzig.irisTest;
+package de.baleipzig.iris;
 
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import de.baleipzig.iris.model.neuralnet.node.Node;
