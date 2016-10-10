@@ -6,7 +6,9 @@ import lombok.Data;
 public class AxonEntity {
 
     private double weight;
+
     private Long parentNode;
+
     private Long childNode;
 
 }

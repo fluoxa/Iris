@@ -24,10 +24,8 @@ import java.io.IOException;
 public class DefaultView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "";
 
-
     @Autowired
     NeuralNetEntityRepository repository;
-
 
     @PostConstruct
     void init() {
@@ -38,7 +36,6 @@ public class DefaultView extends VerticalLayout implements View {
     }
 
     private void createTestEntity() {
-
 
         NeuralNetEntity neuralNetEntity = new NeuralNetEntity();
 
