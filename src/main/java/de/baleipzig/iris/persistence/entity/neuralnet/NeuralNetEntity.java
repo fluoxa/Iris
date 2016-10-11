@@ -1,6 +1,6 @@
 package de.baleipzig.iris.persistence.entity.neuralnet;
 
-import de.baleipzig.iris.logic.converter.NeuralNetType;
+import de.baleipzig.iris.logic.converter.NeuralNetCoreType;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
@@ -10,10 +10,10 @@ import java.util.*;
 public class NeuralNetEntity {
 
     @Id
-    private String neuralNetId = UUID.randomUUID().toString();
+    private String neuralNetId = "";
     private String name = "";
     private String description = "";
-    private String type = NeuralNetType.train.toString();
+    private String type = NeuralNetCoreType.train.toString();
     private Map<Long, NodeEntity> nodes = new HashMap<>();
     private List<Long> inputLayer = new ArrayList<>();
     private List<List<Long>> hiddenLayers = new ArrayList<>();

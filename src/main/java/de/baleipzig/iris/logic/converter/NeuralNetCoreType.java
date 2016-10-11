@@ -1,6 +1,6 @@
 package de.baleipzig.iris.logic.converter;
 
-public enum NeuralNetType {
+public enum NeuralNetCoreType {
 
     train,
     prod

@@ -1,17 +1,17 @@
 package de.baleipzig.iris.common.utils;
 
-import de.baleipzig.iris.logic.converter.NeuralNetType;
+import de.baleipzig.iris.logic.converter.NeuralNetCoreType;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
-import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
+import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNetCore;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 import de.baleipzig.iris.model.neuralnet.node.Node;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NeuralNetUtils {
+public class NeuralNetCoreUtils {
 
-    public static int getNumberOfNodes(INeuralNet net){
+    public static int getNumberOfNodes(INeuralNetCore net){
 
         int number =  net.getInputLayer().getDim().getDegreesOfFreedom();
 
@@ -24,9 +24,9 @@ public class NeuralNetUtils {
         return number;
     }
 
-    public static List<INode> getAllNodesLinewiseBottomToTop(INeuralNet net){
+    public static List<INode> getAllNodesLinewiseBottomToTop(INeuralNetCore net){
 
-        List<INode> list = new ArrayList<>(NeuralNetUtils.getNumberOfNodes(net));
+        List<INode> list = new ArrayList<>(NeuralNetCoreUtils.getNumberOfNodes(net));
 
         list.addAll(LayerUtils.getAllNodesLinewise(net.getInputLayer()));
 
@@ -39,13 +39,13 @@ public class NeuralNetUtils {
         return list;
     }
 
-    public static NeuralNetType getNeuralNetType(INeuralNet net){
+    public static NeuralNetCoreType getNeuralNetType(INeuralNetCore net){
 
         INode node = net.getInputLayer().getNode(0,0);
         if(node instanceof Node){
-            return NeuralNetType.train;
+            return NeuralNetCoreType.train;
         }
 
-        return NeuralNetType.prod;
+        return NeuralNetCoreType.prod;
     }
 }

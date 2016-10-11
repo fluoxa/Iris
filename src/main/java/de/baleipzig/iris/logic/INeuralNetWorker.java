@@ -5,9 +5,9 @@ import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
 
 public interface INeuralNetWorker {
 
-    public void save(INeuralNet neuralNet);
+    void save(INeuralNet neuralNet);
 
-    public INeuralNet load(String neuralNetId);
+    INeuralNet load(String neuralNetId);
 
-    public void delete(String neuralNetId);
+    void delete(String neuralNetId);
 }

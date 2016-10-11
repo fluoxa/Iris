@@ -1,15 +1,14 @@
 package de.baleipzig.iris.logic.converter;
 
 import de.baleipzig.iris.common.utils.LayerUtils;
-import de.baleipzig.iris.common.utils.NeuralNetUtils;
+import de.baleipzig.iris.common.utils.NeuralNetCoreUtils;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunctionContainerFactory;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.layer.Layer;
-import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
-import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNet;
+import de.baleipzig.iris.model.neuralnet.neuralnet.*;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 import de.baleipzig.iris.model.neuralnet.node.Node;
 import de.baleipzig.iris.persistence.entity.neuralnet.AxonEntity;
@@ -24,7 +23,7 @@ import java.util.stream.Collectors;
 
 public class NeuralNetConverter {
 
-    public static INeuralNet fromEntity(NeuralNetEntity neuralNetEntity) {
+    public static INeuralNetCore fromNeuralNetCoreEntity(NeuralNetEntity neuralNetEntity) {
         Map<Long, INode> allNodes = new HashMap<>(neuralNetEntity.getNodes().size());
 
         createAllNodesFromEntity(neuralNetEntity, allNodes);
@@ -38,7 +37,7 @@ public class NeuralNetConverter {
 
         ILayer outputLayer = createLayer(neuralNetEntity.getOutputLayer(), allNodes);
 
-        INeuralNet net = new NeuralNet();
+        INeuralNetCore net = new NeuralNetCore();
         net.setInputLayer(inputLayer);
 
         //Todo: unit-test auf richtige reihenfolge der Layer
@@ -47,6 +46,16 @@ public class NeuralNetConverter {
         net.setOutputLayer(outputLayer);
 
         return net;
+    }
+
+    public static INeuralNetMetaData fromMetaDataEntity(NeuralNetEntity neuralNetEntity){
+
+        INeuralNetMetaData metaData = new NeuralNetMetaData();
+
+        metaData.setName(neuralNetEntity.getName());
+        metaData.setDescription(neuralNetEntity.getDescription());
+        metaData.setId(neuralNetEntity.getNeuralNetId());
+        return metaData;
     }
 
     private static void createAxonsAndLinkWithNodes(NeuralNetEntity neuralNetEntity, Map<Long, INode> allNodes) {
@@ -61,7 +70,7 @@ public class NeuralNetConverter {
             axon.setChildNode(childNode);
             axon.setWeight(axonEntity.getWeight());
 
-            if(neuralNetEntity.getType().equals(NeuralNetType.train.toString())){
+            if(neuralNetEntity.getType().equals(NeuralNetCoreType.train.toString())){
                 parentNode.addChildAxon(axon);
             }
             childNode.addParentAxon(axon);
@@ -86,29 +95,34 @@ public class NeuralNetConverter {
         return layer;
     }
 
-    public static NeuralNetEntity toEntity(INeuralNet neuralNet) {
+    public static NeuralNetEntity toNeuralNetEntity(INeuralNet neuralNet) {
 
-        int totalNumberOfNodes = NeuralNetUtils.getNumberOfNodes(neuralNet);
+        INeuralNetCore neuralNetCore = neuralNet.getNeuralNetCore();
 
-        Map<INode, Long> nodeIdMapper = getOrderedNodeIdMap(neuralNet);
+        int totalNumberOfNodes = NeuralNetCoreUtils.getNumberOfNodes(neuralNetCore);
 
-        List<INode> orderedNodes = NeuralNetUtils.getAllNodesLinewiseBottomToTop(neuralNet);
+        Map<INode, Long> nodeIdMapper = getOrderedNodeIdMap(neuralNetCore);
+
+        List<INode> orderedNodes = NeuralNetCoreUtils.getAllNodesLinewiseBottomToTop(neuralNetCore);
 
         Map<Long, NodeEntity> idNodeEntityMapper = new HashMap<>(totalNumberOfNodes);
         for(INode node : orderedNodes){
-            idNodeEntityMapper.put(nodeIdMapper.get(node), toEntity(node, nodeIdMapper));
+            idNodeEntityMapper.put(nodeIdMapper.get(node), toNodeEntity(node, nodeIdMapper));
         }
 
-        List<Long> inputLayerEntity = toLayerEntity(neuralNet.getInputLayer(), nodeIdMapper);
-        List<List<Long>> hiddenLayersEntity = new ArrayList<>(neuralNet.getHiddenLayers().size());
-        hiddenLayersEntity.addAll(neuralNet.getHiddenLayers().stream().map(layer -> toLayerEntity(layer, nodeIdMapper)).collect(Collectors.toList()));
-        List<Long> outputLayerEntity = toLayerEntity(neuralNet.getOutputLayer(), nodeIdMapper);
+        List<Long> inputLayerEntity = toLayerEntity(neuralNetCore.getInputLayer(), nodeIdMapper);
+        List<List<Long>> hiddenLayersEntity = new ArrayList<>(neuralNetCore.getHiddenLayers().size());
+        hiddenLayersEntity.addAll(neuralNetCore.getHiddenLayers().stream().map(layer -> toLayerEntity(layer, nodeIdMapper)).collect(Collectors.toList()));
+        List<Long> outputLayerEntity = toLayerEntity(neuralNetCore.getOutputLayer(), nodeIdMapper);
 
         Map<String,AxonEntity> axonEntities = getAxonEntities(orderedNodes, nodeIdMapper);
 
         NeuralNetEntity neuralNetEntity = new NeuralNetEntity();
 
-        neuralNetEntity.setType(NeuralNetUtils.getNeuralNetType(neuralNet).toString());
+        neuralNetEntity.setNeuralNetId(neuralNet.getNeuralNetMetaData().getId());
+        neuralNetEntity.setName(neuralNet.getNeuralNetMetaData().getName());
+        neuralNetEntity.setDescription(neuralNet.getNeuralNetMetaData().getDescription());
+        neuralNetEntity.setType(NeuralNetCoreUtils.getNeuralNetType(neuralNetCore).toString());
         neuralNetEntity.setNodes(idNodeEntityMapper);
         neuralNetEntity.setInputLayer(inputLayerEntity);
         neuralNetEntity.setHiddenLayers(hiddenLayersEntity);
@@ -126,7 +140,7 @@ public class NeuralNetConverter {
         return layerEntity;
     }
 
-    private static NodeEntity toEntity(INode node, Map<INode, Long> idMapper){
+    private static NodeEntity toNodeEntity(INode node, Map<INode, Long> idMapper){
 
         NodeEntity nodeEntity = new NodeEntity();
         nodeEntity.setNodeId(idMapper.get(node));
@@ -136,13 +150,13 @@ public class NeuralNetConverter {
         return nodeEntity;
     }
 
-    private static Map<INode, Long> getOrderedNodeIdMap(INeuralNet net){
+    private static Map<INode, Long> getOrderedNodeIdMap(INeuralNetCore net){
 
-        Map<INode, Long> returnMap = new HashMap<>(NeuralNetUtils.getNumberOfNodes(net));
+        Map<INode, Long> returnMap = new HashMap<>(NeuralNetCoreUtils.getNumberOfNodes(net));
 
         long index = 0;
 
-        for(INode node : NeuralNetUtils.getAllNodesLinewiseBottomToTop(net)){
+        for(INode node : NeuralNetCoreUtils.getAllNodesLinewiseBottomToTop(net)){
             returnMap.put(node, index++);
         }
 

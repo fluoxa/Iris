@@ -1,35 +1,20 @@
 package de.baleipzig.iris.starter;
 
-import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.model.neuralnet.ActivationFunctions;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.layer.Layer;
-import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
-import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNet;
+import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNetCore;
+import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetCore;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 import de.baleipzig.iris.model.neuralnet.node.Node;
 
-import java.util.Vector;
-import java.util.function.Consumer;
 import java.util.function.DoubleFunction;
 
 public class ConsoleRunner {
 
     public static void main(String[] args) {
-
-        // noch wird die aktivierungsfunktion direkt im knoten hinterlegt,
-        // koennte man auch durch ein enum ersetzen und über ne factory später
-        // holen, laesst sich vielleicht leichter persistieren al nen funtionspointer
-
-        // die daten, die gespeichert werden muessen
-        // Axon: alles
-        // Node: aktivierungsfunktion + bias + childAxons + parentAxons
-        // Layer: layer
-        // NeuralNet: alles
-
-        String sinnloseAenderung;
 
         DoubleFunction<Double> func = ActivationFunctions::sigmoid;
 
@@ -66,7 +51,7 @@ public class ConsoleRunner {
         ILayer outputLayer = new Layer();
         outputLayer.addNode(node4);
 
-        INeuralNet net = new NeuralNet();
+        INeuralNetCore net = new NeuralNetCore();
         net.setInputLayer(inputLayer);
         net.addHiddenLayer(hiddenLayer);
         net.setOutputLayer(outputLayer);
