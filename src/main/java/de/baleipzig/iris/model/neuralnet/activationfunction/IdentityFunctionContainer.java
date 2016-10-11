@@ -4,7 +4,7 @@ import java.util.function.DoubleFunction;
 
 public class IdentityFunctionContainer implements IActivationFunctionContainer {
 
-    private static final String name = "identity";
+    private static final ActivationFunction type = ActivationFunction.identity;
 
     private static Double identity(Double x) {
         return x;
@@ -14,7 +14,7 @@ public class IdentityFunctionContainer implements IActivationFunctionContainer {
         return IdentityFunctionContainer::identity;
     }
 
-    public String getActivationFunctionName() {
-        return name;
+    public ActivationFunction getActivationFunctionType() {
+        return type;
     }
 }

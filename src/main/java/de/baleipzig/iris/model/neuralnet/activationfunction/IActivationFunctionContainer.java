@@ -6,5 +6,5 @@ public interface IActivationFunctionContainer {
 
     public DoubleFunction<Double> getActivationFunction();
 
-    public String getActivationFunctionName();
+    public ActivationFunction getActivationFunctionType();
 }

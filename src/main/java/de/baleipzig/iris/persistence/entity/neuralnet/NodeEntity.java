@@ -10,5 +10,5 @@ public class NodeEntity {
 
     private double bias;
 
-    private String activationFunctionName;
+    private String activationFunctionType;
 }

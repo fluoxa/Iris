@@ -1,5 +1,6 @@
 package de.baleipzig.iris.model.neuralnet.node;
 
+import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
 import de.baleipzig.iris.model.neuralnet.activationfunction.IActivationFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import lombok.Getter;
@@ -55,7 +56,6 @@ public class Node implements INode {
         this.activationFunctionContainer = activationFunctionContainer;
     }
 
-
     //endregion
 
     //region -- constructor --
@@ -64,8 +64,8 @@ public class Node implements INode {
         return activationFunctionContainer.getActivationFunction();
     }
 
-    public String getActivationFunctionName() {
-        return activationFunctionContainer.getActivationFunctionName();
+    public ActivationFunction getActivationFunctionType() {
+        return activationFunctionContainer.getActivationFunctionType();
     }
 
     //endregion

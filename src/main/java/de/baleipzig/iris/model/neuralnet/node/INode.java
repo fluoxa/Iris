@@ -1,5 +1,6 @@
 package de.baleipzig.iris.model.neuralnet.node;
 
+import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
 import de.baleipzig.iris.model.neuralnet.activationfunction.IActivationFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 
@@ -28,7 +29,7 @@ public interface INode {
 
     DoubleFunction<Double> getActivationFunction();
 
-    String getActivationFunctionName();
+    ActivationFunction getActivationFunctionType();
 
     void setActivationFunctionContainer(IActivationFunctionContainer activationFunctionContainer);
 }

@@ -30,4 +30,12 @@ public class Dimension {
     }
 
     //endregion
+
+    //region -- methods --
+
+    public int getDegreesOfFreedom() {
+        return x*y;
+    }
+
+    //endregion
 }

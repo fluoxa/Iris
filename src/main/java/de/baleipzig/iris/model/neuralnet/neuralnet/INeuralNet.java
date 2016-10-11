@@ -11,5 +11,5 @@ public interface INeuralNet {
     void setOutputLayer(ILayer layer);
     ILayer getOutputLayer();
     void addHiddenLayer(ILayer layer);
-    List<ILayer> getHiddenLayer();
+    List<ILayer> getHiddenLayers();
 }
