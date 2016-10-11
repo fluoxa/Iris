@@ -1,5 +1,6 @@
 package de.baleipzig.iris.logic.converter;
 
+import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.common.utils.LayerUtils;
 import de.baleipzig.iris.common.utils.NeuralNetCoreUtils;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
@@ -12,6 +13,7 @@ import de.baleipzig.iris.model.neuralnet.neuralnet.*;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 import de.baleipzig.iris.model.neuralnet.node.Node;
 import de.baleipzig.iris.persistence.entity.neuralnet.AxonEntity;
+import de.baleipzig.iris.persistence.entity.neuralnet.LayerEntity;
 import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetEntity;
 import de.baleipzig.iris.persistence.entity.neuralnet.NodeEntity;
 
@@ -30,19 +32,20 @@ public class NeuralNetConverter {
 
         createAxonsAndLinkWithNodes(neuralNetEntity, allNodes);
 
-        ILayer inputLayer = createLayer(neuralNetEntity.getInputLayer(), allNodes);
+        int layerCount = neuralNetEntity.getLayers().size();
+        ILayer inputLayer = createLayer(neuralNetEntity.getLayers().get(0), allNodes);
 
-        List<ILayer> hiddenLayers = new ArrayList<>(neuralNetEntity.getHiddenLayers().size());
-        hiddenLayers.addAll(neuralNetEntity.getHiddenLayers().stream().map(hiddenLayer -> createLayer(hiddenLayer, allNodes)).collect(Collectors.toList()));
+        List<ILayer> hiddenLayers = new ArrayList<>(layerCount-2);
+        for(int count = 1; count < layerCount-1; count++){
+            hiddenLayers.add(createLayer(neuralNetEntity.getLayers().get(count), allNodes));
+        }
 
-        ILayer outputLayer = createLayer(neuralNetEntity.getOutputLayer(), allNodes);
+        ILayer outputLayer = createLayer(neuralNetEntity.getLayers().get(layerCount-1), allNodes);
 
         INeuralNetCore net = new NeuralNetCore();
         net.setInputLayer(inputLayer);
-
         //Todo: unit-test auf richtige reihenfolge der Layer
         hiddenLayers.forEach(net::addHiddenLayer);
-
         net.setOutputLayer(outputLayer);
 
         return net;
@@ -62,8 +65,8 @@ public class NeuralNetConverter {
         neuralNetEntity.getAxons().forEach((key, axonEntity) -> {
             String[] parentAndChild = key.split(AxonEntity.PARENT_TO_CHILD_DELIMITER);
 
-            INode parentNode = allNodes.get(Long.valueOf(parentAndChild[0]));
-            INode childNode = allNodes.get(Long.valueOf(parentAndChild[1]));
+            INode parentNode = allNodes.get(Long.valueOf(parentAndChild[0].trim()));
+            INode childNode = allNodes.get(Long.valueOf(parentAndChild[1].trim()));
 
             IAxon axon = new Axon();
             axon.setParentNode(parentNode);
@@ -86,9 +89,11 @@ public class NeuralNetConverter {
         });
     }
 
-    private static ILayer createLayer(List<Long> ids, Map<Long, INode> allNodes) {
+    private static ILayer createLayer(LayerEntity layerEntity, Map<Long, INode> allNodes) {
         ILayer layer = new Layer();
-        for (Long id : ids) {
+        layer.resize(new Dimension(layerEntity.getDimX(), layerEntity.getDimY()));
+
+        for (Long id : layerEntity.getNodes()) {
             layer.addNode(allNodes.get(id));
         }
 
@@ -110,10 +115,13 @@ public class NeuralNetConverter {
             idNodeEntityMapper.put(nodeIdMapper.get(node), toNodeEntity(node, nodeIdMapper));
         }
 
-        List<Long> inputLayerEntity = toLayerEntity(neuralNetCore.getInputLayer(), nodeIdMapper);
-        List<List<Long>> hiddenLayersEntity = new ArrayList<>(neuralNetCore.getHiddenLayers().size());
-        hiddenLayersEntity.addAll(neuralNetCore.getHiddenLayers().stream().map(layer -> toLayerEntity(layer, nodeIdMapper)).collect(Collectors.toList()));
-        List<Long> outputLayerEntity = toLayerEntity(neuralNetCore.getOutputLayer(), nodeIdMapper);
+        Map<Integer, LayerEntity> layers = new HashMap<>(2+neuralNetCore.getHiddenLayers().size());
+        int layerCount = 0;
+        layers.put(layerCount++, toLayerEntity(neuralNetCore.getInputLayer(), nodeIdMapper));
+        for(ILayer layer : neuralNetCore.getHiddenLayers()){
+            layers.put(layerCount++, toLayerEntity(layer, nodeIdMapper));
+        }
+        layers.put(layerCount, toLayerEntity(neuralNetCore.getOutputLayer(), nodeIdMapper));
 
         Map<String,AxonEntity> axonEntities = getAxonEntities(orderedNodes, nodeIdMapper);
 
@@ -124,18 +132,23 @@ public class NeuralNetConverter {
         neuralNetEntity.setDescription(neuralNet.getNeuralNetMetaData().getDescription());
         neuralNetEntity.setType(NeuralNetCoreUtils.getNeuralNetType(neuralNetCore).toString());
         neuralNetEntity.setNodes(idNodeEntityMapper);
-        neuralNetEntity.setInputLayer(inputLayerEntity);
-        neuralNetEntity.setHiddenLayers(hiddenLayersEntity);
-        neuralNetEntity.setOutputLayer(outputLayerEntity);
+
+        neuralNetEntity.setLayers(layers);
         neuralNetEntity.setAxons(axonEntities);
 
         return neuralNetEntity;
     }
 
-    private static List<Long> toLayerEntity(ILayer layer, Map<INode, Long> nodeIdMapper) {
+    private static LayerEntity toLayerEntity(ILayer layer, Map<INode, Long> nodeIdMapper) {
+
         List<INode> orderedInputLayerNodes = LayerUtils.getAllNodesLinewise(layer);
-        List<Long> layerEntity = new ArrayList<>(orderedInputLayerNodes.size());
-        layerEntity.addAll(orderedInputLayerNodes.stream().map(nodeIdMapper::get).collect(Collectors.toList()));
+        List<Long> nodes = new ArrayList<>(orderedInputLayerNodes.size());
+        nodes.addAll(orderedInputLayerNodes.stream().map(nodeIdMapper::get).collect(Collectors.toList()));
+
+        LayerEntity layerEntity = new LayerEntity();
+        layerEntity.setNodes(nodes);
+        layerEntity.setDimX(layer.getDim().getX());
+        layerEntity.setDimY(layer.getDim().getY());
 
         return layerEntity;
     }

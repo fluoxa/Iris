@@ -25,7 +25,12 @@ public class NeuralNetWorker implements INeuralNetWorker {
 
     public INeuralNet load(String neuralNetId) {
 
-        NeuralNetEntity neuralNetEntity = repository.findByName(neuralNetId);
+        NeuralNetEntity neuralNetEntity = repository.findByNeuralNetId(neuralNetId);
+
+        if(neuralNetEntity == null) {
+            return null;
+        }
+
         INeuralNetCore core = NeuralNetConverter.fromNeuralNetCoreEntity(neuralNetEntity);
         INeuralNetMetaData metaData = NeuralNetConverter.fromMetaDataEntity(neuralNetEntity);
         INeuralNet net = new NeuralNet();

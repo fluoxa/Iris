@@ -4,7 +4,7 @@ import java.util.function.DoubleFunction;
 
 public interface IActivationFunctionContainer {
 
-    public DoubleFunction<Double> getActivationFunction();
+    DoubleFunction<Double> getActivationFunction();
 
-    public ActivationFunction getActivationFunctionType();
+    ActivationFunction getActivationFunctionType();
 }

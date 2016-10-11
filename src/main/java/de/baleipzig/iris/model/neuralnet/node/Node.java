@@ -37,7 +37,9 @@ public class Node implements INode {
 
     private IActivationFunctionContainer activationFunctionContainer;
 
-    private DoubleFunction<Double> activationFunction;
+    //endregion
+
+    //region -- constructor --
 
     public Node(){
 
@@ -45,27 +47,11 @@ public class Node implements INode {
         childAxons = new ArrayList<>();
     }
 
-    public Node(DoubleFunction<Double> func){
+    public Node(IActivationFunctionContainer funcContainer){
 
         parentAxons = new ArrayList<>();
         childAxons = new ArrayList<>();
-        activationFunction = func;
-    }
-
-    public void setActivationFunctionContainer(IActivationFunctionContainer activationFunctionContainer) {
-        this.activationFunctionContainer = activationFunctionContainer;
-    }
-
-    //endregion
-
-    //region -- constructor --
-
-    public DoubleFunction<Double> getActivationFunction() {
-        return activationFunctionContainer.getActivationFunction();
-    }
-
-    public ActivationFunction getActivationFunctionType() {
-        return activationFunctionContainer.getActivationFunctionType();
+        activationFunctionContainer = funcContainer;
     }
 
     //endregion
@@ -78,6 +64,18 @@ public class Node implements INode {
 
     public void addChildAxon(IAxon axon) {
         childAxons.add(axon);
+    }
+
+    public void setActivationFunctionContainer(IActivationFunctionContainer activationFunctionContainer) {
+        this.activationFunctionContainer = activationFunctionContainer;
+    }
+
+    public DoubleFunction<Double> getActivationFunction() {
+        return activationFunctionContainer.getActivationFunction();
+    }
+
+    public ActivationFunction getActivationFunctionType() {
+        return activationFunctionContainer.getActivationFunctionType();
     }
 
     //endregion

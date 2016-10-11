@@ -15,8 +15,6 @@ public class NeuralNetEntity {
     private String description = "";
     private String type = NeuralNetCoreType.train.toString();
     private Map<Long, NodeEntity> nodes = new HashMap<>();
-    private List<Long> inputLayer = new ArrayList<>();
-    private List<List<Long>> hiddenLayers = new ArrayList<>();
-    private List<Long> outputLayer = new ArrayList<>();
+    private Map<Integer, LayerEntity> layers = new HashMap<>();
     private Map<String, AxonEntity> axons = new HashMap<>();
 }

@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface INeuralNetEntityRepository extends MongoRepository<NeuralNetEntity, String> {
 
-    public NeuralNetEntity findByName(String name);
+    NeuralNetEntity findByName(String name);
+    NeuralNetEntity findByNeuralNetId(String neuralNetId);
 
 }
