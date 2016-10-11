@@ -8,7 +8,6 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import de.baleipzig.iris.logic.INeuralNetWorker;
-import de.baleipzig.iris.logic.NeuralNetWorker;
 import de.baleipzig.iris.model.neuralnet.ActivationFunctions;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
@@ -31,6 +30,9 @@ public class DefaultView extends VerticalLayout implements View {
     @Autowired
     INeuralNetEntityRepository repository;
 
+    @Autowired
+    INeuralNetWorker neuralNetWorker;
+
     @PostConstruct
     void init() {
         Button button = new Button("create Test entity");
@@ -40,8 +42,6 @@ public class DefaultView extends VerticalLayout implements View {
     }
 
     private void createTestEntity() {
-
-        INeuralNetWorker worker = new NeuralNetWorker();
 
         INeuralNet net = createNeuralNet();
 
