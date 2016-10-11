@@ -9,7 +9,9 @@ import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetEntity;
 import de.baleipzig.iris.persistence.repository.INeuralNetEntityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class NeuralNetWorker implements INeuralNetWorker {
 
