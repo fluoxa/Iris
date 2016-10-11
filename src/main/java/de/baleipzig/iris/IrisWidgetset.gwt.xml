@@ -7,4 +7,8 @@
     <inherits name="com.vaadin.DefaultWidgetSet" />
 
 
+
+    
+
+    <inherits name="org.vaadin.hezamu.canvas.CanvasWidgetset" />
 </module>
