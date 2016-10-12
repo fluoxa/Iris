@@ -1,6 +1,6 @@
 package de.baleipzig.iris.persistence.entity.neuralnet;
 
-import de.baleipzig.iris.logic.converter.NeuralNetCoreType;
+import de.baleipzig.iris.enums.NeuralNetCoreType;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 

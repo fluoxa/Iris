@@ -1,4 +1,4 @@
-package de.baleipzig.iris;
+package de.baleipzig.iris.model.neuralnet;
 
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.model.neuralnet.layer.Layer;

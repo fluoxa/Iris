@@ -1,6 +1,6 @@
 package de.baleipzig.iris.common.utils;
 
-import de.baleipzig.iris.logic.converter.NeuralNetCoreType;
+import de.baleipzig.iris.enums.NeuralNetCoreType;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNetCore;
 import de.baleipzig.iris.model.neuralnet.node.INode;

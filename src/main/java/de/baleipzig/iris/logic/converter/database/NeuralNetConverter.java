@@ -1,8 +1,9 @@
-package de.baleipzig.iris.logic.converter;
+package de.baleipzig.iris.logic.converter.database;
 
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.common.utils.LayerUtils;
 import de.baleipzig.iris.common.utils.NeuralNetCoreUtils;
+import de.baleipzig.iris.enums.NeuralNetCoreType;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunctionContainerFactory;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
@@ -39,7 +40,6 @@ public class NeuralNetConverter {
 
         INeuralNetCore net = new NeuralNetCore();
         net.setInputLayer(inputLayer);
-        //Todo: unit-test auf richtige reihenfolge der Layer
         hiddenLayers.forEach(net::addHiddenLayer);
         net.setOutputLayer(outputLayer);
 
@@ -74,8 +74,8 @@ public class NeuralNetConverter {
         neuralNetEntity.getAxons().forEach((key, axonEntity) -> {
             String[] parentAndChild = key.split(AxonEntity.PARENT_TO_CHILD_DELIMITER);
 
-            INode parentNode = allNodes.get(Long.valueOf(parentAndChild[0].trim()));
-            INode childNode = allNodes.get(Long.valueOf(parentAndChild[1].trim()));
+            INode parentNode = allNodes.get(Long.valueOf(parentAndChild[0]));
+            INode childNode = allNodes.get(Long.valueOf(parentAndChild[1]));
 
             IAxon axon = new Axon();
             axon.setParentNode(parentNode);
@@ -178,7 +178,7 @@ public class NeuralNetConverter {
                 axonEntity.setChildNodeId(nodeIdMapper.get(child));
                 axonEntity.setParentNodeId(nodeIdMapper.get(parent));
 
-                String key = String.format("%1d%2s%3d",nodeIdMapper.get(parent),AxonEntity.PARENT_TO_CHILD_DELIMITER, nodeIdMapper.get(child));
+                String key = String.format("%s%s%s",nodeIdMapper.get(parent),AxonEntity.PARENT_TO_CHILD_DELIMITER, nodeIdMapper.get(child));
                 axonEntities.put(key, axonEntity);
             }
         }

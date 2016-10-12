@@ -1,4 +1,4 @@
-package de.baleipzig.iris.logic.converter;
+package de.baleipzig.iris.enums;
 
 public enum NeuralNetCoreType {
 
