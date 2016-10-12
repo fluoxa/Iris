@@ -7,7 +7,7 @@ import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import de.baleipzig.iris.logic.INeuralNetWorker;
+import de.baleipzig.iris.logic.worker.INeuralNetWorker;
 import de.baleipzig.iris.persistence.repository.INeuralNetEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 

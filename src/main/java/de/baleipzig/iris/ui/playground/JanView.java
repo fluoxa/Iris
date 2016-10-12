@@ -8,7 +8,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.common.utils.NeuralNetCoreUtils;
-import de.baleipzig.iris.logic.INeuralNetWorker;
+import de.baleipzig.iris.logic.worker.INeuralNetWorker;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunctionContainerFactory;
 import de.baleipzig.iris.model.neuralnet.activationfunction.IActivationFunctionContainer;

@@ -1,4 +1,4 @@
-package de.baleipzig.iris.logic;
+package de.baleipzig.iris.logic.worker;
 
 import de.baleipzig.iris.logic.converter.NeuralNetConverter;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
