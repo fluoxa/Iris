@@ -6,6 +6,9 @@ import lombok.Data;
 @Data
 public class NodeEntity {
 
-    private Long nodeId;
+    private long nodeId;
 
+    private double bias;
+
+    private String activationFunctionType;
 }

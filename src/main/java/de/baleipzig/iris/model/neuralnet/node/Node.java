@@ -1,29 +1,41 @@
 package de.baleipzig.iris.model.neuralnet.node;
 
+import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
+import de.baleipzig.iris.model.neuralnet.activationfunction.IActivationFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
-
-import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.function.DoubleFunction;
 
-@Data
 public class Node implements INode {
 
     //region -- member --
 
     @Getter
     private ArrayList<IAxon> parentAxons;
+
     @Getter
     private ArrayList<IAxon> childAxons;
 
+    @Getter
+    @Setter
     private double state;
+
+    @Getter
+    @Setter
     private double bias;
+
+    @Getter
+    @Setter
     private double error;
+
+    @Getter
+    @Setter
     private double preActivation;
 
-    private DoubleFunction<Double> activationFunction;
+    private IActivationFunctionContainer activationFunctionContainer;
 
     //endregion
 
@@ -35,11 +47,11 @@ public class Node implements INode {
         childAxons = new ArrayList<>();
     }
 
-    public Node(DoubleFunction<Double> func){
+    public Node(IActivationFunctionContainer funcContainer){
 
         parentAxons = new ArrayList<>();
         childAxons = new ArrayList<>();
-        activationFunction = func;
+        activationFunctionContainer = funcContainer;
     }
 
     //endregion
@@ -52,6 +64,18 @@ public class Node implements INode {
 
     public void addChildAxon(IAxon axon) {
         childAxons.add(axon);
+    }
+
+    public void setActivationFunctionContainer(IActivationFunctionContainer activationFunctionContainer) {
+        this.activationFunctionContainer = activationFunctionContainer;
+    }
+
+    public DoubleFunction<Double> getActivationFunction() {
+        return activationFunctionContainer.getActivationFunction();
+    }
+
+    public ActivationFunction getActivationFunctionType() {
+        return activationFunctionContainer.getActivationFunctionType();
     }
 
     //endregion

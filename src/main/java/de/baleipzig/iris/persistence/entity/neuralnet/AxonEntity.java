@@ -5,10 +5,13 @@ import lombok.Data;
 @Data
 public class AxonEntity {
 
+    public static final String PARENT_TO_CHILD_DELIMITER = "-";
+
+    private long parentNodeId;
+
+    private long childNodeId;
+
     private double weight;
 
-    private Long parentNode;
-
-    private Long childNode;
 
 }
