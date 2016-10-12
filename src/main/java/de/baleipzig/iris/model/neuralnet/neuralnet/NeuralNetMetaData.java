@@ -7,11 +7,11 @@ import java.util.UUID;
 @Data
 public class NeuralNetMetaData implements INeuralNetMetaData {
 
-    private String id;
+    private UUID id;
     private String name;
     private String description;
 
     public NeuralNetMetaData(){
-        id = UUID.randomUUID().toString();
+        id = UUID.randomUUID();
     }
 }

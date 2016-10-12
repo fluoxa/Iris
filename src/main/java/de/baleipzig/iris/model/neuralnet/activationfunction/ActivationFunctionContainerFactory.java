@@ -14,7 +14,7 @@ public class ActivationFunctionContainerFactory {
         }
     }
 
-    public static IActivationFunctionContainer getContainer(DoubleFunction func){
+    public static IActivationFunctionContainer getContainer(DoubleFunction<Double> func){
 
         return new GenericFunctionContainer(func);
     }

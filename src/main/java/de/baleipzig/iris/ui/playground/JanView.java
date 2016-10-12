@@ -22,6 +22,7 @@ import de.baleipzig.iris.model.neuralnet.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import java.util.UUID;
 
 
 @UIScope
@@ -42,13 +43,15 @@ public class JanView extends VerticalLayout implements View {
 
         INeuralNet net = createNeuralNet();
 
-        String id = net.getNeuralNetMetaData().getId();
+        UUID id = net.getNeuralNetMetaData().getId();
 
         neuralNetWorker.save(net);
 
         INeuralNet loadedNet = neuralNetWorker.load(id);
 
         System.out.printf("Anzahl der Knoten: " + NeuralNetCoreUtils.getNumberOfNodes(loadedNet.getNeuralNetCore()));
+
+        neuralNetWorker.delete(id);
     }
 
     private INeuralNet createNeuralNet(){
