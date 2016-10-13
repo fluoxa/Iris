@@ -39,7 +39,7 @@ public class NeuralNetConverter {
 
         INeuralNetCore net = new NeuralNetCore();
         net.setInputLayer(inputLayer);
-        //Todo: unit-test auf richtige reihenfolge der Layer
+        //Todo: unit-TEST auf richtige reihenfolge der Layer
         hiddenLayers.forEach(net::addHiddenLayer);
         net.setOutputLayer(outputLayer);
 
