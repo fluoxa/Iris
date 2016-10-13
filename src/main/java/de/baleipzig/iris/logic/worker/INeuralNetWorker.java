@@ -12,4 +12,6 @@ public interface INeuralNetWorker {
     INeuralNet load(UUID neuralNetId);
 
     void delete(UUID neuralNetId);
+
+    void propagateForward(INeuralNet neuralNet);
 }

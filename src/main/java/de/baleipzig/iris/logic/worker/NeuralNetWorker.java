@@ -18,6 +18,7 @@ import java.util.UUID;
 public class NeuralNetWorker implements INeuralNetWorker {
 
     private final INeuralNetEntityRepository repository;
+    private final ILayerWorker layerWorker;
 
     public void save(INeuralNet neuralNet) {
 
@@ -43,6 +44,16 @@ public class NeuralNetWorker implements INeuralNetWorker {
     }
 
     public void delete(UUID neuralNetId) {
+
         repository.delete(neuralNetId.toString());
+    }
+
+    public void propagateForward(INeuralNet neuralNet) {
+
+        INeuralNetCore neuralNetCore = neuralNet.getNeuralNetCore();
+
+        layerWorker.propagateForward(neuralNetCore.getInputLayer());
+        neuralNetCore.getHiddenLayers().forEach(layerWorker::propagateForward);
+        layerWorker.propagateForward(neuralNetCore.getOutputLayer());
     }
 }
