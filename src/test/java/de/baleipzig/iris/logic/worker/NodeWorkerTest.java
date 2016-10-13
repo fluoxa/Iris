@@ -3,7 +3,6 @@ package de.baleipzig.iris.logic.worker;
 import de.baleipzig.iris.model.neuralnet.ActivationFunctions;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import de.baleipzig.iris.model.neuralnet.node.INode;
-import org.mockito.Mockito;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -25,6 +24,7 @@ public class NodeWorkerTest {
         when(node.getBias()).thenReturn(1.5);
         when(node.getActivationFunction()).thenReturn(ActivationFunctions::identity);
         when(node.getParentAxons()).thenReturn(Arrays.asList(axon1, axon2));
+        when(node.getPreActivation()).thenReturn(1.06);
         when(parentNode1.getState()).thenReturn(3.4);
         when(parentNode2.getState()).thenReturn(-2.);
 
@@ -39,6 +39,15 @@ public class NodeWorkerTest {
 
         worker.calculateState(node);
 
-        verify(node, times(1)).setState();
+        verify(node, times(1)).setPreActivation(1.06);
+        verify(node, times(1)).setState(1.06);
+        verify(node, times(1)).getParentAxons();
+        verify(node, times(1)).getBias();
+        verify(node, times(1)).getActivationFunction();
+        verify(axon1, times(1)).getWeight();
+        verify(axon2, times(1)).getWeight();
+        verify(axon1, times(1)).getParentNode();
+        verify(axon2, times(1)).getParentNode();
+
     }
 }

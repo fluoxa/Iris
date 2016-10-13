@@ -52,7 +52,6 @@ public class NeuralNetWorker implements INeuralNetWorker {
 
         INeuralNetCore neuralNetCore = neuralNet.getNeuralNetCore();
 
-        layerWorker.propagateForward(neuralNetCore.getInputLayer());
         neuralNetCore.getHiddenLayers().forEach(layerWorker::propagateForward);
         layerWorker.propagateForward(neuralNetCore.getOutputLayer());
     }
