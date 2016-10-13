@@ -31,7 +31,7 @@ public class LayerUtils {
         return list;
     }
 
-    public static ILayer createRandomLayer(Dimension dim, boolean useRandomBias){
+    public static ILayer createLayer(Dimension dim, boolean useRandomBias){
 
         ILayer layer = new Layer();
         layer.resize(dim);
