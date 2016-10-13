@@ -7,15 +7,12 @@ import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import de.baleipzig.iris.ImageType;
 import de.baleipzig.iris.logic.worker.IImageWorker;
-import de.baleipzig.iris.model.image.IImage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.hezamu.canvas.Canvas;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 @UIScope
 @SpringView(name = DanielView.VIEW_NAME)
@@ -36,12 +33,12 @@ public class DanielView extends VerticalLayout implements View {
         Button button = new Button("test");
 
         button.addClickListener(clickEvent -> {
-            //imageWorker.exportImageToDb();
+            imageWorker.exportImageToDb();
 //            long count = imageWorker.countImagesByType(ImageType.TEST);
 //            count = 0;
             //List<IImage> list =  imageWorker.loadAllImagesByType(ImageType.TRAIN);
-            List<IImage> list = imageWorker.loadRandomImagesByType(1000, ImageType.TRAIN);
-            String foo = "";
+            //List<IImage> list = imageWorker.loadRandomImagesByType(1000, ImageType.TRAIN);
+            //String foo = "";
         });
 
         addComponent(button);

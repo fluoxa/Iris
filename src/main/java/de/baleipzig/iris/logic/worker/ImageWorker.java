@@ -30,7 +30,6 @@ public class ImageWorker implements IImageWorker {
 
     @Override
     public long countImagesByType(ImageType imageType) {
-
         return repository.countByImageType(imageType.toString());
     }
 
@@ -89,17 +88,7 @@ public class ImageWorker implements IImageWorker {
         Long currentMillis = System.currentTimeMillis();
 
         processImageFolder("C:\\mnist\\mnist-test", ImageType.TEST);
-        processImageFolder("C:\\mnist\\mnist-training-0", ImageType.TRAIN);
-        processImageFolder("C:\\mnist\\mnist-training-1", ImageType.TRAIN);
-        processImageFolder("C:\\mnist\\mnist-training-2", ImageType.TRAIN);
-        processImageFolder("C:\\mnist\\mnist-training-3", ImageType.TRAIN);
-        processImageFolder("C:\\mnist\\mnist-training-4", ImageType.TRAIN);
-        processImageFolder("C:\\mnist\\mnist-training-5", ImageType.TRAIN);
-        processImageFolder("C:\\mnist\\mnist-training-6", ImageType.TRAIN);
-        processImageFolder("C:\\mnist\\mnist-training-7", ImageType.TRAIN);
-        processImageFolder("C:\\mnist\\mnist-training-8", ImageType.TRAIN);
-        processImageFolder("C:\\mnist\\mnist-training-9", ImageType.TRAIN);
-
+        processImageFolder("C:\\mnist\\mnist-training", ImageType.TRAIN);
 
         Long time = System.currentTimeMillis() - currentMillis;
         System.out.println("Anzahl:" + count);
