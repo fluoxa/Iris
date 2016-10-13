@@ -2,9 +2,11 @@ package de.baleipzig.iris.logic.worker;
 
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import de.baleipzig.iris.model.neuralnet.node.INode;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class NodeWorker implements INodeWorker {
 
     public void calculateState(INode node) {

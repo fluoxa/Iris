@@ -46,7 +46,7 @@ public class NeuralNetWorkerTest {
         worker.propagateForward(net);
 
         verify(net, times(1)).getNeuralNetCore();
-        verify(layerWorker, times(4)).propagateForward(any(ILayer.class));
+        verify(layerWorker, times(3)).propagateForward(any(ILayer.class));
     }
 
     @DataProvider(name = "xorNet_InputOutput")

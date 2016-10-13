@@ -40,7 +40,7 @@ public class LayerUtils {
             for (int j = 0; j < dim.getX(); j++){
 
                 INode node = new Node();
-                node.setBias( useRandomBias ? (Math.random()-0.5)*10. : 0.); //todo: range herausfinden
+                node.setBias( useRandomBias ? (Math.random()-0.5)*5. : 0.);
                 layer.addNode(node);
             }
 
@@ -70,7 +70,7 @@ public class LayerUtils {
 
                 INode tmp = childLayer.getNode(j,i);
                 IAxon axon = new Axon();
-                axon.setWeight(useRandomWeights ? Math.random()-0.5 : 0); //todo: range herausfinden
+                axon.setWeight(useRandomWeights ? 2.*Math.random()-0.5 : 0);
                 axon.setParentNode(node);
                 axon.setChildNode(tmp);
                 node.addChildAxon(axon);
