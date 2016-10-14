@@ -120,14 +120,12 @@
             <version>5.5.1</version>
         </dependency>
 
-
         <!-- io utility by apache-->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
         </dependency>
-
     </dependencies>
 
     <dependencyManagement>
@@ -166,7 +164,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
@@ -236,5 +233,4 @@
             <url>https://repo.spring.io/libs-release</url>
         </pluginRepository>
     </pluginRepositories>
-
 </project>

@@ -25,9 +25,6 @@ public class ImageWorker implements IImageWorker {
 
     private final IImageEntityRepository repository;
 
-    int count;
-    List<ImageEntity> imageEntities;
-
     @Override
     public long countImagesByType(ImageType imageType) {
         return repository.countByImageType(imageType.toString());
@@ -66,42 +63,20 @@ public class ImageWorker implements IImageWorker {
     }
 
     @Override
-    public void save(IImage image) {
-        throw new RuntimeException("save, not implemented");
-    }
-
-    @Override
-    public IImage load(UUID uuid) {
-        return null;
-    }
-
-    @Override
-    public void delete(UUID uuid) {
-        throw new RuntimeException("delete, not implemented");
-    }
-
-
     public void exportImageToDb() {
-        count = 0;
         repository.deleteAll();
-
-        Long currentMillis = System.currentTimeMillis();
 
         processImageFolder("C:\\mnist\\mnist-test", ImageType.TEST);
         processImageFolder("C:\\mnist\\mnist-training", ImageType.TRAIN);
-
-        Long time = System.currentTimeMillis() - currentMillis;
-        System.out.println("Anzahl:" + count);
-        System.out.println("Dauer:" + time);
     }
 
 
     private void processImageFolder(String pathToFolder, ImageType imageType) {
-        imageEntities = new ArrayList<>();
+        final List<ImageEntity> imageEntities = new ArrayList<>();
         try (Stream<Path> paths = Files.walk(Paths.get(pathToFolder))) {
             paths.forEach(filePath -> {
                 try {
-                    processFile(filePath, imageType);
+                    processFile(filePath, imageType, imageEntities);
                 } catch (Exception e) {
                     System.out.println(e);
                 }
@@ -113,10 +88,8 @@ public class ImageWorker implements IImageWorker {
         repository.save(imageEntities);
     }
 
-    private void processFile(Path path, ImageType imageType) throws Exception {
+    private void processFile(Path path, ImageType imageType, List<ImageEntity> imageEntities) throws Exception {
         if (Files.isRegularFile(path)) {
-            count++;
-
             byte[] data = Files.readAllBytes(path);
 
             String imageAsBase64 = Base64.getEncoder().encodeToString(data);

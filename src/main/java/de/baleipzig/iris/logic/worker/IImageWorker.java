@@ -4,9 +4,8 @@ import de.baleipzig.iris.ImageType;
 import de.baleipzig.iris.model.image.IImage;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface IImageWorker extends ICrudWorker<IImage, UUID> {
+public interface IImageWorker {
 
     void exportImageToDb();
 
