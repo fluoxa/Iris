@@ -1,6 +1,7 @@
 package de.baleipzig.iris.common.utils;
 
 import de.baleipzig.iris.common.Dimension;
+import de.baleipzig.iris.model.neuralnet.activationfunction.SigmoidFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
@@ -40,6 +41,7 @@ public class LayerUtils {
             for (int j = 0; j < dim.getX(); j++){
 
                 INode node = new Node();
+                node.setActivationFunctionContainer(new SigmoidFunctionContainer());
                 node.setBias( useRandomBias ? (Math.random()-0.5)*5. : 0.);
                 layer.addNode(node);
             }

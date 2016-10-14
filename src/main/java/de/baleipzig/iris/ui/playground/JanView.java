@@ -7,8 +7,8 @@ import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import de.baleipzig.iris.common.Dimension;
-import de.baleipzig.iris.common.utils.NeuralNetCoreUtils;
-import de.baleipzig.iris.logic.worker.INeuralNetWorker;
+import de.baleipzig.iris.common.utils.LayerUtils;
+import de.baleipzig.iris.logic.worker.*;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunctionContainerFactory;
 import de.baleipzig.iris.model.neuralnet.activationfunction.IActivationFunctionContainer;
@@ -22,7 +22,6 @@ import de.baleipzig.iris.model.neuralnet.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import java.util.UUID;
 
 
 @UIScope
@@ -41,17 +40,25 @@ public class JanView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-        INeuralNet net = createNeuralNet();
+        ILayer inputLayer = LayerUtils.createLayer(new Dimension(28,28), true);
+        ILayer hiddenLayer = LayerUtils.createLayer(new Dimension(15,1), true);
+        ILayer outputLayer = LayerUtils.createLayer(new Dimension(10,1), true);
 
-        UUID id = net.getNeuralNetMetaData().getId();
+        LayerUtils.fullyConnectLayers(inputLayer, hiddenLayer, true);
+        LayerUtils.fullyConnectLayers(hiddenLayer, outputLayer, true);
 
-        neuralNetWorker.save(net);
+        INeuralNet neuralNet = new NeuralNet();
+        INeuralNetCore neuralNetCore = new NeuralNetCore();
+        neuralNet.setNeuralNetCore(neuralNetCore);
+        neuralNetCore.setInputLayer(inputLayer);
+        neuralNetCore.setOutputLayer(outputLayer);
+        neuralNetCore.addHiddenLayer(hiddenLayer);
 
-        INeuralNet loadedNet = neuralNetWorker.load(id);
+        long start = System.currentTimeMillis();
+        neuralNetWorker.propagateForward(neuralNet);
+        long end = System.currentTimeMillis();
 
-        System.out.printf("Anzahl der Knoten: " + NeuralNetCoreUtils.getNumberOfNodes(loadedNet.getNeuralNetCore()));
-
-        neuralNetWorker.delete(id);
+        System.out.println(end-start);
     }
 
     private INeuralNet createNeuralNet(){
