@@ -40,6 +40,7 @@ public class NeuralNetConverter {
 
         INeuralNetCore net = new NeuralNetCore();
         net.setInputLayer(inputLayer);
+        //Todo: unit-TEST auf richtige reihenfolge der Layer
         hiddenLayers.forEach(net::addHiddenLayer);
         net.setOutputLayer(outputLayer);
 
@@ -74,8 +75,8 @@ public class NeuralNetConverter {
         neuralNetEntity.getAxons().forEach((key, axonEntity) -> {
             String[] parentAndChild = key.split(AxonEntity.PARENT_TO_CHILD_DELIMITER);
 
-            INode parentNode = allNodes.get(Long.valueOf(parentAndChild[0]));
-            INode childNode = allNodes.get(Long.valueOf(parentAndChild[1]));
+            INode parentNode = allNodes.get(Long.valueOf(parentAndChild[0].trim()));
+            INode childNode = allNodes.get(Long.valueOf(parentAndChild[1].trim()));
 
             IAxon axon = new Axon();
             axon.setParentNode(parentNode);
@@ -178,7 +179,7 @@ public class NeuralNetConverter {
                 axonEntity.setChildNodeId(nodeIdMapper.get(child));
                 axonEntity.setParentNodeId(nodeIdMapper.get(parent));
 
-                String key = String.format("%s%s%s",nodeIdMapper.get(parent),AxonEntity.PARENT_TO_CHILD_DELIMITER, nodeIdMapper.get(child));
+                String key = String.format("%1d%2s%3d",nodeIdMapper.get(parent),AxonEntity.PARENT_TO_CHILD_DELIMITER, nodeIdMapper.get(child));
                 axonEntities.put(key, axonEntity);
             }
         }
