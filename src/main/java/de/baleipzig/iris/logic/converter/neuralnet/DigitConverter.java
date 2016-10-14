@@ -11,7 +11,7 @@ public class DigitConverter implements IEntityLayerConverter<Integer> {
 
 	public ILayer convert(Integer digit) {
 	
-		ILayer layer = LayerUtils.createLayer(new Dimension(10,1), false);
+		ILayer layer = LayerUtils.createLayerWithOptionalRandomBias(new Dimension(10,1), null,false);
 		
 		if(digit < MIN_DIGIT || digit > MAX_DIGIT) {
 			throw new RuntimeException("DigitConverter: digit out of range");

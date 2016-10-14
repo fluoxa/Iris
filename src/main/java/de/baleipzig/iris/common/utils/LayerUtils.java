@@ -1,7 +1,7 @@
 package de.baleipzig.iris.common.utils;
 
 import de.baleipzig.iris.common.Dimension;
-import de.baleipzig.iris.model.neuralnet.activationfunction.SigmoidFunctionContainer;
+import de.baleipzig.iris.model.neuralnet.activationfunction.IActivationFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
@@ -24,59 +24,78 @@ public class LayerUtils {
         int sizeY = layer.getDim().getY();
         List<INode> list = new ArrayList<>(sizeX * sizeY);
 
-        for(int y = 0; y < sizeY; y++)
-            for(int x = 0; x < sizeX; x++){
-                list.add(layer.getNode(x,y));
+        for(int y = 0; y < sizeY; y++) {
+            for (int x = 0; x < sizeX; x++) {
+                list.add(layer.getNode(x, y));
             }
+        }
 
         return list;
     }
 
-    public static ILayer createLayer(Dimension dim, boolean useRandomBias){
+    public static void copyStatesFromTo(ILayer sourceLayer, ILayer copyLayer) {
+
+        final Dimension sourceDim = sourceLayer.getDim();
+        final Dimension copyDim = copyLayer.getDim();
+
+        if( copyDim.getY() != sourceDim.getY() || copyDim.getX() != sourceDim.getX()) {
+            throw new RuntimeException("copyStatesFromTo: layer dimensions not matching");
+        }
+
+        for(int y = 0; y < sourceDim.getY(); y++) {
+            for (int x = 0; x < sourceDim.getX(); x++) {
+                copyLayer.getNode(x,y).setState(sourceLayer.getNode(x,y).getState());
+            }
+        }
+    }
+
+    public static ILayer createLayerWithOptionalRandomBias(Dimension dim, IActivationFunctionContainer activationFunction, boolean useRandomBias){
 
         ILayer layer = new Layer();
         layer.resize(dim);
 
-        for(int i = 0; i < dim.getY(); i++)
-            for (int j = 0; j < dim.getX(); j++){
+        for(int y = 0; y < dim.getY(); y++) {
+            for (int x = 0; x < dim.getX(); x++) {
 
                 INode node = new Node();
-                node.setActivationFunctionContainer(new SigmoidFunctionContainer());
-                node.setBias( useRandomBias ? (Math.random()-0.5)*5. : 0.);
+                node.setActivationFunctionContainer(activationFunction);
+                node.setBias(useRandomBias ? (Math.random() - 0.5) * 5. : 0.);
                 layer.addNode(node);
             }
+        }
 
         return layer;
     }
 
-    public static void fullyConnectLayers(ILayer parent, ILayer child, boolean useRandomWeights){
+    public static void fullyConnectLayers(ILayer parentLayer, ILayer childLayer, boolean useRandomWeights){
 
-        int sizeX = parent.getDim().getX();
-        int sizeY = parent.getDim().getY();
+        int sizeX = parentLayer.getDim().getX();
+        int sizeY = parentLayer.getDim().getY();
 
-        for(int i = 0; i < sizeY; i++)
-            for(int j = 0; j < sizeX; j++){
-
-                INode tmp = parent.getNode(j,i);
-                LayerUtils.connectNodeChildLayer(tmp, child, useRandomWeights);
+        for(int y = 0; y < sizeY; y++){
+            for(int x = 0; x < sizeX; x++){
+                INode parentNode = parentLayer.getNode(x,y);
+                LayerUtils.connectNodeChildLayer(parentNode, childLayer, useRandomWeights);
             }
+        }
     }
 
-    private static void connectNodeChildLayer (INode node, ILayer childLayer, boolean useRandomWeights){
+    private static void connectNodeChildLayer (INode parentNode, ILayer childLayer, boolean useRandomWeights){
 
         int sizeX = childLayer.getDim().getX();
         int sizeY = childLayer.getDim().getY();
 
-        for(int i = 0; i < sizeY; i++)
-            for(int j = 0; j < sizeX; j++){
+        for(int y = 0; y < sizeY; y++){
+            for(int x = 0; x < sizeX; x++){
 
-                INode tmp = childLayer.getNode(j,i);
+                INode childNode = childLayer.getNode(x,y);
                 IAxon axon = new Axon();
                 axon.setWeight(useRandomWeights ? 2.*Math.random()-0.5 : 0);
-                axon.setParentNode(node);
-                axon.setChildNode(tmp);
-                node.addChildAxon(axon);
-                tmp.addParentAxon(axon);
+                axon.setParentNode(parentNode);
+                axon.setChildNode(childNode);
+                parentNode.addChildAxon(axon);
+                childNode.addParentAxon(axon);
             }
+        }
     }
 }

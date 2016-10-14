@@ -8,10 +8,11 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.common.utils.LayerUtils;
-import de.baleipzig.iris.logic.worker.*;
+import de.baleipzig.iris.logic.worker.INeuralNetWorker;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunctionContainerFactory;
 import de.baleipzig.iris.model.neuralnet.activationfunction.IActivationFunctionContainer;
+import de.baleipzig.iris.model.neuralnet.activationfunction.SigmoidFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
@@ -19,6 +20,7 @@ import de.baleipzig.iris.model.neuralnet.layer.Layer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.*;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 import de.baleipzig.iris.model.neuralnet.node.Node;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -26,11 +28,11 @@ import javax.annotation.PostConstruct;
 
 @UIScope
 @SpringView(name = JanView.VIEW_NAME)
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class JanView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "jan";
 
-    @Autowired
-    private INeuralNetWorker neuralNetWorker;
+    private final INeuralNetWorker neuralNetWorker;
 
     @PostConstruct
     void init() {
@@ -40,9 +42,9 @@ public class JanView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-        ILayer inputLayer = LayerUtils.createLayer(new Dimension(28,28), true);
-        ILayer hiddenLayer = LayerUtils.createLayer(new Dimension(15,1), true);
-        ILayer outputLayer = LayerUtils.createLayer(new Dimension(10,1), true);
+        ILayer inputLayer = LayerUtils.createLayerWithOptionalRandomBias(new Dimension(28,28), null, true);
+        ILayer hiddenLayer = LayerUtils.createLayerWithOptionalRandomBias(new Dimension(15,1), new SigmoidFunctionContainer(), true);
+        ILayer outputLayer = LayerUtils.createLayerWithOptionalRandomBias(new Dimension(10,1), new SigmoidFunctionContainer(), true);
 
         LayerUtils.fullyConnectLayers(inputLayer, hiddenLayer, true);
         LayerUtils.fullyConnectLayers(hiddenLayer, outputLayer, true);
@@ -54,11 +56,13 @@ public class JanView extends VerticalLayout implements View {
         neuralNetCore.setOutputLayer(outputLayer);
         neuralNetCore.addHiddenLayer(hiddenLayer);
 
+        System.out.println(outputLayer.getNode(0,0).getState());
+
         long start = System.currentTimeMillis();
         neuralNetWorker.propagateForward(neuralNet);
         long end = System.currentTimeMillis();
-
-        System.out.println(end-start);
+        System.out.println(outputLayer.getNode(0,0).getState());
+        System.out.println("Laufzeit: " + (end-start));
     }
 
     private INeuralNet createNeuralNet(){
