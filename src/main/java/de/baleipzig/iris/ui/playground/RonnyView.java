@@ -9,10 +9,6 @@ import com.vaadin.ui.VerticalLayout;
 
 import javax.annotation.PostConstruct;
 
-/**
- * Created by dgl on 10.10.2016.
- */
-
 @UIScope
 @SpringView(name = RonnyView.VIEW_NAME)
 public class RonnyView extends VerticalLayout implements View {
