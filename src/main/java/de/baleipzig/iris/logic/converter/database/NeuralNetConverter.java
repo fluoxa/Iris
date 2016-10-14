@@ -1,8 +1,9 @@
-package de.baleipzig.iris.logic.converter;
+package de.baleipzig.iris.logic.converter.database;
 
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.common.utils.LayerUtils;
 import de.baleipzig.iris.common.utils.NeuralNetCoreUtils;
+import de.baleipzig.iris.enums.NeuralNetCoreType;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunctionContainerFactory;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
