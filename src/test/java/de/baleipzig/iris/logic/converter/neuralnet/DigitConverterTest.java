@@ -1,6 +1,5 @@
 package de.baleipzig.iris.logic.converter.neuralnet;
 
-
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;

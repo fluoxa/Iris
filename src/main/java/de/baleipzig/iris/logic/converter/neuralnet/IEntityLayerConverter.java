@@ -4,5 +4,5 @@ import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 
 public interface IEntityLayerConverter<T> {
 	
-	ILayer convert(T obj);
+	ILayer convert(T t);
 }

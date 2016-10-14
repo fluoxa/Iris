@@ -5,17 +5,20 @@ import de.baleipzig.iris.common.utils.LayerUtils;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 
 public class DigitConverter implements IEntityLayerConverter<Integer> {
-	
-	public ILayer convert(Integer obj) {
+
+    private final int MAX_DIGIT = 9;
+    private final int MIN_DIGIT = 0;
+
+	public ILayer convert(Integer digit) {
 	
 		ILayer layer = LayerUtils.createLayer(new Dimension(10,1), false);
 		
-		if(obj < 0 || obj > 9) {
-			return layer;
+		if(digit < MIN_DIGIT || digit > MAX_DIGIT) {
+			throw new RuntimeException("DigitConverter: digit out of range");
 		}
 		
-		for(int pos = 0; pos < 10; pos++){
-			layer.getNode(pos,0).setState(pos == obj ? 1 : 0);
+		for(int pos = MIN_DIGIT; pos <= MAX_DIGIT; pos++){
+			layer.getNode(pos,0).setState(pos == digit ? 1 : 0);
 		}
 		
 		return layer;
