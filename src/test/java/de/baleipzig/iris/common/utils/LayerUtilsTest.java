@@ -62,7 +62,7 @@ public class LayerUtilsTest {
         }
     }
 
-    @DataProvider(name = "copyStatesFromTo_dimensionTest")
+    @DataProvider(name = "copyActivationsFromTo_dimensionTest")
     public static Object[][] createLayer_data3() {
 
         return new Object[][]{
@@ -73,20 +73,20 @@ public class LayerUtilsTest {
         };
     }
 
-    @Test(dataProvider = "copyStatesFromTo_dimensionTest", expectedExceptions = RuntimeException.class)
-    public void copyStatesFromTo_ThrowsRuntTimeException(Dimension dimSource, Dimension dimCopy) {
+    @Test(dataProvider = "copyActivationsFromTo_dimensionTest", expectedExceptions = RuntimeException.class)
+    public void copyActivationsFromTo_ThrowsRuntTimeException(Dimension dimSource, Dimension dimCopy) {
 
         when(layer1.getDim()).thenReturn(dimSource);
         when(layer2.getDim()).thenReturn(dimCopy);
 
-        LayerUtils.copyStatesFromTo(layer1, layer2);
+        LayerUtils.copyActivationFromTo(layer1, layer2);
 
         verify(layer1).getDim();
         verify(layer2).getDim();
     }
 
     @Test
-    public void copyStatesFromTo_ReturnsTrue_WhenStatesCopied() {
+    public void copyActivationFromTo_ReturnsTrue_WhenActivationCopied() {
 
         when(layer1.getDim()).thenReturn(new Dimension(2,1));
         when(layer2.getDim()).thenReturn(new Dimension(2,1));
@@ -94,12 +94,12 @@ public class LayerUtilsTest {
         when(layer1.getNode(1,0)).thenReturn(nodeSource2);
         when(layer2.getNode(0,0)).thenReturn(nodeCopy1);
         when(layer2.getNode(1,0)).thenReturn(nodeCopy2);
-        when(nodeSource1.getState()).thenReturn(1.);
-        when(nodeSource2.getState()).thenReturn(2.);
+        when(nodeSource1.getActivation()).thenReturn(1.);
+        when(nodeSource2.getActivation()).thenReturn(2.);
 
-        LayerUtils.copyStatesFromTo(layer1, layer2);
+        LayerUtils.copyActivationFromTo(layer1, layer2);
 
-        verify(nodeCopy1).setState(1.);
-        verify(nodeCopy2).setState(2.);
+        verify(nodeCopy1).setActivation(1.);
+        verify(nodeCopy2).setActivation(2.);
     }
 }

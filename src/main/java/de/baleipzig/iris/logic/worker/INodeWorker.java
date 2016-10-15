@@ -4,5 +4,5 @@ import de.baleipzig.iris.model.neuralnet.node.INode;
 
 public interface INodeWorker {
 
-    void calculateState(INode node);
+    void calculateActivation(INode node);
 }

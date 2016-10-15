@@ -18,7 +18,7 @@ public class DigitConverter implements IEntityLayerConverter<Integer> {
 		}
 		
 		for(int pos = MIN_DIGIT; pos <= MAX_DIGIT; pos++){
-			layer.getNode(pos,0).setState(pos == digit ? 1 : 0);
+			layer.getNode(pos,0).setActivation(pos == digit ? 1 : 0);
 		}
 		
 		return layer;

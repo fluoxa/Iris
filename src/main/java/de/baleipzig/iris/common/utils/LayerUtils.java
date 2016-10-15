@@ -33,18 +33,18 @@ public class LayerUtils {
         return list;
     }
 
-    public static void copyStatesFromTo(ILayer sourceLayer, ILayer copyLayer) {
+    public static void copyActivationFromTo(ILayer sourceLayer, ILayer copyLayer) {
 
         final Dimension sourceDim = sourceLayer.getDim();
         final Dimension copyDim = copyLayer.getDim();
 
         if( copyDim.getY() != sourceDim.getY() || copyDim.getX() != sourceDim.getX()) {
-            throw new RuntimeException("copyStatesFromTo: layer dimensions not matching");
+            throw new RuntimeException("copyActivationFromTo: layer dimensions not matching");
         }
 
         for(int y = 0; y < sourceDim.getY(); y++) {
             for (int x = 0; x < sourceDim.getX(); x++) {
-                copyLayer.getNode(x,y).setState(sourceLayer.getNode(x,y).getState());
+                copyLayer.getNode(x,y).setActivation(sourceLayer.getNode(x,y).getActivation());
             }
         }
     }

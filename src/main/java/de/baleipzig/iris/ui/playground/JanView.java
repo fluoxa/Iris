@@ -56,12 +56,12 @@ public class JanView extends VerticalLayout implements View {
         neuralNetCore.setOutputLayer(outputLayer);
         neuralNetCore.addHiddenLayer(hiddenLayer);
 
-        System.out.println(outputLayer.getNode(0,0).getState());
+        System.out.println(outputLayer.getNode(0,0).getActivation());
 
         long start = System.currentTimeMillis();
         neuralNetWorker.propagateForward(neuralNet);
         long end = System.currentTimeMillis();
-        System.out.println(outputLayer.getNode(0,0).getState());
+        System.out.println(outputLayer.getNode(0,0).getActivation());
         System.out.println("Laufzeit: " + (end-start));
     }
 

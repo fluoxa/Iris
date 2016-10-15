@@ -9,7 +9,6 @@ import java.util.Arrays;
 
 import static org.mockito.Mockito.*;
 
-
 public class NodeWorkerTest {
 
     private INode node = mock(INode.class);
@@ -19,14 +18,14 @@ public class NodeWorkerTest {
     private IAxon axon2 = mock(IAxon.class);
 
     @Test
-    public void calculateState_ReturnsExpectedState() {
+    public void calculateActivation_ReturnsExpectedActivation() {
 
         when(node.getBias()).thenReturn(1.5);
         when(node.getActivationFunction()).thenReturn(ActivationFunctions::identity);
         when(node.getParentAxons()).thenReturn(Arrays.asList(axon1, axon2));
-        when(node.getPreActivation()).thenReturn(1.06);
-        when(parentNode1.getState()).thenReturn(3.4);
-        when(parentNode2.getState()).thenReturn(-2.);
+        when(node.getWeightedInput()).thenReturn(1.06);
+        when(parentNode1.getActivation()).thenReturn(3.4);
+        when(parentNode2.getActivation()).thenReturn(-2.);
 
         when(axon1.getChildNode()).thenReturn(node);
         when(axon2.getChildNode()).thenReturn(node);
@@ -37,10 +36,10 @@ public class NodeWorkerTest {
 
         NodeWorker worker = new NodeWorker();
 
-        worker.calculateState(node);
+        worker.calculateActivation(node);
 
-        verify(node, times(1)).setPreActivation(1.06);
-        verify(node, times(1)).setState(1.06);
+        verify(node, times(1)).setWeightedInput(1.06);
+        verify(node, times(1)).setActivation(1.06);
         verify(node, times(1)).getParentAxons();
         verify(node, times(1)).getBias();
         verify(node, times(1)).getActivationFunction();
@@ -48,6 +47,5 @@ public class NodeWorkerTest {
         verify(axon2, times(1)).getWeight();
         verify(axon1, times(1)).getParentNode();
         verify(axon2, times(1)).getParentNode();
-
     }
 }

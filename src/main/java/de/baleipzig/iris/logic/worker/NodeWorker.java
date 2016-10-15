@@ -9,18 +9,18 @@ import java.util.List;
 @Component
 public class NodeWorker implements INodeWorker {
 
-    public void calculateState(INode node) {
+    public void calculateActivation(INode node) {
 
         double result = 0.;
 
         List<IAxon> parentAxons = node.getParentAxons();
 
         for(IAxon parentAxon : parentAxons){
-            result += parentAxon.getWeight() * parentAxon.getParentNode().getState();
+            result += parentAxon.getWeight() * parentAxon.getParentNode().getActivation();
         }
 
-        node.setPreActivation(result + node.getBias());
+        node.setWeightedInput(result + node.getBias());
 
-        node.setState(node.getActivationFunction().apply(node.getPreActivation()));
+        node.setActivation(node.getActivationFunction().apply(node.getWeightedInput()));
     }
 }
