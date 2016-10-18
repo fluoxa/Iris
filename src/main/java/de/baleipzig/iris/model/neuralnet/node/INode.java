@@ -18,11 +18,11 @@ public interface INode {
     double getError();
     void setError(double error);
 
-    double getPreActivation();
-    void setPreActivation(double preActivation);
+    double getWeightedInput();
+    void setWeightedInput(double preActivation);
 
-    double getState();
-    void setState(double state);
+    double getActivation();
+    void setActivation(double state);
 
     double getBias();
     void setBias(double bias);

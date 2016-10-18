@@ -131,13 +131,13 @@ public class LayerTest {
         layer.resize(new Dimension(1,3));
         layer.addNode(node);
         layer.addNode(node2);
-        Consumer<INode> func = x -> {x.setState(3.); this.counter++;};
+        Consumer<INode> func = x -> {x.setActivation(3.); this.counter++;};
 
         layer.applyToLayerNodes(func);
 
         Assert.assertEquals(this.counter, 2);
-        verify(node, times(1)).setState(3.);
-        verify(node2, times(1)).setState(3.);
+        verify(node, times(1)).setActivation(3.);
+        verify(node2, times(1)).setActivation(3.);
     }
 
     @Test(dataProvider = "applyToLayerNodes_DoesNothing_WhenArrayIsEmpty")
@@ -146,7 +146,7 @@ public class LayerTest {
         Layer layer = new Layer();
         layer.resize(dim);
         this.counter = 0;
-        Consumer<INode> func = (x) -> {x.setState(3.); this.counter++;};
+        Consumer<INode> func = (x) -> {x.setActivation(3.); this.counter++;};
 
         layer.applyToLayerNodes(func);
 

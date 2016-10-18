@@ -21,7 +21,7 @@ public class Node implements INode {
 
     @Getter
     @Setter
-    private double state;
+    private double activation;
 
     @Getter
     @Setter
@@ -33,7 +33,7 @@ public class Node implements INode {
 
     @Getter
     @Setter
-    private double preActivation;
+    private double weightedInput;
 
     private IActivationFunctionContainer activationFunctionContainer;
 

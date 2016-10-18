@@ -12,6 +12,6 @@ public class LayerWorker implements ILayerWorker{
     private final INodeWorker nodeWorker;
 
     public void propagateForward(ILayer layer){
-        layer.applyToLayerNodes(nodeWorker::calculateState);
+        layer.applyToLayerNodes(nodeWorker::calculateActivation);
     }
 }

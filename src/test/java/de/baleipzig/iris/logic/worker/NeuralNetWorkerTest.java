@@ -64,14 +64,14 @@ public class NeuralNetWorkerTest {
 
         INeuralNet net = setupXorNet();
         ILayer iLayer = net.getNeuralNetCore().getInputLayer();
-        iLayer.getNode(0,0).setState(input1);
-        iLayer.getNode(1,0).setState(input2);
+        iLayer.getNode(0,0).setActivation(input1);
+        iLayer.getNode(1,0).setActivation(input2);
 
         INeuralNetWorker worker = new NeuralNetWorker(repo, new LayerWorker(new NodeWorker()));
 
         worker.propagateForward(net);
 
-        Assert.assertEquals(net.getNeuralNetCore().getOutputLayer().getNode(0,0).getState(), result);
+        Assert.assertEquals(net.getNeuralNetCore().getOutputLayer().getNode(0,0).getActivation(), result);
     }
 
     private static INeuralNet setupXorNet(){

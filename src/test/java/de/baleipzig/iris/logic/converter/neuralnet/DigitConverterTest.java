@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class DigitConverterTest {
 
-	@DataProvider(name = "convert_ReturnsStateZeroLayer_WhenNumberOutOfRange")
+	@DataProvider(name = "convert_ReturnsActivationZeroLayer_WhenNumberOutOfRange")
     public static Object[][] convert_data() {
         return new Object[][]{{-1},{10}};
     }
@@ -19,8 +19,8 @@ public class DigitConverterTest {
 				{5},{6},{7},{8},{9}};
     }
 
-	@Test(dataProvider = "convert_ReturnsStateZeroLayer_WhenNumberOutOfRange", expectedExceptions = RuntimeException.class)
-	public void convert_ReturnsStateZeroLayer_WhenNumberOutOfRange(int digit) throws RuntimeException {
+	@Test(dataProvider = "convert_ReturnsActivationZeroLayer_WhenNumberOutOfRange", expectedExceptions = RuntimeException.class)
+	public void convert_ReturnsActivationZeroLayer_WhenNumberOutOfRange(int digit) throws RuntimeException {
 
 		IEntityLayerConverter<Integer> digitConverter = new DigitConverter();
 
@@ -37,10 +37,10 @@ public class DigitConverterTest {
 		for(int pos = 0; pos < 9; pos++) {
 			
 			if(pos != digit) {
-				Assert.assertEquals(layer.getNode(pos, 0).getState() ,0.);
+				Assert.assertEquals(layer.getNode(pos, 0).getActivation() ,0.);
 			}
 			else {
-				Assert.assertEquals(layer.getNode(pos, 0).getState() ,1.);
+				Assert.assertEquals(layer.getNode(pos, 0).getActivation() ,1.);
 			}
 		}
 	}
