@@ -1,0 +1,66 @@
+\documentclass[a4paper]{scrreprt}
+ 
+\usepackage[german]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ae}
+\usepackage[bookmarks,bookmarksnumbered]{hyperref}
+ 
+\begin{document}
+ 
+\title{Pflichtenheft mit LaTeX}
+\author{Karl Lorey}
+\maketitle
+ 
+% Die abstract-Umgebung kann bei Bedarf aus dem Pflichtenheft entfernt werden
+\begin{abstract}
+Dies ist ein beispielhaftes Pflichtenheft in \LaTeX. Das Pflichtenheft
+beschreibt in konkreter Form, wie der Auftragnehmer die Anforderungen des
+Auftraggebers zu lösen gedenkt - das sogenannte wie und womit. Der Auftraggeber
+beschreibt vorher im Lastenheft möglichst präzise die Gesamtheit der
+Forderungen - was er entwickelt oder produziert haben möchte. Erst wenn der
+Auftraggeber das Pflichtenheft akzeptiert, sollte die eigentliche Arbeit beim
+Auftragnehmer beginnen.
+\vspace{1cm}
+ 
+Quelle: \url{http://de.wikipedia.org/wiki/Pflichtenheft} und Lehrbuch der
+Objektmodellierung von Heide Balzert
+\vspace{0.5cm}
+ 
+Quellcode: \url{http://www.karllorey.de/informatik-studium/vorlesungen/softwarepraktikum/pflichtenheft-in-latex/}
+\end{abstract}
+ 
+% Platzierung des Inhaltsverzeichnisses
+\tableofcontents
+
+\input{Zielbestimmungen/zielbestimmung}
+\input{Einsatz/einsatz}
+\input{Umgebung/umgebung}
+\input{Funktionalitaet/funktionalitaet}
+\input{Daten/daten} 
+\input{Leistungen/leistung} 
+ 
+\chapter{Leistungen}
+Leistungen: Anforderungen bezüglich Zeit und Genauigkeit
+ 
+\chapter{Benutzungsoberfläche}
+Benutzungsoberfläche: grundlegende Anforderungen, Zugriffsrechte
+ 
+\begin{figure}[ht]
+  \centering
+  \rule{8cm}{6cm}
+  \caption{Dies könnte ein Bild der Benutzungsoberfläche sein}
+\end{figure}
+ 
+\chapter{Qualitätsziele}
+Qualiätsziele: Allgemeine Ziele sind meistens Änderbarkeit und Wartbarkeit.
+Ziele sollten jedoch grundsätzlich messbar, spezifisch und relevant sein.
+ 
+\chapter{Ergänzungen}
+Hier ist Platz für nicht im Pflichtenheft abgedeckte Themengebiete oder ein
+Glossar.
+ 
+% Abbildungsverzeichnis
+\listoffigures
+ 
+\end{document}
