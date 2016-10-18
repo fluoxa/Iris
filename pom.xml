@@ -52,6 +52,13 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-configuration-processor -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>1.4.1.RELEASE</version>
+        </dependency>
+
         <!-- jackson für xml mapping-->
         <dependency>
             <groupId>com.fasterxml</groupId>
