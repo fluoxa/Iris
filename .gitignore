@@ -22,3 +22,10 @@ dist/
 nbdist/
 .nb-gradle/
 /src/main/resources/VAADIN/themes/iris/styles.css
+/files/Pflichtenheft/*.lof
+/files/Pflichtenheft/*.log
+/files/Pflichtenheft/*.out
+/files/Pflichtenheft/*.gz
+/files/Pflichtenheft/*.toc
+/files/Pflichtenheft/*.aux
+/files/Pflichtenheft/pflichtenheft.pdf
