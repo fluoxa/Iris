@@ -4,7 +4,7 @@ import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.common.utils.LayerUtils;
 import de.baleipzig.iris.common.utils.NeuralNetCoreUtils;
 import de.baleipzig.iris.enums.NeuralNetCoreType;
-import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
+import de.baleipzig.iris.enums.FunctionType;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunctionContainerFactory;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
@@ -63,7 +63,7 @@ public class NeuralNetConverter {
         neuralNetEntity.getNodes().forEach((nodeId, nodeEntity) -> {
             INode node = new Node();
             node.setBias(nodeEntity.getBias());
-            node.setActivationFunctionContainer(ActivationFunctionContainerFactory.getContainer(ActivationFunction.valueOf(nodeEntity.getActivationFunctionType())));
+            node.setActivationFunctionContainer(ActivationFunctionContainerFactory.getContainer(FunctionType.valueOf(nodeEntity.getActivationFunctionType())));
             allNodes.put(nodeId, node);
         });
 
@@ -158,7 +158,9 @@ public class NeuralNetConverter {
         NodeEntity nodeEntity = new NodeEntity();
         nodeEntity.setNodeId(idMapper.get(node));
         nodeEntity.setBias(node.getBias());
-        nodeEntity.setActivationFunctionType(node.getActivationFunctionType().toString());
+        FunctionType type = node.getActivationFunctionContainer() == null ? FunctionType.none : node.getActivationFunctionContainer().getFunctionType();
+
+        nodeEntity.setActivationFunctionType(type.toString());
 
         return nodeEntity;
     }

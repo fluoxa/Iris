@@ -21,6 +21,6 @@ public class NodeWorker implements INodeWorker {
 
         node.setWeightedInput(result + node.getBias());
 
-        node.setActivation(node.getActivationFunction().apply(node.getWeightedInput()));
+        node.setActivation(node.getActivationFunctionContainer().getFunction().apply(node.getWeightedInput()));
     }
 }

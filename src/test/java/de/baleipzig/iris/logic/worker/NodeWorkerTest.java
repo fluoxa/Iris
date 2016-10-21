@@ -1,6 +1,6 @@
 package de.baleipzig.iris.logic.worker;
 
-import de.baleipzig.iris.model.neuralnet.ActivationFunctions;
+import de.baleipzig.iris.model.neuralnet.activationfunction.IdentityFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 import org.testng.annotations.Test;
@@ -21,7 +21,7 @@ public class NodeWorkerTest {
     public void calculateActivation_ReturnsExpectedActivation() {
 
         when(node.getBias()).thenReturn(1.5);
-        when(node.getActivationFunction()).thenReturn(ActivationFunctions::identity);
+        when(node.getActivationFunctionContainer()).thenReturn(new IdentityFunctionContainer());
         when(node.getParentAxons()).thenReturn(Arrays.asList(axon1, axon2));
         when(node.getWeightedInput()).thenReturn(1.06);
         when(parentNode1.getActivation()).thenReturn(3.4);
@@ -42,7 +42,7 @@ public class NodeWorkerTest {
         verify(node, times(1)).setActivation(1.06);
         verify(node, times(1)).getParentAxons();
         verify(node, times(1)).getBias();
-        verify(node, times(1)).getActivationFunction();
+        verify(node, times(1)).getActivationFunctionContainer();
         verify(axon1, times(1)).getWeight();
         verify(axon2, times(1)).getWeight();
         verify(axon1, times(1)).getParentNode();

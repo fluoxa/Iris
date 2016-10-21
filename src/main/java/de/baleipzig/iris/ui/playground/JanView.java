@@ -9,9 +9,9 @@ import com.vaadin.ui.VerticalLayout;
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.common.utils.LayerUtils;
 import de.baleipzig.iris.logic.worker.INeuralNetWorker;
-import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
+import de.baleipzig.iris.enums.FunctionType;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunctionContainerFactory;
-import de.baleipzig.iris.model.neuralnet.activationfunction.IActivationFunctionContainer;
+import de.baleipzig.iris.model.neuralnet.activationfunction.IFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.activationfunction.SigmoidFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
@@ -67,7 +67,7 @@ public class JanView extends VerticalLayout implements View {
 
     private INeuralNet createNeuralNet(){
 
-        IActivationFunctionContainer func = ActivationFunctionContainerFactory.getContainer(ActivationFunction.sigmoid);
+        IFunctionContainer func = ActivationFunctionContainerFactory.getContainer(FunctionType.sigmoid);
 
         INode node1 = new Node(func);
         node1.setBias(1.);

@@ -1,20 +1,10 @@
 package de.baleipzig.iris.model.neuralnet.activationfunction;
 
-import java.util.function.DoubleFunction;
+import de.baleipzig.iris.enums.FunctionType;
 
-public class IdentityFunctionContainer implements IActivationFunctionContainer {
+public class IdentityFunctionContainer extends FunctionContainer {
 
-    private static final ActivationFunction type = ActivationFunction.identity;
-
-    private static Double identity(Double x) {
-        return x;
-    }
-
-    public DoubleFunction<Double> getActivationFunction() {
-        return IdentityFunctionContainer::identity;
-    }
-
-    public ActivationFunction getActivationFunctionType() {
-        return type;
+    public IdentityFunctionContainer(){
+        super(FunctionCollection::identity, FunctionCollection::unit, FunctionType.identity);
     }
 }

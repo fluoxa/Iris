@@ -43,7 +43,7 @@ public class Layer implements ILayer {
 
         for(int i = 0; i < dim.getY(); i++){
 
-            Vector<INode> row = new Vector<>();
+            Vector<INode> row = new Vector<>(dim.getX());
 
             for(int j = 0; j < dim.getX(); j++)
                 row.add(null);
@@ -54,12 +54,12 @@ public class Layer implements ILayer {
 
     public void resize(Dimension dim) {
 
-        Vector<Vector<INode>> tmp = new Vector<>();
+        Vector<Vector<INode>> tmp = new Vector<>(dim.getY());
         Dimension crtDim = this.getDim();
 
         for(int i = 0; i < dim.getY(); i++){
 
-            Vector<INode> row = new Vector<>();
+            Vector<INode> row = new Vector<>(dim.getX());
 
             for(int j = 0; j < dim.getX(); j++){
 

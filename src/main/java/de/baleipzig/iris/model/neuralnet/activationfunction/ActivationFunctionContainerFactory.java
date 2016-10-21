@@ -1,10 +1,12 @@
 package de.baleipzig.iris.model.neuralnet.activationfunction;
 
+import de.baleipzig.iris.enums.FunctionType;
+
 import java.util.function.DoubleFunction;
 
 public class ActivationFunctionContainerFactory {
 
-    public static IActivationFunctionContainer getContainer(ActivationFunction type){
+    public static IFunctionContainer getContainer(FunctionType type){
 
         switch(type){
 
@@ -14,8 +16,8 @@ public class ActivationFunctionContainerFactory {
         }
     }
 
-    public static IActivationFunctionContainer getContainer(DoubleFunction<Double> func){
+    public static IFunctionContainer getContainer(DoubleFunction<Double> func, DoubleFunction<Double> derivative){
 
-        return new GenericFunctionContainer(func);
+        return new GenericFunctionContainer(func, derivative);
     }
 }

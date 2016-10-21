@@ -1,11 +1,9 @@
 package de.baleipzig.iris.model.neuralnet.node;
 
-import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
-import de.baleipzig.iris.model.neuralnet.activationfunction.IActivationFunctionContainer;
+import de.baleipzig.iris.model.neuralnet.activationfunction.IFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 
 import java.util.List;
-import java.util.function.DoubleFunction;
 
 public interface INode {
 
@@ -27,9 +25,6 @@ public interface INode {
     double getBias();
     void setBias(double bias);
 
-    DoubleFunction<Double> getActivationFunction();
-
-    ActivationFunction getActivationFunctionType();
-
-    void setActivationFunctionContainer(IActivationFunctionContainer activationFunctionContainer);
+    void setActivationFunctionContainer(IFunctionContainer activationFunctionContainer);
+    IFunctionContainer getActivationFunctionContainer();
 }
