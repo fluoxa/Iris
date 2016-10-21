@@ -7,6 +7,7 @@ import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import de.baleipzig.iris.configuration.ExampleConfiguration;
 import de.baleipzig.iris.logic.worker.IImageWorker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class DanielView extends VerticalLayout implements View {
     public static final String VIEW_NAME = "daniel";
 
     private final IImageWorker imageWorker;
+
+    private final ExampleConfiguration exampleConfiguration;
 
     private boolean mouseDown = false;
     private int previousX;
