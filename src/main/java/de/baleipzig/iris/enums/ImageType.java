@@ -1,7 +1,7 @@
 package de.baleipzig.iris.enums;
 
-public enum NeuralNetCoreType {
+public enum ImageType {
 
     TRAIN,
-    PROD
+    TEST
 }

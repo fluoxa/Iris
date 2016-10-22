@@ -8,11 +8,11 @@ public class GenericFunctionContainer extends FunctionContainer {
     //region -- constructors --
 
     public GenericFunctionContainer(DoubleFunction<Double> func) {
-        super(func, null, FunctionType.generic);
+        super(func, null, FunctionType.GENERIC);
     }
 
     public GenericFunctionContainer(DoubleFunction<Double> func, DoubleFunction<Double> derivative) {
-        super(func, derivative, FunctionType.generic);
+        super(func, derivative, FunctionType.GENERIC);
     }
 
     //endregion

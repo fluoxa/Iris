@@ -43,9 +43,9 @@ public class NeuralNetCoreUtils {
 
         INode node = net.getInputLayer().getNode(0,0);
         if(node instanceof Node){
-            return NeuralNetCoreType.train;
+            return NeuralNetCoreType.TRAIN;
         }
 
-        return NeuralNetCoreType.prod;
+        return NeuralNetCoreType.PROD;
     }
 }

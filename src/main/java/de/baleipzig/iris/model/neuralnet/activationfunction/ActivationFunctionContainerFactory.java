@@ -6,17 +6,17 @@ import java.util.function.DoubleFunction;
 
 public class ActivationFunctionContainerFactory {
 
-    public static IFunctionContainer getContainer(FunctionType type){
+    public static IFunctionContainer create(FunctionType type){
 
         switch(type){
 
-            case identity: return new IdentityFunctionContainer();
-            case sigmoid: return new SigmoidFunctionContainer();
+            case IDENTITY: return new IdentityFunctionContainer();
+            case SIGMOID: return new SigmoidFunctionContainer();
             default: return new IdentityFunctionContainer();
         }
     }
 
-    public static IFunctionContainer getContainer(DoubleFunction<Double> func, DoubleFunction<Double> derivative){
+    public static IFunctionContainer create(DoubleFunction<Double> func, DoubleFunction<Double> derivative){
 
         return new GenericFunctionContainer(func, derivative);
     }

@@ -63,7 +63,7 @@ public class NeuralNetConverter {
         neuralNetEntity.getNodes().forEach((nodeId, nodeEntity) -> {
             INode node = new Node();
             node.setBias(nodeEntity.getBias());
-            node.setActivationFunctionContainer(ActivationFunctionContainerFactory.getContainer(FunctionType.valueOf(nodeEntity.getActivationFunctionType())));
+            node.setActivationFunctionContainer(ActivationFunctionContainerFactory.create(FunctionType.valueOf(nodeEntity.getActivationFunctionType())));
             allNodes.put(nodeId, node);
         });
 
@@ -82,7 +82,7 @@ public class NeuralNetConverter {
             axon.setChildNode(childNode);
             axon.setWeight(axonEntity.getWeight());
 
-            if(neuralNetEntity.getType().equals(NeuralNetCoreType.train.toString())){
+            if(neuralNetEntity.getType().equals(NeuralNetCoreType.TRAIN.toString())){
                 parentNode.addChildAxon(axon);
             }
             childNode.addParentAxon(axon);
@@ -158,7 +158,7 @@ public class NeuralNetConverter {
         NodeEntity nodeEntity = new NodeEntity();
         nodeEntity.setNodeId(idMapper.get(node));
         nodeEntity.setBias(node.getBias());
-        FunctionType type = node.getActivationFunctionContainer() == null ? FunctionType.none : node.getActivationFunctionContainer().getFunctionType();
+        FunctionType type = node.getActivationFunctionContainer() == null ? FunctionType.NONE : node.getActivationFunctionContainer().getFunctionType();
 
         nodeEntity.setActivationFunctionType(type.toString());
 

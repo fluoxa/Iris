@@ -141,7 +141,7 @@ public class NeuralNetConverterTest {
 
         Assert.assertEquals(result.getNodeId(),2);
         Assert.assertEquals(result.getBias(), 2.);
-        Assert.assertEquals(result.getActivationFunctionType(), FunctionType.sigmoid.toString());
+        Assert.assertEquals(result.getActivationFunctionType(), FunctionType.SIGMOID.toString());
 
         verify(node2, times(1)).getBias();
     }
@@ -154,7 +154,7 @@ public class NeuralNetConverterTest {
 
         NodeEntity result = NeuralNetConverter.toNodeEntity(node, nodeIdMapper);
 
-        Assert.assertEquals(result.getActivationFunctionType(), FunctionType.none.toString());
+        Assert.assertEquals(result.getActivationFunctionType(), FunctionType.NONE.toString());
 
         verify(node).getActivationFunctionContainer();
     }

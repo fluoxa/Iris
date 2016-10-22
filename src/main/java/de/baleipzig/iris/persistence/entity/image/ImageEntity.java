@@ -1,6 +1,6 @@
 package de.baleipzig.iris.persistence.entity.image;
 
-import de.baleipzig.iris.ImageType;
+import de.baleipzig.iris.enums.ImageType;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 

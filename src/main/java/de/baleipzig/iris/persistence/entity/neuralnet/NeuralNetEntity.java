@@ -13,7 +13,7 @@ public class NeuralNetEntity {
     private String neuralNetId = "";
     private String name = "";
     private String description = "";
-    private String type = NeuralNetCoreType.train.toString();
+    private String type = NeuralNetCoreType.TRAIN.toString();
     private Map<Long, NodeEntity> nodes = new HashMap<>();
     private Map<Integer, LayerEntity> layers = new HashMap<>();
     private Map<String, AxonEntity> axons = new HashMap<>();

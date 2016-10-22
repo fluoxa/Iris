@@ -1,6 +1,6 @@
 package de.baleipzig.iris.logic.worker;
 
-import de.baleipzig.iris.ImageType;
+import de.baleipzig.iris.enums.ImageType;
 import de.baleipzig.iris.model.image.IImage;
 
 import java.util.List;
