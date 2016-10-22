@@ -4,6 +4,7 @@ import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.model.neuralnet.layer.Layer;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -18,6 +19,12 @@ public class LayerTest {
     private INode node = mock(INode.class);
     private INode node2 = mock(INode.class);
     private int counter = 0;
+
+    @BeforeMethod
+    public void Setup(){
+
+        counter = 0;
+    }
 
     @DataProvider(name = "dim_returnsCorrectDim")
     public static Object[][] dimensions() {
