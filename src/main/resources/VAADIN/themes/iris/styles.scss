@@ -1,9 +1,13 @@
 @import "../valo/valo.scss";
 @import "addons.scss";
 
+
+
 .iris {
   @include valo;
   @include addons;
+
+  $iris-margin: 50px;
 
   .test {
     background-color: black;
@@ -11,6 +15,21 @@
 
   .iris-canvas {
     border: solid black 2px;
+  }
+
+  $iris-margin: 50px;
+
+  .v-margin-left {
+    padding-left: $iris-margin;
+  }
+  .v-margin-right {
+    padding-right: $iris-margin;
+  }
+  .v-margin-top {
+    padding-top: $iris-margin;
+  }
+  .v-margin-bottom {
+    padding-bottom: $iris-margin;
   }
 
 }
