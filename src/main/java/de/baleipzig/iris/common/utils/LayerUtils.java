@@ -11,8 +11,11 @@ import de.baleipzig.iris.model.neuralnet.node.Node;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class LayerUtils {
+
+    private static Random gaussDistribution = new Random();
 
     public static int getNumberOfNodes(ILayer layer){
         return layer.getDim().getDegreesOfFreedom();
@@ -59,7 +62,7 @@ public class LayerUtils {
 
                 INode node = new Node();
                 node.setActivationFunctionContainer(activationFunction);
-                node.setBias(useRandomBias ? (Math.random() - 0.5) * 5. : 0.);
+                node.setBias(useRandomBias ? gaussDistribution.nextGaussian() : 0.);
                 layer.addNode(node);
             }
         }
@@ -90,7 +93,7 @@ public class LayerUtils {
 
                 INode childNode = childLayer.getNode(x,y);
                 IAxon axon = new Axon();
-                axon.setWeight(useRandomWeights ? 2.*Math.random()-0.5 : 0);
+                axon.setWeight(useRandomWeights ? gaussDistribution.nextGaussian() : 0);
                 axon.setParentNode(parentNode);
                 axon.setChildNode(childNode);
                 parentNode.addChildAxon(axon);

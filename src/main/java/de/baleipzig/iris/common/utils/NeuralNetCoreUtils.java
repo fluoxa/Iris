@@ -8,6 +8,8 @@ import de.baleipzig.iris.model.neuralnet.node.Node;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Semaphore;
+import java.util.function.BiConsumer;
 
 public class NeuralNetCoreUtils {
 
@@ -22,6 +24,34 @@ public class NeuralNetCoreUtils {
         number += net.getOutputLayer().getDim().getDegreesOfFreedom();
 
         return number;
+    }
+
+    public static int getNumberOfParentAxons(INeuralNetCore core) {
+
+        Object[] parameters = new Object[1];
+        parameters[0] = 0;
+
+        final Semaphore semaphore = new Semaphore(1);
+
+        BiConsumer<INode, Object[]> axonCounter = (node, params) -> {
+
+            try {
+                semaphore.acquire();
+                Integer number = (Integer) params[0] + node.getParentAxons().size();
+                params[0] = number;
+                semaphore.release();
+            } catch(InterruptedException ie) {
+                System.err.println("NeuralNetCoreUtils.getNumberOfParentAxons: Semaphore error.");
+            }
+        };
+
+        for(ILayer hLayer : core.getHiddenLayers()){
+            hLayer.applyToLayerNodes(axonCounter, parameters);
+        }
+
+        core.getOutputLayer().applyToLayerNodes(axonCounter, parameters);
+
+        return (Integer)parameters[0];
     }
 
     public static List<INode> getAllNodesLinewiseBottomToTop(INeuralNetCore net){

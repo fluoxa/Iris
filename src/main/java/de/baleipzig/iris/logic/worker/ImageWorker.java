@@ -1,7 +1,7 @@
 package de.baleipzig.iris.logic.worker;
 
 import de.baleipzig.iris.enums.ImageType;
-import de.baleipzig.iris.logic.converter.ImageConverter;
+import de.baleipzig.iris.logic.converter.database.ImageConverter;
 import de.baleipzig.iris.model.image.IImage;
 import de.baleipzig.iris.persistence.entity.image.ImageEntity;
 import de.baleipzig.iris.persistence.repository.IImageEntityRepository;

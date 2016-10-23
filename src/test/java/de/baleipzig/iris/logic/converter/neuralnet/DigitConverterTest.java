@@ -22,17 +22,17 @@ public class DigitConverterTest {
 	@Test(dataProvider = "convert_ReturnsActivationZeroLayer_WhenNumberOutOfRange", expectedExceptions = RuntimeException.class)
 	public void convert_ReturnsActivationZeroLayer_WhenNumberOutOfRange(int digit) throws RuntimeException {
 
-		IEntityLayerConverter<Integer> digitConverter = new DigitConverter();
+		IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
 
-		ILayer layer = digitConverter.convert(digit);
+		ILayer layer = digitConverter.convert(digit, null);
 	}
 	
 	@Test(dataProvider="convert_ExpectedResult_WhenDigitIsInRange")
 	public void convert_ExpectedResult_WhenDigitIsInRange(int digit){
 	
-		IEntityLayerConverter<Integer> digitConverter = new DigitConverter();
+		IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
 		
-		ILayer layer = digitConverter.convert(digit);
+		ILayer layer = digitConverter.convert(digit, null);
 		
 		for(int pos = 0; pos < 9; pos++) {
 			

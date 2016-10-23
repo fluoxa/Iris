@@ -8,10 +8,15 @@ spring:
     serialization:
       INDENT_OUTPUT: true
 
-
 de:
   baleipzig:
     iris:
+      neuralnetconfig:
+        pathTrainingImages: /home/sonny/Bilder/TrainingImages
+        pathTestImages: /home/sonny/Bilder/TestImages
+        learningRate: 3.
+        trainingCycles: 50
+        badgeSize: 25
       example:
         exampleString: foo
         exampleBoolean: true
