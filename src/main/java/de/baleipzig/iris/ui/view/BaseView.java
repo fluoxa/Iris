@@ -1,14 +1,13 @@
 package de.baleipzig.iris.ui.view;
 
-import com.vaadin.navigator.View;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.VerticalLayout;
-import de.baleipzig.iris.ui.presenter.IPresenter;
+import de.baleipzig.iris.ui.presenter.IBasePresenter;
 
-public abstract class BaseView<P extends IPresenter> extends CssLayout implements View {
+public abstract class BaseView<P extends IBasePresenter> extends CssLayout implements IBaseView {
     protected P presenter;
 
 

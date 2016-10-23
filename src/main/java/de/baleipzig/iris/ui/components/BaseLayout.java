@@ -5,7 +5,5 @@ import com.vaadin.ui.CssLayout;
 public class BaseLayout extends CssLayout {
 
     public BaseLayout() {
-
-
     }
 }

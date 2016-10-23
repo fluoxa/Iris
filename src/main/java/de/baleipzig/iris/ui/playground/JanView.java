@@ -67,7 +67,7 @@ public class JanView extends VerticalLayout implements View {
 
     private INeuralNet createNeuralNet(){
 
-        IFunctionContainer func = ActivationFunctionContainerFactory.getContainer(FunctionType.sigmoid);
+        IFunctionContainer func = ActivationFunctionContainerFactory.create(FunctionType.SIGMOID);
 
         INode node1 = new Node(func);
         node1.setBias(1.);
