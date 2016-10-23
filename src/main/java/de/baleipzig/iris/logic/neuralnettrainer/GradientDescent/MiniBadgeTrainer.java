@@ -17,12 +17,12 @@ public class MiniBadgeTrainer<InputType, OutputType>
     @Getter
     private INeuralNet neuralNet = null;
 
-    private GradientDescentConfig config = null;
-    private IEntityLayerAssembler<InputType> inputConverter;
-    private IEntityLayerAssembler<OutputType> outputConverter;
-    private IGradientDescentNeuralNetTrainer neuralNetTrainingWorker = null;
-    private INeuralNetWorker neuralNetWorker = null;
-    private MiniBadgeNodeTrainer nodeTrainer = null;
+    private final IEntityLayerAssembler<InputType> inputConverter;
+    private final IEntityLayerAssembler<OutputType> outputConverter;
+    private final GradientDescentConfig config;
+    private final IGradientDescentNeuralNetTrainer neuralNetTrainingWorker;
+    private final INeuralNetWorker neuralNetWorker;
+    private final IMiniBadgeNodeTrainer nodeTrainer;
 
     //endregion
 
@@ -33,7 +33,7 @@ public class MiniBadgeTrainer<InputType, OutputType>
                             GradientDescentConfig config,
                             IGradientDescentNeuralNetTrainer trainingWorker,
                             INeuralNetWorker worker,
-                            IGradientDescentNodeTrainer nodeTrainer) {
+                            IMiniBadgeNodeTrainer nodeTrainer) {
 
         this.inputConverter = inputConverter;
         this.outputConverter = outputConverter;
@@ -41,13 +41,7 @@ public class MiniBadgeTrainer<InputType, OutputType>
         this.neuralNetTrainingWorker = trainingWorker;
         this.neuralNetWorker = worker;
 
-        if(nodeTrainer instanceof MiniBadgeNodeTrainer){
-            this.nodeTrainer  = (MiniBadgeNodeTrainer) nodeTrainer;
-        }
-        else{
-            throw new RuntimeException("MiniBadgeTrainer: IGradientDescentNodeTrainer has to be of Type MiniBadgeNodeTrainer");
-        }
-
+        this.nodeTrainer = nodeTrainer;
     }
 
     //endregion
@@ -61,12 +55,6 @@ public class MiniBadgeTrainer<InputType, OutputType>
     }
 
     public void train(Map<InputType, OutputType> trainingData) {
-
-        config.setTrainingSetSize(trainingData.size());
-
-        if(config != null && !config.isValid() && neuralNet == null) {
-            throw new RuntimeException("neuralNetTRainer.train(): invalid TrainerConfig");
-        }
 
         for(int cycle = 0; cycle < config.getTrainingCycles(); cycle++){
 

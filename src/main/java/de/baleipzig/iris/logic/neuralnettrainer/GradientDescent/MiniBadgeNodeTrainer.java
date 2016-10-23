@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.DoubleFunction;
 
-public class MiniBadgeNodeTrainer implements IGradientDescentNodeTrainer {
+public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
 
     private GradientDescentConfig config = null;
     private Map<INode, List<Double>> nodePrevBiasesMapper = null;
@@ -21,19 +21,14 @@ public class MiniBadgeNodeTrainer implements IGradientDescentNodeTrainer {
     //region -- constructor --
 
     public MiniBadgeNodeTrainer(GradientDescentConfig config) {
-
         this.config = config;
-
-        if(!config.isValid()) {
-            throw new RuntimeException("MiniBadgeNodeTrainer.Constructor: invalid Config");
-        }
     }
 
     //endregion
 
     //region -- methods --
 
-    void updateBiasWeightCache(INeuralNet neuralNet) {
+    public void updateBiasWeightCache(INeuralNet neuralNet) {
 
         INeuralNetCore core = neuralNet.getNeuralNetCore();
         nodePrevBiasesMapper = new HashMap<>(NeuralNetCoreUtils.getNumberOfNodes(core));

@@ -131,12 +131,8 @@ public class JanView extends VerticalLayout implements View {
 
         IEntityLayerAssembler<BufferedImage> imageConverter = new ImageAssembler();
         IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
-        GradientDescentConfig config = new GradientDescentConfig();
-        config.setBadgeSize(50);
-        config.setLearningRate(2.);
-        config.setTrainingCycles(1);
-        config.setTrainingSetSize(resultMapper.size());
-        IGradientDescentNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
+        GradientDescentConfig config = new GradientDescentConfig(2.,resultMapper.size(),1,50);
+        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
         IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
         IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
 
@@ -160,13 +156,8 @@ public class JanView extends VerticalLayout implements View {
 
         IEntityLayerAssembler<BufferedImage> imageConverter = new ImageAssembler();
         IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
-        GradientDescentConfig config = new GradientDescentConfig();
-        config.setLearningRate(3.);
-        config.setBadgeSize(30);
-        config.setTrainingCycles(1);
-
-        config.setTrainingSetSize(trainMapper.size());
-        IGradientDescentNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
+        GradientDescentConfig config = new GradientDescentConfig(3.,trainMapper.size(),5,30);
+        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
         IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
         IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
 

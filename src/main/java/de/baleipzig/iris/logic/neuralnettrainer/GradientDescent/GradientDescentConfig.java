@@ -1,26 +1,34 @@
 package de.baleipzig.iris.logic.neuralnettrainer.GradientDescent;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
-@NoArgsConstructor
+@Getter
 public class GradientDescentConfig {
 
     //region -- member --
 
-    private double learningRate;
-    private int trainingSetSize;
-    private int trainingCycles;
-    private int badgeSize;
+    private final double learningRate;
+    private final int trainingSetSize;
+    private final int trainingCycles;
+    private final int badgeSize;
 
     //endregion
 
-    //region -- methods --
+    //region -- Constructor --
 
-    public boolean isValid() {
+    public GradientDescentConfig(double learningRate,
+                                 int    trainingSetSize,
+                                 int    trainingCycles,
+                                 int    badgeSize) {
 
-        return  Math.abs(learningRate * trainingCycles * trainingSetSize * badgeSize) > 1e-10;
+        this.learningRate = learningRate;
+        this.trainingSetSize = trainingSetSize;
+        this.trainingCycles = trainingCycles;
+        this.badgeSize = badgeSize;
+
+        if( Math.abs(learningRate * trainingCycles * trainingSetSize * badgeSize) < 1e-10 ) {
+            throw new RuntimeException("invalid GradientDescentConfig");
+        }
     }
 
     //endregion

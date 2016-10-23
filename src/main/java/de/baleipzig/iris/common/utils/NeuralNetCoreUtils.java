@@ -8,10 +8,11 @@ import de.baleipzig.iris.model.neuralnet.node.Node;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Semaphore;
 import java.util.function.BiConsumer;
 
 public class NeuralNetCoreUtils {
+
+    private static final Object syncObject = new Object();
 
     public static int getNumberOfNodes(INeuralNetCore net){
 
@@ -31,17 +32,11 @@ public class NeuralNetCoreUtils {
         Object[] parameters = new Object[1];
         parameters[0] = 0;
 
-        final Semaphore semaphore = new Semaphore(1);
-
         BiConsumer<INode, Object[]> axonCounter = (node, params) -> {
 
-            try {
-                semaphore.acquire();
+            synchronized (syncObject) {
                 Integer number = (Integer) params[0] + node.getParentAxons().size();
                 params[0] = number;
-                semaphore.release();
-            } catch(InterruptedException ie) {
-                System.err.println("NeuralNetCoreUtils.getNumberOfParentAxons: Semaphore error.");
             }
         };
 

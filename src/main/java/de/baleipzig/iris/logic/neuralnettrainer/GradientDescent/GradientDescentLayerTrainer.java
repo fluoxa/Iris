@@ -1,21 +1,14 @@
 package de.baleipzig.iris.logic.neuralnettrainer.GradientDescent;
 
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class GradientDescentLayerTrainer implements IGradientDescentLayerTrainer {
 
     //region -- member --
 
     private final IGradientDescentNodeTrainer nodeTrainer;
-
-    //endregion
-
-    //region -- constructor --
-
-    public GradientDescentLayerTrainer(IGradientDescentNodeTrainer nodeTrainer) {
-
-        this.nodeTrainer = nodeTrainer;
-    }
 
     //endregion
 
