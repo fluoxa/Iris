@@ -10,10 +10,8 @@ public interface ILayer {
 
     Dimension getDim();
 
-    void clear();
     void resize(Dimension dim);
     void addNode(INode nodeCandidate);
-    void removeNode(INode node);
 
     INode getNode(int x, int y);
 

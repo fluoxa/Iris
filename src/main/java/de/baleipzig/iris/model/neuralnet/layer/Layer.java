@@ -16,8 +16,8 @@ public class Layer implements ILayer {
 
     //region -- member --
 
-    private static ExecutorService executorService;
-    private static int numberOfThreads = 0;
+    private static final ExecutorService executorService;
+    private static final int numberOfThreads;
     private Vector<Vector<INode>> layer;
 
     //endregion
@@ -46,23 +46,6 @@ public class Layer implements ILayer {
         return layer.size() == 0 || (layer.size() == 1 && layer.elementAt(0).size() == 0) ?
                         new Dimension(0,0) :
                         new Dimension(layer.elementAt(0).size(), layer.size());
-    }
-
-    public void clear() {
-
-        Dimension dim = this.getDim();
-
-        layer.clear();
-
-        for(int i = 0; i < dim.getY(); i++){
-
-            Vector<INode> row = new Vector<>(dim.getX());
-
-            for(int j = 0; j < dim.getX(); j++)
-                row.add(null);
-
-            layer.add(row);
-        }
     }
 
     public void resize(Dimension dim) {
@@ -97,15 +80,6 @@ public class Layer implements ILayer {
                     layer.elementAt(i).setElementAt(nodeCandidate, j);
                     return;
                 }
-    }
-
-    public void removeNode(INode node) {
-
-        Dimension dim = this.getDim();
-        for(int i = 0; i < dim.getY(); i++)
-            for(int j = 0; j < dim.getX(); j++)
-                if(layer.elementAt(i).elementAt(j) == node)
-                    layer.elementAt(i).setElementAt(null, j);
     }
 
     public INode getNode(int x, int y) {
