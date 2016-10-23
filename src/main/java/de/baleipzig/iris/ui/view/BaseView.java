@@ -5,9 +5,9 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.VerticalLayout;
-import de.baleipzig.iris.ui.presenter.IBasePresenter;
+import de.baleipzig.iris.ui.presenter.BasePresenter;
 
-public abstract class BaseView<P extends IBasePresenter> extends CssLayout implements IBaseView {
+public abstract class BaseView<P extends BasePresenter> extends CssLayout implements IBaseView {
     protected P presenter;
 
 

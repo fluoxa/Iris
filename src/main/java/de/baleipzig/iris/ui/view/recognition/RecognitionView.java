@@ -4,7 +4,6 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Label;
-import de.baleipzig.iris.ui.presenter.recognition.IRecognitionPresenter;
 import de.baleipzig.iris.ui.presenter.recognition.RecognitionPresenter;
 import de.baleipzig.iris.ui.service.recognition.IRecognitionService;
 import de.baleipzig.iris.ui.view.BaseView;
@@ -17,7 +16,7 @@ import javax.annotation.PostConstruct;
 @UIScope
 @SpringView(name = RecognitionView.VIEW_NAME)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class RecognitionView extends BaseView<IRecognitionPresenter> implements IRecognitionView {
+public class RecognitionView extends BaseView<RecognitionPresenter> implements IRecognitionView {
     public static final String VIEW_NAME = "";
 
     private final ApplicationContext context;

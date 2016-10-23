@@ -1,8 +1,7 @@
 package de.baleipzig.iris.ui.presenter;
 
-public abstract class BasePresenter implements IBasePresenter {
+public abstract class BasePresenter{
 
-    @Override
     public void changeLanguage() {
         //do something
     }
