@@ -1,7 +1,8 @@
 package de.baleipzig.iris.logic.converter.database;
 
 import de.baleipzig.iris.common.Dimension;
-import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
+import de.baleipzig.iris.enums.FunctionType;
+import de.baleipzig.iris.model.neuralnet.activationfunction.SigmoidFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
@@ -23,6 +24,7 @@ public class NeuralNetConverterTest {
 
     //region -- member --
 
+    private INode node = mock(INode.class);
     private INode node0 = mock(INode.class);
     private INode node1 = mock(INode.class);
     private INode node2 = mock(INode.class);
@@ -48,18 +50,18 @@ public class NeuralNetConverterTest {
     public void setupTestNeuralNet(){
 
         when(node0.getBias()).thenReturn(0.);
-        when(node0.getActivationFunctionType()).thenReturn(ActivationFunction.sigmoid);
+        when(node0.getActivationFunctionContainer()).thenReturn(new SigmoidFunctionContainer());
         when(node0.getChildAxons()).thenReturn(Arrays.asList(axon02));
         when(node1.getBias()).thenReturn(1.);
         when(node1.getChildAxons()).thenReturn(Arrays.asList(axon12));
-        when(node1.getActivationFunctionType()).thenReturn(ActivationFunction.sigmoid);
+        when(node1.getActivationFunctionContainer()).thenReturn(new SigmoidFunctionContainer());
         when(node2.getBias()).thenReturn(2.);
         when(node2.getParentAxons()).thenReturn(Arrays.asList(axon02, axon12));
         when(node2.getChildAxons()).thenReturn(Arrays.asList(axon23));
-        when(node2.getActivationFunctionType()).thenReturn(ActivationFunction.sigmoid);
+        when(node2.getActivationFunctionContainer()).thenReturn(new SigmoidFunctionContainer());
         when(node3.getBias()).thenReturn(3.);
         when(node3.getParentAxons()).thenReturn(Arrays.asList(axon23));
-        when(node3.getActivationFunctionType()).thenReturn(ActivationFunction.sigmoid);
+        when(node3.getActivationFunctionContainer()).thenReturn(new SigmoidFunctionContainer());
 
         when(axon02.getChildNode()).thenReturn(node2);
         when(axon02.getParentNode()).thenReturn(node0);
@@ -113,7 +115,6 @@ public class NeuralNetConverterTest {
 
     //endregion
 
-
     //region -- methods --
 
     @Test
@@ -140,9 +141,22 @@ public class NeuralNetConverterTest {
 
         Assert.assertEquals(result.getNodeId(),2);
         Assert.assertEquals(result.getBias(), 2.);
-        Assert.assertEquals(result.getActivationFunctionType().toString(), ActivationFunction.sigmoid.toString());
+        Assert.assertEquals(result.getActivationFunctionType(), FunctionType.SIGMOID.toString());
 
         verify(node2, times(1)).getBias();
+    }
+
+    @Test
+    public void toNodeEntity_ReturnsNodeEntityWhenActivationFunctionContainerNull(){
+
+        when(node.getActivationFunctionContainer()).thenReturn(null);
+        nodeIdMapper.put(node, 12L);
+
+        NodeEntity result = NeuralNetConverter.toNodeEntity(node, nodeIdMapper);
+
+        Assert.assertEquals(result.getActivationFunctionType(), FunctionType.NONE.toString());
+
+        verify(node).getActivationFunctionContainer();
     }
 
     @Test
@@ -181,7 +195,7 @@ public class NeuralNetConverterTest {
 
         NeuralNetEntity result = NeuralNetConverter.toNeuralNetEntity(neuralNet);
 
-        Assert.assertEquals(result.getNeuralNetId().toString(),id.toString());
+        Assert.assertEquals(result.getNeuralNetId(),id.toString());
         Assert.assertEquals(result.getDescription(), "jan ist cool");
         Assert.assertEquals(result.getName(), "jan");
         Assert.assertEquals(result.getNodes().size(), 4);

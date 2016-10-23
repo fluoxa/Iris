@@ -4,7 +4,7 @@ import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.common.utils.LayerUtils;
 import de.baleipzig.iris.common.utils.NeuralNetCoreUtils;
 import de.baleipzig.iris.enums.NeuralNetCoreType;
-import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
+import de.baleipzig.iris.enums.FunctionType;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunctionContainerFactory;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
@@ -63,7 +63,7 @@ public class NeuralNetConverter {
         neuralNetEntity.getNodes().forEach((nodeId, nodeEntity) -> {
             INode node = new Node();
             node.setBias(nodeEntity.getBias());
-            node.setActivationFunctionContainer(ActivationFunctionContainerFactory.getContainer(ActivationFunction.valueOf(nodeEntity.getActivationFunctionType())));
+            node.setActivationFunctionContainer(ActivationFunctionContainerFactory.create(FunctionType.valueOf(nodeEntity.getActivationFunctionType())));
             allNodes.put(nodeId, node);
         });
 
@@ -82,7 +82,7 @@ public class NeuralNetConverter {
             axon.setChildNode(childNode);
             axon.setWeight(axonEntity.getWeight());
 
-            if(neuralNetEntity.getType().equals(NeuralNetCoreType.train.toString())){
+            if(neuralNetEntity.getType().equals(NeuralNetCoreType.TRAIN.toString())){
                 parentNode.addChildAxon(axon);
             }
             childNode.addParentAxon(axon);
@@ -158,7 +158,9 @@ public class NeuralNetConverter {
         NodeEntity nodeEntity = new NodeEntity();
         nodeEntity.setNodeId(idMapper.get(node));
         nodeEntity.setBias(node.getBias());
-        nodeEntity.setActivationFunctionType(node.getActivationFunctionType().toString());
+        FunctionType type = node.getActivationFunctionContainer() == null ? FunctionType.NONE : node.getActivationFunctionContainer().getFunctionType();
+
+        nodeEntity.setActivationFunctionType(type.toString());
 
         return nodeEntity;
     }

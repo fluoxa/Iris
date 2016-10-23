@@ -1,6 +1,6 @@
 package de.baleipzig.iris.model.image;
 
-import de.baleipzig.iris.ImageType;
+import de.baleipzig.iris.enums.ImageType;
 import lombok.Data;
 
 @Data

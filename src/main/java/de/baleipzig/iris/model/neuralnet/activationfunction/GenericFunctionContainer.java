@@ -1,32 +1,18 @@
 package de.baleipzig.iris.model.neuralnet.activationfunction;
 
+import de.baleipzig.iris.enums.FunctionType;
 import java.util.function.DoubleFunction;
 
-public class GenericFunctionContainer implements IActivationFunctionContainer {
-
-    //region -- memebers --
-
-    private static final ActivationFunction type = ActivationFunction.generic;
-
-    private DoubleFunction<Double> generic;
-
-    //endregion
+public class GenericFunctionContainer extends FunctionContainer {
 
     //region -- constructors --
 
-    public GenericFunctionContainer(DoubleFunction<Double> func){
-        this.generic = func;
+    public GenericFunctionContainer(DoubleFunction<Double> func) {
+        super(func, null, FunctionType.GENERIC);
     }
 
-    //endregion
-
-    //region -- methods --
-
-    public DoubleFunction<Double> getActivationFunction() {
-        return generic;
-    }
-    public ActivationFunction getActivationFunctionType() {
-        return type;
+    public GenericFunctionContainer(DoubleFunction<Double> func, DoubleFunction<Double> derivative) {
+        super(func, derivative, FunctionType.GENERIC);
     }
 
     //endregion

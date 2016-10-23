@@ -4,18 +4,31 @@ import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.common.StripFunctor;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Vector;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class Layer implements ILayer {
 
     //region -- member --
 
+    private static ExecutorService executorService;
+    private static int numberOfThreads = 0;
     private Vector<Vector<INode>> layer;
 
     //endregion
 
     //region -- constructor --
+
+    static {
+
+        numberOfThreads = 2*Runtime.getRuntime().availableProcessors();
+        executorService = Executors.newFixedThreadPool(numberOfThreads);
+    }
 
     public Layer() {
 
@@ -43,7 +56,7 @@ public class Layer implements ILayer {
 
         for(int i = 0; i < dim.getY(); i++){
 
-            Vector<INode> row = new Vector<>();
+            Vector<INode> row = new Vector<>(dim.getX());
 
             for(int j = 0; j < dim.getX(); j++)
                 row.add(null);
@@ -54,12 +67,12 @@ public class Layer implements ILayer {
 
     public void resize(Dimension dim) {
 
-        Vector<Vector<INode>> tmp = new Vector<>();
+        Vector<Vector<INode>> tmp = new Vector<>(dim.getY());
         Dimension crtDim = this.getDim();
 
         for(int i = 0; i < dim.getY(); i++){
 
-            Vector<INode> row = new Vector<>();
+            Vector<INode> row = new Vector<>(dim.getX());
 
             for(int j = 0; j < dim.getX(); j++){
 
@@ -99,7 +112,7 @@ public class Layer implements ILayer {
         return layer.elementAt(y).elementAt(x);
     }
 
-    public void applyToLayerNodes(Consumer<INode> func) {
+    public void applyToLayerNodes(BiConsumer<INode, Object[]> func, Object[] params) {
 
         int layerSizeX = this.getDim().getX();
         int layerSizeY = this.getDim().getY();
@@ -107,7 +120,7 @@ public class Layer implements ILayer {
         if(layerSizeX * layerSizeY == 0)
             return;
 
-        int maxThreadNumber = Runtime.getRuntime().availableProcessors()*2;
+        int maxThreadNumber = numberOfThreads;
 
         if( maxThreadNumber == 0 )
             maxThreadNumber = 1;
@@ -115,24 +128,28 @@ public class Layer implements ILayer {
         if(maxThreadNumber > layerSizeX)
             maxThreadNumber = layerSizeX;
 
-        StripFunctor[] threads = new StripFunctor[maxThreadNumber];
+        Collection<StripFunctor<INode>> callables = new ArrayList<>(maxThreadNumber);
 
         int stripSize = layerSizeX / maxThreadNumber;
 
-        for( int threadId = 0; threadId < maxThreadNumber; threadId++ ) {
+        for(int threadId = 0; threadId < maxThreadNumber; threadId++) {
             int start = threadId * stripSize;
-            int end = (threadId + 1) * stripSize;
-            threads[threadId] = new StripFunctor<>(start, end, layer, func);
-            threads[threadId].start();
+            int end = threadId == maxThreadNumber-1 ? layerSizeX : (threadId + 1) * stripSize;
+            callables.add(new StripFunctor<>(start, end, layer, func, params));
         }
 
         try {
-            for (int threadId = 0; threadId < maxThreadNumber; threadId++)
-                threads[threadId].join();
+             executorService.invokeAll(callables);
         }
         catch(InterruptedException ex){
             System.err.println("Thread aborted:\n" + ex.getMessage());
         }
+    }
+
+    public void applyToLayerNodes(Consumer<INode> func) {
+
+        BiConsumer<INode, Object[]> biFunction = (x, y) -> func.accept(x);
+        this.applyToLayerNodes(biFunction, null);
     }
 
     //endregion

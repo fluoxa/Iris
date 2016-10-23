@@ -1,7 +1,7 @@
 package de.baleipzig.iris.common.utils;
 
 import de.baleipzig.iris.common.Dimension;
-import de.baleipzig.iris.model.neuralnet.activationfunction.IActivationFunctionContainer;
+import de.baleipzig.iris.model.neuralnet.activationfunction.IFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
@@ -49,7 +49,7 @@ public class LayerUtils {
         }
     }
 
-    public static ILayer createLayerWithOptionalRandomBias(Dimension dim, IActivationFunctionContainer activationFunction, boolean useRandomBias){
+    public static ILayer createLayerWithOptionalRandomBias(Dimension dim, IFunctionContainer activationFunction, boolean useRandomBias){
 
         ILayer layer = new Layer();
         layer.resize(dim);

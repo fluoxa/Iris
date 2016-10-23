@@ -1,13 +1,11 @@
 package de.baleipzig.iris.model.neuralnet.node;
 
-import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunction;
-import de.baleipzig.iris.model.neuralnet.activationfunction.IActivationFunctionContainer;
+import de.baleipzig.iris.model.neuralnet.activationfunction.IFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.function.DoubleFunction;
 
 public class Node implements INode {
 
@@ -35,7 +33,9 @@ public class Node implements INode {
     @Setter
     private double weightedInput;
 
-    private IActivationFunctionContainer activationFunctionContainer;
+    @Getter
+    @Setter
+    private IFunctionContainer activationFunctionContainer;
 
     //endregion
 
@@ -47,7 +47,7 @@ public class Node implements INode {
         childAxons = new ArrayList<>();
     }
 
-    public Node(IActivationFunctionContainer funcContainer){
+    public Node(IFunctionContainer funcContainer){
 
         parentAxons = new ArrayList<>();
         childAxons = new ArrayList<>();
@@ -59,23 +59,13 @@ public class Node implements INode {
     //region -- methods --
 
     public void addParentAxon(IAxon axon) {
+
         parentAxons.add(axon);
     }
 
     public void addChildAxon(IAxon axon) {
+
         childAxons.add(axon);
-    }
-
-    public void setActivationFunctionContainer(IActivationFunctionContainer activationFunctionContainer) {
-        this.activationFunctionContainer = activationFunctionContainer;
-    }
-
-    public DoubleFunction<Double> getActivationFunction() {
-        return activationFunctionContainer.getActivationFunction();
-    }
-
-    public ActivationFunction getActivationFunctionType() {
-        return activationFunctionContainer.getActivationFunctionType();
     }
 
     //endregion

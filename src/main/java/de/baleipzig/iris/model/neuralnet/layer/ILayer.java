@@ -3,6 +3,7 @@ package de.baleipzig.iris.model.neuralnet.layer;
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public interface ILayer {
@@ -17,4 +18,5 @@ public interface ILayer {
     INode getNode(int x, int y);
 
     void applyToLayerNodes(Consumer<INode> func);
+    void applyToLayerNodes(BiConsumer<INode, Object[]> func, Object[] params);
 }
