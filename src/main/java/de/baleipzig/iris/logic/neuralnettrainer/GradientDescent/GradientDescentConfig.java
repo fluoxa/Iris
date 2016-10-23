@@ -1,22 +1,17 @@
 package de.baleipzig.iris.logic.neuralnettrainer.GradientDescent;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 public class GradientDescentConfig {
 
     //region -- member --
 
-    @Getter @Setter
     private double learningRate;
-
-    @Getter @Setter
     private int trainingSetSize;
-
-    @Getter @Setter
     private int trainingCycles;
-
-    @Getter @Setter
     private int badgeSize;
 
     //endregion

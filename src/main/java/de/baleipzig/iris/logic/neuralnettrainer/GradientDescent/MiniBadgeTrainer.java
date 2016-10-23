@@ -5,6 +5,7 @@ import de.baleipzig.iris.logic.neuralnettrainer.INeuralNetTrainer;
 import de.baleipzig.iris.logic.worker.INeuralNetWorker;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
+import lombok.Getter;
 
 import java.util.Map;
 
@@ -13,10 +14,12 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
     //region -- member --
 
+    @Getter
+    private INeuralNet neuralNet = null;
+
     private GradientDescentConfig config = null;
     private IEntityLayerAssembler<InputType> inputConverter;
     private IEntityLayerAssembler<OutputType> outputConverter;
-    private INeuralNet neuralNet = null;
     private IGradientDescentNeuralNetTrainer neuralNetTrainingWorker = null;
     private INeuralNetWorker neuralNetWorker = null;
     private MiniBadgeNodeTrainer nodeTrainer = null;
@@ -55,11 +58,6 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
         this.neuralNet = neuralNet;
         this.nodeTrainer.updateBiasWeightCache(neuralNet);
-    }
-
-    public INeuralNet getNeuralNet() {
-
-        return neuralNet;
     }
 
     public void train(Map<InputType, OutputType> trainingData) {

@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 @UIScope
 @SpringView(name = DefaultView.VIEW_NAME)
 public class DefaultView extends VerticalLayout implements View {
+
     public static final String VIEW_NAME = "notDefault";
 
     @PostConstruct
@@ -20,9 +21,7 @@ public class DefaultView extends VerticalLayout implements View {
     }
 
     private void createTestEntity() {
-
     }
-
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {

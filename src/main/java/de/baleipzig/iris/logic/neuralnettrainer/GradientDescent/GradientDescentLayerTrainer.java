@@ -6,7 +6,7 @@ public class GradientDescentLayerTrainer implements IGradientDescentLayerTrainer
 
     //region -- member --
 
-    private IGradientDescentNodeTrainer nodeTrainer = null;
+    private final IGradientDescentNodeTrainer nodeTrainer;
 
     //endregion
 

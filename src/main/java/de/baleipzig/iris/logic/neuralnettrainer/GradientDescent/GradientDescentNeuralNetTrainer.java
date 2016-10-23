@@ -10,7 +10,7 @@ public class GradientDescentNeuralNetTrainer implements IGradientDescentNeuralNe
 
     //region -- member --
 
-    private IGradientDescentLayerTrainer layerTrainer;
+    private final IGradientDescentLayerTrainer layerTrainer;
 
     //endregion
 

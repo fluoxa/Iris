@@ -27,5 +27,4 @@ public class IrisUi extends UI {
         Navigator navigator = new Navigator(this, root);
         navigator.addProvider(viewProvider);
     }
-
 }
