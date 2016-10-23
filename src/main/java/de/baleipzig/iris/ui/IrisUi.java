@@ -6,9 +6,8 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.navigator.SpringViewProvider;
-import com.vaadin.ui.Panel;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Theme("iris")
@@ -21,18 +20,11 @@ public class IrisUi extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        final VerticalLayout root = new VerticalLayout();
+        final CssLayout root = new CssLayout();
         root.setSizeFull();
-        root.setMargin(true);
-        root.setSpacing(true);
         setContent(root);
 
-        final Panel viewContainer = new Panel();
-        viewContainer.setSizeFull();
-        root.addComponent(viewContainer);
-        root.setExpandRatio(viewContainer, 1.0f);
-
-        Navigator navigator = new Navigator(this, viewContainer);
+        Navigator navigator = new Navigator(this, root);
         navigator.addProvider(viewProvider);
     }
 
