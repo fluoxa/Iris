@@ -3,14 +3,27 @@ Der geplante Einsatz des Systems ist die Grundlage für Benutzungsoberfläche un
 Qualitätsanforderungen.
  
 \section{Anwendungsbereiche}
-Ein Pflichtenheft wird bspw. in einer IT-Abteilung genutzt.
+%Ein Pflichtenheft wird bspw. in einer IT-Abteilung genutzt.
+
+Das System ist über einen, mit dem Internet verbundenen Rechner aufrufbar.
+Dadurch kann die Anwendung von allen Personen mit Internetzugang genutzt werden.
+
+
  
 \section{Zielgruppen}
-Die Zielgruppe besteht also aus Informatikern, die mit der Projektplanung
-beauftragt wurden.
- 
+%Die Zielgruppe besteht also aus Informatikern, die mit der Projektplanung
+%beauftragt wurden.
+
+Die größte Zielgruppe ist der Standartnutzer ohne technische Vorkenntnisse, welcher sich für eine Erkennung handschriftlicher Ziffern interessiert.
+Da es sich um ein Open-Source Projekt handelt, sollen auch technisch versierte Informatiker angesprochen und zur Teilnahme an der Entwicklung 
+der Handschriftserkennung mithilfe neuronaler Netze angeregt werden.
+
 \section{Betriebsbedingungen}
-Betriebsbedingungen: Die Betriebsbedingungen spezifiziert die physikalische
-Umgebung des Systems, die tägliche Betriebszeit, und ob das System ständiger
-Beobachtung durch Bediener ausgesetzt ist, oder ein unbeaufsichtigter Betrieb
-beabsichtigt ist.
+%Betriebsbedingungen: Die Betriebsbedingungen spezifiziert die physikalische
+%Umgebung des Systems, die tägliche Betriebszeit, und ob das System ständiger
+%Beobachtung durch Bediener ausgesetzt ist, oder ein unbeaufsichtigter Betrieb
+%beabsichtigt ist.
+
+Die Grundvorrausetzung zur Inbetriebnahme der Anwendung ist ein Server mit Webanbindung. Auf diesem muss mindestens Java 8 installiert sein.
+Zur Persistierung der Daten wird mongoDB der Version 3.2.10 verwendet. Der Betrieb der Datenbank muss dauerhaft gewährleistet und die Daten
+jederzeit vom Server abrufbar sein. Es wird ein unbeaufsichtiger Betrieb beabsichtigt. 
