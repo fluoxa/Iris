@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Bouml (http://bouml.free.fr/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="699"
+   height="416.5"
+   version="1.1"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="trainNeuralNet.svg">
+  <metadata
+     id="metadata170">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs168" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1028"
+     id="namedview166"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.9666667"
+     inkscape:cx="429.00922"
+     inkscape:cy="200.33297"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <g
+     id="g4"
+     transform="translate(-29.5,-63.5)">
+    <polygon
+       points="194,84 30,84 30,64 30,64 204,64 204,74 "
+       id="polygon6"
+       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
+    <rect
+       x="30"
+       y="64"
+       width="698"
+       height="404"
+       id="rect8"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="10"
+       xml:space="preserve"
+       x="112"
+       y="80"
+       id="text10"
+       style="font-size:10px;font-family:Helvetica;text-anchor:middle;fill:#000000">sd initial training neural net signal</text>
+    <line
+       x1="30"
+       y1="84"
+       x2="194"
+       y2="84"
+       id="line12"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="194"
+       y1="84"
+       x2="204"
+       y2="74"
+       id="line14"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="204"
+       y1="74"
+       x2="204"
+       y2="64"
+       id="line16"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g18"
+     transform="translate(-29.5,-63.5)">
+    <rect
+       x="232"
+       y="99"
+       width="3"
+       height="20"
+       id="rect20"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="179"
+       y="116"
+       width="56"
+       height="3"
+       id="rect22"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="175"
+       y="95"
+       width="57"
+       height="21"
+       id="rect24"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="10"
+       xml:space="preserve"
+       text-decoration="underline"
+       x="204"
+       y="111"
+       id="text26"
+       style="font-size:10px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">:Presenter</text>
+  </g>
+  <g
+     id="g28"
+     transform="translate(-29.5,-63.5)">
+    <rect
+       x="480"
+       y="99"
+       width="3"
+       height="20"
+       id="rect30"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="376"
+       y="116"
+       width="107"
+       height="3"
+       id="rect32"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="372"
+       y="95"
+       width="108"
+       height="21"
+       id="rect34"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="10"
+       xml:space="preserve"
+       text-decoration="underline"
+       x="426"
+       y="111"
+       id="text36"
+       style="font-size:10px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">worker:ImageWorker</text>
+  </g>
+  <g
+     id="g38"
+     transform="translate(-29.5,-63.5)">
+    <rect
+       x="700"
+       y="99"
+       width="3"
+       height="20"
+       id="rect40"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="590"
+       y="116"
+       width="113"
+       height="3"
+       id="rect42"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="586"
+       y="95"
+       width="114"
+       height="21"
+       id="rect44"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="10"
+       xml:space="preserve"
+       text-decoration="underline"
+       x="643"
+       y="111"
+       id="text46"
+       style="font-size:10px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">trainer:TrainingWorker</text>
+  </g>
+  <g
+     id="g48"
+     transform="translate(-29.5,-63.5)">
+    <rect
+       x="569"
+       y="99"
+       width="3"
+       height="20"
+       id="rect50"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="515"
+       y="116"
+       width="57"
+       height="3"
+       id="rect52"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="511"
+       y="95"
+       width="58"
+       height="21"
+       id="rect54"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="10"
+       xml:space="preserve"
+       text-decoration="underline"
+       x="540"
+       y="111"
+       id="text56"
+       style="font-size:10px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">:ImageUtils</text>
+  </g>
+  <g
+     id="g58"
+     transform="translate(-29.5,-63.5)">
+    <line
+       x1="542"
+       y1="136"
+       x2="542"
+       y2="480"
+       id="line60"
+       style="stroke:#000000;stroke-dasharray:18, 6;stroke-opacity:1" />
+  </g>
+  <g
+     id="g62"
+     transform="translate(-29.5,-63.5)">
+    <line
+       x1="428"
+       y1="136"
+       x2="428"
+       y2="480"
+       id="line64"
+       style="stroke:#000000;stroke-dasharray:18, 6;stroke-opacity:1" />
+  </g>
+  <g
+     id="g66"
+     transform="translate(-29.5,-63.5)">
+    <line
+       x1="645"
+       y1="136"
+       x2="645"
+       y2="480"
+       id="line68"
+       style="stroke:#000000;stroke-dasharray:18, 6;stroke-opacity:1" />
+  </g>
+  <g
+     id="g70"
+     transform="translate(-29.5,-63.5)">
+    <line
+       x1="205"
+       y1="136"
+       x2="205"
+       y2="480"
+       id="line72"
+       style="stroke:#000000;stroke-dasharray:18, 6;stroke-opacity:1" />
+  </g>
+  <g
+     id="g74"
+     transform="translate(-29.5,-63.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <rect
+       x="200"
+       y="147"
+       width="10"
+       height="310"
+       id="rect76"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+  </g>
+  <g
+     id="g78"
+     transform="translate(-29.5,-63.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <rect
+       x="640"
+       y="392"
+       width="10"
+       height="45"
+       id="rect80"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+  </g>
+  <g
+     id="g82"
+     transform="translate(-29.5,-63.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <rect
+       x="537"
+       y="246"
+       width="10"
+       height="59"
+       id="rect84"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+  </g>
+  <g
+     id="g86"
+     transform="translate(-29.5,-63.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <rect
+       x="423"
+       y="159"
+       width="10"
+       height="58"
+       id="rect88"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+  </g>
+  <g
+     id="g90"
+     transform="translate(-29.5,-63.5)">
+    <line
+       x1="211"
+       y1="299"
+       x2="537"
+       y2="299"
+       id="line92"
+       style="stroke:#000000;stroke-dasharray:4, 4;stroke-opacity:1" />
+    <path
+       d="m 215,295 -4,4 4,4"
+       id="path94"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g96"
+     transform="translate(-29.5,-63.5)">
+    <line
+       x1="211"
+       y1="164"
+       x2="423"
+       y2="164"
+       id="line98"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="423,164 419,160 419,168 "
+       id="polygon100"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <circle
+     cx="18"
+     cy="91"
+     id="ellipse102"
+     r="4.5"
+     style="fill:#000000;stroke:none" />
+  <g
+     id="g104"
+     transform="translate(-29.5,-63.5)">
+    <line
+       x1="211"
+       y1="211"
+       x2="423"
+       y2="211"
+       id="line106"
+       style="stroke:#000000;stroke-dasharray:4, 4;stroke-opacity:1" />
+    <path
+       d="m 215,207 -4,4 4,4"
+       id="path108"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g110"
+     transform="translate(-29.5,-63.5)">
+    <line
+       x1="52"
+       y1="152"
+       x2="200"
+       y2="152"
+       id="line112"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="200,152 196,148 196,156 "
+       id="polygon114"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g116"
+     transform="translate(-29.5,-63.5)">
+    <line
+       x1="211"
+       y1="251"
+       x2="537"
+       y2="251"
+       id="line118"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="537,251 533,247 533,255 "
+       id="polygon120"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g122"
+     transform="translate(-29.5,-63.5)">
+    <line
+       x1="211"
+       y1="397"
+       x2="640"
+       y2="397"
+       id="line124"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="640,397 636,393 636,401 "
+       id="polygon126"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g128"
+     transform="translate(-29.5,-63.5)">
+    <rect
+       x="206"
+       y="348"
+       width="10"
+       height="33"
+       id="rect130"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+  </g>
+  <g
+     id="g132"
+     transform="translate(-29.5,-63.5)">
+    <path
+       d="m 218,349 17,0 0,7 -17,0"
+       id="path134"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="218,356 222,360 222,352 "
+       id="polygon136"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g138"
+     transform="translate(-29.5,-63.5)">
+    <text
+       font-size="10"
+       xml:space="preserve"
+       x="239"
+       y="356"
+       id="text140"
+       style="font-size:10px;font-family:Helvetica;fill:#000000">configTrainingWorker (trainer)</text>
+  </g>
+  <g
+     id="g142"
+     transform="translate(-29.5,-63.5)">
+    <text
+       font-size="10"
+       xml:space="preserve"
+       x="242"
+       y="243"
+       id="text144"
+       style="font-size:10px;font-family:Helvetica;fill:#000000">convertToResultMap (trainingImages)</text>
+  </g>
+  <g
+     id="g146"
+     transform="translate(-29.5,-63.5)">
+    <text
+       font-size="10"
+       xml:space="preserve"
+       x="251"
+       y="203"
+       id="text148"
+       style="font-size:10px;font-family:Helvetica;fill:#000000">trainingImages</text>
+  </g>
+  <g
+     id="g150"
+     transform="translate(-29.5,-63.5)">
+    <text
+       font-size="10"
+       xml:space="preserve"
+       x="233"
+       y="389"
+       id="text152"
+       style="font-size:10px;font-family:Helvetica;fill:#000000">train (trainData)</text>
+  </g>
+  <g
+     id="g154"
+     transform="translate(-29.5,-63.5)">
+    <text
+       font-size="10"
+       xml:space="preserve"
+       x="231"
+       y="154"
+       id="text156"
+       style="font-size:10px;font-family:Helvetica;fill:#000000">loadAllImages</text>
+  </g>
+  <g
+     id="g158"
+     transform="translate(-29.5,-63.5)">
+    <text
+       font-size="10"
+       xml:space="preserve"
+       x="49"
+       y="142"
+       id="text160"
+       style="font-size:10px;font-family:Helvetica;fill:#000000">trainNeuralNet (neuralNet)</text>
+  </g>
+  <g
+     id="g162"
+     transform="translate(-29.5,-63.5)">
+    <text
+       font-size="10"
+       xml:space="preserve"
+       x="263"
+       y="291"
+       id="text164"
+       style="font-size:10px;font-family:Helvetica;fill:#000000">trainData</text>
+  </g>
+</svg>

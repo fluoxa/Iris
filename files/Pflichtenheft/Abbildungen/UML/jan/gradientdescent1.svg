@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Bouml (http://bouml.free.fr/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="447"
+   height="375.5"
+   version="1.1"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="gradientdescent1.svg">
+  <metadata
+     id="metadata172">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs170" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1028"
+     id="namedview168"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="2.247619"
+     inkscape:cx="203.82617"
+     inkscape:cy="196.79902"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g136" />
+  <g
+     id="g34"
+     transform="translate(-69.5,-44.5)">
+    <line
+       x1="209"
+       y1="88"
+       x2="209"
+       y2="420"
+       id="line36"
+       style="stroke:#000000;stroke-dasharray:18, 6;stroke-opacity:1" />
+  </g>
+  <g
+     id="g4"
+     transform="translate(-69.5,-44.5)">
+    <polygon
+       points="186,54 70,54 70,45 70,45 191,45 191,49 "
+       id="polygon6"
+       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
+    <rect
+       x="70"
+       y="45"
+       width="446"
+       height="363"
+       id="rect8"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="128"
+       y="53"
+       id="text10"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">sd neural net backward propagation</text>
+    <line
+       x1="70"
+       y1="54"
+       x2="186"
+       y2="54"
+       id="line12"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="186"
+       y1="54"
+       x2="191"
+       y2="49"
+       id="line14"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="191"
+       y1="49"
+       x2="191"
+       y2="45"
+       id="line16"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <text
+     font-size="6"
+     xml:space="preserve"
+     x="144.5"
+     y="180.5"
+     id="text18"
+     style="font-size:6px;font-family:Helvetica;fill:#000000">[ for each hLayer in hiddenLayer ]</text>
+  <g
+     id="g20"
+     transform="translate(-69.5,-44.5)">
+    <rect
+       x="239"
+       y="62"
+       width="2"
+       height="13"
+       id="rect22"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="179"
+       y="73"
+       width="62"
+       height="2"
+       id="rect24"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="176"
+       y="59"
+       width="63"
+       height="14"
+       id="rect26"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="6"
+       xml:space="preserve"
+       text-decoration="underline"
+       x="208"
+       y="70"
+       id="text28"
+       style="font-size:6px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">:NeuralNetTrainer</text>
+  </g>
+  <g
+     id="g30"
+     transform="translate(-69.5,-44.5)">
+    <line
+       x1="405"
+       y1="88"
+       x2="405"
+       y2="420"
+       id="line32"
+       style="stroke:#000000;stroke-dasharray:18, 6;stroke-opacity:1" />
+  </g>
+  <g
+     id="g38"
+     transform="translate(-69.5,-44.5)">
+    <rect
+       x="430"
+       y="62"
+       width="2"
+       height="13"
+       id="rect40"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="383"
+       y="73"
+       width="49"
+       height="2"
+       id="rect42"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="380"
+       y="59"
+       width="50"
+       height="14"
+       id="rect44"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="6"
+       xml:space="preserve"
+       text-decoration="underline"
+       x="405"
+       y="70"
+       id="text46"
+       style="font-size:6px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">:LayerTrainer</text>
+  </g>
+  <g
+     id="g48"
+     transform="translate(-69.5,-44.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <rect
+       x="402"
+       y="126"
+       width="7"
+       height="82"
+       id="rect50"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+  </g>
+  <g
+     id="g52"
+     transform="translate(-71.5,-44.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <rect
+       x="403"
+       y="237"
+       width="7"
+       height="63"
+       id="rect54"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+  </g>
+  <g
+     id="g56"
+     transform="translate(-69.5,-44.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <rect
+       x="402"
+       y="328"
+       width="7"
+       height="59"
+       id="rect58"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+  </g>
+  <g
+     id="g64"
+     transform="translate(-69.5,-44.5)">
+    <line
+       x1="214"
+       y1="334"
+       x2="402"
+       y2="334"
+       id="line66"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="402,334 398,330 398,338 "
+       id="polygon68"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g70"
+     transform="translate(-69.5,-44.5)">
+    <polygon
+       points="426,267 338,267 338,258 338,258 431,258 431,262 "
+       id="polygon72"
+       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
+    <rect
+       x="338"
+       y="258"
+       width="131"
+       height="33"
+       id="rect74"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="404"
+       y="279"
+       id="text76"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationLayer(hLayer)</text>
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="382"
+       y="266"
+       id="text78"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationLayer</text>
+    <line
+       x1="338"
+       y1="267"
+       x2="426"
+       y2="267"
+       id="line80"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="426"
+       y1="267"
+       x2="431"
+       y2="262"
+       id="line82"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="431"
+       y1="262"
+       x2="431"
+       y2="258"
+       id="line84"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g86"
+     transform="translate(-69.5,-44.5)">
+    <line
+       x1="214"
+       y1="135"
+       x2="402"
+       y2="135"
+       id="line88"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="402,135 398,131 398,139 "
+       id="polygon90"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <circle
+     cx="19"
+     cy="70"
+     id="ellipse92"
+     r="4.5"
+     style="fill:#000000;stroke:none" />
+  <g
+     id="g94"
+     transform="translate(-69.5,-44.5)">
+    <line
+       x1="93"
+       y1="113"
+       x2="206"
+       y2="113"
+       id="line96"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="206,113 202,109 202,117 "
+       id="polygon98"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g100"
+     transform="translate(-69.5,-44.5)">
+    <polygon
+       points="323,159 313,159 313,150 313,150 328,150 328,154 "
+       id="polygon102"
+       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
+    <rect
+       x="313"
+       y="150"
+       width="195"
+       height="33"
+       id="rect104"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="411"
+       y="171"
+       id="text106"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationOutputLayer(oLayer, expctLayer)</text>
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="318"
+       y="158"
+       id="text108"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">ref</text>
+    <line
+       x1="313"
+       y1="159"
+       x2="323"
+       y2="159"
+       id="line110"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="323"
+       y1="159"
+       x2="328"
+       y2="154"
+       id="line112"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="328"
+       y1="154"
+       x2="328"
+       y2="150"
+       id="line114"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g116"
+     transform="translate(-69.5,-44.5)">
+    <polygon
+       points="427,353 339,353 339,344 339,344 432,344 432,348 "
+       id="polygon118"
+       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
+    <rect
+       x="339"
+       y="344"
+       width="131"
+       height="33"
+       id="rect120"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="405"
+       y="365"
+       id="text122"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationLayer(iLayer)</text>
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="383"
+       y="352"
+       id="text124"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationLayer</text>
+    <line
+       x1="339"
+       y1="353"
+       x2="427"
+       y2="353"
+       id="line126"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="427"
+       y1="353"
+       x2="432"
+       y2="348"
+       id="line128"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="432"
+       y1="348"
+       x2="432"
+       y2="344"
+       id="line130"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g132"
+     transform="translate(-69.5,-44.5)">
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="81"
+       y="101"
+       id="text134"
+       style="font-size:6px;font-family:Helvetica;fill:#000000">propagateBackward (net, expctLayer)</text>
+  </g>
+  <g
+     id="g136"
+     transform="translate(-69.5,-44.5)">
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="223"
+       y="127"
+       id="text138"
+       style="font-size:6px;font-family:Helvetica;fill:#000000">propagateOutputLayerBackward(oLayer, expctLayer)</text>
+  </g>
+  <g
+     id="g140"
+     transform="translate(-69.5,-44.5)">
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="269"
+       y="239"
+       id="text142"
+       style="font-size:6px;font-family:Helvetica;fill:#000000">propagateBackward(hLayer)</text>
+  </g>
+  <g
+     id="g144"
+     transform="translate(-69.5,-44.5)">
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="267"
+       y="329"
+       id="text146"
+       style="font-size:6px;font-family:Helvetica;fill:#000000">propagateBackwards (iLayer)</text>
+  </g>
+  <g
+     id="g148"
+     transform="matrix(0.98822976,0,0,1,-66.981168,-44.5)">
+    <line
+       x1="214"
+       y1="244"
+       x2="403"
+       y2="244"
+       id="line150"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="399,240 399,248 403,244 "
+       id="polygon152"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g60"
+     transform="translate(-69.5,-44.5)"
+     style="fill:#ffffff;fill-opacity:1">
+    <rect
+       x="206"
+       y="107"
+       width="7"
+       height="294"
+       id="rect62"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+  </g>
+  <g
+     id="g154"
+     transform="translate(-69.5,-44.5)">
+    <polygon
+       points="196,224 180,224 180,215 180,215 201,215 201,219 "
+       id="polygon156"
+       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
+    <rect
+       x="180"
+       y="215"
+       width="304"
+       height="91"
+       id="rect158"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="188"
+       y="223"
+       id="text160"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">loop</text>
+    <line
+       x1="180"
+       y1="224"
+       x2="196"
+       y2="224"
+       id="line162"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="196"
+       y1="224"
+       x2="201"
+       y2="219"
+       id="line164"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="201"
+       y1="219"
+       x2="201"
+       y2="215"
+       id="line166"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+</svg>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Bouml (http://bouml.free.fr/) -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="490" height="378" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="433" y="306" width="3" height="59" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="147" y="362" width="289" height="3" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="143" y="302" width="290" height="60" />
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="288" y="315">NodeTrainer</text>
+	<line stroke="black" stroke-opacity="1" x1="143" y1="320" x2="433" y2="320" />
+	<line stroke="black" stroke-opacity="1" x1="143" y1="328" x2="433" y2="328" />
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" font-weight="bold" x="147" y="341">+</text>
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" x="159" y="341">void propagateBackward(Node node, Node expctNode) </text>
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" font-weight="bold" x="147" y="357">+</text>
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" x="159" y="357">void propagateBackward(Node node) </text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="472" y="71" width="3" height="43" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="112" y="111" width="363" height="3" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="108" y="67" width="364" height="44" />
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="290" y="80">NeuralNetTrainer</text>
+	<line stroke="black" stroke-opacity="1" x1="108" y1="85" x2="472" y2="85" />
+	<line stroke="black" stroke-opacity="1" x1="108" y1="93" x2="472" y2="93" />
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" font-weight="bold" x="112" y="106">+</text>
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" x="124" y="106">void propgateBackward(NeuralNet neuralNet, Layer expctResultLayer) </text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="474" y="178" width="3" height="59" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="108" y="234" width="369" height="3" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="104" y="174" width="370" height="60" />
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="289" y="187">LayerTrainer</text>
+	<line stroke="black" stroke-opacity="1" x1="104" y1="192" x2="474" y2="192" />
+	<line stroke="black" stroke-opacity="1" x1="104" y1="200" x2="474" y2="200" />
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" font-weight="bold" x="108" y="213">+</text>
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" x="120" y="213">void propagateOutputLayerBackward(Layer oLayer, Layer expctLayer) </text>
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" font-weight="bold" x="108" y="229">+</text>
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" x="120" y="229">void propagateBackward(Layer layer) </text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="290" y1="301" x2="296" y2="295" />
+	<line stroke="black" stroke-opacity="1" x1="290" y1="301" x2="284" y2="295" />
+	<line stroke="black" stroke-opacity="1" x1="290" y1="238" x2="290" y2="301" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="291" y1="173" x2="297" y2="167" />
+	<line stroke="black" stroke-opacity="1" x1="291" y1="173" x2="285" y2="167" />
+	<line stroke="black" stroke-opacity="1" x1="291" y1="115" x2="291" y2="173" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" x="300" y="294">nodeTrainer</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" x="275" y="166">1</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" x="301" y="166">layerTrainer</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="10" fill="#000000" xml:space="preserve" x="274" y="294">1</text>
+</g>
+</svg>
