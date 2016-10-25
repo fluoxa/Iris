@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Bouml (http://bouml.free.fr/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1410.2881"
+   height="1248.0551"
+   version="1.1"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="forwardWorkerSequenzDiagramm.svg">
+  <metadata
+     id="metadata170">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs168" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="748"
+     id="namedview166"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.25106383"
+     inkscape:cx="620.25321"
+     inkscape:cy="722.03301"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <g
+     id="g4"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <rect
+       x="341"
+       y="36"
+       width="3"
+       height="18"
+       id="rect6"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="263"
+       y="51"
+       width="81"
+       height="3"
+       id="rect8"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="259"
+       y="32"
+       width="82"
+       height="19"
+       id="rect10"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       text-decoration="underline"
+       x="300"
+       y="46"
+       id="text12"
+       style="font-size:8px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">:NeuralNetWorker</text>
+  </g>
+  <g
+     id="g14"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <rect
+       x="485"
+       y="36"
+       width="3"
+       height="18"
+       id="rect16"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="425"
+       y="51"
+       width="63"
+       height="3"
+       id="rect18"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="421"
+       y="32"
+       width="64"
+       height="19"
+       id="rect20"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       text-decoration="underline"
+       x="453"
+       y="46"
+       id="text22"
+       style="font-size:8px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">:LayerWorker</text>
+  </g>
+  <g
+     id="g24"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <rect
+       x="607"
+       y="36"
+       width="3"
+       height="18"
+       id="rect26"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="549"
+       y="51"
+       width="61"
+       height="3"
+       id="rect28"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="545"
+       y="32"
+       width="62"
+       height="19"
+       id="rect30"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       text-decoration="underline"
+       x="576"
+       y="46"
+       id="text32"
+       style="font-size:8px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">:NodeWorker</text>
+  </g>
+  <g
+     id="g34"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <line
+       x1="302"
+       y1="73"
+       x2="302"
+       y2="470"
+       id="line36"
+       style="stroke:#000000;stroke-dasharray:18, 6;stroke-opacity:1" />
+  </g>
+  <g
+     id="g38"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <line
+       x1="455"
+       y1="73"
+       x2="455"
+       y2="470"
+       id="line40"
+       style="stroke:#000000;stroke-dasharray:18, 6;stroke-opacity:1" />
+  </g>
+  <g
+     id="g42"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <line
+       x1="578"
+       y1="73"
+       x2="578"
+       y2="470"
+       id="line44"
+       style="stroke:#000000;stroke-dasharray:18, 6;stroke-opacity:1" />
+  </g>
+  <g
+     id="g46"
+     style="fill:#ffffff;fill-opacity:1"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <rect
+       x="297"
+       y="94"
+       width="10"
+       height="364"
+       id="rect48"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+  </g>
+  <g
+     id="g50"
+     style="fill:#ffffff;fill-opacity:1"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <rect
+       x="573"
+       y="366"
+       width="10"
+       height="46"
+       id="rect52"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+  </g>
+  <g
+     id="g54"
+     style="fill:#ffffff;fill-opacity:1"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <rect
+       x="450"
+       y="323"
+       width="10"
+       height="110"
+       id="rect56"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+  </g>
+  <g
+     id="g58"
+     style="fill:#ffffff;fill-opacity:1"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <rect
+       x="573"
+       y="202"
+       width="10"
+       height="36"
+       id="rect60"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+  </g>
+  <g
+     id="g62"
+     style="fill:#ffffff;fill-opacity:1"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <rect
+       x="450"
+       y="140"
+       width="10"
+       height="142"
+       id="rect64"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+  </g>
+  <circle
+     cx="12.807863"
+     cy="196.38724"
+     id="ellipse66"
+     style="fill:#000000;stroke:none"
+     r="12.807863" />
+  <g
+     id="g68"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <line
+       x1="160"
+       y1="99"
+       x2="297"
+       y2="99"
+       id="line70"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="293,95 293,103 297,99 "
+       id="polygon72"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g74"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <line
+       x1="308"
+       y1="328"
+       x2="450"
+       y2="328"
+       id="line76"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="446,324 446,332 450,328 "
+       id="polygon78"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g80"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <line
+       x1="461"
+       y1="371"
+       x2="573"
+       y2="371"
+       id="line82"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="569,367 569,375 573,371 "
+       id="polygon84"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g86"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <line
+       x1="308"
+       y1="146"
+       x2="450"
+       y2="146"
+       id="line88"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="446,142 446,150 450,146 "
+       id="polygon90"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g92"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <line
+       x1="461"
+       y1="207"
+       x2="573"
+       y2="207"
+       id="line94"
+       style="stroke:#000000;stroke-opacity:1" />
+    <polygon
+       points="569,203 569,211 573,207 "
+       id="polygon96"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <text
+     font-size="8"
+     xml:space="preserve"
+     x="449.6983"
+     y="271.81131"
+     id="text98"
+     style="font-size:22.76953316px;font-family:Helvetica;fill:#000000">[for each hLayer in hiddenLayers]</text>
+  <text
+     font-size="8"
+     xml:space="preserve"
+     x="885.16565"
+     y="912.20447"
+     id="text100"
+     style="font-size:22.76953316px;font-family:Helvetica;fill:#000000">[for each node in outputLayer]</text>
+  <text
+     font-size="8"
+     xml:space="preserve"
+     x="890.85803"
+     y="448.27521"
+     id="text102"
+     style="font-size:22.76953316px;font-family:Helvetica;fill:#000000">[for each node in hLayer]</text>
+  <g
+     id="g104"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="164"
+       y="94"
+       id="text106"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">propagateForward( neuralNet )</text>
+  </g>
+  <g
+     id="g108"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="321"
+       y="143"
+       id="text110"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">propagateForward( hLayer )</text>
+  </g>
+  <g
+     id="g112"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="463"
+       y="204"
+       id="text114"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">propagateForward( node )</text>
+  </g>
+  <g
+     id="g116"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="311"
+       y="324"
+       id="text118"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">propagateForward( outputLayer )</text>
+  </g>
+  <g
+     id="g120"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="463"
+       y="368"
+       id="text122"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">propagateForward( node)</text>
+  </g>
+  <g
+     id="g124"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <polygon
+       points="461,176 461,184 452,193 430,193 430,176 430,176 "
+       id="polygon126"
+       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
+    <rect
+       x="430"
+       y="176"
+       width="174"
+       height="77"
+       id="rect128"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="441"
+       y="189"
+       id="text130"
+       style="font-size:8px;font-family:Helvetica;text-anchor:middle;fill:#000000">loop</text>
+    <line
+       x1="430"
+       y1="193"
+       x2="452"
+       y2="193"
+       id="line132"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="452"
+       y1="193"
+       x2="461"
+       y2="184"
+       id="line134"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="461"
+       y1="184"
+       x2="461"
+       y2="176"
+       id="line136"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g138"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <polygon
+       points="460,338 460,346 451,355 429,355 429,338 429,338 "
+       id="polygon140"
+       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
+    <rect
+       x="429"
+       y="338"
+       width="186"
+       height="83"
+       id="rect142"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="440"
+       y="351"
+       id="text144"
+       style="font-size:8px;font-family:Helvetica;text-anchor:middle;fill:#000000">loop</text>
+    <line
+       x1="429"
+       y1="355"
+       x2="451"
+       y2="355"
+       id="line146"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="451"
+       y1="355"
+       x2="460"
+       y2="346"
+       id="line148"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="460"
+       y1="346"
+       x2="460"
+       y2="338"
+       id="line150"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g152"
+     transform="matrix(2.8461918,0,0,2.8461918,-429.77497,-89.655042)">
+    <polygon
+       points="306,111 306,119 297,128 275,128 275,111 275,111 "
+       id="polygon154"
+       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
+    <rect
+       x="275"
+       y="111"
+       width="371"
+       height="196"
+       id="rect156"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="286"
+       y="124"
+       id="text158"
+       style="font-size:8px;font-family:Helvetica;text-anchor:middle;fill:#000000">loop</text>
+    <line
+       x1="275"
+       y1="128"
+       x2="297"
+       y2="128"
+       id="line160"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="297"
+       y1="128"
+       x2="306"
+       y2="119"
+       id="line162"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="306"
+       y1="119"
+       x2="306"
+       y2="111"
+       id="line164"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+</svg>

@@ -2,7 +2,7 @@
 \textcolor{red}{Funktionalität: Spezifikation der einzelnen Produktfunktionen mit genauer und detaillierter Beschreibung.}
 
 Zur Entkopplung einzelner Module und leichteren Wartbarkeit verwendet die Anwendung eine Drei-Schichten Architektur bestehend aus Nutzeroberfläche, Business-Schicht und Daten-Schicht. 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=10cm]{Abbildungen/UML/jan/SchichtenModell.png}
 \end{center}
@@ -12,9 +12,9 @@ Die Nutzeroberfläche dient der Nutzerinteraktion sowie der Darstellung der Eing
 \textcolor{red}{ @Daniel: Hier bitte dein Part für das MVP-Pattern rein!!!}
 
 
-In der Buisiness-Schicht werden alle fachspezifischen Verarbeitungen vorgenommen. Hierunter fallen beispielsweise die Vorwärtsberechnung sowie das Training eines künstlichen neuronalen Netzes oder die Konvertierung von Daten. Dazu werden für jede Entität spezifizsche Worker-Klassen zur Verfügung gestellt, die diese Aufgaben durchführen können.
+In der Buisiness-Schicht werden alle fachspezifischen Verarbeitungen vorgenommen. Hierunter fallen beispielsweise die Vorwärtsberechnung sowie das Training eines künstlichen neuronalen Netzes oder die Konvertierung von Daten. Dazu werden für jede Entität spezifizsche Worker-Klassen bereitgestellt, die diese Aufgaben durchführen können.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=10cm]{Abbildungen/UML/jan/workerClassDiagramm.png}
 \end{center}
@@ -24,18 +24,61 @@ Als unterste Schicht der Anwendung dient die Daten-Schicht der Persistierung von
 
 In den nächsten Unterabschnitten folgt die ausführliche Beschreibung und geplante Umsetzung der von der Anwendung zu erbringenden Funktionalitäten.  
 
-\section{Training eines Neuronalen Netzes}
-
-\section{Vorwärtsberechnung}
+\section{Vorwärtsberechnung eines Neuronalen Netzes}
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics{Abbildungen/UML/uml_ronny/propagateForward.png}
+\includegraphics[width=15cm]{Abbildungen/UML/uml_ronny/neuralNetCD.png}
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+
+\begin{figure}[H]
 \begin{center}
-\includegraphics{Abbildungen/UML/uml_ronny/workerclass.png}
+\includegraphics[width=13cm]{Abbildungen/UML/uml_ronny/forwardPropagationSD.png}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{Abbildungen/UML/uml_ronny/workerKlassenDiagramm.png}
+\end{center}
+\end{figure}
+
+\newpage
+\section{Training eines Neuronalen Netzes}
+
+Das Training eines Neuronalen Netzes erfolgt mit Hilfe des Gradienten-Abstieg-Algorithmus. Durch den Vergleich von tatsächlicher Netzwerkausgabe zur erwarteten Ausgabe werden dabei beginnend beim Ausgabelayer sukzessive Anpassungen an den Netzwerkknoten und Netzwerkaxon vorgenommen. Für jede Abstraktionstufe des Neuronalen Netzes wird dabei ein eigener Trainer angelegt, der für die Rückwärtspropagierung des Ausgabefehlers zuständig ist.\\[-0.5cm]
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=10cm]{Abbildungen/UML/jan/classdiagrammTraining.png}
+\end{center}
+\end{figure}
+\vspace{-0.4cm}
+Der Ablauf eines Trainingdurchlaufs stellt sich als Sequenzdiagramm wie folgt dar:
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=14.2cm]{Abbildungen/UML/jan/trainNeuralNet.png}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=14.2cm]{Abbildungen/UML/jan/trainDetailed1.png}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=14.2cm]{Abbildungen/UML/jan/gradientdescent1.png}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=13.2cm]{Abbildungen/UML/jan/gradientdescent2.png}
+\end{center}
+\end{figure}
+\vspace{-0.5cm}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=13.2cm]{Abbildungen/UML/jan/gradientdescent3.png}
 \end{center}
 \end{figure}

@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="447"
-   height="375.5"
+   width="2289.3264"
+   height="1813.985"
    version="1.1"
    id="svg2"
    inkscape:version="0.91 r13725"
@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -38,24 +38,24 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1028"
+     inkscape:window-width="1280"
+     inkscape:window-height="748"
      id="namedview168"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="2.247619"
-     inkscape:cx="203.82617"
-     inkscape:cy="196.79902"
+     inkscape:zoom="0.28095238"
+     inkscape:cx="1390.3964"
+     inkscape:cy="1105.8148"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g136" />
+     inkscape:current-layer="svg2" />
   <g
      id="g34"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,4.7370411,-355.90122,-194.11395)">
     <line
        x1="209"
        y1="88"
@@ -66,9 +66,9 @@
   </g>
   <g
      id="g4"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1215356,0,0,4.9834752,-355.94672,-221.76465)">
     <polygon
-       points="186,54 70,54 70,45 70,45 191,45 191,49 "
+       points="191,49 186,54 70,54 70,45 70,45 191,45 "
        id="polygon6"
        style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
     <rect
@@ -110,13 +110,13 @@
   <text
      font-size="6"
      xml:space="preserve"
-     x="144.5"
-     y="180.5"
+     x="740.0741"
+     y="924.37476"
      id="text18"
-     style="font-size:6px;font-family:Helvetica;fill:#000000">[ for each hLayer in hiddenLayer ]</text>
+     style="font-size:30.72827911px;font-family:Helvetica;fill:#000000">[ for each hLayer in hiddenLayer ]</text>
   <g
      id="g20"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-197.20745)">
     <rect
        x="239"
        y="62"
@@ -149,7 +149,7 @@
   </g>
   <g
      id="g30"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,4.6409564,-355.90122,-185.65845)">
     <line
        x1="405"
        y1="88"
@@ -160,7 +160,7 @@
   </g>
   <g
      id="g38"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-197.20745)">
     <rect
        x="430"
        y="62"
@@ -193,7 +193,7 @@
   </g>
   <g
      id="g48"
-     transform="translate(-69.5,-44.5)"
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
        x="402"
@@ -201,11 +201,11 @@
        width="7"
        height="82"
        id="rect50"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
   </g>
   <g
      id="g52"
-     transform="translate(-71.5,-44.5)"
+     transform="matrix(5.1213799,0,0,5.1213799,-366.14392,-227.93575)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
        x="403"
@@ -213,11 +213,11 @@
        width="7"
        height="63"
        id="rect54"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
   </g>
   <g
      id="g56"
-     transform="translate(-69.5,-44.5)"
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
        x="402"
@@ -225,11 +225,11 @@
        width="7"
        height="59"
        id="rect58"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
   </g>
   <g
      id="g64"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
     <line
        x1="214"
        y1="334"
@@ -238,24 +238,13 @@
        id="line66"
        style="stroke:#000000;stroke-opacity:1" />
     <polygon
-       points="402,334 398,330 398,338 "
+       points="398,330 398,338 402,334 "
        id="polygon68"
        style="fill:#000000;stroke:none" />
   </g>
   <g
      id="g70"
-     transform="translate(-69.5,-44.5)">
-    <polygon
-       points="426,267 338,267 338,258 338,258 431,258 431,262 "
-       id="polygon72"
-       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
-    <rect
-       x="338"
-       y="258"
-       width="131"
-       height="33"
-       id="rect74"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
     <text
        font-size="6"
        xml:space="preserve"
@@ -263,38 +252,10 @@
        y="279"
        id="text76"
        style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationLayer(hLayer)</text>
-    <text
-       font-size="6"
-       xml:space="preserve"
-       x="382"
-       y="266"
-       id="text78"
-       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationLayer</text>
-    <line
-       x1="338"
-       y1="267"
-       x2="426"
-       y2="267"
-       id="line80"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="426"
-       y1="267"
-       x2="431"
-       y2="262"
-       id="line82"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="431"
-       y1="262"
-       x2="431"
-       y2="258"
-       id="line84"
-       style="stroke:#000000;stroke-opacity:1" />
   </g>
   <g
      id="g86"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
     <line
        x1="214"
        y1="135"
@@ -303,19 +264,19 @@
        id="line88"
        style="stroke:#000000;stroke-opacity:1" />
     <polygon
-       points="402,135 398,131 398,139 "
+       points="398,131 398,139 402,135 "
        id="polygon90"
        style="fill:#000000;stroke:none" />
   </g>
   <circle
-     cx="19"
-     cy="70"
+     cx="97.340935"
+     cy="358.46225"
      id="ellipse92"
-     r="4.5"
+     r="23.046209"
      style="fill:#000000;stroke:none" />
   <g
      id="g94"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
     <line
        x1="93"
        y1="113"
@@ -324,15 +285,15 @@
        id="line96"
        style="stroke:#000000;stroke-opacity:1" />
     <polygon
-       points="206,113 202,109 202,117 "
+       points="202,109 202,117 206,113 "
        id="polygon98"
        style="fill:#000000;stroke:none" />
   </g>
   <g
      id="g100"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
     <polygon
-       points="323,159 313,159 313,150 313,150 328,150 328,154 "
+       points="328,150 328,154 323,159 313,159 313,150 313,150 "
        id="polygon102"
        style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
     <rect
@@ -353,7 +314,7 @@
        font-size="6"
        xml:space="preserve"
        x="318"
-       y="158"
+       y="156.43793"
        id="text108"
        style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">ref</text>
     <line
@@ -380,18 +341,7 @@
   </g>
   <g
      id="g116"
-     transform="translate(-69.5,-44.5)">
-    <polygon
-       points="427,353 339,353 339,344 339,344 432,344 432,348 "
-       id="polygon118"
-       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
-    <rect
-       x="339"
-       y="344"
-       width="131"
-       height="33"
-       id="rect120"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
     <text
        font-size="6"
        xml:space="preserve"
@@ -399,38 +349,10 @@
        y="365"
        id="text122"
        style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationLayer(iLayer)</text>
-    <text
-       font-size="6"
-       xml:space="preserve"
-       x="383"
-       y="352"
-       id="text124"
-       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationLayer</text>
-    <line
-       x1="339"
-       y1="353"
-       x2="427"
-       y2="353"
-       id="line126"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="427"
-       y1="353"
-       x2="432"
-       y2="348"
-       id="line128"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="432"
-       y1="348"
-       x2="432"
-       y2="344"
-       id="line130"
-       style="stroke:#000000;stroke-opacity:1" />
   </g>
   <g
      id="g132"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
     <text
        font-size="6"
        xml:space="preserve"
@@ -441,7 +363,7 @@
   </g>
   <g
      id="g136"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
     <text
        font-size="6"
        xml:space="preserve"
@@ -452,7 +374,7 @@
   </g>
   <g
      id="g140"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
     <text
        font-size="6"
        xml:space="preserve"
@@ -463,7 +385,7 @@
   </g>
   <g
      id="g144"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
     <text
        font-size="6"
        xml:space="preserve"
@@ -474,7 +396,7 @@
   </g>
   <g
      id="g148"
-     transform="matrix(0.98822976,0,0,1,-66.981168,-44.5)">
+     transform="matrix(5.0611,0,0,5.1213799,-343.00132,-227.93575)">
     <line
        x1="214"
        y1="244"
@@ -483,13 +405,13 @@
        id="line150"
        style="stroke:#000000;stroke-opacity:1" />
     <polygon
-       points="399,240 399,248 403,244 "
+       points="399,248 403,244 399,240 "
        id="polygon152"
        style="fill:#000000;stroke:none" />
   </g>
   <g
      id="g60"
-     transform="translate(-69.5,-44.5)"
+     transform="matrix(5.1317871,0,0,4.9666223,-358.08152,-211.41305)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
        x="206"
@@ -497,13 +419,13 @@
        width="7"
        height="294"
        id="rect62"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
   </g>
   <g
      id="g154"
-     transform="translate(-69.5,-44.5)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
     <polygon
-       points="196,224 180,224 180,215 180,215 201,215 201,219 "
+       points="201,215 201,219 196,224 180,224 180,215 180,215 "
        id="polygon156"
        style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
     <rect
@@ -542,4 +464,74 @@
        id="line166"
        style="stroke:#000000;stroke-opacity:1" />
   </g>
+  <rect
+     x="1454.3447"
+     y="1097.4082"
+     width="531.90906"
+     height="170.37419"
+     id="rect104-9"
+     style="fill:none;stroke:#000000;stroke-width:5;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+  <text
+     font-size="6"
+     xml:space="preserve"
+     x="1480.636"
+     y="1131.0636"
+     id="text108-1"
+     style="font-size:30.72827911px;font-family:Helvetica;text-anchor:middle;fill:#000000">ref</text>
+  <line
+     x1="1455.0291"
+     y1="1144.1848"
+     x2="1506.2428"
+     y2="1144.1848"
+     id="line110-2"
+     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
+  <line
+     x1="1506.2428"
+     y1="1144.1848"
+     x2="1531.8497"
+     y2="1118.578"
+     id="line112-7"
+     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
+  <line
+     x1="1531.8497"
+     y1="1118.578"
+     x2="1531.8497"
+     y2="1098.0925"
+     id="line114-0"
+     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
+  <rect
+     x="1455.9752"
+     y="1542.4227"
+     width="524.38495"
+     height="170.40054"
+     id="rect104-93"
+     style="fill:none;stroke:#000000;stroke-width:5;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+  <text
+     font-size="6"
+     xml:space="preserve"
+     x="1482.2795"
+     y="1576.0913"
+     id="text108-6"
+     style="font-size:30.72827911px;font-family:Helvetica;text-anchor:middle;fill:#000000">ref</text>
+  <line
+     x1="1456.6727"
+     y1="1589.2126"
+     x2="1507.8865"
+     y2="1589.2126"
+     id="line110-0"
+     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
+  <line
+     x1="1507.8865"
+     y1="1589.2126"
+     x2="1533.4934"
+     y2="1563.6057"
+     id="line112-6"
+     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
+  <line
+     x1="1533.4934"
+     y1="1563.6057"
+     x2="1533.4934"
+     y2="1543.1202"
+     id="line114-2"
+     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
 </svg>
