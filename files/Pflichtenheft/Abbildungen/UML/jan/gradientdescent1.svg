@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="2289.3264"
-   height="1813.985"
+   width="2612.8394"
+   height="1853.2772"
    version="1.1"
    id="svg2"
    inkscape:version="0.91 r13725"
@@ -23,12 +23,43 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
-     id="defs170" />
+     id="defs170">
+    <marker
+       inkscape:stockid="TriangleOutM"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutM"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4539"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(0.4,0.4)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutL"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4536"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(0.8,0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -46,16 +77,16 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="0.28095238"
-     inkscape:cx="1390.3964"
-     inkscape:cy="1105.8148"
+     inkscape:zoom="0.39732668"
+     inkscape:cx="1275.2505"
+     inkscape:cy="1112.0189"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
   <g
      id="g34"
-     transform="matrix(5.1213799,0,0,4.7370411,-355.90122,-194.11395)">
+     transform="matrix(5.1213799,0,0,4.8431721,-355.94946,-203.40427)">
     <line
        x1="209"
        y1="88"
@@ -66,23 +97,23 @@
   </g>
   <g
      id="g4"
-     transform="matrix(5.1215356,0,0,4.9834752,-355.94672,-221.76465)">
+     transform="matrix(4.9242533,0,0,4.9837455,-342.2356,-221.77667)">
     <polygon
-       points="191,49 186,54 70,54 70,45 70,45 191,45 "
+       points="186,54 70,54 70,45 70,45 191,45 191,49 "
        id="polygon6"
        style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
     <rect
-       x="70"
-       y="45"
-       width="446"
-       height="363"
+       x="70.068604"
+       y="45.068996"
+       width="529.68433"
+       height="370.94208"
        id="rect8"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+       style="fill:none;stroke:#000000;stroke-width:0.70651263;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        font-size="6"
        xml:space="preserve"
        x="128"
-       y="53"
+       y="51.796082"
        id="text10"
        style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">sd neural net backward propagation</text>
     <line
@@ -91,7 +122,7 @@
        x2="186"
        y2="54"
        id="line12"
-       style="stroke:#000000;stroke-opacity:1" />
+       style="stroke:#000000;stroke-width:0.70651263;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <line
        x1="186"
        y1="54"
@@ -110,13 +141,13 @@
   <text
      font-size="6"
      xml:space="preserve"
-     x="740.0741"
-     y="924.37476"
+     x="740.02588"
+     y="924.42395"
      id="text18"
      style="font-size:30.72827911px;font-family:Helvetica;fill:#000000">[ for each hLayer in hiddenLayer ]</text>
   <g
      id="g20"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-197.20745)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-197.15824)">
     <rect
        x="239"
        y="62"
@@ -137,19 +168,19 @@
        width="63"
        height="14"
        id="rect26"
-       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+       style="fill:#ffffc0;stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        font-size="6"
        xml:space="preserve"
        text-decoration="underline"
        x="208"
-       y="70"
+       y="68.047409"
        id="text28"
        style="font-size:6px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">:NeuralNetTrainer</text>
   </g>
   <g
      id="g30"
-     transform="matrix(5.1213799,0,0,4.6409564,-355.90122,-185.65845)">
+     transform="matrix(5.1213799,0,0,4.8911223,-355.94946,-207.62384)">
     <line
        x1="405"
        y1="88"
@@ -160,7 +191,7 @@
   </g>
   <g
      id="g38"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-197.20745)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-197.15824)">
     <rect
        x="430"
        y="62"
@@ -181,19 +212,19 @@
        width="50"
        height="14"
        id="rect44"
-       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+       style="fill:#ffffc0;stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        font-size="6"
        xml:space="preserve"
        text-decoration="underline"
        x="405"
-       y="70"
+       y="67.656891"
        id="text46"
        style="font-size:6px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">:LayerTrainer</text>
   </g>
   <g
      id="g48"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)"
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-227.88654)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
        x="402"
@@ -201,11 +232,43 @@
        width="7"
        height="82"
        id="rect50"
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+  <g
+     id="g100"
+     transform="matrix(5.1213799,0,0,5.1213799,-137.54268,-224.32722)">
+    <polygon
+       points="328,150 328,154 323,159 313,159 313,150 313,150 "
+       id="polygon102"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.58534729;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(1.3882302,0,0,0.98191377,-93.107378,2.794322)" />
+    <rect
+       x="341.41229"
+       y="150.09137"
+       width="183.0024"
+       height="50.539604"
+       id="rect104"
+       style="fill:none;stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="437.73163"
+       y="167.93532"
+       id="text106"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">propagateBackward(node, expctNode)</text>
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="346.89948"
+       y="156.43793"
+       id="text108"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+         id="tspan4299">   loop</tspan></text>
   </g>
   <g
      id="g52"
-     transform="matrix(5.1213799,0,0,5.1213799,-366.14392,-227.93575)"
+     transform="matrix(5.0763378,0,0,5.8225899,-347.88253,-393.91566)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
        x="403"
@@ -213,146 +276,74 @@
        width="7"
        height="63"
        id="rect54"
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.64377588;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
   <g
      id="g56"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)"
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-227.88654)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
-       x="402"
-       y="328"
-       width="7"
-       height="59"
+       x="402.0369"
+       y="328.0369"
+       width="6.926198"
+       height="68.754883"
        id="rect58"
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
   <g
      id="g64"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-227.88654)">
     <line
        x1="214"
        y1="334"
        x2="402"
        y2="334"
        id="line66"
-       style="stroke:#000000;stroke-opacity:1" />
+       style="stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <polygon
        points="398,330 398,338 402,334 "
        id="polygon68"
        style="fill:#000000;stroke:none" />
   </g>
   <g
-     id="g70"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
-    <text
-       font-size="6"
-       xml:space="preserve"
-       x="404"
-       y="279"
-       id="text76"
-       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationLayer(hLayer)</text>
-  </g>
-  <g
      id="g86"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-227.88654)">
     <line
        x1="214"
        y1="135"
        x2="402"
        y2="135"
        id="line88"
-       style="stroke:#000000;stroke-opacity:1" />
+       style="stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <polygon
        points="398,131 398,139 402,135 "
        id="polygon90"
        style="fill:#000000;stroke:none" />
   </g>
   <circle
-     cx="97.340935"
-     cy="358.46225"
+     cx="97.292679"
+     cy="350.51144"
      id="ellipse92"
      r="23.046209"
      style="fill:#000000;stroke:none" />
   <g
      id="g94"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-227.88654)">
     <line
        x1="93"
        y1="113"
        x2="206"
        y2="113"
        id="line96"
-       style="stroke:#000000;stroke-opacity:1" />
+       style="stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <polygon
        points="202,109 202,117 206,113 "
        id="polygon98"
        style="fill:#000000;stroke:none" />
   </g>
   <g
-     id="g100"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
-    <polygon
-       points="328,150 328,154 323,159 313,159 313,150 313,150 "
-       id="polygon102"
-       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
-    <rect
-       x="313"
-       y="150"
-       width="195"
-       height="33"
-       id="rect104"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
-    <text
-       font-size="6"
-       xml:space="preserve"
-       x="411"
-       y="171"
-       id="text106"
-       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationOutputLayer(oLayer, expctLayer)</text>
-    <text
-       font-size="6"
-       xml:space="preserve"
-       x="318"
-       y="156.43793"
-       id="text108"
-       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">ref</text>
-    <line
-       x1="313"
-       y1="159"
-       x2="323"
-       y2="159"
-       id="line110"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="323"
-       y1="159"
-       x2="328"
-       y2="154"
-       id="line112"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="328"
-       y1="154"
-       x2="328"
-       y2="150"
-       id="line114"
-       style="stroke:#000000;stroke-opacity:1" />
-  </g>
-  <g
-     id="g116"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
-    <text
-       font-size="6"
-       xml:space="preserve"
-       x="405"
-       y="365"
-       id="text122"
-       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">backwardPropagationLayer(iLayer)</text>
-  </g>
-  <g
      id="g132"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-227.88654)">
     <text
        font-size="6"
        xml:space="preserve"
@@ -363,7 +354,7 @@
   </g>
   <g
      id="g136"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-227.88654)">
     <text
        font-size="6"
        xml:space="preserve"
@@ -374,7 +365,7 @@
   </g>
   <g
      id="g140"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-227.88654)">
     <text
        font-size="6"
        xml:space="preserve"
@@ -385,7 +376,7 @@
   </g>
   <g
      id="g144"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-227.88654)">
     <text
        font-size="6"
        xml:space="preserve"
@@ -396,22 +387,22 @@
   </g>
   <g
      id="g148"
-     transform="matrix(5.0611,0,0,5.1213799,-343.00132,-227.93575)">
+     transform="matrix(5.0810748,0,0,5.1213799,-351.09939,-227.88654)">
     <line
        x1="214"
        y1="244"
        x2="403"
        y2="244"
        id="line150"
-       style="stroke:#000000;stroke-opacity:1" />
+       style="stroke:#000000;stroke-width:0.68611473;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <polygon
-       points="399,248 403,244 399,240 "
+       points="403,244 399,240 399,248 "
        id="polygon152"
        style="fill:#000000;stroke:none" />
   </g>
   <g
      id="g60"
-     transform="matrix(5.1317871,0,0,4.9666223,-358.08152,-211.41305)"
+     transform="matrix(5.1317871,0,0,4.9666223,-358.12976,-211.36384)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
        x="206"
@@ -419,119 +410,243 @@
        width="7"
        height="294"
        id="rect62"
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.69327122;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
   <g
      id="g154"
-     transform="matrix(5.1213799,0,0,5.1213799,-355.90122,-227.93575)">
+     transform="matrix(5.1213799,0,0,5.1213799,-355.94946,-227.88654)">
     <polygon
        points="201,215 201,219 196,224 180,224 180,215 180,215 "
        id="polygon156"
-       style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <rect
-       x="180"
-       y="215"
-       width="304"
-       height="91"
+       x="180.09219"
+       y="215.09219"
+       width="393.25662"
+       height="98.678566"
        id="rect158"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+       style="fill:none;stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        font-size="6"
        xml:space="preserve"
        x="188"
-       y="223"
+       y="221.43793"
        id="text160"
        style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">loop</text>
-    <line
-       x1="180"
-       y1="224"
-       x2="196"
-       y2="224"
-       id="line162"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="196"
-       y1="224"
-       x2="201"
-       y2="219"
-       id="line164"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="201"
-       y1="219"
-       x2="201"
-       y2="215"
-       id="line166"
-       style="stroke:#000000;stroke-opacity:1" />
   </g>
-  <rect
-     x="1454.3447"
-     y="1097.4082"
-     width="531.90906"
-     height="170.37419"
-     id="rect104-9"
-     style="fill:none;stroke:#000000;stroke-width:5;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+  <g
+     id="g46"
+     transform="matrix(3.3664595,0,0,3.3664595,769.76868,-320.92148)"
+     style="stroke-width:1.48523986;stroke-miterlimit:4;stroke-dasharray:none">
+    <rect
+       x="532"
+       y="130"
+       width="3"
+       height="20"
+       id="rect48"
+       style="fill:#808080;stroke:none;stroke-width:1.48523986;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       x="467"
+       y="147"
+       width="68"
+       height="3"
+       id="rect50-5"
+       style="fill:#808080;stroke:none;stroke-width:1.48523986;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       x="463"
+       y="126"
+       width="69"
+       height="21"
+       id="rect52"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1.03966796;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       font-size="10"
+       xml:space="preserve"
+       text-decoration="underline"
+       x="498"
+       y="140"
+       id="text54"
+       style="font-size:9.25738049px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000;stroke-width:1.48523986;stroke-miterlimit:4;stroke-dasharray:none">:NodeTrainer</text>
+  </g>
+  <g
+     id="g30-3"
+     transform="matrix(5.1213799,0,0,4.9062839,372.87503,-220.57497)">
+    <line
+       x1="405"
+       y1="88"
+       x2="405"
+       y2="420"
+       id="line32-5"
+       style="stroke:#000000;stroke-dasharray:18, 6;stroke-opacity:1" />
+  </g>
+  <g
+     id="g48-6"
+     transform="matrix(5.3301543,0,0,2.513117,287.79192,224.89344)"
+     style="fill:#ffffff;fill-opacity:1" />
   <text
-     font-size="6"
+     font-size="10"
      xml:space="preserve"
-     x="1480.636"
-     y="1131.0636"
-     id="text108-1"
-     style="font-size:30.72827911px;font-family:Helvetica;text-anchor:middle;fill:#000000">ref</text>
-  <line
-     x1="1455.0291"
-     y1="1144.1848"
-     x2="1506.2428"
-     y2="1144.1848"
-     id="line110-2"
-     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
-  <line
-     x1="1506.2428"
-     y1="1144.1848"
-     x2="1531.8497"
-     y2="1118.578"
-     id="line112-7"
-     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
-  <line
-     x1="1531.8497"
-     y1="1118.578"
-     x2="1531.8497"
-     y2="1098.0925"
-     id="line114-0"
-     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
-  <rect
-     x="1455.9752"
-     y="1542.4227"
-     width="524.38495"
-     height="170.40054"
-     id="rect104-93"
-     style="fill:none;stroke:#000000;stroke-width:5;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+     x="1752.8613"
+     y="578.53009"
+     id="text4"
+     style="font-size:31.25px;font-family:Helvetica;fill:#000000">[ for each node in oLayer ]</text>
+  <g
+     id="g48-1"
+     transform="matrix(5.1934262,0,0,4.036401,342.65887,22.758678)"
+     style="fill:#ffffff;fill-opacity:1">
+    <rect
+       x="401.82178"
+       y="152.9265"
+       width="7.3564343"
+       height="32.316956"
+       id="rect50-2"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.76444089;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+  <g
+     id="g86-7"
+     transform="matrix(3.6730388,0,0,5.1213799,950.0176,-38.793851)">
+    <line
+       x1="214"
+       y1="135"
+       x2="402"
+       y2="135"
+       id="line88-0"
+       style="stroke:#000000;stroke-width:0.80697817;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <polygon
+       points="402,135 398,131 398,139 "
+       id="polygon90-9"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g100-2"
+     transform="matrix(5.1213799,0,0,5.1213799,-140.56158,283.7555)">
+    <polygon
+       points="313,150 313,150 328,150 328,154 323,159 313,159 "
+       id="polygon102-0"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.58534729;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(1.3882302,0,0,0.98191377,-93.107378,2.794322)" />
+    <rect
+       x="341.41229"
+       y="150.09137"
+       width="183.0024"
+       height="50.539604"
+       id="rect104-2"
+       style="fill:none;stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="437.73163"
+       y="167.93532"
+       id="text106-3"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">propagateBackward(node)</text>
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="346.89948"
+       y="156.43793"
+       id="text108-7"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+         id="tspan4299-5">   loop</tspan></text>
+  </g>
   <text
-     font-size="6"
+     font-size="10"
      xml:space="preserve"
-     x="1482.2795"
-     y="1576.0913"
-     id="text108-6"
-     style="font-size:30.72827911px;font-family:Helvetica;text-anchor:middle;fill:#000000">ref</text>
-  <line
-     x1="1456.6727"
-     y1="1589.2126"
-     x2="1507.8865"
-     y2="1589.2126"
-     id="line110-0"
-     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
-  <line
-     x1="1507.8865"
-     y1="1589.2126"
-     x2="1533.4934"
-     y2="1563.6057"
-     id="line112-6"
-     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
-  <line
-     x1="1533.4934"
-     y1="1563.6057"
-     x2="1533.4934"
-     y2="1543.1202"
-     id="line114-2"
-     style="stroke:#000000;stroke-width:5.12137985;stroke-opacity:1" />
+     x="1749.8424"
+     y="1086.6128"
+     id="text4-9"
+     style="font-size:31.25px;font-family:Helvetica;fill:#000000">[ for each node in hLayer ]</text>
+  <g
+     id="g48-1-2"
+     transform="matrix(5.1934262,0,0,4.036401,339.63992,530.8414)"
+     style="fill:#ffffff;fill-opacity:1">
+    <rect
+       x="401.82178"
+       y="152.9265"
+       width="7.3564343"
+       height="32.316956"
+       id="rect50-2-2"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.76444089;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+  <g
+     id="g86-7-9"
+     transform="matrix(3.6730388,0,0,5.1213799,947.59795,470.45153)">
+    <line
+       x1="214"
+       y1="135"
+       x2="402"
+       y2="135"
+       id="line88-0-7"
+       style="stroke:#000000;stroke-width:0.80697817;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <polygon
+       points="402,135 398,131 398,139 "
+       id="polygon90-9-3"
+       style="fill:#000000;stroke:none" />
+  </g>
+  <g
+     id="g100-2-6"
+     transform="matrix(5.1213799,0,0,5.1213799,-137.41931,744.88749)">
+    <polygon
+       points="328,150 328,154 323,159 313,159 313,150 313,150 "
+       id="polygon102-0-1"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.58534729;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(1.3882302,0,0,0.98191377,-93.107378,2.794322)" />
+    <rect
+       x="341.41229"
+       y="150.09137"
+       width="183.0024"
+       height="50.539604"
+       id="rect104-2-2"
+       style="fill:none;stroke:#000000;stroke-width:0.68340957;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="437.73163"
+       y="167.93532"
+       id="text106-3-9"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000">propagateBackward(node)</text>
+    <text
+       font-size="6"
+       xml:space="preserve"
+       x="346.89948"
+       y="156.43793"
+       id="text108-7-3"
+       style="font-size:6px;font-family:Helvetica;text-anchor:middle;fill:#000000"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Helvetica;-inkscape-font-specification:Helvetica"
+         id="tspan4299-5-1">   loop</tspan></text>
+  </g>
+  <text
+     font-size="10"
+     xml:space="preserve"
+     x="1752.9846"
+     y="1547.7448"
+     id="text4-9-9"
+     style="font-size:31.25px;font-family:Helvetica;fill:#000000">[ for each node in iLayer ]</text>
+  <g
+     id="g48-1-2-4"
+     transform="matrix(5.1934262,0,0,4.036401,342.78219,991.97339)"
+     style="fill:#ffffff;fill-opacity:1">
+    <rect
+       x="401.82178"
+       y="152.9265"
+       width="7.3564343"
+       height="32.316956"
+       id="rect50-2-2-7"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.76444089;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+  <g
+     id="g86-7-9-8"
+     transform="matrix(3.6730388,0,0,5.1213799,950.7402,931.58352)">
+    <line
+       x1="214"
+       y1="135"
+       x2="402"
+       y2="135"
+       id="line88-0-7-4"
+       style="stroke:#000000;stroke-width:0.80697817;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <polygon
+       points="398,139 402,135 398,131 "
+       id="polygon90-9-3-5"
+       style="fill:#000000;stroke:none" />
+  </g>
 </svg>

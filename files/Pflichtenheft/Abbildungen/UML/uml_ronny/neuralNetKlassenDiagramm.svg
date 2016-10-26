@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="1168.2711"
-   height="1149.6493"
+   width="1283.3375"
+   height="814.46283"
    version="1.1"
    id="svg2"
    inkscape:version="0.91 r13725"
@@ -46,16 +46,16 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="0.38187702"
-     inkscape:cx="885.5"
-     inkscape:cy="535.5073"
+     inkscape:zoom="0.54005566"
+     inkscape:cx="551.05064"
+     inkscape:cy="349.40486"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
   <g
      id="g4"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <rect
        x="505"
        y="68"
@@ -132,7 +132,7 @@
   </g>
   <g
      id="g26"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <rect
        x="537"
        y="195"
@@ -284,7 +284,7 @@
   </g>
   <g
      id="g68"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <rect
        x="569"
        y="360"
@@ -391,7 +391,7 @@
   </g>
   <g
      id="g98"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,162.3498,-470.00219)">
     <rect
        x="525"
        y="504"
@@ -528,7 +528,7 @@
   </g>
   <g
      id="g136"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,700.23423,-435.90531)">
     <rect
        x="224"
        y="365"
@@ -620,7 +620,7 @@
   </g>
   <g
      id="g162"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <line
        x1="509"
        y1="93"
@@ -631,7 +631,7 @@
   </g>
   <g
      id="g166"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <line
        x1="340"
        y1="97"
@@ -641,30 +641,19 @@
        style="stroke:#000000;stroke-opacity:1" />
   </g>
   <g
-     id="g170"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
-    <line
-       x1="379"
-       y1="436"
-       x2="379"
-       y2="499"
-       id="line172"
-       style="stroke:#000000;stroke-opacity:1" />
-  </g>
-  <g
      id="g174"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(0,2.1230827,-2.1230827,0,1689.1379,-385.0073)">
     <line
        x1="499"
-       y1="436"
+       y1="377.12943"
        x2="499"
        y2="499"
        id="line176"
-       style="stroke:#000000;stroke-opacity:1" />
+       style="stroke:#000000;stroke-width:0.94202644;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
   <g
      id="g178"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <line
        x1="424"
        y1="355"
@@ -689,7 +678,7 @@
   </g>
   <g
      id="g186"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <line
        x1="422"
        y1="190"
@@ -714,7 +703,7 @@
   </g>
   <g
      id="g194"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <line
        x1="532"
        y1="190"
@@ -739,7 +728,7 @@
   </g>
   <g
      id="g202"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <line
        x1="317"
        y1="190"
@@ -764,7 +753,7 @@
   </g>
   <g
      id="g210"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -775,7 +764,7 @@
   </g>
   <g
      id="g214"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-41.558346,-273.69032)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -786,7 +775,7 @@
   </g>
   <g
      id="g218"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-186.91374,-185.73643)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -797,7 +786,7 @@
   </g>
   <g
      id="g222"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,88.983754,-305.16856)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -808,7 +797,7 @@
   </g>
   <g
      id="g226"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-121.17977,-222.76965)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -819,7 +808,7 @@
   </g>
   <g
      id="g230"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-285.2717,-344.97927)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -830,7 +819,7 @@
   </g>
   <g
      id="g234"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-441.51712,-257.95121)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -841,7 +830,7 @@
   </g>
   <g
      id="g238"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-165.61964,-380.16083)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -852,7 +841,7 @@
   </g>
   <g
      id="g242"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-375.78316,-297.76192)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -863,7 +852,7 @@
   </g>
   <g
      id="g246"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -874,7 +863,7 @@
   </g>
   <g
      id="g250"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -885,7 +874,7 @@
   </g>
   <g
      id="g254"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -896,7 +885,7 @@
   </g>
   <g
      id="g258"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -907,7 +896,7 @@
   </g>
   <g
      id="g262"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -918,7 +907,7 @@
   </g>
   <g
      id="g266"
-     transform="matrix(2.1230827,0,0,2.1230827,-71.12327,-134.81575)">
+     transform="matrix(2.1230827,0,0,2.1230827,-578.54004,-134.81575)">
     <text
        font-size="8"
        xml:space="preserve"
@@ -926,5 +915,16 @@
        y="348"
        id="text268"
        style="font-size:8px;font-family:Helvetica;fill:#000000">*</text>
+  </g>
+  <g
+     id="g174-3"
+     transform="matrix(0,2.1230827,-2.1230827,0,1689.0953,-313.64585)">
+    <line
+       x1="499"
+       y1="377.12943"
+       x2="499"
+       y2="499"
+       id="line176-6"
+       style="stroke:#000000;stroke-width:0.94202644;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>

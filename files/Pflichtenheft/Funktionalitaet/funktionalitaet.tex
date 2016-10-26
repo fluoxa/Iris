@@ -28,7 +28,7 @@ In den nächsten Unterabschnitten folgt die ausführliche Beschreibung und gepla
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=15cm]{Abbildungen/UML/uml_ronny/neuralNetCD.png}
+\includegraphics[width=\textwidth]{Abbildungen/UML/uml_ronny/neuralNetKlassenDiagramm.png}
 \end{center}
 \end{figure}
 
@@ -52,6 +52,8 @@ Das Training eines Neuronalen Netzes erfolgt mit Hilfe des Gradienten-Abstieg-Al
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=10cm]{Abbildungen/UML/jan/classdiagrammTraining.png}
+\caption{Klassendiagramm der Trainingsworker für das Neuronale Netz, Layer und Nodes.}
+\label{fig_cdTraining}
 \end{center}
 \end{figure}
 \vspace{-0.4cm}
@@ -59,26 +61,22 @@ Der Ablauf eines Trainingdurchlaufs stellt sich als Sequenzdiagramm wie folgt da
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=14.2cm]{Abbildungen/UML/jan/trainNeuralNet.png}
+\caption{Sequenzdiagramm zum Trainingsprozess beginnend am Presenter.}
+\label{fig_sdTraining}
 \end{center}
 \end{figure}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=14.2cm]{Abbildungen/UML/jan/trainDetailed1.png}
-\end{center}
-\end{figure}
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=14.2cm]{Abbildungen/UML/jan/gradientdescent1.png}
-\end{center}
-\end{figure}
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=13.2cm]{Abbildungen/UML/jan/gradientdescent2.png}
+\caption{Sequenzdiagramm für Trainingsprozess im Trainingsworker.}
+\label{fig_sdTraining}
 \end{center}
 \end{figure}
 \vspace{-0.5cm}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=13.2cm]{Abbildungen/UML/jan/gradientdescent3.png}
+\includegraphics[width=14.2cm]{Abbildungen/UML/jan/gradientdescent1.png}
+\caption{Sequenzdiagramm zur Backpropagation beginnend beim Neuronalen Netz.}
+\label{fig_sdBackpropagation}
 \end{center}
 \end{figure}
