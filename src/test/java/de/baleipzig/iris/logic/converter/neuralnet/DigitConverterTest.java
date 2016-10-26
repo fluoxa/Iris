@@ -25,6 +25,10 @@ public class DigitConverterTest {
 		IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
 
 		ILayer layer = digitConverter.convert(digit, null);
+
+		for(int i=0; i<10; i++) {
+            Assert.assertEquals(layer.getNode(i,0).getActivation(),0);
+        }
 	}
 	
 	@Test(dataProvider="convert_ExpectedResult_WhenDigitIsInRange")

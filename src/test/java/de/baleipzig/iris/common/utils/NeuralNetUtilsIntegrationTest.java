@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -33,7 +34,7 @@ public class NeuralNetUtilsIntegrationTest {
     public void Setup() {
 
         when(net.getNeuralNetCore()).thenReturn(core);
-        when(core.getHiddenLayers()).thenReturn(Arrays.asList(hLayer));
+        when(core.getHiddenLayers()).thenReturn(Collections.singletonList(hLayer));
         when(core.getInputLayer()).thenReturn(iLayer);
         when(core.getOutputLayer()).thenReturn(oLayer);
         iLayer.resize(new Dimension(1,1));
@@ -49,8 +50,8 @@ public class NeuralNetUtilsIntegrationTest {
     public void getNumberOfParentAxons_ReturnsCorrectNumberOfParentAxons() {
 
         when(node0.getParentAxons()).thenReturn(new ArrayList<>());
-        when(node1.getParentAxons()).thenReturn(Arrays.asList(mock(IAxon.class)));
-        when(node2.getParentAxons()).thenReturn(Arrays.asList(mock(IAxon.class)));
+        when(node1.getParentAxons()).thenReturn(Collections.singletonList(mock(IAxon.class)));
+        when(node2.getParentAxons()).thenReturn(Collections.singletonList(mock(IAxon.class)));
         when(node3.getParentAxons()).thenReturn(Arrays.asList(mock(IAxon.class), mock(IAxon.class)));
 
         long result = NeuralNetCoreUtils.getNumberOfParentAxons(net.getNeuralNetCore());

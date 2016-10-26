@@ -13,7 +13,6 @@ public class PerfomanceLog {
         }
     }
 
-
     public static void stop(String name) {
         synchronized (nanos) {
             if(nanos.containsKey(name)) {
@@ -23,5 +22,4 @@ public class PerfomanceLog {
             }
         }
     }
-
 }

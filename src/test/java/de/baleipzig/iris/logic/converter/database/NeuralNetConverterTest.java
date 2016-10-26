@@ -51,16 +51,16 @@ public class NeuralNetConverterTest {
 
         when(node0.getBias()).thenReturn(0.);
         when(node0.getActivationFunctionContainer()).thenReturn(new SigmoidFunctionContainer());
-        when(node0.getChildAxons()).thenReturn(Arrays.asList(axon02));
+        when(node0.getChildAxons()).thenReturn(Collections.singletonList(axon02));
         when(node1.getBias()).thenReturn(1.);
-        when(node1.getChildAxons()).thenReturn(Arrays.asList(axon12));
+        when(node1.getChildAxons()).thenReturn(Collections.singletonList(axon12));
         when(node1.getActivationFunctionContainer()).thenReturn(new SigmoidFunctionContainer());
         when(node2.getBias()).thenReturn(2.);
         when(node2.getParentAxons()).thenReturn(Arrays.asList(axon02, axon12));
-        when(node2.getChildAxons()).thenReturn(Arrays.asList(axon23));
+        when(node2.getChildAxons()).thenReturn(Collections.singletonList(axon23));
         when(node2.getActivationFunctionContainer()).thenReturn(new SigmoidFunctionContainer());
         when(node3.getBias()).thenReturn(3.);
-        when(node3.getParentAxons()).thenReturn(Arrays.asList(axon23));
+        when(node3.getParentAxons()).thenReturn(Collections.singletonList(axon23));
         when(node3.getActivationFunctionContainer()).thenReturn(new SigmoidFunctionContainer());
 
         when(axon02.getChildNode()).thenReturn(node2);
@@ -78,7 +78,7 @@ public class NeuralNetConverterTest {
         when(outputLayer.getDim()).thenReturn(new Dimension(1,1));
         when(outputLayer.getNode(0,0)).thenReturn(node3);
 
-        when(netCore.getHiddenLayers()).thenReturn(Arrays.asList(hiddenLayer));
+        when(netCore.getHiddenLayers()).thenReturn(Collections.singletonList(hiddenLayer));
         when(netCore.getOutputLayer()).thenReturn(outputLayer);
         when(netCore.getInputLayer()).thenReturn(inputLayer);
 
