@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="699"
-   height="416.5"
+   width="1630.8976"
+   height="920.48633"
    version="1.1"
    id="svg2"
    inkscape:version="0.91 r13725"
@@ -38,26 +38,26 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1028"
+     inkscape:window-width="1280"
+     inkscape:window-height="748"
      id="namedview166"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="1.9666667"
-     inkscape:cx="429.00922"
-     inkscape:cy="200.33297"
+     inkscape:zoom="0.49166668"
+     inkscape:cx="839.42343"
+     inkscape:cy="400.45649"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
   <g
      id="g4"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331869,0,0,2.2728057,-68.829014,-144.32316)">
     <polygon
-       points="194,84 30,84 30,64 30,64 204,64 204,74 "
+       points="30,64 30,64 204,64 204,74 194,84 30,84 "
        id="polygon6"
        style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
     <rect
@@ -71,7 +71,7 @@
        font-size="10"
        xml:space="preserve"
        x="112"
-       y="80"
+       y="77.428352"
        id="text10"
        style="font-size:10px;font-family:Helvetica;text-anchor:middle;fill:#000000">sd initial training neural net signal</text>
     <line
@@ -98,7 +98,7 @@
   </g>
   <g
      id="g18"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-154.57638)">
     <rect
        x="232"
        y="99"
@@ -125,13 +125,13 @@
        xml:space="preserve"
        text-decoration="underline"
        x="204"
-       y="111"
+       y="108.42834"
        id="text26"
        style="font-size:10px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">:Presenter</text>
   </g>
   <g
      id="g28"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-154.57638)">
     <rect
        x="480"
        y="99"
@@ -158,13 +158,13 @@
        xml:space="preserve"
        text-decoration="underline"
        x="426"
-       y="111"
+       y="109.28556"
        id="text36"
        style="font-size:10px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">worker:ImageWorker</text>
   </g>
   <g
      id="g38"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-152.57638)">
     <rect
        x="700"
        y="99"
@@ -191,13 +191,13 @@
        xml:space="preserve"
        text-decoration="underline"
        x="643"
-       y="111"
+       y="108.42834"
        id="text46"
        style="font-size:10px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">trainer:TrainingWorker</text>
   </g>
   <g
      id="g48"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-150.57638)">
     <rect
        x="569"
        y="99"
@@ -224,13 +224,13 @@
        xml:space="preserve"
        text-decoration="underline"
        x="540"
-       y="111"
+       y="108.42834"
        id="text56"
        style="font-size:10px;font-family:Helvetica;text-decoration: underline;text-decoration-line: underline;text-anchor:middle;fill:#000000">:ImageUtils</text>
   </g>
   <g
      id="g58"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.232631,-68.812537,-158.90669)">
     <line
        x1="542"
        y1="136"
@@ -241,7 +241,7 @@
   </g>
   <g
      id="g62"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.220806,-68.812537,-157.29849)">
     <line
        x1="428"
        y1="136"
@@ -252,7 +252,7 @@
   </g>
   <g
      id="g66"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.2267185,-68.812537,-158.10259)">
     <line
        x1="645"
        y1="136"
@@ -263,7 +263,7 @@
   </g>
   <g
      id="g70"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.2385435,-68.812537,-159.71079)">
     <line
        x1="205"
        y1="136"
@@ -274,7 +274,7 @@
   </g>
   <g
      id="g74"
-     transform="translate(-29.5,-63.5)"
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
        x="200"
@@ -282,11 +282,11 @@
        width="10"
        height="310"
        id="rect76"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
   </g>
   <g
      id="g78"
-     transform="translate(-29.5,-63.5)"
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
        x="640"
@@ -294,11 +294,11 @@
        width="10"
        height="45"
        id="rect80"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
   </g>
   <g
      id="g82"
-     transform="translate(-29.5,-63.5)"
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
        x="537"
@@ -306,11 +306,11 @@
        width="10"
        height="59"
        id="rect84"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
   </g>
   <g
      id="g86"
-     transform="translate(-29.5,-63.5)"
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)"
      style="fill:#ffffff;fill-opacity:1">
     <rect
        x="423"
@@ -318,11 +318,11 @@
        width="10"
        height="58"
        id="rect88"
-       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1;fill-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
   </g>
   <g
      id="g90"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <line
        x1="211"
        y1="299"
@@ -338,7 +338,7 @@
   </g>
   <g
      id="g96"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <line
        x1="211"
        y1="164"
@@ -347,19 +347,19 @@
        id="line98"
        style="stroke:#000000;stroke-opacity:1" />
     <polygon
-       points="423,164 419,160 419,168 "
+       points="419,160 419,168 423,164 "
        id="polygon100"
        style="fill:#000000;stroke:none" />
   </g>
   <circle
-     cx="18"
-     cy="91"
+     cx="42.011799"
+     cy="187.89429"
      id="ellipse102"
-     r="4.5"
+     r="10.499146"
      style="fill:#000000;stroke:none" />
   <g
      id="g104"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <line
        x1="211"
        y1="211"
@@ -375,7 +375,7 @@
   </g>
   <g
      id="g110"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <line
        x1="52"
        y1="152"
@@ -384,13 +384,13 @@
        id="line112"
        style="stroke:#000000;stroke-opacity:1" />
     <polygon
-       points="200,152 196,148 196,156 "
+       points="196,148 196,156 200,152 "
        id="polygon114"
        style="fill:#000000;stroke:none" />
   </g>
   <g
      id="g116"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <line
        x1="211"
        y1="251"
@@ -399,13 +399,13 @@
        id="line118"
        style="stroke:#000000;stroke-opacity:1" />
     <polygon
-       points="537,251 533,247 533,255 "
+       points="533,247 533,255 537,251 "
        id="polygon120"
        style="fill:#000000;stroke:none" />
   </g>
   <g
      id="g122"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <line
        x1="211"
        y1="397"
@@ -414,37 +414,37 @@
        id="line124"
        style="stroke:#000000;stroke-opacity:1" />
     <polygon
-       points="640,397 636,393 636,401 "
+       points="636,393 636,401 640,397 "
        id="polygon126"
        style="fill:#000000;stroke:none" />
   </g>
   <g
      id="g128"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <rect
        x="206"
        y="348"
        width="10"
        height="33"
        id="rect130"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-opacity:1" />
   </g>
   <g
      id="g132"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <path
        d="m 218,349 17,0 0,7 -17,0"
        id="path134"
        inkscape:connector-curvature="0"
        style="fill:none;stroke:#000000;stroke-opacity:1" />
     <polygon
-       points="218,356 222,360 222,352 "
+       points="222,360 222,352 218,356 "
        id="polygon136"
        style="fill:#000000;stroke:none" />
   </g>
   <g
      id="g138"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <text
        font-size="10"
        xml:space="preserve"
@@ -455,7 +455,7 @@
   </g>
   <g
      id="g142"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <text
        font-size="10"
        xml:space="preserve"
@@ -466,7 +466,7 @@
   </g>
   <g
      id="g146"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <text
        font-size="10"
        xml:space="preserve"
@@ -477,7 +477,7 @@
   </g>
   <g
      id="g150"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <text
        font-size="10"
        xml:space="preserve"
@@ -488,7 +488,7 @@
   </g>
   <g
      id="g154"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <text
        font-size="10"
        xml:space="preserve"
@@ -499,7 +499,7 @@
   </g>
   <g
      id="g158"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <text
        font-size="10"
        xml:space="preserve"
@@ -510,7 +510,7 @@
   </g>
   <g
      id="g162"
-     transform="translate(-29.5,-63.5)">
+     transform="matrix(2.3331434,0,0,2.3331434,-68.812537,-172.57638)">
     <text
        font-size="10"
        xml:space="preserve"

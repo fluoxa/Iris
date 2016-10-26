@@ -60,24 +60,6 @@ public class LayerTest {
     }
 
     @Test
-    public void clear_LayerIsResetWithNullEntries_AfterCallingClear() {
-
-        Layer layer = new Layer();
-        layer.resize(new Dimension(3,2));
-        layer.addNode(node);
-        layer.addNode(node);
-
-        layer.clear();
-
-        Assert.assertEquals(layer.getDim().getX(), 3);
-        Assert.assertEquals(layer.getDim().getY(), 2);
-
-        for(int i = 0; i < 2; i++)
-            for(int j = 0; j < 3; j++)
-                Assert.assertNull(layer.getNode(j,i));
-    }
-
-    @Test
     public void addNode_LayerContainsNodes_AfterAddingTwoNodes(){
 
         Layer layer = new Layer();
@@ -102,22 +84,6 @@ public class LayerTest {
         layer.addNode(node2);
 
         Assert.assertNotEquals(layer.getNode(0,0), node2);
-    }
-
-    @Test
-    public void removeNode_LayerContainsNode_AfterAddingNode(){
-
-        Layer layer = new Layer();
-        layer.resize(new Dimension(2,2));
-        layer.addNode(node);
-        layer.addNode(node2);
-
-        layer.removeNode(node2);
-
-        Assert.assertEquals(layer.getNode(0,0),node);
-        Assert.assertNull(layer.getNode(1,0));
-        Assert.assertNull(layer.getNode(1,1));
-        Assert.assertNull(layer.getNode(0,1));
     }
 
     @Test

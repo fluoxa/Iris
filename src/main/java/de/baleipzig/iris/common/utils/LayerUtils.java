@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class LayerUtils {
 
-    private static Random gaussDistribution = new Random();
+    private static final Random gaussDistribution = new Random();
 
     public static int getNumberOfNodes(ILayer layer){
         return layer.getDim().getDegreesOfFreedom();

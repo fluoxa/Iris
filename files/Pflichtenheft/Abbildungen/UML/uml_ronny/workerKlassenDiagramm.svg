@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Bouml (http://bouml.free.fr/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1593.9761"
+   height="198.65796"
+   version="1.1"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="workerKlassenDiagramm.svg">
+  <metadata
+     id="metadata106">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs104" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="748"
+     id="namedview102"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.59870015"
+     inkscape:cx="762.20275"
+     inkscape:cy="301.77624"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <g
+     id="g4"
+     transform="matrix(2.4079753,0,0,2.4079753,-791.01989,-78.259195)">
+    <rect
+       x="524.29529"
+       y="37"
+       width="3.5905349"
+       height="78"
+       id="rect6"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="333"
+       y="112"
+       width="193.4537"
+       height="3"
+       id="rect8"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="328.96143"
+       y="32.961422"
+       width="194.8363"
+       height="79.077156"
+       id="rect10"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:0.9228459;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       font-weight="bold"
+       x="426"
+       y="44"
+       id="text12"
+       style="font-weight:bold;font-size:8px;font-family:Helvetica;text-anchor:middle;fill:#000000">NeuralNetWorker</text>
+    <line
+       x1="329"
+       y1="48"
+       x2="523.74896"
+       y2="48"
+       id="line14"
+       style="stroke:#000000;stroke-width:0.92218882;stroke-opacity:1" />
+    <line
+       x1="329"
+       y1="56"
+       x2="523.15845"
+       y2="56"
+       id="line16"
+       style="stroke:#000000;stroke-width:0.9207896;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       font-weight="bold"
+       x="333"
+       y="67"
+       id="text18"
+       style="font-weight:bold;font-size:8px;font-family:Helvetica;fill:#000000">+</text>
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="343"
+       y="67"
+       id="text20"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">NeuralNet load(UUID neuralNetID) </text>
+    <text
+       font-size="8"
+       xml:space="preserve"
+       font-weight="bold"
+       x="333"
+       y="80"
+       id="text22"
+       style="font-weight:bold;font-size:8px;font-family:Helvetica;fill:#000000">+</text>
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="343"
+       y="80"
+       id="text24"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">void save(NeuralNet neuralNet) </text>
+    <text
+       font-size="8"
+       xml:space="preserve"
+       font-weight="bold"
+       x="333"
+       y="93"
+       id="text26"
+       style="font-weight:bold;font-size:8px;font-family:Helvetica;fill:#000000">+</text>
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="343"
+       y="93"
+       id="text28"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">void delete(UUID neuralNetID) </text>
+    <text
+       font-size="8"
+       xml:space="preserve"
+       font-weight="bold"
+       x="333"
+       y="106"
+       id="text30"
+       style="font-weight:bold;font-size:8px;font-family:Helvetica;fill:#000000">+</text>
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="343"
+       y="106"
+       id="text32"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">void propagateForward(NeuralNet neuralNet) </text>
+  </g>
+  <g
+     id="g34"
+     transform="matrix(2.4079753,0,0,2.4079753,-242.60539,-299.08472)">
+    <rect
+       x="527"
+       y="151"
+       width="3"
+       height="37"
+       id="rect36"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="361"
+       y="185"
+       width="169"
+       height="3"
+       id="rect38"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="357"
+       y="147"
+       width="170"
+       height="38"
+       id="rect40"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       font-weight="bold"
+       x="442"
+       y="158"
+       id="text42"
+       style="font-weight:bold;font-size:8px;font-family:Helvetica;text-anchor:middle;fill:#000000">LayerWorker</text>
+    <line
+       x1="357"
+       y1="162"
+       x2="527"
+       y2="162"
+       id="line44"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="357"
+       y1="170"
+       x2="527"
+       y2="170"
+       id="line46"
+       style="stroke:#000000;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       font-weight="bold"
+       x="361"
+       y="181"
+       id="text48"
+       style="font-weight:bold;font-size:8px;font-family:Helvetica;fill:#000000">+</text>
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="371"
+       y="181"
+       id="text50"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">void propagateForward(Layer layer) </text>
+  </g>
+  <g
+     id="g52"
+     transform="matrix(2.4079753,0,0,2.4079753,312.93324,-469.39373)">
+    <rect
+       x="529"
+       y="222"
+       width="3"
+       height="37"
+       id="rect54"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="361"
+       y="256"
+       width="171"
+       height="3"
+       id="rect56"
+       style="fill:#808080;stroke:none;stroke-opacity:1" />
+    <rect
+       x="357"
+       y="218"
+       width="172"
+       height="38"
+       id="rect58"
+       style="fill:#ffffc0;stroke:#000000;stroke-width:1;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       font-weight="bold"
+       x="443"
+       y="229"
+       id="text60"
+       style="font-weight:bold;font-size:8px;font-family:Helvetica;text-anchor:middle;fill:#000000">NodeWorker</text>
+    <line
+       x1="357"
+       y1="233"
+       x2="529"
+       y2="233"
+       id="line62"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="357"
+       y1="241"
+       x2="529"
+       y2="241"
+       id="line64"
+       style="stroke:#000000;stroke-opacity:1" />
+    <text
+       font-size="8"
+       xml:space="preserve"
+       font-weight="bold"
+       x="361"
+       y="252"
+       id="text66"
+       style="font-weight:bold;font-size:8px;font-family:Helvetica;fill:#000000">+</text>
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="371"
+       y="252"
+       id="text68"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">void calculateActivation(Node node) </text>
+  </g>
+  <g
+     id="g78"
+     transform="matrix(0,-2.3689673,4.7665446,0,-81.952893,1151.6237)">
+    <line
+       x1="444"
+       y1="146"
+       x2="450"
+       y2="140"
+       id="line80"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="444"
+       y1="146"
+       x2="438"
+       y2="140"
+       id="line82"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="444"
+       y1="116"
+       x2="444"
+       y2="146"
+       id="line84"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g90"
+     transform="matrix(2.4079753,0,0,2.4079753,-461.65149,-258.3915)">
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="429"
+       y="139"
+       id="text92"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">1</text>
+  </g>
+  <g
+     id="g94"
+     transform="matrix(2.4079753,0,0,2.4079753,-589.23649,-197.98968)">
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="454"
+       y="139"
+       id="text96"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">layerWorker</text>
+  </g>
+  <g
+     id="g98"
+     transform="matrix(2.4079753,0,0,2.4079753,-35.847193,-368.26727)">
+    <text
+       font-size="8"
+       xml:space="preserve"
+       x="454"
+       y="210"
+       id="text100"
+       style="font-size:8px;font-family:Helvetica;fill:#000000">nodeWorker</text>
+  </g>
+  <g
+     id="g78-3"
+     transform="matrix(0,-2.3689673,4.7665446,0,474.42244,1152.4115)">
+    <line
+       x1="444"
+       y1="146"
+       x2="450"
+       y2="140"
+       id="line80-6"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="444"
+       y1="146"
+       x2="438"
+       y2="140"
+       id="line82-7"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="444"
+       y1="116"
+       x2="444"
+       y2="146"
+       id="line84-5"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <text
+     font-size="8"
+     xml:space="preserve"
+     x="1127.7454"
+     y="79.115929"
+     id="text92-3"
+     style="font-size:19.26380348px;font-family:Helvetica;fill:#000000">1</text>
+</svg>
