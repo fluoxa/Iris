@@ -1,4 +1,4 @@
-\documentclass[a4paper, 12pt]{scrreprt}
+\documentclass[a4paper, 12pt, oneside]{report}
  
 \usepackage[german]{babel}
 \usepackage[utf8]{inputenc}
@@ -12,7 +12,6 @@
 \usepackage{graphicx}          %erlaubt Graphiken einzubinden (.eps für dvi und ps sowie .jpg für pdf)
 \usepackage[T1]{fontenc}       %Zeichenbelegung der verwendeten Schrift
 \usepackage{typearea}	         %ermöglicht änderung des Seitenspiegels
-\usepackage{scrpage2}          %ermöglicht änderung der Kopf-/Fußzeile
 \usepackage{lastpage}          %lässt auf die Seienanzahl zugreifen
 \usepackage[margin=10pt,font=small,labelfont=bf]{caption} %macht die Bildbeschriftungen richtig
 \usepackage{microtype}
@@ -41,11 +40,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Abbildungen werden mit Abb. angezeigt.
+%
+\usepackage{fancyhdr}
+\fancyhead[LO,LE]{Pflichtenheft}
+\fancyhead[CO,CE]{}
+\fancyhead[RO,RE]{\rightmark}
+\fancyfoot[LO,LE]{}
+
+\fancyfoot[CO,CE]{}
+\fancyfoot[RO,RE]{\thepage}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 \begin{document}
+  
  
-\title{Pflichtenheft mit LaTeX}
-\author{Karl Lorey}
+\title{\textbf{Pflichtenheft für Iris}}
+\author{Daniel Gilgen\\ Ronny Zingler \\ Jan Zschoche}
 \maketitle
  
 % Die abstract-Umgebung kann bei Bedarf aus dem Pflichtenheft entfernt werden
@@ -68,6 +81,7 @@ Quellcode: \url{http://www.karllorey.de/informatik-studium/vorlesungen/softwarep
  
 % Platzierung des Inhaltsverzeichnisses
 \tableofcontents
+\pagestyle{fancy}
 
 \input{Zielbestimmungen/zielbestimmung}
 \input{Einsatz/einsatz}
