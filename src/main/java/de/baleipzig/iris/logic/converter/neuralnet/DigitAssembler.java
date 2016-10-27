@@ -1,10 +1,10 @@
 package de.baleipzig.iris.logic.converter.neuralnet;
 
 import de.baleipzig.iris.common.Dimension;
+import de.baleipzig.iris.common.Pair;
 import de.baleipzig.iris.common.utils.LayerUtils;
 import de.baleipzig.iris.model.neuralnet.activationfunction.IFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
-import javafx.util.Pair;
 
 public class DigitAssembler implements IEntityLayerAssembler<Integer> , ILayerEntityAssembler<Integer> {
 
