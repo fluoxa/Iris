@@ -3,9 +3,26 @@
 \section{Programmfunktionalitäten}
 \subsection{Funktionsübersicht}
 
-\textbf{/F201/} Jedes Neuronale Netz kann mit dem Gradient-Abstieg-Algorithmus trainiert werden. Dabei sind die Trainingsparameter \emph{Lernrate}, \emph{Stapelgröße}, \emph{Anzahl der Trainingsbilder} und \emph{Zyklenanzahl} frei wählbar. Das Training kann manuell gestartet und gestoppt werden.
+\textbf{/F101/}\\[-0.2cm]
 
-\textbf{/F202/} Ein trainiertes Neuronales Netz kann bei Bedarf gespeichert werden.
+\textbf{/F102/}\\[-0.2cm]
+
+\textbf{/F103/}\\[-0.2cm]
+
+\textbf{/F201/} Jedes Neuronale Netz kann mit dem Gradient-Abstieg-Algorithmus trainiert werden. Dabei sind die Trainingsparameter \emph{Lernrate}, \emph{Stapelgröße}, \emph{Anzahl der Trainingsbilder} und \emph{Zyklenanzahl} frei wählbar. Das Training kann manuell gestartet und gestoppt werden.\\[-0.2cm]
+
+\textbf{/F202/} Der Nutzer soll über eine Ausgabe-Konsole über den Trainingsstand und die Genauigkeit des Neuronalen Netzes informiert werden.
+
+\textbf{/F203/} Ein trainiertes Neuronales Netz kann bei Bedarf gespeichert oder verworfen werden werden. Wird das trainierte Netz, z.B. durch die Auswahl eines anderen Neuronalen Netzes, verworfen, ist dies auf der Konsole auszugeben. \\[-0.2cm]
+
+\textbf{/F301/} Die Metadaten (Name, Beschreibung) eines Neuronalen Netzes sollen konfigurierbar sein.\\[-0.2cm]
+
+\textbf{/F302/} Die Topologie des Netzes sowie die Eigenschaften von Knoten und Knotenverbindungen sollen über eine Json-Struktur bearbeitbar sein.\footnote{Es wird keine Validierung des eingegebenen Json-Strings vorgenommen. Im Rahmen des Projektes wird davon Ausgegangen, dass der Administrator weiß, welche Netztopologien zulässig sind -- z.B. eine Eingabeschicht mit $48 \times 48$ Eingabeknoten und eine Ausgabeschicht mit 10 Ausgabeknoten.}\\[-0.2cm]
+
+\textbf{/F303/} Die in /F301/ und /F302/ am Neuronalen Netz vorgenommenen Änderungen sollen gespeichert werden können.\\[-0.2cm]
+
+\textbf{/F304/} Es ist möglich ein neues Neuronales Netz anzulegen.\\[-0.2cm]
+
 
 \subsection{Arbeitsflüsse}
 
@@ -22,7 +39,6 @@
 \end{figure}
 
 \section{Globale Programmarchitektur}
-\textcolor{red}{Funktionalität: Spezifikation der einzelnen Produktfunktionen mit genauer und detaillierter Beschreibung.}
 
 Zur Entkopplung einzelner Module und leichteren Wartbarkeit verwendet die Anwendung eine Drei-Schichten Architektur bestehend ausXX	 Nutzeroberfläche, Business-Schicht und Daten-Schicht. 
 \begin{figure}[H]
