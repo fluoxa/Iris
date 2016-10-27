@@ -38,21 +38,21 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1280"
-     inkscape:window-height="748"
+     inkscape:window-width="1920"
+     inkscape:window-height="1028"
      id="namedview440"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="5.2299169"
-     inkscape:cx="1012.901"
-     inkscape:cy="111.26761"
+     inkscape:zoom="2.6149584"
+     inkscape:cx="-34.983411"
+     inkscape:cy="455.00045"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="g406-8" />
   <g
      id="g4"
      transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
@@ -259,31 +259,6 @@
        style="stroke:#000000;stroke-opacity:1" />
   </g>
   <g
-     id="g70"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
-    <line
-       x1="44"
-       y1="214"
-       x2="50"
-       y2="220"
-       id="line72"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="44"
-       y1="214"
-       x2="50"
-       y2="208"
-       id="line74"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="154"
-       y1="214"
-       x2="44"
-       y2="214"
-       id="line76"
-       style="stroke:#000000;stroke-opacity:1" />
-  </g>
-  <g
      id="g78"
      transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
     <line
@@ -346,29 +321,29 @@
   </g>
   <g
      id="g98"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
+     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-14.278739)">
     <line
        x1="179"
        y1="214"
        x2="293"
        y2="214"
        id="line100"
-       style="stroke:#000000;stroke-opacity:1" />
+       style="stroke:#000000;stroke-opacity:1;stroke-linecap:round" />
   </g>
   <g
      id="g102"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
+     transform="matrix(2.2622991,0,0,2.1822718,-21.491841,2.6122621)">
     <line
        x1="293"
        y1="214"
        x2="293"
        y2="560"
        id="line104"
-       style="stroke:#000000;stroke-opacity:1" />
+       style="stroke:#000000;stroke-linecap:round;stroke-opacity:1" />
   </g>
   <g
      id="g106"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
+     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-42.278739)">
     <line
        x1="212"
        y1="560"
@@ -393,7 +368,7 @@
   </g>
   <g
      id="g114"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
+     transform="matrix(2.2622991,0,0,7.6302762,-21.491841,-495.29274)">
     <line
        x1="32"
        y1="195"
@@ -727,9 +702,9 @@
      transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)"
      style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
   <polygon
-     points="23,214 32,197 41,214 32,231 "
+     points="32,231 23,214 32,197 41,214 "
      id="polygon232"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)"
+     transform="matrix(2.2622991,0,0,2.2622991,-22.256671,551.46279)"
      style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
   <polygon
      points="556,217 565,200 574,217 565,234 "
@@ -757,7 +732,7 @@
      style="fill:#ffffff;stroke:#000000;stroke-opacity:1" />
   <g
      id="g242"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
+     transform="matrix(2.2651173,0,0,1.7316147,-21.948384,252.84309)">
     <rect
        x="112"
        y="530"
@@ -771,7 +746,7 @@
      font-size="10"
      xml:space="preserve"
      x="345.00061"
-     y="1254.4448"
+     y="1232.4448"
      id="text246"
      style="font-size:22.62299156px;font-family:Helvetica;text-anchor:middle;fill:#000000">startTraining</text>
   <g
@@ -873,7 +848,7 @@
      style="font-size:22.62299156px;font-family:Helvetica;text-anchor:middle;fill:#000000">NeuralNet</text>
   <g
      id="g278"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
+     transform="matrix(2.2664568,0,0,1.5043982,-174.16955,418.71726)">
     <rect
        x="113"
        y="627"
@@ -886,8 +861,8 @@
   <text
      font-size="10"
      xml:space="preserve"
-     x="347.26294"
-     y="1473.8878"
+     x="195.26294"
+     y="1413.8878"
      id="text282"
      style="font-size:22.62299156px;font-family:Helvetica;text-anchor:middle;fill:#000000">stopTraining</text>
   <polygon
@@ -946,100 +921,14 @@
        style="stroke:#000000;stroke-opacity:1" />
   </g>
   <g
-     id="g302"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
-    <line
-       x1="149"
-       y1="470"
-       x2="45"
-       y2="470"
-       id="line304"
-       style="stroke:#000000;stroke-opacity:1" />
-  </g>
-  <g
-     id="g306"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
-    <line
-       x1="32"
-       y1="232"
-       x2="26"
-       y2="238"
-       id="line308"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="32"
-       y1="232"
-       x2="38"
-       y2="237"
-       id="line310"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="45"
-       y1="470"
-       x2="32"
-       y2="232"
-       id="line312"
-       style="stroke:#000000;stroke-opacity:1" />
-  </g>
-  <g
-     id="g314"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
-    <line
-       x1="162"
-       y1="626"
-       x2="168"
-       y2="620"
-       id="line316"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="162"
-       y1="626"
-       x2="156"
-       y2="620"
-       id="line318"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="162"
-       y1="590"
-       x2="162"
-       y2="626"
-       id="line320"
-       style="stroke:#000000;stroke-opacity:1" />
-  </g>
-  <g
      id="g322"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
+     transform="matrix(5.5951752,0,0,2.2622991,-114.08116,33.378045)">
     <line
        x1="112"
        y1="657"
        x2="29"
        y2="657"
        id="line324"
-       style="stroke:#000000;stroke-opacity:1" />
-  </g>
-  <g
-     id="g326"
-     transform="matrix(2.2622991,0,0,2.2622991,-21.491841,-28.278739)">
-    <line
-       x1="29"
-       y1="232"
-       x2="23"
-       y2="238"
-       id="line328"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="29"
-       y1="232"
-       x2="35"
-       y2="238"
-       id="line330"
-       style="stroke:#000000;stroke-opacity:1" />
-    <line
-       x1="29"
-       y1="657"
-       x2="29"
-       y2="232"
-       id="line332"
        style="stroke:#000000;stroke-opacity:1" />
   </g>
   <g
@@ -1344,7 +1233,7 @@
   </g>
   <g
      id="g158-3"
-     transform="matrix(-2.2622991,0,0,2.2622991,2513.9599,191.44671)">
+     transform="matrix(-2.2622991,0,0,2.2622991,2513.9599,193.44671)">
     <line
        x1="572"
        y1="430"
@@ -1377,5 +1266,207 @@
        y2="536"
        id="line192-5"
        style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g278-3"
+     transform="matrix(2.2664568,0,0,1.5043982,141.19042,419.13578)">
+    <rect
+       x="113"
+       y="627"
+       width="100"
+       height="60"
+       rx="10"
+       id="rect280-6"
+       style="fill:none;stroke:#000000;stroke-opacity:1" />
+  </g>
+  <text
+     font-size="10"
+     xml:space="preserve"
+     x="510.62292"
+     y="1414.3063"
+     id="text282-7"
+     style="font-size:22.62299156px;font-family:Helvetica;text-anchor:middle;fill:#000000">save NeuralNet</text>
+  <g
+     id="g424-5"
+     transform="matrix(2.2622991,0,0,2.2622991,-905.65681,619.11085)">
+    <line
+       x1="496"
+       y1="325"
+       x2="504"
+       y2="326"
+       id="line426-3"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="496"
+       y1="325"
+       x2="497"
+       y2="316"
+       id="line428-5"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="551"
+       y1="290"
+       x2="496"
+       y2="325"
+       id="line430-6"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g374-7"
+     transform="matrix(2.2622991,0,0,2.2622991,-1360.3059,1034.9072)">
+    <line
+       x1="776"
+       y1="165"
+       x2="770"
+       y2="159"
+       id="line376-0"
+       style="stroke:#000000;stroke-opacity:1;stroke-linecap:round" />
+    <line
+       x1="776"
+       y1="165"
+       x2="770"
+       y2="171"
+       id="line378-9"
+       style="stroke:#000000;stroke-opacity:1;stroke-linecap:round" />
+    <line
+       x1="738.20831"
+       y1="165"
+       x2="775.49286"
+       y2="165"
+       id="line380-3"
+       style="stroke:#000000;stroke-width:1.03493261;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stroke-linejoin:round" />
+  </g>
+  <g
+     id="g424-6"
+     transform="matrix(-0.75281868,2.0885975,-2.0733681,-0.75834833,1109.5089,274.30659)">
+    <line
+       x1="495.97443"
+       y1="324.90881"
+       x2="503.97443"
+       y2="325.90881"
+       id="line426-0"
+       style="stroke:#000000;stroke-linecap:round;stroke-opacity:1" />
+    <line
+       x1="495.82999"
+       y1="324.64706"
+       x2="496.82999"
+       y2="315.64706"
+       id="line428-6"
+       style="stroke:#000000;stroke-linecap:round;stroke-opacity:1" />
+    <line
+       x1="612.57141"
+       y1="258.64825"
+       x2="495.93759"
+       y2="324.66699"
+       id="line430-2"
+       style="stroke:#000000;stroke-width:0.97246206;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;stroke-linecap:round" />
+  </g>
+  <g
+     id="g190-6"
+     transform="matrix(2.2622991,0,0,0.21138204,-1174.4739,1407.3373)">
+    <line
+       x1="746"
+       y1="217"
+       x2="746"
+       y2="536"
+       id="line192-1"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g406-8"
+     transform="matrix(2.2512134,0,0,2.8293366,-1656.8675,355.61302)">
+    <line
+       x1="757.77472"
+       y1="255.62292"
+       x2="751.77472"
+       y2="261.62292"
+       id="line408-7"
+       style="stroke:#000000;stroke-opacity:1;stroke-linecap:round" />
+    <line
+       x1="757.77472"
+       y1="255.62292"
+       x2="763.77472"
+       y2="260.62292"
+       id="line410-9"
+       style="stroke:#000000;stroke-opacity:1;stroke-linecap:round" />
+    <line
+       x1="757.82153"
+       y1="411.26974"
+       x2="757.76709"
+       y2="255.63858"
+       id="line412-2"
+       style="stroke:#000000;stroke-width:0.9039073;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+  <g
+     id="g98-0"
+     transform="matrix(2.4832904,0,0,2.2622991,-61.971586,-37.050519)">
+    <line
+       x1="179"
+       y1="214"
+       x2="293"
+       y2="214"
+       id="line100-2"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g102-3"
+     transform="matrix(2.2622991,0,0,2.7914535,1.678024,-150.14019)">
+    <line
+       x1="293"
+       y1="214"
+       x2="293"
+       y2="560"
+       id="line104-7"
+       style="stroke:#000000;stroke-opacity:1" />
+  </g>
+  <g
+     id="g106-5"
+     transform="matrix(2.2622991,0,0,2.2622991,146.23099,145.27787)">
+    <line
+       x1="212"
+       y1="560"
+       x2="218"
+       y2="566"
+       id="line108-9"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="212"
+       y1="560"
+       x2="218"
+       y2="554"
+       id="line110-2"
+       style="stroke:#000000;stroke-opacity:1" />
+    <line
+       x1="229.44159"
+       y1="560"
+       x2="212"
+       y2="560"
+       id="line112-2"
+       style="stroke:#000000;stroke-width:0.97246204;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+  </g>
+  <g
+     id="g374-7-3"
+     transform="matrix(-2.2622991,0,0,2.2622991,1832.0742,661.94044)">
+    <line
+       x1="776"
+       y1="165"
+       x2="770"
+       y2="159"
+       id="line376-0-6"
+       style="stroke:#000000;stroke-linecap:round;stroke-opacity:1" />
+    <line
+       x1="776"
+       y1="165"
+       x2="770"
+       y2="171"
+       id="line378-9-7"
+       style="stroke:#000000;stroke-linecap:round;stroke-opacity:1" />
+    <line
+       x1="668.22644"
+       y1="165"
+       x2="775.49286"
+       y2="165"
+       id="line380-3-5"
+       style="stroke:#000000;stroke-width:0.97246204;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>

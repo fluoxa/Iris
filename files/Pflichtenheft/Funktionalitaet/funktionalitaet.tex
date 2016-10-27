@@ -1,7 +1,30 @@
 \chapter{Funktionalität}
+
+\section{Programmfunktionalitäten}
+\subsection{Funktionsübersicht}
+
+\textbf{/F201/} Jedes Neuronale Netz kann mit dem Gradient-Abstieg-Algorithmus trainiert werden. Dabei sind die Trainingsparameter \emph{Lernrate}, \emph{Stapelgröße}, \emph{Anzahl der Trainingsbilder} und \emph{Zyklenanzahl} frei wählbar. Das Training kann manuell gestartet und gestoppt werden.
+
+\textbf{/F202/} Ein trainiertes Neuronales Netz kann bei Bedarf gespeichert werden.
+
+\subsection{Arbeitsflüsse}
+
+\textbf{Aktivitätsdiagramm aus Anwendersicht.}
+
+\textbf{Aktivitätsdiagramm aus Administrationssicht.} Der Administrationsbereich der Anwendung setzt sich aus zwei Unterseiten zusammen, nämlich einer Seite für die Konfiguration der Trainingsparameter (vgl. Abb. \ref{xxx}) sowie für die Bearbeitung der Neuronalen Netze (vgl. Abb. \ref{yyy}). Der Arbeitsfluss zwischen beiden Seiten ist im folgenden Aktivitätsdiagramm dargestellt.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{Abbildungen/UML/jan/trainingConfigAD.png}
+\caption{Aktivitätsdiagramm für die Verwendung des Programmes im Administrationsbereich.}
+\label{fig_trainingConfigAD}
+\end{center}
+\end{figure}
+
+\section{Globale Programmarchitektur}
 \textcolor{red}{Funktionalität: Spezifikation der einzelnen Produktfunktionen mit genauer und detaillierter Beschreibung.}
 
-Zur Entkopplung einzelner Module und leichteren Wartbarkeit verwendet die Anwendung eine Drei-Schichten Architektur bestehend aus Nutzeroberfläche, Business-Schicht und Daten-Schicht. 
+Zur Entkopplung einzelner Module und leichteren Wartbarkeit verwendet die Anwendung eine Drei-Schichten Architektur bestehend ausXX	 Nutzeroberfläche, Business-Schicht und Daten-Schicht. 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=10cm]{Abbildungen/UML/jan/SchichtenModell.png}
@@ -24,7 +47,10 @@ Als unterste Schicht der Anwendung dient die Daten-Schicht der Persistierung von
 
 In den nächsten Unterabschnitten folgt die ausführliche Beschreibung und geplante Umsetzung der von der Anwendung zu erbringenden Funktionalitäten.  
 
-\section{Vorwärtsberechnung eines Neuronalen Netzes}
+\section{Sequenz- und Klassendiagramme}
+\subsection{Anwendersicht}
+
+\textbf{/F101/}
 
 \begin{figure}[h]
 \begin{center}
@@ -45,18 +71,16 @@ In den nächsten Unterabschnitten folgt die ausführliche Beschreibung und gepla
 \end{center}
 \end{figure}
 
-\newpage
-\section{Training eines Neuronalen Netzes}
+\subsection{Administrationssicht}
 
-Das Training eines Neuronalen Netzes erfolgt mit Hilfe des Gradienten-Abstieg-Algorithmus. Durch den Vergleich von tatsächlicher Netzwerkausgabe zur erwarteten Ausgabe werden dabei beginnend beim Ausgabelayer sukzessive Anpassungen an den Netzwerkknoten und Netzwerkaxon vorgenommen. Für jede Abstraktionstufe des Neuronalen Netzes wird dabei ein eigener Trainer angelegt, der für die Rückwärtspropagierung des Ausgabefehlers zuständig ist.\\[-0.5cm]
+\textbf{/F201/} Das Training eines Neuronalen Netzes erfolgt mit Hilfe des Gradienten-Abstieg-Algorithmus. Durch den Vergleich von tatsächlicher Netzwerkausgabe zur erwarteten Ausgabe werden dabei beginnend beim Ausgabelayer sukzessive Anpassungen an den Netzwerkknoten und Netzwerkaxon vorgenommen. Für jede Abstraktionstufe des Neuronalen Netzes wird dabei ein eigener Trainer angelegt, der für die Rückwärtspropagierung des Ausgabefehlers zuständig ist.\\[-0.5cm]
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=10cm]{Abbildungen/UML/jan/classdiagrammTraining.png}
+\includegraphics[width=10cm]{Abbildungen/UML/jan/trainerCD.png}
 \caption{Klassendiagramm der Trainingsworker für das Neuronale Netz, Layer und Nodes.}
 \label{fig_cdTraining}
 \end{center}
 \end{figure}
-\vspace{-0.4cm}
 Der Ablauf eines Trainingdurchlaufs stellt sich als Sequenzdiagramm wie folgt dar:
 \begin{figure}[H]
 \begin{center}
@@ -75,8 +99,17 @@ Der Ablauf eines Trainingdurchlaufs stellt sich als Sequenzdiagramm wie folgt da
 \vspace{-0.5cm}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=14.2cm]{Abbildungen/UML/jan/gradientdescent1.png}
+\includegraphics[width=15cm]{Abbildungen/UML/jan/gradientdescent1.png}
 \caption{Sequenzdiagramm zur Backpropagation beginnend beim Neuronalen Netz.}
+\label{fig_sdBackpropagation}
+\end{center}
+\end{figure}
+
+\textbf{/F301/} 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=15cm]{Abbildungen/UML/jan/convertJsonNNSD.png}
+\caption{Sequenzdiagramm zur Konvertierung eines Json-Strings in ein Neuronalen Netz.}
 \label{fig_sdBackpropagation}
 \end{center}
 \end{figure}
