@@ -10,4 +10,9 @@ public class RecognitionPresenter extends BasePresenter {
 
     private final IRecognitionView view;
     private final IRecognitionService service;
+
+    @Override
+    public void init() {
+
+    }
 }

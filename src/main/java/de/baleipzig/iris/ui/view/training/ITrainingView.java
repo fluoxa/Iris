@@ -1,10 +1,10 @@
 package de.baleipzig.iris.ui.view.training;
 
 
-import de.baleipzig.iris.ui.presenter.TrainingPresenter.TrainingPresenter;
 import de.baleipzig.iris.ui.view.IBaseView;
+import de.baleipzig.iris.ui.viewmodel.training.TrainingsConfiguration;
 
 public interface ITrainingView  extends IBaseView {
 
-    void bindViewData(TrainingPresenter.ViewData viewData);
+    void bindTrainingsConfiguration(TrainingsConfiguration trainingsConfiguration);
 }

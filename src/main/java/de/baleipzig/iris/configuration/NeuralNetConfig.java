@@ -14,6 +14,7 @@ public class NeuralNetConfig {
     private String pathTrainingImages="";
     private String pathTestImages="";
     private double learningRate;
+    private int trainingSetSize;
     private int trainingCycles;
     private int badgeSize;
 }

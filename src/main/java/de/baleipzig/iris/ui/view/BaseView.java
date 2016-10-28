@@ -8,10 +8,10 @@ import com.vaadin.ui.VerticalLayout;
 import de.baleipzig.iris.ui.presenter.BasePresenter;
 
 public abstract class BaseView<P extends BasePresenter> extends CssLayout implements IBaseView {
-    protected P presenter;
 
     private final VerticalLayout headerBodyLayout = new VerticalLayout();
     private final HorizontalLayout headerLayout = new HorizontalLayout();
+    protected P presenter;
 
     public BaseView() {
         ThemeResource imageResource = new ThemeResource("img/logo.png");

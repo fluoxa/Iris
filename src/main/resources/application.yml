@@ -16,6 +16,7 @@ de:
         pathTestImages: /home/sonny/Bilder/TestImages
         learningRate: 3.
         trainingCycles: 50
+        trainingSetSize: 2000
         badgeSize: 25
       example:
         exampleString: foo
