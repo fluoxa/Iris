@@ -1,5 +1,6 @@
 package de.baleipzig.iris.ui.view.training;
 
+import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
@@ -15,16 +16,13 @@ import javax.annotation.PostConstruct;
 @UIScope
 @SpringView(name = "trainingNeuralNet")
 @Setter
-public class TrainingView extends BaseView<TrainingPresenter> {
+public class TrainingView extends BaseView<TrainingPresenter> implements ITrainingView{
 
     //region -- member --
 
     public static final String VIEW_NAME = "trainingNeuralNet";
 
-    private double learningRate;
-    private int miniBadgeSize;
-    private int trainingSetSize;
-    private int trainingCycles;
+    private TextField learningRateField;
 
     //endregion
 
@@ -34,7 +32,7 @@ public class TrainingView extends BaseView<TrainingPresenter> {
     void init() {
 
         Label learningRateLabel = new Label("Learning Rate");
-        TextField learningRateField = new TextField("", Double.toString(learningRate));
+        learningRateField = new TextField();
         this.addComponent(learningRateLabel);
         this.addComponent(learningRateField);
 
@@ -49,6 +47,15 @@ public class TrainingView extends BaseView<TrainingPresenter> {
 
 
     }
+
+    public void bindViewData(TrainingPresenter.ViewData viewData){
+
+        BeanFieldGroup<TrainingPresenter.ViewData> group = new BeanFieldGroup<>(TrainingPresenter.ViewData.class);
+        group.setItemDataSource(viewData);
+        group.bind(learningRateField, "learningRate");
+        group.setBuffered(false);
+    }
+
 
     //endregion
 }
