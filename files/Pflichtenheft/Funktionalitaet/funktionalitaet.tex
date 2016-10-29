@@ -1,7 +1,7 @@
-\chapter{Funktionalität}
+\section{Funktionalität}
 
-\section{Programmfunktionalitäten}
-\subsection{Funktionsübersicht}
+\subsection{Programmfunktionalitäten}
+\subsubsection{Funktionsübersicht}
 
 \textbf{/F101/}\\[-0.2cm]
 
@@ -9,11 +9,13 @@
 
 \textbf{/F103/}\\[-0.2cm]
 
-\textbf{/F201/} Jedes Neuronale Netz kann mit dem Gradienten-Abstieg-Algorithmus trainiert werden. Dabei sind die Trainingsparameter \emph{Lernrate}, \emph{Stapelgröße}, \emph{Anzahl der Trainingsbilder} und \emph{Zyklenanzahl} frei wählbar. Das Training kann manuell gestartet und gestoppt werden.\\[-0.2cm]
+\textbf{/F201/} Jedes Neuronale Netz kann mit dem Gradienten-Abstieg-Algorithmus trainiert werden. Dabei sind die Trainingsparameter \emph{Lernrate}, \emph{Stapelgröße}, \emph{Anzahl der Trainingsbilder} und \emph{Zyklenanzahl} frei wählbar. Als Trainingsbasis ist die MNIST-Datenbank\footnote{Die MNIST-Database ist eine Sammlung von 60000 Trainingsbildern handgeschriebener Ziffern und zusätzlichen 10000 Testbildern, siehe auch \url{http://yann.lecun.com/exdb/mnist/}.} zu verwenden.
 
-\textbf{/F202/} Der Nutzer soll über eine Ausgabe-Konsole über den Trainingsstand und die Genauigkeit des Neuronalen Netzes informiert werden.
+\textbf{/F202/} Das Training kann manuell gestartet und gestoppt werden.\\[-0.2cm]
 
-\textbf{/F203/} Ein trainiertes Neuronales Netz kann bei Bedarf gespeichert oder verworfen werden werden. Wird das trainierte Netz, z.B. durch die Auswahl eines anderen Neuronalen Netzes, verworfen, ist dies auf der Konsole auszugeben. \\[-0.2cm]
+\textbf{/F203/} Der Nutzer soll über eine Ausgabe-Konsole über den Trainingsstand und die Genauigkeit des Neuronalen Netzes informiert werden -- als Testbasis ist die MNIST-Testdatenbank zu verwenden.
+
+\textbf{/F204/} Ein trainiertes Neuronales Netz kann bei Bedarf gespeichert oder verworfen werden werden. Wird das trainierte Netz, z.B. durch die Auswahl eines anderen Neuronalen Netzes, verworfen, ist dies auf der Konsole auszugeben. \\[-0.2cm]
 
 \textbf{/F301/} Die Metadaten (Name, Beschreibung) eines Neuronalen Netzes sollen konfigurierbar sein.\\[-0.2cm]
 
@@ -24,7 +26,7 @@
 \textbf{/F304/} Es ist möglich ein neues Neuronales Netz anzulegen.\\[-0.2cm]
 
 
-\subsection{Arbeitsflüsse}
+\subsubsection{Arbeitsflüsse}
 
 \textbf{Aktivitätsdiagramm aus Anwendersicht.}
 
@@ -38,7 +40,7 @@
 \end{center}
 \end{figure}
 
-\section{Globale Programmarchitektur}
+\subsection{Globale Programmarchitektur}
 
 Zur Entkopplung einzelner Module und leichteren Wartbarkeit verwendet die Anwendung eine Drei-Schichten Architektur bestehend ausXX	 Nutzeroberfläche, Business-Schicht und Daten-Schicht. 
 \begin{figure}[H]
@@ -63,8 +65,8 @@ Als unterste Schicht der Anwendung dient die Daten-Schicht der Persistierung von
 
 In den nächsten Unterabschnitten folgt die ausführliche Beschreibung und geplante Umsetzung der von der Anwendung zu erbringenden Funktionalitäten.  
 
-\section{Sequenz- und Klassendiagramme}
-\subsection{Anwendersicht}
+\subsection{Sequenz- und Klassendiagramme}
+\subsubsection{Anwendersicht}
 
 \textbf{/F101/}
 
@@ -87,7 +89,7 @@ In den nächsten Unterabschnitten folgt die ausführliche Beschreibung und gepla
 \end{center}
 \end{figure}
 
-\subsection{Administrationssicht}
+\subsubsection{Administrationssicht}
 
 \textbf{/F201/} Das Training eines Neuronalen Netzes erfolgt mit Hilfe des Gradienten-Abstieg-Algorithmus. Durch den Vergleich von tatsächlicher Netzwerkausgabe zur erwarteten Ausgabe werden dabei beginnend beim Ausgabelayer sukzessive Anpassungen an den Netzwerkknoten und Netzwerkaxon vorgenommen. Für jede Abstraktionstufe des Neuronalen Netzes wird dabei ein eigener Trainer angelegt, der für die Rückwärtspropagierung des Ausgabefehlers zuständig ist.\\[-0.5cm]
 \begin{figure}[H]
