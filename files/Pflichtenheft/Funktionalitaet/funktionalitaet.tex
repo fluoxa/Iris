@@ -48,12 +48,35 @@ Zur Entkopplung einzelner Module und leichteren Wartbarkeit verwendet die Anwend
 \includegraphics[width=10cm]{Abbildungen/UML/jan/SchichtenModell.png}
 \end{center}
 \end{figure}
-Die Nutzeroberfläche dient der Nutzerinteraktion sowie der Darstellung der Eingabe- sowie verarbeiteten Daten. Sie implementiert dabei das MVP-Muster...
 
-\textcolor{red}{ @Daniel: Hier bitte dein Part für das MVP-Pattern rein!!!}
+\subsubsection{Nutzeroberfläche}
+Die Nutzeroberfläche dient der Nutzerinteraktion sowie der Darstellung der Eingabe- sowie verarbeiteten Daten. Sie implementiert dabei das Model-View-Presenter Muster. In \ref{mvp} ist der Zusammenhang zwischen den einzelnen Teilen des Oberflächenarchitekturmusters zu sehen.
+
+\paragraph{View} Der View ist nur der Presenter bekannt. Die Funktionalität wird über Schnittstellen festgelegt. Vorteile sind Austausch- und Testbarkeit. Interagiert der Nutzer mit der Oberfläche werden Nachrichten an den Presenter versendet.
+
+\paragraph{Presenter} Der Presenter ist das Bindeglied zwischen Ansicht und Modell. Es empfängt Nachrichten der View und verarbeitet diese. Eine erfolgende Aktion könnte zum Beispiel das Laden eines Datensatzes sein. Über das Modell werden die Daten bezogen und die View anschließend zur Anzeige deren veranlasst. Der Presenter kennt nur die Schnittstelle zur View und für sein Funktionieren ist es irrelevant in welcher Realisierung die View vorliegt.
+
+\paragraph{Model} Das Model ist in unserem Anwendungsfall die Zugriffsschicht auf Geschäftslogik und Daten. Es wird abgebildet über die Businessschicht und deren Workerklassen. Es kennt weder den Presenter noch die View. 
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=7cm]{Abbildungen/UML/daniel/MVP.png}
+		\caption{Model-View-Presenter} 
+		\label{mvp}
+	\end{center}
+\end{figure}
+
+In Abbildung \ref{mvp-exemplarisch} ist der vereinfachte exemplarische Aufbau des MVP-Musters zu sehen. Zu beachten ist, dass Interfaces in diesem Diagramm nicht dargestellt sind. Über die abstrakten Klassen BaseView und BasePresenter werden Funktionalitäten bereitgestellt, die in mehreren Ansichten gebraucht werden. Als Beispiel dient die Ziffernerkennungs-Oberfläche. Sie stellt verschiedene Zugriffsmöglichkeiten, wie das Setzen eines Netz-Datensatzes oder des Ergebnisses einer Erkennung, bereit. Die Methoden \textit{setSearchResult} der View und \textit{searchNN} stellen beispielsweise die Möglichkeit zur Suche nach Netzen und deren Anzeige zur Verfügung. Der Presenter hat über die Service-Klasse Zugriff auf die verschiedenen Elemente der Businessschicht. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Abbildungen/UML/daniel/Klassendiagramm-MVP.png}
+	\caption{Exemplarisches Klassendiagramm MVP-Muster}
+	\label{mvp-exemplarisch}
+\end{figure}
 
 
-In der Buisiness-Schicht werden alle fachspezifischen Verarbeitungen vorgenommen. Hierunter fallen beispielsweise die Vorwärtsberechnung sowie das Training eines künstlichen neuronalen Netzes oder die Konvertierung von Daten. Dazu werden für jede Entität spezifizsche Worker-Klassen bereitgestellt, die diese Aufgaben durchführen können.
+In der Business-Schicht werden alle fachspezifischen Verarbeitungen vorgenommen. Hierunter fallen beispielsweise die Vorwärtsberechnung sowie das Training eines künstlichen neuronalen Netzes oder die Konvertierung von Daten. Dazu werden für jede Entität spezifizsche Worker-Klassen bereitgestellt, die diese Aufgaben durchführen können.
 
 \begin{figure}[H]
 \begin{center}
