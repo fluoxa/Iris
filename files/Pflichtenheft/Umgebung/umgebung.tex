@@ -2,39 +2,43 @@
 \section{Umgebung}
  
 \subsection{Software}
-%Software: Gibt an, welche Software zum Betrieb vorhanden sein muss. Eine
-%Aufteilung für Server und Client ist ggf. sinnvoll. Weiterhin sind unbedingt die
-%kleinsten benötigten Versionsnummern anzugeben.
+
+Die Anwendung untersteht keinen Restriktionen, Sie kann mit jedem Betriebssystem ausgeführt werden.
+Abhängig der Zielgruppe entstehen die folgenden Softwarevoraussetzungen.
+
 \subsubsection {Für Endanwender}
 
 \begin{itemize}
-\item aktueller Internet Browser
+\item aktueller Internet Browser 
+\item bestehende Internetverbindung
 \end{itemize}
 
 \subsubsection	{Für Entwickler}
 
-\begin{itemize}
-\item Java 8
-\item Apache Maven 3.3.9
-\item Spring Framework 1.4.1
-\item Vaadin 7.7.3
-\item FasterXML 0.6.2
-\item Lombok 1.16.10
-\item TestNG 6.9.13.6
-\item Mockito 2.0.2 beta
-\item dozer 5.5.1
-\item Apache Commons-io 2.5
-\end{itemize}
+
+\begin{table}[h]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{llr}
+\textbf{Software} & \textbf{Version} \\ \hline
+Java              & 8                \\
+Apache Maven      & 3.3.9            \\
+Spring Framework  & 1.4.1            \\ 
+Vaadin            & 7.7.3            \\
+FasterXML         & 0.6.2            \\
+Lombok            & 1.16.10          \\
+TestNG            & 6.9.13.6         \\
+Mockito           & 2.0.2 beta       \\
+dozer             & 5.5.1            \\
+Apache Commons-io & 2.5             
+\end{tabular}
+\end{table}
  
 \subsection{Hardware}
 
-\begin{itemize}
-\item Application-Server mit Internetanbindung
-\end{itemize} 
+Es gelten keine besonderen Hardwarevoraussetzungen. Die Anwendung ist mit handelsüblichen PC ausführbar. Entwickler benötigen darüber hinaus einen Application-Server mit Webanbindung.
 
 \subsection{Orgware}
-%Orgware: Angabe der organisatorische Rahmenbedingungen, die vor Projektstart
-%erfüllt sein müssen.
+
 \begin{itemize}
 \item Web-Repository GitHub zur Versionsverwaltung
 \item gitter.im zur internen Kommunikation 

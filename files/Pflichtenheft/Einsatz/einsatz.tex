@@ -3,27 +3,22 @@ Der geplante Einsatz des Systems ist die Grundlage für Benutzungsoberfläche un
 Qualitätsanforderungen.
  
 \subsection{Anwendungsbereiche}
-%Ein Pflichtenheft wird bspw. in einer IT-Abteilung genutzt.
 
 Das System ist über einen, mit dem Internet verbundenen Rechner aufrufbar.
-Dadurch kann die Anwendung von allen Personen mit Internetzugang genutzt werden.
+Dadurch kann die Anwendung von allen Personen mit Internetzugang genutzt werden
 
-
- 
 \subsection{Zielgruppen}
-%Die Zielgruppe besteht also aus Informatikern, die mit der Projektplanung
-%beauftragt wurden.
 
-Die größte Zielgruppe ist der Standartnutzer ohne technische Vorkenntnisse, welcher sich für eine Erkennung handschriftlicher Ziffern interessiert.
-Da es sich um ein Open-Source Projekt handelt, sollen auch technisch versierte Informatiker angesprochen und zur Teilnahme an der Entwicklung 
-der Handschriftserkennung mithilfe neuronaler Netze angeregt werden.
+"`Iris"' ist in erster Linie für den Endanwender gedacht. Aus diesem Grund ergeben sich keine spezifischen Anwendergruppen. Die Anwendung soll für jeden Nutzer zugänglich sein, der Nutzen aus einer Handschrifterkennung ziehen kann.
+"`Iris"' arbeitet den Umgang mit neuronalen Netzen auf. Somit sollen auch technisch versierte Informatiker angesprochen werden, die sich mit neuronalen Netzen beschäftigen möchten und eventuell an der Weiterentwicklung von "Iris" teilhaben wollen.
 
 \subsection{Betriebsbedingungen}
-%Betriebsbedingungen: Die Betriebsbedingungen spezifiziert die physikalische
-%Umgebung des Systems, die tägliche Betriebszeit, und ob das System ständiger
-%Beobachtung durch Bediener ausgesetzt ist, oder ein unbeaufsichtigter Betrieb
-%beabsichtigt ist.
 
-Die Grundvorrausetzung zur Inbetriebnahme der Anwendung ist ein Server mit Webanbindung. Auf diesem muss mindestens Java 8 installiert sein.
-Zur Persistierung der Daten wird mongoDB der Version 3.2.10 verwendet. Der Betrieb der Datenbank muss dauerhaft gewährleistet und die Daten
-jederzeit vom Server abrufbar sein. Es wird ein unbeaufsichtiger Betrieb angestrebt. 
+Da es sich um eine Internetanwendung handelt, ähneln sich die Betriebsbedingungen mit jenen anderer Internetanwendung.
+
+\begin{itemize}
+	\item Betriebsdauer: dauerhaft, 24 Stunden am Tag
+	\item unbeaufsichtiger, wartungsfreier Betrieb
+	\item Server mit Webanbindung
+	\item laufende mongoDB der version 3.2.10
+\end{itemize}
