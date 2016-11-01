@@ -7,15 +7,8 @@
   @include valo;
   @include addons;
 
-  .test {
-    background-color: black;
-  }
-
-  .iris-canvas {
-    border: solid black 2px;
-  }
-
   $iris-margin: 12px;
+  $iris-spacing: 6px;
 
   .v-margin-left {
     padding-left: $iris-margin;
@@ -30,19 +23,34 @@
     padding-bottom: $iris-margin;
   }
 
-  .iris-main-panel {
-    padding: $iris-margin;
+  .iris-header-layout {
+    /*border-bottom: 1px solid #d5d5d5;*/
   }
 
-  .application-logo {
+  .iris-logo-image {
     height: 80px;
-    margin-right: 36px;
+    margin-right: 60px;
   }
 
-  .application-label {
+  .iris-name-label {
     font-size: 70px;
     font-weight: 900;
     line-height: 80px;
+  }
+
+  .iris-search-result-layout {
+    .v-spacing {
+      width: $iris-spacing;
+      height: $iris-spacing;
+    }
+  }
+
+  .test {
+    background-color: black;
+  }
+
+  .iris-canvas {
+    border: solid black 2px;
   }
 
 }

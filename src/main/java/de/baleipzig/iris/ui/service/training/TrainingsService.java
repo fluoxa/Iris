@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @Data
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TrainingsService implements ITrainingService {
+
     private final INeuralNetWorker neuralNetWorker;
     private final NeuralNetConfig neuralNetConfig;
 }

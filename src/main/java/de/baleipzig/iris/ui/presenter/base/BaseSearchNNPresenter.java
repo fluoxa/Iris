@@ -9,6 +9,5 @@ public abstract class BaseSearchNNPresenter<S extends IBaseSearchNNService> exte
 
     public void init() {
         super.init();
-        System.out.println("BaseSearchNNPresenter");
     }
 }

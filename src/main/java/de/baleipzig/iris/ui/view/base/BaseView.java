@@ -1,61 +1,68 @@
 package de.baleipzig.iris.ui.view.base;
 
 import com.vaadin.server.ThemeResource;
+import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.*;
-import com.vaadin.ui.themes.ValoTheme;
 import de.baleipzig.iris.ui.presenter.base.BasePresenter;
 
 import javax.annotation.PostConstruct;
 
-public abstract class BaseView<P extends BasePresenter> extends CssLayout implements IBaseView<P> {
+public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout implements IBaseView<P> {
 
-    private final Panel headerPanel = new Panel();
-    private final VerticalLayout headerAndBodyLayout = new VerticalLayout();
-    private final HorizontalLayout headerLayout = new HorizontalLayout();
-    private final CssLayout bodyLayout = new CssLayout();
+    private final HorizontalLayout bodyLayout = new HorizontalLayout();
+
     protected P presenter;
 
     @PostConstruct
     private void init() {
-        System.out.println("BaseView");
         createLayout();
     }
 
     private void createLayout() {
         ThemeResource imageResource = new ThemeResource("img/logo.png");
         Image logoImage = new Image(null, imageResource);
-        logoImage.addStyleName("application-logo");
+        logoImage.addStyleName("iris-logo-image");
         //logoImage.setHeight("80px");
 
         Label applicationLabel = new Label("Iris - Ziffernerkennung");
-        applicationLabel.addStyleName("application-label");
+        applicationLabel.addStyleName("iris-name-label");
 
         ComboBox languageComboBox = new ComboBox();
 
+        final HorizontalLayout headerLayout = new HorizontalLayout();
+        headerLayout.addStyleName("iris-header-layout");
+        headerLayout.setWidth("100%");
         headerLayout.setMargin(true);
+
         headerLayout.addComponent(logoImage);
         headerLayout.addComponent(applicationLabel);
         headerLayout.addComponent(languageComboBox);
         headerLayout.setExpandRatio(logoImage, 0);
+
         headerLayout.setExpandRatio(applicationLabel, 1);
         headerLayout.setExpandRatio(languageComboBox, 0);
         headerLayout.setComponentAlignment(applicationLabel, Alignment.MIDDLE_CENTER);
-        headerLayout.setWidth("100%");
 
+        final Panel headerPanel = new Panel();
         headerPanel.setContent(headerLayout);
 
-        bodyLayout.setStyleName(ValoTheme.PANEL_BORDERLESS);
+        bodyLayout.setMargin(new MarginInfo(true, false, false, false));
+        bodyLayout.setSizeFull();
+
+        final VerticalLayout headerAndBodyLayout = new VerticalLayout();
+        headerAndBodyLayout.setSizeFull();
 
         headerAndBodyLayout.addComponent(headerPanel);
         headerAndBodyLayout.addComponent(bodyLayout);
+        headerAndBodyLayout.setExpandRatio(headerPanel, 0);
+        headerAndBodyLayout.setExpandRatio(bodyLayout, 1);
 
-        addStyleName(ValoTheme.PANEL_BORDERLESS);
-        //setMargin(true);
-        addStyleName("iris-main-panel");
+        setSizeFull();
+        setMargin(true);
         addComponent(headerAndBodyLayout);
     }
 
-    public void setBodyContent(Component content) {
+    protected void setBodyContent(Component content) {
         bodyLayout.removeAllComponents();
         bodyLayout.addComponent(content);
     }
