@@ -19,6 +19,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
     @PostConstruct
     private void init() {
         createLayout();
+        addListeners();
     }
 
     private void createLayout() {
@@ -66,6 +67,12 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
         super.setBodyContent(searchAndContentLayout);
     }
+
+    private void addListeners() {
+        searchButton.addClickListener(e -> presenter.searchNeuralNets(searchTextField.getValue()));
+    }
+
+
 
 
     @Override
