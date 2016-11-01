@@ -7,10 +7,9 @@ import de.baleipzig.iris.ui.view.training.ITrainingView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingsConfiguration;
 import org.dozer.DozerBeanMapper;
 
-
 public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITrainingService> {
-    private DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 
+    private DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
     private TrainingsConfiguration trainingsConfiguration;
 
     public TrainingPresenter(ITrainingView view, ITrainingService service) {

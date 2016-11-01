@@ -84,14 +84,12 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         searchResultTable.addValueChangeListener(e -> presenter.handleSelection((NeuralNetMetaData) searchResultTable.getValue()));
     }
 
-
     @Override
     public void setSearchResult(List<NeuralNetMetaData> neuralNetMetaDatas) {
         BeanItemContainer<NeuralNetMetaData> resultAsContainer = new BeanItemContainer<NeuralNetMetaData>(NeuralNetMetaData.class, neuralNetMetaDatas);
         searchResultTable.setContainerDataSource(resultAsContainer);
         searchResultTable.setVisibleColumns("name");
     }
-
 
     @Override
     protected void setBodyContent(Component content) {

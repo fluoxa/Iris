@@ -7,7 +7,6 @@ import de.baleipzig.iris.ui.view.recognition.IRecognitionView;
 
 public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView, IRecognitionService> {
 
-
     public RecognitionPresenter(IRecognitionView view, IRecognitionService service) {
         super(view, service);
     }

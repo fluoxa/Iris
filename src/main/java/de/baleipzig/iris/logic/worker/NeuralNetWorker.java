@@ -52,8 +52,8 @@ public class NeuralNetWorker implements INeuralNetWorker {
     }
 
     @Override
-    public List<NeuralNetMetaData> findByName(String name) {
-        List<NeuralNetSubset> neuralNetSubsets = neuralNetEntityRepository.findAllByNameLike(name);
+    public List<NeuralNetMetaData> findAllNeuralNetMetaDataByName(String name) {
+        List<NeuralNetSubset> neuralNetSubsets = neuralNetEntityRepository.findAllByNameLikeIgnoreCase(name);
         List<NeuralNetMetaData> neuralNetMetaDatas = new ArrayList<>(neuralNetSubsets.size());
 
         neuralNetSubsets.forEach(neuralNetSubset -> {

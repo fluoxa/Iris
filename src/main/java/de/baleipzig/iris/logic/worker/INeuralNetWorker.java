@@ -7,7 +7,7 @@ import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
 import java.util.List;
 import java.util.UUID;
 
-public interface INeuralNetWorker {
+public interface INeuralNetWorker extends ICrudWorker<INeuralNet, UUID>{
 
     void save(INeuralNet neuralNet);
 
@@ -15,7 +15,7 @@ public interface INeuralNetWorker {
 
     void delete(UUID neuralNetId);
 
-    List<NeuralNetMetaData> findByName(String name);
+    List<NeuralNetMetaData> findAllNeuralNetMetaDataByName(String name);
 
     void propagateForward(INeuralNet neuralNet);
 }
