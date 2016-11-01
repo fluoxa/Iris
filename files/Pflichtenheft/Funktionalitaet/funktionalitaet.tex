@@ -9,21 +9,21 @@
 
 \textbf{/F103/}\\[-0.2cm]
 
-\textbf{/F201/} Jedes Neuronale Netz kann mit dem Gradienten-Abstieg-Algorithmus trainiert werden. Dabei sind die Trainingsparameter \emph{Lernrate}, \emph{Stapelgröße}, \emph{Anzahl der Trainingsbilder} und \emph{Zyklenanzahl} frei wählbar. Als Trainingsbasis ist die MNIST-Datenbank\footnote{Die MNIST-Database ist eine Sammlung von 60000 Trainingsbildern handgeschriebener Ziffern und zusätzlichen 10000 Testbildern, siehe auch \url{http://yann.lecun.com/exdb/mnist/}.} zu verwenden.
+\textbf{/F201/} Jedes neuronale Netz kann mit dem Gradienten-Abstieg-Algorithmus trainiert werden. Dabei sind die Trainingsparameter \emph{Lernrate}, \emph{Stapelgröße}, \emph{Anzahl der Trainingsbilder} und \emph{Zyklenanzahl} frei wählbar. Als Trainingsbasis ist die MNIST-Datenbank\footnote{Die MNIST-Database ist eine Sammlung von 60000 Trainingsbildern handgeschriebener Ziffern und zusätzlichen 10000 Testbildern, siehe auch \url{http://yann.lecun.com/exdb/mnist/}.} zu verwenden.
 
 \textbf{/F202/} Das Training kann manuell gestartet und gestoppt werden.\\[-0.2cm]
 
-\textbf{/F203/} Der Nutzer soll über eine Ausgabe-Konsole über den Trainingsstand und die Genauigkeit des Neuronalen Netzes informiert werden -- als Testbasis ist die MNIST-Testdatenbank zu verwenden.
+\textbf{/F203/} Der Nutzer soll über eine Ausgabe-Konsole über den Trainingsstand und die Genauigkeit des neuronalen Netzes informiert werden -- als Testbasis ist die MNIST-Testdatenbank zu verwenden.
 
-\textbf{/F204/} Ein trainiertes Neuronales Netz kann bei Bedarf gespeichert oder verworfen werden werden. Wird das trainierte Netz, z.B. durch die Auswahl eines anderen Neuronalen Netzes, verworfen, ist dies auf der Konsole auszugeben. \\[-0.2cm]
+\textbf{/F204/} Ein trainiertes neuronales Netz kann bei Bedarf gespeichert oder verworfen werden werden. Wird das trainierte Netz, z.B. durch die Auswahl eines anderen neuronalen Netzes, verworfen, ist dies auf der Konsole auszugeben. \\[-0.2cm]
 
-\textbf{/F301/} Die Metadaten (Name, Beschreibung) eines Neuronalen Netzes sollen konfigurierbar sein.\\[-0.2cm]
+\textbf{/F301/} Die Metadaten (Name, Beschreibung) eines neuronalen Netzes sollen konfigurierbar sein.\\[-0.2cm]
 
 \textbf{/F302/} Die Topologie des Netzes sowie die Eigenschaften von Knoten und Knotenverbindungen sollen über eine Json-Struktur bearbeitbar sein.\footnote{Es wird keine Validierung des eingegebenen Json-Strings vorgenommen. Im Rahmen des Projektes wird davon Ausgegangen, dass der Administrator weiß, welche Netztopologien zulässig sind -- z.B. eine Eingabeschicht mit $48 \times 48$ Eingabeknoten und eine Ausgabeschicht mit 10 Ausgabeknoten.}\\[-0.2cm]
 
-\textbf{/F303/} Die in /F301/ und /F302/ am Neuronalen Netz vorgenommenen Änderungen sollen gespeichert werden können.\\[-0.2cm]
+\textbf{/F303/} Die in /F301/ und /F302/ am neuronalen Netz vorgenommenen Änderungen sollen gespeichert werden können.\\[-0.2cm]
 
-\textbf{/F304/} Es ist möglich ein neues Neuronales Netz anzulegen.\\[-0.2cm]
+\textbf{/F304/} Es ist möglich ein neues neuronales Netz anzulegen.\\[-0.2cm]
 
 
 \subsubsection{Arbeitsflüsse}
@@ -92,7 +92,7 @@ In der Business-Schicht werden alle fachspezifischen Verarbeitungen vorgenommen.
 \end{center}
 \end{figure}
 
-Als unterste Schicht der Anwendung dient die Daten-Schicht der Persistierung von Daten. Hierfür stehen ihr diverse, von CRUD-Workern angesprochene Repositories zur Verfügung, die je nach Bedarf Daten (hier im Wesentlichen das Neuronale Netz) in eine Datenbank oder externe Dateien schreiben können.
+Als unterste Schicht der Anwendung dient die Daten-Schicht der Persistierung von Daten. Hierfür stehen ihr diverse, von CRUD-Workern angesprochene Repositories zur Verfügung, die je nach Bedarf Daten (hier im Wesentlichen das neuronale Netz) in eine Datenbank oder externe Dateien schreiben können.
 
 In den nächsten Unterabschnitten folgt die ausführliche Beschreibung und geplante Umsetzung der von der Anwendung zu erbringenden Funktionalitäten.  
 
@@ -122,11 +122,11 @@ In den nächsten Unterabschnitten folgt die ausführliche Beschreibung und gepla
 
 \subsubsection{Administrationssicht}
 
-\textbf{/F201/} Das Training eines Neuronalen Netzes erfolgt mit Hilfe des Gradienten-Abstieg-Algorithmus. Durch den Vergleich von tatsächlicher Netzwerkausgabe zur erwarteten Ausgabe werden dabei beginnend beim Ausgabelayer sukzessive Anpassungen an den Netzwerkknoten und Netzwerkaxon vorgenommen. Für jede Abstraktionstufe des Neuronalen Netzes wird dabei ein eigener Trainer angelegt, der für die Rückwärtspropagierung des Ausgabefehlers zuständig ist.\\[-0.5cm]
+\textbf{/F201/} Das Training eines neuronalen Netzes erfolgt mit Hilfe des Gradienten-Abstieg-Algorithmus. Durch den Vergleich von tatsächlicher Netzwerkausgabe zur erwarteten Ausgabe werden dabei beginnend beim Ausgabelayer sukzessive Anpassungen an den Netzwerkknoten und Netzwerkaxon vorgenommen. Für jede Abstraktionstufe des neuronalen Netzes wird dabei ein eigener Trainer angelegt, der für die Rückwärtspropagierung des Ausgabefehlers zuständig ist.\\[-0.5cm]
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=10cm]{Abbildungen/UML/jan/trainerCD.png}
-\caption{Klassendiagramm der Trainingsworker für das Neuronale Netz, Layer und Nodes.}
+\caption{Klassendiagramm der Trainingsworker für das neuronale Netz, Layer und Nodes.}
 \label{fig_cdTraining}
 \end{center}
 \end{figure}
@@ -149,7 +149,7 @@ Der Ablauf eines Trainingdurchlaufs stellt sich als Sequenzdiagramm wie folgt da
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=15cm]{Abbildungen/UML/jan/gradientdescent1.png}
-\caption{Sequenzdiagramm zur Backpropagation beginnend beim Neuronalen Netz.}
+\caption{Sequenzdiagramm zur Backpropagation beginnend beim neuronalen Netz.}
 \label{fig_sdBackpropagation}
 \end{center}
 \end{figure}
@@ -158,7 +158,7 @@ Der Ablauf eines Trainingdurchlaufs stellt sich als Sequenzdiagramm wie folgt da
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=15cm]{Abbildungen/UML/jan/convertJsonNNSD.png}
-\caption{Sequenzdiagramm zur Konvertierung eines Json-Strings in ein Neuronalen Netz.}
+\caption{Sequenzdiagramm zur Konvertierung eines Json-Strings in ein neuronalen Netz.}
 \label{fig_sdBackpropagation}
 \end{center}
 \end{figure}

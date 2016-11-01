@@ -29,7 +29,7 @@
 \usepackage{wasysym}
 \usepackage{float}
 \usepackage{slantsc}
-
+\usepackage{parskip}          % zw. Absätzen: eine knappe Leerzeile statt hängender Einzüge
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	Abbildungen werden mit Abb. angezeigt.
@@ -43,7 +43,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	Abbildungen werden mit Abb. angezeigt.
+%	Kopf- und Fussleiste.
 %
 \usepackage{fancyhdr}
 \fancyhead[LO,LE]{Pflichtenheft -- Iris}
@@ -56,30 +56,31 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Größenanpassungen
+%
+
+
+\usepackage[a4paper]{geometry}
+\usepackage{setspace}
+\setlength{\unitlength}{1cm}
+\setlength{\oddsidemargin}{0.8cm}
+\setlength{\evensidemargin}{-0.3cm}
+\setlength{\textwidth}{15.5cm}
+\setlength{\topmargin}{-1cm}
+\setlength{\textheight}{23cm}
+\columnsep 0.5cm
+\setstretch{1.15} 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ 
 \begin{document}
   
  
 \title{\textbf{Pflichtenheft für Iris}}
 \author{Daniel Gilgen\\ Ronny Zingler \\ Jan Zschoche}
 \maketitle
- 
-% Die abstract-Umgebung kann bei Bedarf aus dem Pflichtenheft entfernt werden
-\begin{abstract}
-Dies ist ein beispielhaftes Pflichtenheft in \LaTeX. Das Pflichtenheft
-beschreibt in konkreter Form, wie der Auftragnehmer die Anforderungen des
-Auftraggebers zu lösen gedenkt - das sogenannte wie und womit. Der Auftraggeber
-beschreibt vorher im Lastenheft möglichst präzise die Gesamtheit der
-Forderungen - was er entwickelt oder produziert haben möchte. Erst wenn der
-Auftraggeber das Pflichtenheft akzeptiert, sollte die eigentliche Arbeit beim
-Auftragnehmer beginnen.
-\vspace{1cm}
- 
-Quelle: \url{http://de.wikipedia.org/wiki/Pflichtenheft} und Lehrbuch der
-Objektmodellierung von Heide Balzert
-\vspace{0.5cm}
- 
-Quellcode: \url{http://www.karllorey.de/informatik-studium/vorlesungen/softwarepraktikum/pflichtenheft-in-latex/}
-\end{abstract}
  
 % Platzierung des Inhaltsverzeichnisses
 \newpage
