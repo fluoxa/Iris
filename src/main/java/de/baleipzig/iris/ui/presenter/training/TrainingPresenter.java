@@ -1,5 +1,6 @@
 package de.baleipzig.iris.ui.presenter.training;
 
+import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
 import de.baleipzig.iris.ui.view.training.ITrainingView;
@@ -20,6 +21,11 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
     public void init() {
         super.init();
         initAndBindTrainingConfigurationToView();
+    }
+
+    @Override
+    public void handleSelection(NeuralNetMetaData metaData) {
+        System.out.println("TrainingPresenter " + metaData.getId() + "selected");
     }
 
     private void initAndBindTrainingConfigurationToView() {

@@ -42,7 +42,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         textFieldAndButtonLayout.setExpandRatio(searchButton, 0);
 
         searchResultTable.setColumnHeaderMode(Table.ColumnHeaderMode.HIDDEN);
-        searchResultTable.setSelectable(false);
+        searchResultTable.setSelectable(true);
         searchResultTable.setImmediate(true);
         searchResultTable.setSizeFull();
         searchResultTable.addStyleName(ValoTheme.TABLE_BORDERLESS);
@@ -81,14 +81,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
     private void addListeners() {
         searchButton.addClickListener(e -> presenter.searchNeuralNets(searchTextField.getValue()));
-        searchResultTable.addValueChangeListener(e -> {
-            //e.
-        });
-        searchResultTable.addItemClickListener(e -> {
-            System.out.println(e.getItem().getItemProperty("id"));
-
-            //System.out.println(metaData);
-        });
+        searchResultTable.addValueChangeListener(e -> presenter.handleSelection((NeuralNetMetaData) searchResultTable.getValue()));
     }
 
 
