@@ -5,11 +5,12 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import de.baleipzig.iris.ui.presenter.training.TrainingPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
-import de.baleipzig.iris.ui.view.base.BaseView;
+import de.baleipzig.iris.ui.view.base.BaseSearchNNView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingsConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +19,7 @@ import javax.annotation.PostConstruct;
 
 @UIScope
 @SpringView(name = TrainingView.VIEW_NAME)
-public class TrainingView extends BaseView<TrainingPresenter> implements ITrainingView<TrainingPresenter> {
+public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements ITrainingView {
     public static final String VIEW_NAME = "training";
 
     @Autowired
@@ -38,15 +39,17 @@ public class TrainingView extends BaseView<TrainingPresenter> implements ITraini
     }
 
     private void createViewComponents() {
+        CssLayout layout = new CssLayout();
         Label learningRateLabel = new Label("Learning Rate");
         learningRateField = new TextField();
-        this.addComponent(learningRateLabel);
-        this.addComponent(learningRateField);
+        layout.addComponent(learningRateLabel);
+        layout.addComponent(learningRateField);
 
         Button startTraining = new Button("start Training");
         startTraining.addClickListener(e -> presenter.startTraining());
 
-        this.addComponent(startTraining);
+        layout.addComponent(startTraining);
+        setBodyContent(layout);
     }
 
     @Override

@@ -6,4 +6,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public abstract class BaseSearchNNPresenter<S extends IBaseSearchNNService> extends BasePresenter {
     protected final S service;
+
+    public void init() {
+        super.init();
+        System.out.println("BaseSearchNNPresenter");
+    }
 }

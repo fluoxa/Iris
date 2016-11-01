@@ -7,8 +7,6 @@
   @include valo;
   @include addons;
 
-  $iris-margin: 50px;
-
   .test {
     background-color: black;
   }
@@ -17,7 +15,7 @@
     border: solid black 2px;
   }
 
-  $iris-margin: 50px;
+  $iris-margin: 12px;
 
   .v-margin-left {
     padding-left: $iris-margin;
@@ -30,6 +28,21 @@
   }
   .v-margin-bottom {
     padding-bottom: $iris-margin;
+  }
+
+  .iris-main-panel {
+    padding: $iris-margin;
+  }
+
+  .application-logo {
+    height: 80px;
+    margin-right: 36px;
+  }
+
+  .application-label {
+    font-size: 70px;
+    font-weight: 900;
+    line-height: 80px;
   }
 
 }

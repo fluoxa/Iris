@@ -1,7 +1,7 @@
 package de.baleipzig.iris.ui.view.recognition;
 
 import de.baleipzig.iris.ui.presenter.recognition.RecognitionPresenter;
-import de.baleipzig.iris.ui.view.base.IBaseView;
+import de.baleipzig.iris.ui.view.base.IBaseSearchNNView;
 
-public interface IRecognitionView extends IBaseView<RecognitionPresenter> {
+public interface IRecognitionView extends IBaseSearchNNView<RecognitionPresenter> {
 }
