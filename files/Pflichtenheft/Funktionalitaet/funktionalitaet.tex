@@ -3,7 +3,7 @@
 \subsection{Programmfunktionalitäten}
 \subsubsection{Funktionsübersicht}
 
-\textbf{/F101/}\\[-0.2cm]
+\textbf{/F101/} Es gibt einen Zeichenbereich \\[-0.2cm]
 
 \textbf{/F102/}\\[-0.2cm]
 
@@ -50,21 +50,20 @@
 
 \subsection{Globale Programmarchitektur}
 
-Zur Entkopplung einzelner Module und leichteren Wartbarkeit verwendet die Anwendung eine Drei-Schichten Architektur bestehend ausXX	 Nutzeroberfläche, Business-Schicht und Daten-Schicht. 
+Zur Entkopplung einzelner Module und leichteren Wartbarkeit verwendet die Anwendung eine Drei-Schichten Architektur bestehend aus Nutzeroberfläche, Business-Schicht und Daten-Schicht. 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=10cm]{Abbildungen/UML/jan/SchichtenModell.png}
 \end{center}
 \end{figure}
 
-\subsubsection{Nutzeroberfläche}
 Die Nutzeroberfläche dient der Interaktion und der Darstellung der eingegebenen sowie verarbeiteten Daten. Sie implementiert dabei das Model-View-Presenter Muster. In \ref{mvp} ist der Zusammenhang zwischen den einzelnen Teilen des Oberflächenarchitekturmusters zu sehen.
 
-\paragraph{View} Der View ist nur der Presenter bekannt. Die Funktionalität wird über Schnittstellen festgelegt. Vorteile sind Austausch- und Testbarkeit. Interagiert der Nutzer mit der Oberfläche werden Nachrichten an den Presenter versendet.
+\textbf{View.} Der View ist nur der Presenter bekannt. Die Funktionalität wird über Schnittstellen festgelegt. Vorteile sind Austausch- und Testbarkeit. Interagiert der Nutzer mit der Oberfläche werden Nachrichten an den Presenter versendet.
 
-\paragraph{Presenter} Der Presenter ist das Bindeglied zwischen Ansicht und Modell. Es empfängt Nachrichten der View und verarbeitet diese. Eine erfolgende Aktion könnte zum Beispiel das Laden eines Datensatzes sein. Über das Modell werden die Daten bezogen und die View anschließend zur Anzeige deren veranlasst. Der Presenter kennt nur die Schnittstelle zur View und für sein Funktionieren ist es irrelevant in welcher Realisierung die View vorliegt.
+\textbf{Presenter.} Der Presenter ist das Bindeglied zwischen Ansicht und Modell. Es empfängt Nachrichten der View und verarbeitet diese. Eine erfolgende Aktion könnte zum Beispiel das Laden eines Datensatzes sein. Über das Modell werden die Daten bezogen und die View anschließend zur Anzeige deren veranlasst. Der Presenter kennt nur die Schnittstelle zur View und für sein Funktionieren ist es irrelevant in welcher Realisierung die View vorliegt.
 
-\paragraph{Model} Das Model ist in unserem Anwendungsfall die Zugriffsschicht auf Geschäftslogik und Daten. Es wird abgebildet über die Businessschicht und deren Workerklassen. Es kennt weder den Presenter noch die View. 
+\textbf{Model.} Das Model ist in unserem Anwendungsfall die Zugriffsschicht auf Geschäftslogik und Daten. Es wird abgebildet über die Businessschicht und deren Workerklassen. Es kennt weder den Presenter noch die View.
 
 \begin{figure}[H]
 	\begin{center}
