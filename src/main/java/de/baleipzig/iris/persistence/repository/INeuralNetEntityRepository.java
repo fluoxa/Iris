@@ -8,8 +8,7 @@ import java.util.List;
 
 public interface INeuralNetEntityRepository extends MongoRepository<NeuralNetEntity, String> {
 
-    List<NeuralNetSubset> findAllByName(String name);
+    List<NeuralNetSubset> findAllByNameLike(String name);
     NeuralNetEntity findByName(String name);
     NeuralNetEntity findByNeuralNetId(String neuralNetId);
-
 }
