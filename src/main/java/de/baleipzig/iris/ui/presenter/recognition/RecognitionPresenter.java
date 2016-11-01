@@ -1,15 +1,17 @@
 package de.baleipzig.iris.ui.presenter.recognition;
 
-import de.baleipzig.iris.ui.presenter.BasePresenter;
+import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.recognition.IRecognitionService;
 import de.baleipzig.iris.ui.view.recognition.IRecognitionView;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-public class RecognitionPresenter extends BasePresenter {
+public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionService> {
 
     private final IRecognitionView view;
-    private final IRecognitionService service;
+
+    public RecognitionPresenter(IRecognitionView view, IRecognitionService service) {
+        super(service);
+        this.view = view;
+    }
 
     @Override
     public void init() {

@@ -9,7 +9,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import de.baleipzig.iris.ui.presenter.training.TrainingPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
-import de.baleipzig.iris.ui.view.BaseView;
+import de.baleipzig.iris.ui.view.base.BaseView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingsConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +18,7 @@ import javax.annotation.PostConstruct;
 
 @UIScope
 @SpringView(name = TrainingView.VIEW_NAME)
-public class TrainingView extends BaseView<TrainingPresenter> implements ITrainingView {
+public class TrainingView extends BaseView<TrainingPresenter> implements ITrainingView<TrainingPresenter> {
     public static final String VIEW_NAME = "training";
 
     @Autowired

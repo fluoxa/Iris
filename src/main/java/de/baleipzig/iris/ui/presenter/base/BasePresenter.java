@@ -1,4 +1,4 @@
-package de.baleipzig.iris.ui.presenter;
+package de.baleipzig.iris.ui.presenter.base;
 
 public abstract class BasePresenter{
 

@@ -1,6 +1,6 @@
 package de.baleipzig.iris.ui.presenter.training;
 
-import de.baleipzig.iris.ui.presenter.BasePresenter;
+import de.baleipzig.iris.ui.presenter.base.BasePresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
 import de.baleipzig.iris.ui.view.training.ITrainingView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingsConfiguration;
