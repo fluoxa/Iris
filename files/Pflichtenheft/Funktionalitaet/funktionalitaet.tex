@@ -29,10 +29,20 @@
 
 \textbf{/F303/} Die in /F301/ und /F302/ am neuronalen Netz vorgenommenen Änderungen sollen gespeichert werden können.\\[-0.2cm]
 
-\textbf{/F304/} Es ist möglich ein neues neuronales Netz anzulegen.\\[-0.2cm]
+\textbf{/F304/} Es ist möglich ein neues neuronales Netz anzulegen.
 
-
+\newpage
 \subsubsection{Arbeitsflüsse}
+
+\textbf{Aktivitätsdiagramm aus Administrationssicht.} Der Administrationsbereich der Anwendung setzt sich aus zwei Unterseiten zusammen, nämlich einer Seite für die Konfiguration der Trainingsparameter (vgl. Abb. \ref{ui-train}) sowie für die Bearbeitung der Neuronalen Netze (vgl. Abb. \ref{ui-crud}). Der Arbeitsfluss zwischen beiden Seiten ist im folgenden Aktivitätsdiagramm dargestellt.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{Abbildungen/UML/jan/trainingConfigAD.png}
+\caption{Aktivitätsdiagramm für die Verwendung des Programmes im Administrationsbereich.}
+\label{fig_trainingConfigAD}
+\end{center}
+\end{figure}
 
 \textbf{Aktivitätsdiagramm aus Anwendersicht.} Die folgende Abbildung beschreibt den grundlegenden Arbeitsfluss vom Starten der Anwendung, bis hin zur Ausgabe des Resultates.
 \begin{figure}[H]
@@ -43,32 +53,23 @@
 \end{center}
 \end{figure}
 
-\textbf{Aktivitätsdiagramm aus Administrationssicht.} Der Administrationsbereich der Anwendung setzt sich aus zwei Unterseiten zusammen, nämlich einer Seite für die Konfiguration der Trainingsparameter (vgl. Abb. \ref{xxx}) sowie für die Bearbeitung der Neuronalen Netze (vgl. Abb. \ref{yyy}). Der Arbeitsfluss zwischen beiden Seiten ist im folgenden Aktivitätsdiagramm dargestellt.
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth]{Abbildungen/UML/jan/trainingConfigAD.png}
-\caption{Aktivitätsdiagramm für die Verwendung des Programmes im Administrationsbereich.}
-\label{fig_trainingConfigAD}
-\end{center}
-\end{figure}
 
 \subsection{Globale Programmarchitektur}
 
-Zur Entkopplung einzelner Module und leichteren Wartbarkeit verwendet die Anwendung, wie in Abbildung \ref{Drei-Schichten-Architektur} zu sehen, eine Drei-Schichten Architektur bestehend aus	 Nutzeroberfläche, Business-Schicht und Daten-Schicht.
+Zur Entkopplung einzelner Module und leichteren Wartbarkeit verwendet die Anwendung, wie in Abb. \ref{Drei-Schichten-Architektur} zu sehen, eine Drei-Schichten Architektur bestehend aus Nutzeroberfläche, Business-Schicht und Daten-Schicht.
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=10cm]{Abbildungen/UML/jan/SchichtenModell.png}
+\includegraphics[width=10cm]{Abbildungen/UML/jan/SchichtenModel.png}
 \caption{Drei-Schichten-Architektur} 
 \label{Drei-Schichten-Architektur}
 \end{center}
 \end{figure}
 
-Die Nutzeroberfläche dient der Interaktion und der Darstellung der eingegebenen sowie verarbeiteten Daten. Sie implementiert dabei das Model-View-Presenter Muster. In \ref{mvp} ist der Zusammenhang zwischen den einzelnen Teilen des Oberflächenarchitekturmusters zu sehen.
+Die Nutzeroberfläche dient der Nutzerinteraktion und der Darstellung der eingegebenen sowie verarbeiteten Daten. Sie implementiert dabei das Model-View-Presenter Muster. Für dieses Oberflächenarchitekturmusters sind in Abb. \ref{mvp} die Abhängigkeiten der einzelnen Komponenten untereinander zu sehen.
 
 \textbf{View.} Der View ist nur der Presenter bekannt. Die Funktionalität wird über Schnittstellen festgelegt. Vorteile sind Austausch- und Testbarkeit. Interagiert der Nutzer mit der Oberfläche werden Nachrichten an den Presenter versendet.
 
-\textbf{Presenter.} Der Presenter ist das Bindeglied zwischen Ansicht und Modell. Es empfängt Nachrichten der View und verarbeitet diese. Eine erfolgende Aktion könnte zum Beispiel das Laden eines Datensatzes sein. Über das Modell werden die Daten bezogen und die View anschließend zur Anzeige deren veranlasst. Der Presenter kennt nur die Schnittstelle zur View und für sein Funktionieren ist es irrelevant in welcher Realisierung die View vorliegt.
+\textbf{Presenter.} Der Presenter ist das Bindeglied zwischen Ansicht und Model. Es empfängt Nachrichten der View und verarbeitet diese. Eine erfolgte Aktion könnte zum Beispiel das Laden eines Datensatzes sein. Über das Model werden die Daten bezogen und die View anschließend zur Anzeige deren veranlasst. Der Presenter kennt nur die Schnittstelle zur View, sodass für sein Funktionieren die konkrete Realisierung einer View irrelevant ist.
 
 \textbf{Model.} Das Model ist in unserem Anwendungsfall die Zugriffsschicht auf Geschäftslogik und Daten. Es wird abgebildet über die Businessschicht und deren Workerklassen. Es kennt weder den Presenter noch die View.
 
@@ -80,7 +81,7 @@ Die Nutzeroberfläche dient der Interaktion und der Darstellung der eingegebenen
 	\end{center}
 \end{figure}
 
-In Abbildung \ref{mvp-exemplarisch} ist der vereinfachte exemplarische Aufbau des MVP-Musters zu sehen. Zu beachten ist, dass Interfaces in diesem Diagramm nicht dargestellt sind. Über die abstrakten Klassen BaseView und BasePresenter werden Funktionalitäten bereitgestellt, die in mehreren Ansichten gebraucht werden. Als Beispiel dient die Ziffernerkennungs-Oberfläche. Sie stellt verschiedene Zugriffsmöglichkeiten, wie das Setzen eines Netz-Datensatzes oder des Ergebnisses einer Erkennung, bereit. Die Methoden \textit{setSearchResult} der View und \textit{searchNN} stellen beispielsweise die Möglichkeit zur Suche nach Netzen und deren Anzeige zur Verfügung. Der Presenter hat über die Service-Klasse Zugriff auf die verschiedenen Elemente der Businessschicht. 
+In Abb. \ref{mvp-exemplarisch} ist der vereinfachte exemplarische Aufbau des MVP-Musters zu sehen. Zu beachten ist, dass Interfaces in diesem Diagramm nicht dargestellt sind. Über die abstrakten Klassen BaseView und BasePresenter werden Funktionalitäten bereitgestellt, die in mehreren Ansichten gebraucht werden. Als Beispiel dient die Ziffernerkennungs-Oberfläche. Sie stellt verschiedene Zugriffsmöglichkeiten, wie das Setzen eines Netz-Datensatzes oder des Ergebnisses einer Erkennung, bereit. Die Methoden \textit{setSearchResult} der View und \textit{searchNN} stellen beispielsweise die Möglichkeit zur Suche nach Netzen und deren Anzeige zur Verfügung. Der Presenter hat über die Service-Klasse Zugriff auf die verschiedenen Elemente der Businessschicht. 
 
 \begin{figure}[H]
 	\centering
@@ -90,7 +91,7 @@ In Abbildung \ref{mvp-exemplarisch} ist der vereinfachte exemplarische Aufbau de
 \end{figure}
 
 
-In der Business-Schicht werden alle fachspezifischen Verarbeitungen vorgenommen. Hierunter fallen beispielsweise die Vorwärtsberechnung sowie das Training eines künstlichen neuronalen Netzes oder die Konvertierung von Daten. Dazu werden für jede Entität spezifische Worker-Klassen bereitgestellt, die diese Aufgaben durchführen können. Abbildung \ref{CrudMin} visualisiert diesen Zusammenhang. Der generische Crudworker stellt die allgemeine Funktionalität zur Verfügung. Darüber hinausgehende Anforderungen an den Worker müssen in abgeleiteten Kindklassen implementiert werden.
+In der Business-Schicht werden alle anschließend fachspezifischen Verarbeitungen vorgenommen. Hierunter fallen beispielsweise die Vorwärtsberechnung sowie das Training eines künstlichen neuronalen Netzes oder die Konvertierung von Daten. Dazu werden für jede Entität spezifische Worker-Klassen bereitgestellt, die diese Aufgaben durchführen können. Abb. \ref{CrudMin} visualisiert diesen Zusammenhang. Der generische Crudworker stellt die allgemeine Funktionalität zur Verfügung. Darüber hinausgehende Anforderungen an den Worker müssen in abgeleiteten Kindklassen implementiert werden.
 
 \begin{figure}[H]
 \begin{center}
@@ -108,19 +109,18 @@ In den nächsten Unterabschnitten folgt die ausführliche Beschreibung und gepla
 \subsubsection{Anwendersicht}
 
 \textbf{/F102/}
-
-\begin{figure}[h]
+\vspace{-0.4cm}
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth]{Abbildungen/UML/uml_ronny/neuralNetKlassenDiagramm.png}
 \caption{Klassendiagramm Aufbau und Struktur eines neuralen Netzes}
 \label{fig_cdNet}
 \end{center}
 \end{figure}
-
-
+\vspace{-0.5cm}
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=13cm]{Abbildungen/UML/uml_ronny/forwardPropagationSD.png}
+\includegraphics[width=13.5cm]{Abbildungen/UML/uml_ronny/forwardWorkerSequenzDiagramm.png}
 \caption{Sequenzdiagramm Vorwärtsberechnung im neuralen Netz}
 \label{fig_sdPropForw}
 \end{center}
