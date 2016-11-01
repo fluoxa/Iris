@@ -1,29 +1,22 @@
- \chapter{Einsatz}
+\section{Einsatz}
 Der geplante Einsatz des Systems ist die Grundlage für Benutzungsoberfläche und
 Qualitätsanforderungen.
  
-\section{Anwendungsbereiche}
-%Ein Pflichtenheft wird bspw. in einer IT-Abteilung genutzt.
+\subsection{Anwendungsbereiche}
 
-Das System ist über einen, mit dem Internet verbundenen Rechner aufrufbar.
-Dadurch kann die Anwendung von allen Personen mit Internetzugang genutzt werden.
+Das System ist über einen mit dem Internet verbundenen Rechner aufrufbar. Dadurch kann die Anwendung von allen Personen mit Internetzugang genutzt werden.
 
+\subsection{Zielgruppen}
 
- 
-\section{Zielgruppen}
-%Die Zielgruppe besteht also aus Informatikern, die mit der Projektplanung
-%beauftragt wurden.
+``Iris'' ist in erster Linie für den Endanwender gedacht. Die Anwendung soll daher für jeden Nutzer zugänglich sein, der Nutzen aus einer handschriftlichen Ziffernerkennung ziehen kann.\\
+Da ``Iris'' im Kern auf den Einsatz neuronaler Netze setzt, sollen auch technisch versierte Informatiker angesprochen werden, die sich mit neuronalen Netzen beschäftigen möchten und eventuell an der Weiterentwicklung von ``Iris'' teilhaben wollen.
 
-Die größte Zielgruppe ist der Standartnutzer ohne technische Vorkenntnisse, welcher sich für eine Erkennung handschriftlicher Ziffern interessiert.
-Da es sich um ein Open-Source Projekt handelt, sollen auch technisch versierte Informatiker angesprochen und zur Teilnahme an der Entwicklung 
-der Handschriftserkennung mithilfe neuronaler Netze angeregt werden.
+\subsection{Betriebsbedingungen}
 
-\section{Betriebsbedingungen}
-%Betriebsbedingungen: Die Betriebsbedingungen spezifiziert die physikalische
-%Umgebung des Systems, die tägliche Betriebszeit, und ob das System ständiger
-%Beobachtung durch Bediener ausgesetzt ist, oder ein unbeaufsichtigter Betrieb
-%beabsichtigt ist.
+Da es sich um eine Internetanwendung handelt, ähneln sich die Betriebsbedingungen mit jenen anderer Internetanwendung.
 
-Die Grundvorrausetzung zur Inbetriebnahme der Anwendung ist ein Server mit Webanbindung. Auf diesem muss mindestens Java 8 installiert sein.
-Zur Persistierung der Daten wird mongoDB der Version 3.2.10 verwendet. Der Betrieb der Datenbank muss dauerhaft gewährleistet und die Daten
-jederzeit vom Server abrufbar sein. Es wird ein unbeaufsichtiger Betrieb angestrebt. 
+\begin{itemize}
+	\item unbeaufsichtiger, wartungsfreier, 24 Stunden am Tag Betrieb\\[-0.9cm]
+	\item Server mit Webanbindung \\[-0.9cm]
+	\item laufende mongoDB (Version 3.2.10)
+\end{itemize}

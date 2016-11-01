@@ -1,40 +1,48 @@
  
-\chapter{Umgebung}
+\section{Umgebung}
  
-\section{Software}
-%Software: Gibt an, welche Software zum Betrieb vorhanden sein muss. Eine
-%Aufteilung für Server und Client ist ggf. sinnvoll. Weiterhin sind unbedingt die
-%kleinsten benötigten Versionsnummern anzugeben.
-\subsection {Für Endanwender}
+\subsection{Software}
+
+Die Anwendung untersteht keinen Restriktionen, Sie kann mit jedem Betriebssystem ausgeführt werden.
+Abhängig der Zielgruppe entstehen die folgenden Softwarevoraussetzungen.
+
+\subsubsection {Für Endanwender}
 
 \begin{itemize}
-\item aktueller Internet Browser
+\item aktueller Internet Browser 
+\item bestehende Internetverbindung
 \end{itemize}
 
-\subsection	{Für Entwickler}
+\subsubsection	{Für Entwickler}
 
-\begin{itemize}
-\item Java 8
-\item Apache Maven 3.3.9
-\item Spring Framework 1.4.1
-\item Vaadin 7.7.3
-\item FasterXML 0.6.2
-\item Lombok 1.16.10
-\item TestNG 6.9.13.6
-\item Mockito 2.0.2 beta
-\item dozer 5.5.1
-\item Apache Commons-io 2.5
-\end{itemize}
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|ll|}
+\hline \cellcolor{blue!25} & \cellcolor{blue!25}\\[-0.4cm]
+\cellcolor{blue!25} \textbf{Software} &  \cellcolor{blue!25} \textbf{Version} \\ 
+\hline& \\[-0.4cm]
+Java              & 8                \\[0.1cm]
+Apache Maven      & 3.3.9            \\[0.1cm]
+Spring Framework  & 1.4.1            \\[0.1cm] 
+Vaadin            & 7.7.3            \\[0.1cm]
+FasterXML         & 0.6.2            \\[0.1cm]
+Lombok            & 1.16.10          \\[0.1cm]
+TestNG            & 6.9.13.6         \\[0.1cm]
+Mockito           & 2.0.2 beta       \\[0.1cm]
+dozer             & 5.5.1            \\[0.1cm]
+mongoDB           & 3.2.10            \\[0.1cm]
+Apache Commons-io & 2.5 \\
+\hline             
+\end{tabular}
+\end{center}
+\end{table}
  
-\section{Hardware}
+\subsection{Hardware}
 
-\begin{itemize}
-\item Application-Server mit Internetanbindung
-\end{itemize} 
+Es gelten keine besonderen Hardwarevoraussetzungen. Die Anwendung ist mit handelsüblichen PC ausführbar. Entwickler benötigen darüber hinaus einen Application-Server mit Webanbindung.
 
-\section{Orgware}
-%Orgware: Angabe der organisatorische Rahmenbedingungen, die vor Projektstart
-%erfüllt sein müssen.
+\subsection{Orgware}
+
 \begin{itemize}
 \item Web-Repository GitHub zur Versionsverwaltung
 \item gitter.im zur internen Kommunikation 

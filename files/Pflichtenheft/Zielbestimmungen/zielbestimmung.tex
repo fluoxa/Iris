@@ -1,39 +1,39 @@
-\chapter{Zielbestimmung}
-Dieses Kapitel dient der Bestimmung von Zielen und nicht für deren Verwendung
-notwendige Funktionen.
+\section{Zielbestimmung}
+``Iris'' ist eine Webanwendung zur Erfassung und Umwandlung von handgeschriebenen Ziffern. Ziel ist es, mithilfe von künstlichen neuronalen Netzen\footnote{Im Folgenden wird der Kürze halber einfach von \emph{neuronalen Netzen} gesprochen.} eine gezeichnete Zahl zu erkennen und in maschinenlesbarer Form darzustellen.
+Um die Genauigkeit dieser Erkennung zu erhöhen, soll es außerdem die Möglichkeit geben, neuronale Netze zu trainieren.
  
-\section{Musskriterien}
-%blubla Musskriterien: Für das Produkt unabdingbare Leistungen, die in jedem Fall
-%erfüllt werden müssen \footnote{gezwungen sein, etwas zu tun (Dies ist eine
-%beispielhafte Fußnote).}. Das System ist ohne diese Funktionen für seinen
-%gedachten Zweck nicht einsetzbar.
+\subsection{Musskriterien}
 
-Um dem Ziel, der Erkennung einer handegschriebenen Ziffer, gerecht zu werden, müssen 
-folgende Kriterien erfüllt sein:
+Folgende Kriterien der Anwendung müssen mindestens erfüllt sein, um die obigen Ziele zu erreichen.
 
-\begin{itemize}
-\item Möglichkeit zur Erfassung einer handgeschriebenen Ziffer in einer Weboberfläche
-\item Umwandlung der Eingabeziffer in eine maschinenlesbare Form mithilfe neuronaler Netze
-\item Ausgabe der Resultate in einer Weboberfläche
-\item trainieren der neuronalen Netzten
-\item Persistierung von neuronalen Netzen
-\end{itemize}
+\begin{description}
+\item [Erfassung einer Ziffer]
+Es soll die Möglichkeit geschaffen werden, eine handgeschriebene Ziffer zu erfassen. In einem Web User Interface soll ein Eingabefeld realisiert werden, in welchem man mit der Maus eine Ziffer zeichnen kann.
+\item [Umwandlung der Eingabeziffer]
+Die Ziffer soll von der Anwendung erkannt und in eine maschinenlesbare Form umgewandelt werden. Die Erkennung soll mithilfe neuronaler Netze umgesetzt werden.
+\item [Ausgabe der Resultate]
+Das Ergebnis der handschriftlichen Ziffernerkennung soll in einem weiteren Bereich des Web User Interfaces dargestellt werden. Es soll keine weitere Interaktion des Users notwendig sein und die Übersetzung in Echtzeit angestoßen werden.
+\item [Training neuronaler Netze]
+In einem weiteren Web User Interface soll es dem Entwickler ermöglicht werden, verschiedene neuronale Netze zu trainieren.
+\item [Persistierung neuronaler Netze]
+Die neuronalen Netze sollen in einer Datenbank abgelegt werden.
+\end{description}
  
-\section{Kannkriterien}
-%Kannkriterien: Die Erfüllung der Kannkriterien ist erwünscht, jedoch nicht
-%unbedingt notwendig. Sie sollten nur angestrebt werden, falls noch ausreichend
-%Kapazitäten vorhanden sind.
+\subsection{Kannkriterien}
 
-Sind die Musskriterien erfüllt und noch freie Kapazitäten vorhanden, werden folgende Kriterien bearbeitet:
+Sind die Musskriterien erfüllt und freie Kapazitäten vorhanden, werden folgende Kriterien bearbeitet:
 
-\begin{itemize}
-\item Internationalisierung zur Steigerung der Usability
-\item Erstellung und Bearbeitung von neuronalen Netzten
-\item Bereitstellung der Möglichkeit, verschieden trainierte neuronale Netze auszuwählen
-\item Suchfunktion über vorhandene Netze in der Weboberfläche
-\end{itemize}
+\begin{description}
+\item [Internationalisierung]
+Zur Erhöhung der Usability soll es möglich sein zwischen verschiedenen Anzeigesprachen zu wählen. Die Standardsprache ist Deutsch und eine Übersetzung in Englisch wird angestrebt.
+\item [Erstellung neuronaler Netze]
+Neben den Möglichkeiten zum Umgang mit neuronalen Netzen sollen auch neue Netze angelegt werden können. Eine dementsprechende Funktionalität kann dem Entwickler Web User Interface hinzugefügt werden. 
+\item [Auswahl neuronaler Netze] 
+In die für den User bereitgestellte Weboberfläche soll ein Dialog zur Auswahl verschiedener neuronaler Netze implementiert werden.
+\item [Suchfunktion]
+In Erweiterung des Auswahldialoges soll eine Suchfunktion eingefügt werden, mit der es möglich ist, über ein Eingabefeld bestehende neuronale Netze zu finden und auszuwählen.
+\end{description}
 
  
-\section{Abgrenzungskriterien}
-Im späteren Entwicklungszyklus der Anwendung sollen die Funktionalitäten erweitert werden. Denkbar wäre die Möglichkeit
-der Eingabe einfacher mathematischer Operationen, welche durch das neuronale Netz erkannt und berechnet werden.
+\subsection{Abgrenzungskriterien}
+Im späteren Entwicklungszyklus der Anwendung sollen die Funktionalitäten erweitert werden. Denkbar wäre die zusätzliche Eingabe einfacher mathematischer Operationen, welche durch das neuronale Netz erkannt werden, und damit einen Taschenrechner für handgeschriebene Aufgaben ermöglichen.
