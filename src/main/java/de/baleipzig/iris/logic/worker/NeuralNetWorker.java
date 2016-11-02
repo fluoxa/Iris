@@ -8,9 +8,11 @@ import de.baleipzig.iris.persistence.subset.NeuralNetSubset;
 import lombok.RequiredArgsConstructor;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -54,14 +56,14 @@ public class NeuralNetWorker implements INeuralNetWorker {
     @Override
     public List<NeuralNetMetaData> findAllNeuralNetMetaDataByName(String name) {
         List<NeuralNetSubset> neuralNetSubsets = neuralNetEntityRepository.findAllByNameLikeIgnoreCase(name);
-        List<NeuralNetMetaData> neuralNetMetaDatas = new ArrayList<>(neuralNetSubsets.size());
 
-        neuralNetSubsets.forEach(neuralNetSubset -> {
-            NeuralNetMetaData neuralNetMetaData = new NeuralNetMetaData();
-            dozerBeanMapper.map(neuralNetSubset, neuralNetMetaData);
-            neuralNetMetaDatas.add(neuralNetMetaData);
-        });
-        return neuralNetMetaDatas;
+        return NeuralNetConverter.fromNeuralNetSubsets(neuralNetSubsets);
+    }
+
+    @Override
+    public List<NeuralNetMetaData> findAllNeuralNetMetaDatas() {
+        Page<NeuralNetSubset> neuralNetSubsets = neuralNetEntityRepository.findAllByNameNotNull(new PageRequest(0, 50, Sort.Direction.ASC, "name"));
+        return NeuralNetConverter.fromNeuralNetSubsets(neuralNetSubsets.getContent());
     }
 
     public void propagateForward(INeuralNet neuralNet) {

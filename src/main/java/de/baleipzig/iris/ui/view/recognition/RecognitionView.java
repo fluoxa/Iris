@@ -23,6 +23,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
+        super.enter(viewChangeEvent);
     }
 
     @PostConstruct

@@ -53,9 +53,8 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     }
 
     @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
-
-
+    public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
+        super.enter(viewChangeEvent);
     }
 
     public void bindTrainingsConfiguration(TrainingsConfiguration trainingsConfiguration) {
@@ -64,7 +63,5 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         group.bind(learningRateField, "learningRate");
         group.setBuffered(false);
     }
-
-
     //endregion
 }

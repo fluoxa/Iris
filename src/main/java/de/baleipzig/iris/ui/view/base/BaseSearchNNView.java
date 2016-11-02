@@ -1,6 +1,8 @@
 package de.baleipzig.iris.ui.view.base;
 
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.event.ShortcutAction;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.*;
@@ -17,8 +19,12 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
     private final TextField searchTextField = new TextField();
     private final Button searchButton = new Button();
-    private final Table searchResultTable = new Table(); //wird später noch benutzt werden
+    private final Panel searchResultPanel = new Panel();
 
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
+        presenter.searchAllNeuralNets();
+    }
 
     @PostConstruct
     private void init() {
@@ -41,15 +47,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         textFieldAndButtonLayout.setExpandRatio(searchTextField, 1);
         textFieldAndButtonLayout.setExpandRatio(searchButton, 0);
 
-        searchResultTable.setColumnHeaderMode(Table.ColumnHeaderMode.HIDDEN);
-        searchResultTable.setSelectable(true);
-        searchResultTable.setImmediate(true);
-        searchResultTable.setSizeFull();
-        searchResultTable.addStyleName(ValoTheme.TABLE_BORDERLESS);
-
-        Panel searchResultPanel = new Panel();
         searchResultPanel.setSizeFull();
-        searchResultPanel.setContent(searchResultTable);
 
         VerticalLayout searchAndResultLayout = new VerticalLayout();
         searchAndResultLayout.setHeight("100%");
@@ -80,15 +78,35 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
     }
 
     private void addListeners() {
-        searchButton.addClickListener(e -> presenter.searchNeuralNets(searchTextField.getValue()));
-        searchResultTable.addValueChangeListener(e -> presenter.handleSelection((NeuralNetMetaData) searchResultTable.getValue()));
+        searchButton.addClickListener(e -> {
+            presenter.searchNeuralNets(searchTextField.getValue());
+        });
+
+        searchTextField.addFocusListener(e -> toggleSearchButtonClickListener(true));
+    }
+
+    private void toggleSearchButtonClickListener(boolean activated) {
+        if (activated) {
+            searchButton.setClickShortcut(ShortcutAction.KeyCode.ENTER);
+        } else {
+            searchButton.removeClickShortcut();
+        }
     }
 
     @Override
     public void setSearchResult(List<NeuralNetMetaData> neuralNetMetaDatas) {
         BeanItemContainer<NeuralNetMetaData> resultAsContainer = new BeanItemContainer<NeuralNetMetaData>(NeuralNetMetaData.class, neuralNetMetaDatas);
+
+        Table searchResultTable = new Table();
         searchResultTable.setContainerDataSource(resultAsContainer);
         searchResultTable.setVisibleColumns("name");
+        searchResultTable.setColumnHeaderMode(Table.ColumnHeaderMode.HIDDEN);
+        searchResultTable.setSelectable(true);
+        searchResultTable.setImmediate(true);
+        searchResultTable.setSizeFull();
+        searchResultTable.addStyleName(ValoTheme.TABLE_BORDERLESS);
+        searchResultTable.addValueChangeListener(e -> presenter.handleSelection((NeuralNetMetaData) searchResultTable.getValue()));
+        searchResultPanel.setContent(searchResultTable);
     }
 
     @Override
