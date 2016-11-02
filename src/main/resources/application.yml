@@ -17,7 +17,7 @@ de:
         learningRate: 3.
         trainingCycles: 50
         trainingSetSize: 2000
-        badgeSize: 25
+        miniBadgeSize: 25
       example:
         exampleString: foo
         exampleBoolean: true

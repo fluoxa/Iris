@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Data
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class TrainingsService implements ITrainingService {
+public class TrainingService implements ITrainingService {
 
     private final INeuralNetWorker neuralNetWorker;
     private final NeuralNetConfig neuralNetConfig;

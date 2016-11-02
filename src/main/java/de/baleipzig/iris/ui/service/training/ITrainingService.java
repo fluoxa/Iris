@@ -7,6 +7,4 @@ import de.baleipzig.iris.ui.service.base.IBaseSearchNNService;
 public interface ITrainingService extends IBaseSearchNNService {
 
     NeuralNetConfig getNeuralNetConfig();
-
-    INeuralNetWorker getNeuralNetWorker();
 }

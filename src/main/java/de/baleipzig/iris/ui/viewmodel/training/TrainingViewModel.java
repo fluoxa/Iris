@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrainingsConfiguration {
+public class TrainingViewModel {
     private double learningRate;
     private int miniBadgeSize;
     private int trainingSetSize;
     private int trainingCycles;
+    private String infoText;
 }

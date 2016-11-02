@@ -16,5 +16,5 @@ public class NeuralNetConfig {
     private double learningRate;
     private int trainingSetSize;
     private int trainingCycles;
-    private int badgeSize;
+    private int miniBadgeSize;
 }
