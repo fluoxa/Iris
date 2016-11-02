@@ -70,7 +70,7 @@ public class JanView extends VerticalLayout implements View {
                     public void run() {
                         train = true;
                         while(train) {
-                            trainAndSaveNeuralNet("eac2abd8-f993-41f8-8b74-6712521eef3a");
+                            trainAndSaveNeuralNet();
                             oldResultLabel.setValue("old: " + resultLabel.getValue());
                             resultLabel.setValue("new: " +testNeuralNet("eac2abd8-f993-41f8-8b74-6712521eef3a"));
                         }
@@ -131,7 +131,7 @@ public class JanView extends VerticalLayout implements View {
 
         IEntityLayerAssembler<BufferedImage> imageConverter = new ImageAssembler();
         IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
-        GradientDescentConfig config = new GradientDescentConfig(2.,resultMapper.size(),1,50);
+        GradientDescentConfig config = new GradientDescentConfig(2.,resultMapper.size(),1,5);
         IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
         IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
         IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
@@ -143,6 +143,7 @@ public class JanView extends VerticalLayout implements View {
 
         INeuralNet trainedNet = trainer.getNeuralNet();
         trainedNet.getNeuralNetMetaData().setId(UUID.randomUUID());
+        trainedNet.getNeuralNetMetaData().setName("trainingNet1");
         trainedNet.getNeuralNetMetaData().setDescription("trainedNet");
 
         neuralNetWorker.save(trainedNet);

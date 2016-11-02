@@ -11,18 +11,18 @@
 (6) & base64-codiertes Bild: string.\\[0.2cm]  
 \end{tabular}
 
-\textbf{/D203/} Für jedes Neuronale Netz werden die folgenden Daten gespeichert: 
+\textbf{/D203/} Für jedes neuronale Netz werden die folgenden Daten gespeichert: 
 
 \begin{tabular}{cl}
 (1) & id: string \\[0.2cm]
-(2) & Name des Neuronalen Netzes: string\\[0.2cm]
-(3) & Beschreibung des Neuronalen Netzes: string\\[0.2cm]
+(2) & Name des neuronalen Netzes: string\\[0.2cm]
+(3) & Beschreibung des neuronalen Netzes: string\\[0.2cm]
 (4) & Typ Neuronalen Netzwerkes (Prod, Test): string \\[0.2cm]
 (5) & alle Ids der im Neuronalen Netz enthaltenen Layer: map<int, layer>\\[0.2cm]
 (6) & alle im Netz vorhandenen Axone: map<string, axon>.\\[0.2cm]
 \end{tabular}
 
-Für jeden Layer eines Neuronalen Netzes werden die folgenden Daten gespeichert: 
+Für jeden Layer eines neuronalen Netzes werden die folgenden Daten gespeichert: 
 
 \begin{tabular}{cl}
 (1) & id: string \\[0.2cm]
@@ -46,12 +46,12 @@ Für jedes Kindaxon eines Knotens werden die folgenden Daten gespeichert:
 (3) & die Kindknotenid: string. \\[0.2cm]
 \end{tabular}
 
-Zur Persistenz der gesamten oben aufgeführten Daten eines Neuronalen Netzes werden die in Abb. \ref{fig_dbClassdiagram} dargestellten Datenstrukturen verwendet und in einer MongoDB abgelegt. 
+Zur Persistenz der gesamten oben aufgeführten Daten eines neuronalen Netzes werden die in Abb. \ref{fig_dbClassdiagram} dargestellten Datenstrukturen verwendet und in einer MongoDB abgelegt. 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=\textwidth]{Abbildungen/UML/jan/datenBankKlassendiagramm.png}
-\caption{Klassendiagramm der zur Persistierung eines Neuronalen Netzes benötigten Datenstrukturen.}
+\caption{Klassendiagramm der zur Persistierung eines neuronalen Netzes benötigten Datenstrukturen.}
 \label{fig_dbClassdiagram}
 \end{center}
 \end{figure}
-Es ist zu beachten, dass die Objekt dabei nicht als unabhängige, in Beziehung stehende Entitäten\footnote{Dies entspräche dem Vorgehen für eine Relationale Datenbank. Durch die vielen zirkulären Referenzen ist dieser Zugang nicht geeignet} in der Datenbank sondern als ein einziges Json-Objekt abgelegt werden. 
+Es ist zu beachten, dass die Objekte dabei nicht als unabhängige, in Beziehung stehende Entitäten\footnote{Dies entspräche dem Vorgehen für eine Relationale Datenbank. Durch die vielen zirkulären Referenzen ist dieser Zugang nicht geeignet} in der Datenbank sondern als ein einziges Json-Objekt abgelegt werden. 

@@ -5,7 +5,7 @@
 
 \textbf{/F101/} Es gibt einen Zeichenbereich, in den freihändisch (z.B. mittels Maus) eine Ziffer geschrieben werden kann.\\[-0.2cm]
 
-\textbf{/F102/} Ein neuronales Netz berechnet aus dem gezeichneten Bild der Ziffer die Ziffer in maschinenlesbar Form und gibt das Ergebnis auf der Seite aus. \\[-0.2cm]
+\textbf{/F102/} Ein neuronales Netz berechnet aus dem gezeichneten Bild der Ziffer die Ziffer in maschinenlesbarer Form und gibt das Ergebnis auf der Seite aus. \\[-0.2cm]
 
 \textbf{/F103/} Die Berechnung wird wahlweise in Echtzeit durchgeführt oder manuell angestoßen.\\[-0.2cm]
 
@@ -21,11 +21,11 @@
 
 \textbf{/F203/} Der Nutzer soll über eine Ausgabe-Konsole über den Trainingsstand und die Genauigkeit des neuronalen Netzes informiert werden -- als Testbasis ist die MNIST-Testdatenbank zu verwenden.
 
-\textbf{/F204/} Ein trainiertes neuronales Netz kann bei Bedarf gespeichert oder verworfen werden werden. Wird das trainierte Netz, z.B. durch die Auswahl eines anderen neuronalen Netzes, verworfen, ist dies auf der Konsole auszugeben. \\[-0.2cm]
+\textbf{/F204/} Ein trainiertes neuronales Netz kann bei Bedarf gespeichert oder verworfen werden. Wird das trainierte Netz, z.B. durch die Auswahl eines anderen neuronalen Netzes, verworfen, ist dies auf der Konsole auszugeben. \\[-0.2cm]
 
 \textbf{/F301/} Die Metadaten (Name, Beschreibung) eines neuronalen Netzes sollen konfigurierbar sein.\\[-0.2cm]
 
-\textbf{/F302/} Die Topologie des Netzes sowie die Eigenschaften von Knoten und Knotenverbindungen sollen über eine Json-Struktur bearbeitbar sein.\footnote{Es wird keine Validierung des eingegebenen Json-Strings vorgenommen. Im Rahmen des Projektes wird davon Ausgegangen, dass der Administrator weiß, welche Netztopologien zulässig sind -- z.B. eine Eingabeschicht mit $48 \times 48$ Eingabeknoten und eine Ausgabeschicht mit 10 Ausgabeknoten.}\\[-0.2cm]
+\textbf{/F302/} Die Topologie des Netzes sowie die Eigenschaften von Knoten und Knotenverbindungen sollen über eine JSON-Struktur bearbeitbar sein.\footnote{Es wird keine Validierung des eingegebenen JSON-Strings vorgenommen. Im Rahmen des Projektes wird davon Ausgegangen, dass der Administrator weiß, welche Netztopologien zulässig sind -- z.B. eine Eingabeschicht mit $48 \times 48$ Eingabeknoten und eine Ausgabeschicht mit 10 Ausgabeknoten.}\\[-0.2cm]
 
 \textbf{/F303/} Die in /F301/ und /F302/ am neuronalen Netz vorgenommenen Änderungen sollen gespeichert werden können.\\[-0.2cm]
 
@@ -34,7 +34,7 @@
 \newpage
 \subsubsection{Arbeitsflüsse}
 
-\textbf{Aktivitätsdiagramm aus Administrationssicht.} Der Administrationsbereich der Anwendung setzt sich aus zwei Unterseiten zusammen, nämlich einer Seite für die Konfiguration der Trainingsparameter (vgl. Abb. \ref{ui-train}) sowie für die Bearbeitung der Neuronalen Netze (vgl. Abb. \ref{ui-crud}). Der Arbeitsfluss zwischen beiden Seiten ist im folgenden Aktivitätsdiagramm dargestellt.
+\textbf{Aktivitätsdiagramm aus Administrationssicht.} Der Administrationsbereich der Anwendung setzt sich aus zwei Unterseiten zusammen, nämlich einer Seite für die Konfiguration der Trainingsparameter (vgl. Abb. \ref{ui-train}) sowie für die Bearbeitung der neuronalen Netze (vgl. Abb. \ref{ui-crud}). Der Arbeitsfluss zwischen beiden Seiten ist im folgenden Aktivitätsdiagramm dargestellt.
 
 \begin{figure}[H]
 \begin{center}
@@ -172,7 +172,7 @@ Der Ablauf eines Trainingdurchlaufs stellt sich als Sequenzdiagramm wie folgt da
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=15cm]{Abbildungen/UML/jan/convertJsonNNSD.png}
-\caption{Sequenzdiagramm zur Konvertierung eines Json-Strings in ein neuronalen Netz.}
+\caption{Sequenzdiagramm zur Konvertierung eines JSON-Strings in ein neuronalen Netz.}
 \label{fig_sdBackpropagation}
 \end{center}
 \end{figure}
