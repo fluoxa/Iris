@@ -22,16 +22,16 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     @Autowired
     private ApplicationContext context;
 
-    private TextField learningRateField;
-    private TextField trainingCyclesField;
-    private TextField miniBadgeSizeField;
-    private TextField trainingSetSizeField;
-    private TextArea infoTextArea;
-    private Button startTraining;
-    private Button stopTraining;
-    private Button saveNeuralNet;
-    private Button resetNeuralNet;
-    private Button configNeuralNet;
+    private TextField learningRateField = new TextField();
+    private TextField trainingCyclesField = new TextField();
+    private TextField trainingSetSizeField = new TextField();
+    private TextField miniBadgeSizeField = new TextField();
+    private TextArea infoTextArea = new TextArea();
+    private Button startTraining = new Button();
+    private Button stopTraining = new Button();
+    private Button saveNeuralNet = new Button();
+    private Button resetNeuralNet = new Button();
+    private Button configNeuralNet = new Button();
 
     //endregion
 
@@ -50,18 +50,11 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
 
     private void setupElements() {
 
-        learningRateField = new TextField();
-        trainingCyclesField = new TextField();
-        trainingSetSizeField = new TextField();
-        miniBadgeSizeField = new TextField();
-
-        startTraining = new Button("start Training");
-        stopTraining = new Button("stop Training");
-        saveNeuralNet = new Button("save Neural Net");
-        resetNeuralNet = new Button("reset Training");
-        configNeuralNet = new Button("config Neural Net");
-
-        infoTextArea = new TextArea();
+        startTraining.setCaption("start Training");
+        stopTraining.setCaption("stop Training");
+        saveNeuralNet.setCaption("save Neural Net");
+        resetNeuralNet.setCaption("reset Training");
+        configNeuralNet.setCaption("config Neural Net");
     }
 
     private void setupListeners() {
