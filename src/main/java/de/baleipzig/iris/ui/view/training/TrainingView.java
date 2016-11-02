@@ -114,11 +114,18 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
 
         BeanFieldGroup<TrainingViewModel> group = new BeanFieldGroup<>(TrainingViewModel.class);
         group.setItemDataSource(trainingViewModel);
+
+        bindTrainingViewModelToView(group);
+
+        group.setBuffered(false);
+    }
+
+    private void bindTrainingViewModelToView(BeanFieldGroup<TrainingViewModel> group) {
+
         group.bind(learningRateField, "learningRate");
         group.bind(miniBadgeSizeField, "miniBadgeSize");
         group.bind(trainingCyclesField, "trainingCycles");
         group.bind(trainingSetSizeField, "trainingSetSize");
-        group.setBuffered(false);
     }
 
     public void addInfoText(String message) {

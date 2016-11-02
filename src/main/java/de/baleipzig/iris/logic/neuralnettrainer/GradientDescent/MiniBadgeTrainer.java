@@ -24,6 +24,8 @@ public class MiniBadgeTrainer<InputType, OutputType>
     private final INeuralNetWorker neuralNetWorker;
     private final IMiniBadgeNodeTrainer nodeTrainer;
 
+    private boolean isInterrupted;
+
     //endregion
 
     //region -- constructor --
@@ -41,6 +43,8 @@ public class MiniBadgeTrainer<InputType, OutputType>
         this.neuralNetTrainingWorker = trainingWorker;
         this.neuralNetWorker = worker;
 
+        this.isInterrupted = false;
+
         this.nodeTrainer = nodeTrainer;
     }
 
@@ -56,7 +60,11 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
     public void train(Map<InputType, OutputType> trainingData) {
 
-        for(int cycle = 0; cycle < config.getTrainingCycles(); cycle++){
+        isInterrupted = false;
+
+        int cycle = 0;
+
+        while( cycle < config.getTrainingCycles() && !isInterrupted){
 
             System.out.print(cycle + " ");
 
@@ -68,7 +76,15 @@ public class MiniBadgeTrainer<InputType, OutputType>
                 ILayer expectedResultLayer = outputConverter.convert(expectedResult, null);
                 neuralNetTrainingWorker.propagateBackward(neuralNet, expectedResultLayer);
             });
+
+            cycle++;
         }
+
+        isInterrupted = false;
+    }
+
+    public void interruptTraining() {
+        isInterrupted = true;
     }
 
     //endregion
