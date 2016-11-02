@@ -22,7 +22,6 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
         ThemeResource imageResource = new ThemeResource("img/logo.png");
         Image logoImage = new Image(null, imageResource);
         logoImage.addStyleName("iris-logo-image");
-        //logoImage.setHeight("80px");
 
         Label applicationLabel = new Label("Iris - Ziffernerkennung");
         applicationLabel.addStyleName("iris-name-label");

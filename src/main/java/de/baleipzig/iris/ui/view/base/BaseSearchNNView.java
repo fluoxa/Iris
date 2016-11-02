@@ -1,11 +1,15 @@
 package de.baleipzig.iris.ui.view.base;
 
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
+import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends BaseView<P> implements IBaseSearchNNView<P> {
 
@@ -19,6 +23,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
     @PostConstruct
     private void init() {
         createLayout();
+        addListeners();
     }
 
     private void createLayout() {
@@ -36,8 +41,15 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         textFieldAndButtonLayout.setExpandRatio(searchTextField, 1);
         textFieldAndButtonLayout.setExpandRatio(searchButton, 0);
 
+        searchResultTable.setColumnHeaderMode(Table.ColumnHeaderMode.HIDDEN);
+        searchResultTable.setSelectable(true);
+        searchResultTable.setImmediate(true);
+        searchResultTable.setSizeFull();
+        searchResultTable.addStyleName(ValoTheme.TABLE_BORDERLESS);
+
         Panel searchResultPanel = new Panel();
         searchResultPanel.setSizeFull();
+        searchResultPanel.setContent(searchResultTable);
 
         VerticalLayout searchAndResultLayout = new VerticalLayout();
         searchAndResultLayout.setHeight("100%");
@@ -67,6 +79,17 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         super.setBodyContent(searchAndContentLayout);
     }
 
+    private void addListeners() {
+        searchButton.addClickListener(e -> presenter.searchNeuralNets(searchTextField.getValue()));
+        searchResultTable.addValueChangeListener(e -> presenter.handleSelection((NeuralNetMetaData) searchResultTable.getValue()));
+    }
+
+    @Override
+    public void setSearchResult(List<NeuralNetMetaData> neuralNetMetaDatas) {
+        BeanItemContainer<NeuralNetMetaData> resultAsContainer = new BeanItemContainer<NeuralNetMetaData>(NeuralNetMetaData.class, neuralNetMetaDatas);
+        searchResultTable.setContainerDataSource(resultAsContainer);
+        searchResultTable.setVisibleColumns("name");
+    }
 
     @Override
     protected void setBodyContent(Component content) {
