@@ -10,7 +10,7 @@ import org.dozer.DozerBeanMapper;
 public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITrainingService> {
 
     private DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
-    private TrainingViewModel trainingViewModel;
+    private TrainingViewModel trainingViewModel = new TrainingViewModel();
 
     public TrainingPresenter(ITrainingView view, ITrainingService service) {
         super(view, service);
@@ -20,15 +20,15 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
     public void init() {
         super.init();
 
-        trainingViewModel = new TrainingViewModel();
         initViewModel(trainingViewModel);
         bindViewModel(trainingViewModel);
+
+        view.addInfoText("Training config loaded...");
     }
 
     private void initViewModel(TrainingViewModel trainingViewModel) {
 
         dozerBeanMapper.map(service.getNeuralNetConfig(), trainingViewModel);
-        trainingViewModel.setInfoText("Training Config loaded...\n");
     }
 
     private void bindViewModel(TrainingViewModel trainingViewModel) {

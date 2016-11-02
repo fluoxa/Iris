@@ -125,8 +125,15 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         group.bind(miniBadgeSizeField, "miniBadgeSize");
         group.bind(trainingCyclesField, "trainingCycles");
         group.bind(trainingSetSizeField, "trainingSetSize");
-        group.bind(infoTextArea, "infoText");
         group.setBuffered(false);
     }
+
+    public void addInfoText(String message) {
+
+        String newline = infoTextArea.getValue().isEmpty() ? "" : System.lineSeparator();
+
+        infoTextArea.setValue(String.format("%s%s%s",infoTextArea.getValue(), newline, message));
+    }
+
     //endregion
 }

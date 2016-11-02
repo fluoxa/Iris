@@ -12,5 +12,4 @@ public class TrainingViewModel {
     private int miniBadgeSize;
     private int trainingSetSize;
     private int trainingCycles;
-    private String infoText;
 }
