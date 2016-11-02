@@ -17,5 +17,7 @@ public interface INeuralNetWorker extends ICrudWorker<INeuralNet, UUID>{
 
     List<NeuralNetMetaData> findAllNeuralNetMetaDataByName(String name);
 
+    List<NeuralNetMetaData> findAllNeuralNetMetaDatas();
+
     void propagateForward(INeuralNet neuralNet);
 }

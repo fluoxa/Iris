@@ -3,8 +3,8 @@ package de.baleipzig.iris.logic.converter.database;
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.common.utils.LayerUtils;
 import de.baleipzig.iris.common.utils.NeuralNetCoreUtils;
-import de.baleipzig.iris.enums.NeuralNetCoreType;
 import de.baleipzig.iris.enums.FunctionType;
+import de.baleipzig.iris.enums.NeuralNetCoreType;
 import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunctionContainerFactory;
 import de.baleipzig.iris.model.neuralnet.axon.Axon;
 import de.baleipzig.iris.model.neuralnet.axon.IAxon;
@@ -17,11 +17,15 @@ import de.baleipzig.iris.persistence.entity.neuralnet.AxonEntity;
 import de.baleipzig.iris.persistence.entity.neuralnet.LayerEntity;
 import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetEntity;
 import de.baleipzig.iris.persistence.entity.neuralnet.NodeEntity;
+import de.baleipzig.iris.persistence.subset.NeuralNetSubset;
+import org.dozer.DozerBeanMapper;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class NeuralNetConverter {
+
+    private static DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 
     public static INeuralNetCore fromNeuralNetCoreEntity(NeuralNetEntity neuralNetEntity) {
         Map<Long, INode> allNodes = createAllNodesFromEntity(neuralNetEntity);
@@ -210,5 +214,16 @@ public class NeuralNetConverter {
         }
 
         return number;
+    }
+
+    public static List<NeuralNetMetaData> fromNeuralNetSubsets(List<NeuralNetSubset> neuralNetSubsets) {
+        List<NeuralNetMetaData> neuralNetMetaDatas = new ArrayList<>(neuralNetSubsets.size());
+
+        neuralNetSubsets.forEach(neuralNetSubset -> {
+            NeuralNetMetaData neuralNetMetaData = new NeuralNetMetaData();
+            dozerBeanMapper.map(neuralNetSubset, neuralNetMetaData);
+            neuralNetMetaDatas.add(neuralNetMetaData);
+        });
+        return neuralNetMetaDatas;
     }
 }
