@@ -17,13 +17,13 @@ public abstract class BaseSearchNNPresenter<V extends IBaseSearchNNView, S exten
     }
 
     public void searchNeuralNets(String searchTerm) {
-        List<NeuralNetMetaData> neuralNetMetaDatas = service.getNeuralNetWorker().findAllNeuralNetMetaDataByName(searchTerm);
-        view.setSearchResult(neuralNetMetaDatas);
+        List<NeuralNetMetaData> neuralNetMetaData = service.getNeuralNetWorker().findAllNeuralNetMetaDataByName(searchTerm);
+        view.setSearchResult(neuralNetMetaData);
     }
 
     public void searchAllNeuralNets() {
-        List<NeuralNetMetaData> neuralNetMetaDatas = service.getNeuralNetWorker().findAllNeuralNetMetaDatas();
-        view.setSearchResult(neuralNetMetaDatas);
+        List<NeuralNetMetaData> neuralNetMetaData = service.getNeuralNetWorker().findAllNeuralNetMetaDatas();
+        view.setSearchResult(neuralNetMetaData);
     }
 
     public abstract void handleSelection(NeuralNetMetaData metaData);
