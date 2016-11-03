@@ -21,8 +21,6 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     private DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
     private TrainingViewModel trainingViewModel = new TrainingViewModel();
-    private GradientDescentConfig<BufferedImage, Integer> trainingConfig;
-    private GradientDescentParams gradientDescentParams;
 
     public TrainingPresenter(ITrainingView view, ITrainingService service) {
 
@@ -33,7 +31,6 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
     public void init() {
         super.init();
 
-        setupTrainerConfig();
         initViewModel(trainingViewModel);
         bindViewModel(trainingViewModel);
 
@@ -47,22 +44,6 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     private void bindViewModel(TrainingViewModel trainingViewModel) {
         view.bindTrainingsConfiguration(trainingViewModel);
-    }
-
-    private void setupTrainerConfig() {
-
-        trainingConfig = new GradientDescentConfig<>();
-
-        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(gradientDescentParams);
-        IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
-        IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
-
-        trainingConfig.setInputConverter(service.getImageAssembler());
-        trainingConfig.setOutputConverter(service.getDigitAssembler());
-        trainingConfig.setNeuralNetTrainingWorker(netTrainer);
-        trainingConfig.setNeuralNetWorker(service.getNeuralNetWorker());
-        trainingConfig.setNodeTrainer(nodeTrainer);
-        trainingConfig.setParams(gradientDescentParams);
     }
 
     @Override
@@ -81,20 +62,37 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
             //unlock neural net selection and so on
             return;
         }
+        GradientDescentParams params= new GradientDescentParams(3., 5000,1,3);
 
-        Map<BufferedImage, Integer> trainMapper = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(5000, ImageType.TRAIN));
+        INeuralNetTrainer<BufferedImage, Integer> trainer = getNeuralNetTrainer(params);
+        Map<BufferedImage, Integer> trainMapper = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(params.getBadgeSize(), ImageType.TRAIN));
 
-        gradientDescentParams = new GradientDescentParams(3.,trainMapper.size(),1,3);
-        trainingConfig.setParams(gradientDescentParams);
-
-        INeuralNetTrainer<BufferedImage, Integer> trainer = new MiniBadgeTrainer<>(trainingConfig);
 
         view.addInfoText("start training...");
 
         trainer.setNeuralNet(trainingViewModel.getNeuralNet());
+
         long millis = System.currentTimeMillis();
 //        trainer.train(trainMapper);
         view.addInfoText("time: " + (System.currentTimeMillis() -millis));
+    }
+
+    private INeuralNetTrainer<BufferedImage, Integer> getNeuralNetTrainer(GradientDescentParams gradientDescentParams) {
+
+        GradientDescentConfig<BufferedImage, Integer> trainingConfig = new GradientDescentConfig<>();
+
+        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(gradientDescentParams);
+        IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
+        IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
+
+        trainingConfig.setInputConverter(service.getImageAssembler());
+        trainingConfig.setOutputConverter(service.getDigitAssembler());
+        trainingConfig.setNeuralNetTrainingWorker(netTrainer);
+        trainingConfig.setNeuralNetWorker(service.getNeuralNetWorker());
+        trainingConfig.setNodeTrainer(nodeTrainer);
+        trainingConfig.setParams(gradientDescentParams);
+
+        return new MiniBadgeTrainer<>(trainingConfig);
     }
 
     private void loadNeuralNet() throws Exception {

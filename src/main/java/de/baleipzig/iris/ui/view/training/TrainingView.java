@@ -9,6 +9,7 @@ import de.baleipzig.iris.ui.presenter.training.TrainingPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
 import de.baleipzig.iris.ui.view.base.BaseSearchNNView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingViewModel;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
@@ -16,11 +17,11 @@ import javax.annotation.PostConstruct;
 
 @UIScope
 @SpringView(name = TrainingView.VIEW_NAME)
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements ITrainingView {
     public static final String VIEW_NAME = "training";
 
-    @Autowired
-    private ApplicationContext context;
+    private final ApplicationContext context;
 
     private TextField learningRateField = new TextField();
     private TextField trainingCyclesField = new TextField();
