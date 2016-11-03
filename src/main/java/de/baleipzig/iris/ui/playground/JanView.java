@@ -8,15 +8,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import de.baleipzig.iris.common.Dimension;
-import de.baleipzig.iris.common.utils.ImageUtils;
 import de.baleipzig.iris.common.utils.LayerUtils;
-import de.baleipzig.iris.enums.ImageType;
-import de.baleipzig.iris.logic.converter.neuralnet.DigitAssembler;
-import de.baleipzig.iris.logic.converter.neuralnet.IEntityLayerAssembler;
-import de.baleipzig.iris.logic.converter.neuralnet.ILayerEntityAssembler;
-import de.baleipzig.iris.logic.converter.neuralnet.ImageAssembler;
-import de.baleipzig.iris.logic.neuralnettrainer.GradientDescent.*;
-import de.baleipzig.iris.logic.neuralnettrainer.INeuralNetTrainer;
 import de.baleipzig.iris.logic.worker.IImageWorker;
 import de.baleipzig.iris.logic.worker.INeuralNetWorker;
 import de.baleipzig.iris.model.neuralnet.activationfunction.SigmoidFunctionContainer;
@@ -28,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.annotation.PostConstruct;
 import java.awt.image.BufferedImage;
 import java.util.Map;
-import java.util.UUID;
 
 
 @UIScope
@@ -54,35 +45,35 @@ public class JanView extends VerticalLayout implements View {
 
     @PostConstruct
     void init() {
-        this.addComponent(new Label("Jans Spielwiese"));
-        this.addComponent(trainButton);
-        this.addComponent(breakButton);
-        this.addComponent(resultLabel);
-        this.addComponent(oldResultLabel);
-        trainButton.addClickListener(event -> {
-
-            testMapper = null;
-            trainMapper = null;
-
-            if(train == false) {
-                Runnable r = new Runnable() {
-                    @Override
-                    public void run() {
-                        train = true;
-                        while(train) {
-                            trainAndSaveNeuralNet();
-                            oldResultLabel.setValue("old: " + resultLabel.getValue());
-                            resultLabel.setValue("new: " +testNeuralNet("eac2abd8-f993-41f8-8b74-6712521eef3a"));
-                        }
-                    }
-                };
-                (new Thread(r)).start();
-            }
-
-        });
-        breakButton.addClickListener(e -> {
-            train = false;
-        });
+//        this.addComponent(new Label("Jans Spielwiese"));
+//        this.addComponent(trainButton);
+//        this.addComponent(breakButton);
+//        this.addComponent(resultLabel);
+//        this.addComponent(oldResultLabel);
+//        trainButton.addClickListener(event -> {
+//
+//            testMapper = null;
+//            trainMapper = null;
+//
+//            if(train == false) {
+//                Runnable r = new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        train = true;
+//                        while(train) {
+//                            trainAndSaveNeuralNet();
+//                            oldResultLabel.setValue("old: " + resultLabel.getValue());
+//                            resultLabel.setValue("new: " +testNeuralNet("eac2abd8-f993-41f8-8b74-6712521eef3a"));
+//                        }
+//                    }
+//                };
+//                (new Thread(r)).start();
+//            }
+//
+//        });
+//        breakButton.addClickListener(e -> {
+//            train = false;
+//        });
     }
 
     @Override
@@ -93,82 +84,82 @@ public class JanView extends VerticalLayout implements View {
 //        testNeuralNet("ba48995a-e781-4d26-8207-f5b6ad4b4de2");
     }
 
-    private String testNeuralNet(String id) {
-        numberOfCorrectPredictions = 0;
-        IEntityLayerAssembler<BufferedImage> imageAssembler = new ImageAssembler();
-        ILayerEntityAssembler<Integer> digitAssembler = new DigitAssembler();
-        INeuralNet neuralNet = neuralNetWorker.load(UUID.fromString(id));
-
-        if(testMapper == null) {
-            testMapper = ImageUtils.convertToResultMap(imageWorker.loadRandomImagesByType(10000,ImageType.TEST));
-        }
-
-
-        testMapper.forEach((image, expectedDigit) -> {
-
-            imageAssembler.copy(image, neuralNet.getNeuralNetCore().getInputLayer());
-
-            neuralNetWorker.propagateForward(neuralNet);
-
-            int result = digitAssembler.convert(neuralNet.getNeuralNetCore().getOutputLayer());
-
-            if(expectedDigit == result){
-                numberOfCorrectPredictions++;
-            }
-        });
-
-        String result = "Richtige Ergebnisse: " + (100.*numberOfCorrectPredictions/ testMapper.size()) + "%";
-        System.out.println(result);
-        System.out.println(neuralNet);
-        return result;
-    }
+//    private String testNeuralNet(String id) {
+//        numberOfCorrectPredictions = 0;
+//        IEntityLayerAssembler<BufferedImage> imageAssembler = new ImageAssembler();
+//        ILayerEntityAssembler<Integer> digitAssembler = new DigitAssembler();
+//        INeuralNet neuralNet = neuralNetWorker.load(UUID.fromString(id));
+//
+//        if(testMapper == null) {
+//            testMapper = ImageUtils.convertToResultMap(imageWorker.loadRandomImagesByType(10000,ImageType.TEST));
+//        }
+//
+//
+//        testMapper.forEach((image, expectedDigit) -> {
+//
+//            imageAssembler.copy(image, neuralNet.getNeuralNetCore().getInputLayer());
+//
+//            neuralNetWorker.propagateForward(neuralNet);
+//
+//            int result = digitAssembler.convert(neuralNet.getNeuralNetCore().getOutputLayer());
+//
+//            if(expectedDigit == result){
+//                numberOfCorrectPredictions++;
+//            }
+//        });
+//
+//        String result = "Richtige Ergebnisse: " + (100.*numberOfCorrectPredictions/ testMapper.size()) + "%";
+//        System.out.println(result);
+//        System.out.println(neuralNet);
+//        return result;
+//    }
 
     private void trainAndSaveNeuralNet() {
-
-        INeuralNet neuralNet = createNeuralNet();
-
-        Map<BufferedImage, Integer> resultMapper = ImageUtils.convertToResultMap(imageWorker.loadRandomImagesByType( 2500, ImageType.TRAIN));
-
-        IEntityLayerAssembler<BufferedImage> imageConverter = new ImageAssembler();
-        IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
-        GradientDescentConfig config = new GradientDescentConfig(2.,resultMapper.size(),1,5);
-        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
-        IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
-        IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
-
-        INeuralNetTrainer<BufferedImage, Integer> trainer = new MiniBadgeTrainer<>(imageConverter, digitConverter,config, netTrainer, neuralNetWorker, nodeTrainer);
-
-        trainer.setNeuralNet(neuralNet);
-        trainer.train(resultMapper);
-
-        INeuralNet trainedNet = trainer.getNeuralNet();
-        trainedNet.getNeuralNetMetaData().setId(UUID.randomUUID());
-        trainedNet.getNeuralNetMetaData().setName("trainingNet1");
-        trainedNet.getNeuralNetMetaData().setDescription("trainedNet");
-
-        neuralNetWorker.save(trainedNet);
+//
+//        INeuralNet neuralNet = createNeuralNet();
+//
+//        Map<BufferedImage, Integer> resultMapper = ImageUtils.convertToResultMap(imageWorker.loadRandomImagesByType( 2500, ImageType.TRAIN));
+//
+//        IEntityLayerAssembler<BufferedImage> imageConverter = new ImageAssembler();
+//        IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
+//        GradientDescentParams config = new GradientDescentParams(2.,resultMapper.size(),1,5);
+//        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
+//        IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
+//        IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
+//
+//        INeuralNetTrainer<BufferedImage, Integer> trainer = new MiniBadgeTrainer<>(imageConverter, digitConverter,config, netTrainer, neuralNetWorker, nodeTrainer);
+//
+//        trainer.setNeuralNet(neuralNet);
+//        trainer.train(resultMapper);
+//
+//        INeuralNet trainedNet = trainer.getNeuralNet();
+//        trainedNet.getNeuralNetMetaData().setId(UUID.randomUUID());
+//        trainedNet.getNeuralNetMetaData().setName("trainingNet1");
+//        trainedNet.getNeuralNetMetaData().setDescription("trainedNet");
+//
+//        neuralNetWorker.save(trainedNet);
     }
 
     private void trainAndSaveNeuralNet(String id) {
 
-        INeuralNet neuralNet = neuralNetWorker.load(UUID.fromString(id));
-
-        trainMapper = ImageUtils.convertToResultMap(imageWorker.loadRandomImagesByType(5000,ImageType.TRAIN));
-
-        IEntityLayerAssembler<BufferedImage> imageConverter = new ImageAssembler();
-        IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
-        GradientDescentConfig config = new GradientDescentConfig(3.,trainMapper.size(),5,30);
-        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
-        IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
-        IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
-
-        INeuralNetTrainer<BufferedImage, Integer> trainer = new MiniBadgeTrainer<>(imageConverter, digitConverter,config, netTrainer, neuralNetWorker, nodeTrainer);
-
-        trainer.setNeuralNet(neuralNet);
-        long millis = System.currentTimeMillis();
-        trainer.train(trainMapper);
-        System.out.println("Dauer: " + (System.currentTimeMillis() -millis));
-        neuralNetWorker.save(trainer.getNeuralNet());
+//        INeuralNet neuralNet = neuralNetWorker.load(UUID.fromString(id));
+//
+//        trainMapper = ImageUtils.convertToResultMap(imageWorker.loadRandomImagesByType(5000,ImageType.TRAIN));
+//
+//        IEntityLayerAssembler<BufferedImage> imageConverter = new ImageAssembler();
+//        IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
+//        GradientDescentParams config = new GradientDescentParams(3.,trainMapper.size(),5,30);
+//        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
+//        IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
+//        IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
+//
+//        INeuralNetTrainer<BufferedImage, Integer> trainer = new MiniBadgeTrainer<>(imageConverter, digitConverter,config, netTrainer, neuralNetWorker, nodeTrainer);
+//
+//        trainer.setNeuralNet(neuralNet);
+//        long millis = System.currentTimeMillis();
+//        trainer.train(trainMapper);
+//        System.out.println("Dauer: " + (System.currentTimeMillis() -millis));
+//        neuralNetWorker.save(trainer.getNeuralNet());
     }
 
     private INeuralNet createNeuralNet(){

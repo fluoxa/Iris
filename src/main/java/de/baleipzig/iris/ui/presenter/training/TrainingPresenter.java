@@ -2,9 +2,6 @@ package de.baleipzig.iris.ui.presenter.training;
 
 import de.baleipzig.iris.common.utils.ImageUtils;
 import de.baleipzig.iris.enums.ImageType;
-import de.baleipzig.iris.logic.converter.neuralnet.DigitAssembler;
-import de.baleipzig.iris.logic.converter.neuralnet.IEntityLayerAssembler;
-import de.baleipzig.iris.logic.converter.neuralnet.ImageAssembler;
 import de.baleipzig.iris.logic.neuralnettrainer.GradientDescent.*;
 import de.baleipzig.iris.logic.neuralnettrainer.INeuralNetTrainer;
 import de.baleipzig.iris.logic.worker.INeuralNetWorker;
@@ -24,8 +21,11 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     private DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
     private TrainingViewModel trainingViewModel = new TrainingViewModel();
+    private GradientDescentConfig<BufferedImage, Integer> trainingConfig;
+    private GradientDescentParams gradientDescentParams;
 
     public TrainingPresenter(ITrainingView view, ITrainingService service) {
+
         super(view, service);
     }
 
@@ -33,6 +33,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
     public void init() {
         super.init();
 
+        setupTrainerConfig();
         initViewModel(trainingViewModel);
         bindViewModel(trainingViewModel);
 
@@ -46,6 +47,22 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     private void bindViewModel(TrainingViewModel trainingViewModel) {
         view.bindTrainingsConfiguration(trainingViewModel);
+    }
+
+    private void setupTrainerConfig() {
+
+        trainingConfig = new GradientDescentConfig<>();
+
+        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(gradientDescentParams);
+        IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
+        IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
+
+        trainingConfig.setInputConverter(service.getImageAssembler());
+        trainingConfig.setOutputConverter(service.getDigitAssembler());
+        trainingConfig.setNeuralNetTrainingWorker(netTrainer);
+        trainingConfig.setNeuralNetWorker(service.getNeuralNetWorker());
+        trainingConfig.setNodeTrainer(nodeTrainer);
+        trainingConfig.setParams(gradientDescentParams);
     }
 
     @Override
@@ -67,18 +84,16 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
         Map<BufferedImage, Integer> trainMapper = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(5000, ImageType.TRAIN));
 
-        IEntityLayerAssembler<BufferedImage> imageConverter = new ImageAssembler();
-        IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
-        GradientDescentConfig config = new GradientDescentConfig(3.,trainMapper.size(),5,30);
-        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
-        IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
-        IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
+        gradientDescentParams = new GradientDescentParams(3.,trainMapper.size(),1,3);
+        trainingConfig.setParams(gradientDescentParams);
 
-        INeuralNetTrainer<BufferedImage, Integer> trainer = new MiniBadgeTrainer<>(imageConverter, digitConverter,config, netTrainer, service.getNeuralNetWorker(), nodeTrainer);
+        INeuralNetTrainer<BufferedImage, Integer> trainer = new MiniBadgeTrainer<>(trainingConfig);
+
+        view.addInfoText("start training...");
 
         trainer.setNeuralNet(trainingViewModel.getNeuralNet());
         long millis = System.currentTimeMillis();
-        trainer.train(trainMapper);
+//        trainer.train(trainMapper);
         view.addInfoText("time: " + (System.currentTimeMillis() -millis));
     }
 
@@ -94,7 +109,9 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
         if(trainingViewModel.getNeuralNet() == null) {
 
-            trainingViewModel.setNeuralNet(worker.load(selectedNN));
+            INeuralNet loadedNet = worker.load(selectedNN);
+
+            trainingViewModel.setNeuralNet(loadedNet);
             return;
         }
 

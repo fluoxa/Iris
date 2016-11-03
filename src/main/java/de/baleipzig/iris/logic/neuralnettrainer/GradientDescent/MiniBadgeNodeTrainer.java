@@ -14,13 +14,14 @@ import java.util.function.DoubleFunction;
 
 public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
 
-    private GradientDescentConfig config = null;
+    private GradientDescentParams config = null;
     private Map<INode, List<Double>> nodePrevBiasesMapper = null;
     private Map<IAxon, List<Double>> axonPrevWeightsMapper = null;
 
     //region -- constructor --
 
-    public MiniBadgeNodeTrainer(GradientDescentConfig config) {
+    public MiniBadgeNodeTrainer(GradientDescentParams config) {
+
         this.config = config;
     }
 

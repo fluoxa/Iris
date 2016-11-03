@@ -97,8 +97,10 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         verticalLayout.addComponent(settingLayout);
         verticalLayout.addComponent(new Label("Infos:"));
 
-        infoTextArea.setWidth(100, Unit.PERCENTAGE);
+        infoTextArea.setSizeFull();
+        infoTextArea.addStyleName("iris-info-textarea");
         verticalLayout.addComponent(infoTextArea);
+        verticalLayout.setWidth(100, Unit.PERCENTAGE);
         verticalLayout.addComponent(buttonLine);
 
         this.setBodyContent(verticalLayout);

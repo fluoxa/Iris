@@ -1,7 +1,7 @@
 package de.baleipzig.iris.ui.service.training;
 
 import de.baleipzig.iris.configuration.NeuralNetConfig;
-import de.baleipzig.iris.logic.neuralnettrainer.INeuralNetTrainer;
+import de.baleipzig.iris.logic.converter.neuralnet.IEntityLayerAssembler;
 import de.baleipzig.iris.logic.worker.IImageWorker;
 import de.baleipzig.iris.logic.worker.INeuralNetWorker;
 import lombok.Data;
@@ -19,4 +19,7 @@ public class TrainingService implements ITrainingService {
     private final INeuralNetWorker neuralNetWorker;
     private final NeuralNetConfig neuralNetConfig;
     private final IImageWorker imageWorker;
+
+    private final IEntityLayerAssembler<BufferedImage> imageAssembler;
+    private final IEntityLayerAssembler<Integer> digitAssembler;
 }

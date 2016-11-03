@@ -19,7 +19,7 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
     private final IEntityLayerAssembler<InputType> inputConverter;
     private final IEntityLayerAssembler<OutputType> outputConverter;
-    private final GradientDescentConfig config;
+    private final GradientDescentParams params;
     private final IGradientDescentNeuralNetTrainer neuralNetTrainingWorker;
     private final INeuralNetWorker neuralNetWorker;
     private final IMiniBadgeNodeTrainer nodeTrainer;
@@ -30,22 +30,15 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
     //region -- constructor --
 
-    public MiniBadgeTrainer(IEntityLayerAssembler<InputType> inputConverter,
-                            IEntityLayerAssembler<OutputType> outputConverter,
-                            GradientDescentConfig config,
-                            IGradientDescentNeuralNetTrainer trainingWorker,
-                            INeuralNetWorker worker,
-                            IMiniBadgeNodeTrainer nodeTrainer) {
+    public MiniBadgeTrainer(GradientDescentConfig<InputType, OutputType> config) {
 
-        this.inputConverter = inputConverter;
-        this.outputConverter = outputConverter;
-        this.config = config;
-        this.neuralNetTrainingWorker = trainingWorker;
-        this.neuralNetWorker = worker;
+        this.inputConverter = config.getInputConverter();
+        this.outputConverter = config.getOutputConverter();
+        this.params = config.getParams();
+        this.neuralNetTrainingWorker = config.getNeuralNetTrainingWorker();
+        this.neuralNetWorker = config.getNeuralNetWorker();
 
-        this.isInterrupted = false;
-
-        this.nodeTrainer = nodeTrainer;
+        this.nodeTrainer = config.getNodeTrainer();
     }
 
     //endregion
@@ -64,7 +57,7 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
         int cycle = 0;
 
-        while( cycle < config.getTrainingCycles() && !isInterrupted){
+        while( cycle < params.getTrainingCycles() && !isInterrupted){
 
             System.out.print(cycle + " ");
 
