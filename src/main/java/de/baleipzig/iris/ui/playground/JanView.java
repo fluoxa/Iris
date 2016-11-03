@@ -46,7 +46,8 @@ public class JanView extends VerticalLayout implements View {
     @PostConstruct
     void init() {
 //        this.addComponent(new Label("Jans Spielwiese"));
-//        this.addComponent(trainButton);
+        this.addComponent(trainButton);
+        trainButton.addClickListener(e -> createNeuralNet());
 //        this.addComponent(breakButton);
 //        this.addComponent(resultLabel);
 //        this.addComponent(oldResultLabel);
@@ -115,29 +116,29 @@ public class JanView extends VerticalLayout implements View {
 //    }
 
     private void trainAndSaveNeuralNet() {
-//
-//        INeuralNet neuralNet = createNeuralNet();
-//
-//        Map<BufferedImage, Integer> resultMapper = ImageUtils.convertToResultMap(imageWorker.loadRandomImagesByType( 2500, ImageType.TRAIN));
-//
-//        IEntityLayerAssembler<BufferedImage> imageConverter = new ImageAssembler();
-//        IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
-//        GradientDescentParams config = new GradientDescentParams(2.,resultMapper.size(),1,5);
-//        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
-//        IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
-//        IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
-//
-//        INeuralNetTrainer<BufferedImage, Integer> trainer = new MiniBadgeTrainer<>(imageConverter, digitConverter,config, netTrainer, neuralNetWorker, nodeTrainer);
-//
-//        trainer.setNeuralNet(neuralNet);
-//        trainer.train(resultMapper);
-//
-//        INeuralNet trainedNet = trainer.getNeuralNet();
-//        trainedNet.getNeuralNetMetaData().setId(UUID.randomUUID());
-//        trainedNet.getNeuralNetMetaData().setName("trainingNet1");
-//        trainedNet.getNeuralNetMetaData().setDescription("trainedNet");
-//
-//        neuralNetWorker.save(trainedNet);
+
+/*        INeuralNet neuralNet = createNeuralNet();
+
+        Map<BufferedImage, Integer> resultMapper = ImageUtils.convertToResultMap(imageWorker.loadRandomImagesByType( 2500, ImageType.TRAIN));
+
+        IEntityLayerAssembler<BufferedImage> imageConverter = new ImageAssembler();
+        IEntityLayerAssembler<Integer> digitConverter = new DigitAssembler();
+        GradientDescentParams config = new GradientDescentParams(2.,resultMapper.size(),1,5);
+        IMiniBadgeNodeTrainer nodeTrainer = new MiniBadgeNodeTrainer(config);
+        IGradientDescentLayerTrainer layerTrainer = new GradientDescentLayerTrainer(nodeTrainer);
+        IGradientDescentNeuralNetTrainer netTrainer = new GradientDescentNeuralNetTrainer(layerTrainer);
+
+        INeuralNetTrainer<BufferedImage, Integer> trainer = new MiniBadgeTrainer<>(imageConverter, digitConverter,config, netTrainer, neuralNetWorker, nodeTrainer);
+
+        trainer.setNeuralNet(neuralNet);
+        trainer.train(resultMapper);
+
+        INeuralNet trainedNet = trainer.getNeuralNet();
+        trainedNet.getNeuralNetMetaData().setId(UUID.randomUUID());
+        trainedNet.getNeuralNetMetaData().setName("trainingNet1");
+        trainedNet.getNeuralNetMetaData().setDescription("trainedNet");*/
+
+
     }
 
     private void trainAndSaveNeuralNet(String id) {
@@ -177,8 +178,11 @@ public class JanView extends VerticalLayout implements View {
         neuralNetCore.setInputLayer(inputLayer);
         neuralNetCore.setOutputLayer(outputLayer);
         neuralNetCore.addHiddenLayer(hiddenLayer);
-        neuralNet.setNeuralNetMetaData(new NeuralNetMetaData());
-
+        NeuralNetMetaData meta = new NeuralNetMetaData();
+        meta.setName("daniel " + System.currentTimeMillis());
+        meta.setDescription("daniel " + System.currentTimeMillis());
+        neuralNet.setNeuralNetMetaData(meta);
+        neuralNetWorker.save(neuralNet);
         return neuralNet;
     }
 }
