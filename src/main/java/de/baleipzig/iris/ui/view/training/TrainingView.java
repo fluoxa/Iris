@@ -54,7 +54,7 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         startTraining.setCaption("start Training");
         stopTraining.setCaption("stop Training");
         saveNeuralNet.setCaption("save Neural Net");
-        resetNeuralNet.setCaption("reset Training");
+        resetNeuralNet.setCaption("reset Neural Net");
         configNeuralNet.setCaption("config Neural Net");
     }
 
@@ -136,6 +136,17 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         String newline = infoTextArea.getValue().isEmpty() ? "" : System.lineSeparator();
 
         infoTextArea.setValue(String.format("%s%s%s",infoTextArea.getValue(), newline, message));
+    }
+
+    @Override
+    public void setTrainingLock(boolean isLocked) {
+
+        startTraining.setEnabled(!isLocked);
+        saveNeuralNet.setEnabled(!isLocked);
+        resetNeuralNet.setEnabled(!isLocked);
+        configNeuralNet.setEnabled(!isLocked);
+
+        super.lockSearchResultTable(isLocked);
     }
 
     //endregion

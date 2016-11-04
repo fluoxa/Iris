@@ -1,5 +1,6 @@
 package de.baleipzig.iris.logic.worker;
 
+import de.baleipzig.iris.configuration.NeuralNetConfig;
 import de.baleipzig.iris.enums.ImageType;
 import de.baleipzig.iris.logic.converter.database.ImageConverter;
 import de.baleipzig.iris.model.image.IImage;
@@ -21,12 +22,13 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ImageWorker implements IImageWorker {
 
+    private final NeuralNetConfig config;
     private final Map<ImageType, List<IImage>> allImagesAsMap = new HashMap<>();
-
     private final IImageEntityRepository repository;
 
     @Override
     public long countImagesByType(ImageType imageType) {
+
         return repository.countByImageType(imageType.toString());
     }
 
@@ -44,6 +46,7 @@ public class ImageWorker implements IImageWorker {
 
     @Override
     public List<IImage> loadAllImagesByType(ImageType imageType) {
+
         synchronized (allImagesAsMap) {
             if (allImagesAsMap.get(imageType) == null) {
 
@@ -66,30 +69,34 @@ public class ImageWorker implements IImageWorker {
     public void exportImageToDb() {
         repository.deleteAll();
 
-        processImageFolder("C:\\mnist\\mnist-test", ImageType.TEST);
-        processImageFolder("C:\\mnist\\mnist-training", ImageType.TRAIN);
+        processImageFolder(config.getPathTestImages(), ImageType.TEST);
+        processImageFolder(config.getPathTrainingImages(), ImageType.TRAIN);
     }
 
-
     private void processImageFolder(String pathToFolder, ImageType imageType) {
+
         final List<ImageEntity> imageEntities = new ArrayList<>();
+
         try (Stream<Path> paths = Files.walk(Paths.get(pathToFolder))) {
             paths.forEach(filePath -> {
+
                 try {
                     processFile(filePath, imageType, imageEntities);
                 } catch (Exception e) {
                     System.out.println(e);
                 }
-
             });
         } catch (IOException e) {
             System.out.println(e);
         }
+
         repository.save(imageEntities);
     }
 
     private void processFile(Path path, ImageType imageType, List<ImageEntity> imageEntities) throws Exception {
+
         if (Files.isRegularFile(path)) {
+
             byte[] data = Files.readAllBytes(path);
 
             String imageAsBase64 = Base64.getEncoder().encodeToString(data);
