@@ -134,19 +134,19 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     public void addInfoText(String message) {
 
         String newline = infoTextArea.getValue().isEmpty() ? "" : System.lineSeparator();
-
         infoTextArea.setValue(String.format("%s%s%s",infoTextArea.getValue(), newline, message));
     }
 
     @Override
     public void setTrainingLock(boolean isLocked) {
 
-        startTraining.setEnabled(!isLocked);
-        saveNeuralNet.setEnabled(!isLocked);
-        resetNeuralNet.setEnabled(!isLocked);
-        configNeuralNet.setEnabled(!isLocked);
+        for (Component comp : this) {
+            if (comp instanceof Button && comp != stopTraining) {
+                comp.setEnabled(isLocked);
+            }
+        }
 
-        super.lockSearchResultTable(isLocked);
+        lockSearchResultTable(isLocked);
     }
 
     //endregion
