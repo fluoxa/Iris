@@ -1,6 +1,7 @@
 package de.baleipzig.iris.configuration.spring;
 
 import de.baleipzig.iris.logic.converter.neuralnet.DigitAssembler;
+import de.baleipzig.iris.logic.converter.neuralnet.IAssembler;
 import de.baleipzig.iris.logic.converter.neuralnet.IEntityLayerAssembler;
 import de.baleipzig.iris.logic.converter.neuralnet.ImageAssembler;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +18,7 @@ public class AssemblerConfiguration {
     }
 
     @Bean
-    public IEntityLayerAssembler<Integer> digitAssembler() {
+    public IAssembler<Integer> digitAssembler() {
         return new DigitAssembler();
     }
 

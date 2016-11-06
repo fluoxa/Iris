@@ -1,30 +1,19 @@
 package de.baleipzig.iris.logic.neuralnettrainer.GradientDescent;
 
-import de.baleipzig.iris.logic.converter.neuralnet.IEntityLayerAssembler;
-import de.baleipzig.iris.logic.neuralnettrainer.INeuralNetTrainer;
-import de.baleipzig.iris.logic.worker.INeuralNetWorker;
+import de.baleipzig.iris.logic.neuralnettrainer.BaseTrainer;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
-import lombok.Getter;
 
 import java.util.Map;
 
 public class MiniBadgeTrainer<InputType, OutputType>
-        implements INeuralNetTrainer<InputType, OutputType> {
+        extends BaseTrainer<InputType, OutputType> {
 
     //region -- member --
 
-    @Getter
-    private INeuralNet neuralNet = null;
-
-    private final IEntityLayerAssembler<InputType> inputConverter;
-    private final IEntityLayerAssembler<OutputType> outputConverter;
     private final GradientDescentParams params;
     private final IGradientDescentNeuralNetTrainer neuralNetTrainingWorker;
-    private final INeuralNetWorker neuralNetWorker;
     private final IMiniBadgeNodeTrainer nodeTrainer;
-
-    private boolean isInterrupted;
 
     //endregion
 
@@ -32,12 +21,10 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
     public MiniBadgeTrainer(GradientDescentConfig<InputType, OutputType> config) {
 
-        this.inputConverter = config.getInputConverter();
-        this.outputConverter = config.getOutputConverter();
-        this.params = config.getParams();
-        this.neuralNetTrainingWorker = config.getNeuralNetTrainingWorker();
-        this.neuralNetWorker = config.getNeuralNetWorker();
+        super(config.getInputConverter(), config.getOutputConverter(), config.getNeuralNetWorker());
 
+        this.neuralNetTrainingWorker = config.getNeuralNetTrainingWorker();
+        this.params = config.getParams();
         this.nodeTrainer = config.getNodeTrainer();
     }
 

@@ -9,6 +9,9 @@ public interface INeuralNetTrainer<InputType, OutputType> {
     INeuralNet getNeuralNet();
 
     void interruptTraining();
+    void interruptTest();
 
     void train (Map<InputType, OutputType> trainingData);
+
+    double getErrorRate(Map<InputType, OutputType> testData);
 }

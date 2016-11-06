@@ -19,6 +19,8 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
     private TrainingViewModel model = new TrainingViewModel();
     private final DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 
+    private INeuralNetTrainer<BufferedImage, Integer> trainer;
+
     public TrainingPresenter(ITrainingView view, ITrainingService service) {
 
         super(view, service);
@@ -36,6 +38,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     @Override
     public void handleSelection(NeuralNetMetaData metaData) {
+
         model.setSelectedNeuralNetId(metaData.getId());
     }
 
@@ -57,13 +60,18 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
                 model.getTrainingCycles(),
                 model.getMiniBadgeSize());
 
-        INeuralNetTrainer<BufferedImage, Integer> trainer = this.getGradDescTrainer(params);
+        trainer = getGradDescTrainer(params);
         trainer.setNeuralNet(model.getNeuralNet());
-        Map<BufferedImage, Integer> trainMapper = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(params.getBadgeSize(), ImageType.TRAIN));
+        Map<BufferedImage, Integer> trainingData = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(params.getBadgeSize(), ImageType.TRAIN));
+        Map<BufferedImage, Integer> testData = ImageUtils.convertToResultMap(service.getImageWorker().loadAllImagesByType(ImageType.TEST));
 
         view.addInfoText(String.format("Neural Net %s: training started...", model.getNeuralNet().getNeuralNetMetaData().getName()));
-        trainer.train(trainMapper);
+        trainer.train(trainingData);
         view.addInfoText(String.format("Neural Net %s: training finished...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+
+        view.addInfoText(String.format("Neural Net %s: starting tests...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+        double errorRate = trainer.getErrorRate(testData);
+        view.addInfoText(String.format("Neural Net %s: error rate %4f", model.getNeuralNet().getNeuralNetMetaData().getName(), errorRate));
 
         view.setTrainingLock(false);
     }

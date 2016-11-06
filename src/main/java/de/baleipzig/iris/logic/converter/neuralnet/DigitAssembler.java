@@ -6,7 +6,7 @@ import de.baleipzig.iris.common.utils.LayerUtils;
 import de.baleipzig.iris.model.neuralnet.activationfunction.IFunctionContainer;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 
-public class DigitAssembler implements IEntityLayerAssembler<Integer> , ILayerEntityAssembler<Integer> {
+public class DigitAssembler implements IAssembler<Integer> {
 
 	private final int MAX_DIGIT = 9;
 	private final int MIN_DIGIT = 0;
