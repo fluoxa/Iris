@@ -19,29 +19,26 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
     private final IEntityLayerAssembler<InputType> inputConverter;
     private final IEntityLayerAssembler<OutputType> outputConverter;
-    private final GradientDescentConfig config;
+    private final GradientDescentParams params;
     private final IGradientDescentNeuralNetTrainer neuralNetTrainingWorker;
     private final INeuralNetWorker neuralNetWorker;
     private final IMiniBadgeNodeTrainer nodeTrainer;
+
+    private boolean isInterrupted;
 
     //endregion
 
     //region -- constructor --
 
-    public MiniBadgeTrainer(IEntityLayerAssembler<InputType> inputConverter,
-                            IEntityLayerAssembler<OutputType> outputConverter,
-                            GradientDescentConfig config,
-                            IGradientDescentNeuralNetTrainer trainingWorker,
-                            INeuralNetWorker worker,
-                            IMiniBadgeNodeTrainer nodeTrainer) {
+    public MiniBadgeTrainer(GradientDescentConfig<InputType, OutputType> config) {
 
-        this.inputConverter = inputConverter;
-        this.outputConverter = outputConverter;
-        this.config = config;
-        this.neuralNetTrainingWorker = trainingWorker;
-        this.neuralNetWorker = worker;
+        this.inputConverter = config.getInputConverter();
+        this.outputConverter = config.getOutputConverter();
+        this.params = config.getParams();
+        this.neuralNetTrainingWorker = config.getNeuralNetTrainingWorker();
+        this.neuralNetWorker = config.getNeuralNetWorker();
 
-        this.nodeTrainer = nodeTrainer;
+        this.nodeTrainer = config.getNodeTrainer();
     }
 
     //endregion
@@ -56,7 +53,11 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
     public void train(Map<InputType, OutputType> trainingData) {
 
-        for(int cycle = 0; cycle < config.getTrainingCycles(); cycle++){
+        isInterrupted = false;
+
+        int cycle = 0;
+
+        while( cycle < params.getTrainingCycles() && !isInterrupted){
 
             System.out.print(cycle + " ");
 
@@ -68,7 +69,15 @@ public class MiniBadgeTrainer<InputType, OutputType>
                 ILayer expectedResultLayer = outputConverter.convert(expectedResult, null);
                 neuralNetTrainingWorker.propagateBackward(neuralNet, expectedResultLayer);
             });
+
+            cycle++;
         }
+
+        isInterrupted = false;
+    }
+
+    public void interruptTraining() {
+        isInterrupted = true;
     }
 
     //endregion

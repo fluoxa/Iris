@@ -9,6 +9,7 @@ import de.baleipzig.iris.ui.presenter.training.TrainingPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
 import de.baleipzig.iris.ui.view.base.BaseSearchNNView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingViewModel;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
@@ -16,11 +17,11 @@ import javax.annotation.PostConstruct;
 
 @UIScope
 @SpringView(name = TrainingView.VIEW_NAME)
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements ITrainingView {
     public static final String VIEW_NAME = "training";
 
-    @Autowired
-    private ApplicationContext context;
+    private final ApplicationContext context;
 
     private TextField learningRateField = new TextField();
     private TextField trainingCyclesField = new TextField();
@@ -53,7 +54,7 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         startTraining.setCaption("start Training");
         stopTraining.setCaption("stop Training");
         saveNeuralNet.setCaption("save Neural Net");
-        resetNeuralNet.setCaption("reset Training");
+        resetNeuralNet.setCaption("reset Neural Net");
         configNeuralNet.setCaption("config Neural Net");
     }
 
@@ -97,8 +98,10 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         verticalLayout.addComponent(settingLayout);
         verticalLayout.addComponent(new Label("Infos:"));
 
-        infoTextArea.setWidth(100, Unit.PERCENTAGE);
+        infoTextArea.setSizeFull();
+        infoTextArea.addStyleName("iris-info-textarea");
         verticalLayout.addComponent(infoTextArea);
+        verticalLayout.setWidth(100, Unit.PERCENTAGE);
         verticalLayout.addComponent(buttonLine);
 
         this.setBodyContent(verticalLayout);
@@ -114,18 +117,36 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
 
         BeanFieldGroup<TrainingViewModel> group = new BeanFieldGroup<>(TrainingViewModel.class);
         group.setItemDataSource(trainingViewModel);
+
+        bindTrainingViewModelToView(group);
+
+        group.setBuffered(false);
+    }
+
+    private void bindTrainingViewModelToView(BeanFieldGroup<TrainingViewModel> group) {
+
         group.bind(learningRateField, "learningRate");
         group.bind(miniBadgeSizeField, "miniBadgeSize");
         group.bind(trainingCyclesField, "trainingCycles");
         group.bind(trainingSetSizeField, "trainingSetSize");
-        group.setBuffered(false);
     }
 
     public void addInfoText(String message) {
 
         String newline = infoTextArea.getValue().isEmpty() ? "" : System.lineSeparator();
-
         infoTextArea.setValue(String.format("%s%s%s",infoTextArea.getValue(), newline, message));
+    }
+
+    @Override
+    public void setTrainingLock(boolean isLocked) {
+
+        for (Component comp : this) {
+            if (comp instanceof Button && comp != stopTraining) {
+                comp.setEnabled(isLocked);
+            }
+        }
+
+        lockSearchResultTable(isLocked);
     }
 
     //endregion
