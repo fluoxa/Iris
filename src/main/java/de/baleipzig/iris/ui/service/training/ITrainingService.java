@@ -15,5 +15,6 @@ public interface ITrainingService extends IBaseSearchNNService {
     IImageWorker getImageWorker();
     IEntityLayerAssembler<BufferedImage> getImageAssembler();
     IAssembler<Integer> getDigitAssembler();
-    DozerBeanMapper  getDozerBeanMapper();
+
+    DozerBeanMapper getDozerBeanMapper();
 }
