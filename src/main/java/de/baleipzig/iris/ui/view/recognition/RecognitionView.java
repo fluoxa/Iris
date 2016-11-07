@@ -33,7 +33,6 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
     @PostConstruct
     private void init() {
-        System.out.println("RecognitionView");
         setBodyContent(new Label("RecognitionView"));
 
         presenter = new RecognitionPresenter(this, (IRecognitionService)  context.getBean("recognitionService"));

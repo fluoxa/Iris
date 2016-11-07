@@ -28,7 +28,6 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
     @PostConstruct
     private void init() {
-        System.out.println("BaseSearchNNView");
         createLayout();
         addListeners();
     }
@@ -79,9 +78,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
     }
 
     private void addListeners() {
-        searchButton.addClickListener(e -> {
-            presenter.searchNeuralNets(searchTextField.getValue());
-        });
+        searchButton.addClickListener(e -> presenter.searchNeuralNets(searchTextField.getValue()));
 
         searchTextField.addFocusListener(e -> toggleSearchButtonClickListener(true));
     }
@@ -96,7 +93,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
     @Override
     public void setSearchResult(List<NeuralNetMetaData> neuralNetMetaDatas) {
-        BeanItemContainer<NeuralNetMetaData> resultAsContainer = new BeanItemContainer<NeuralNetMetaData>(NeuralNetMetaData.class, neuralNetMetaDatas);
+        BeanItemContainer<NeuralNetMetaData> resultAsContainer = new BeanItemContainer<>(NeuralNetMetaData.class, neuralNetMetaDatas);
 
         Table searchResultTable = new Table();
         searchResultTable.setContainerDataSource(resultAsContainer);

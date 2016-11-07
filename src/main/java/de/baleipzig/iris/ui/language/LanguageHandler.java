@@ -4,6 +4,7 @@ import com.vaadin.spring.annotation.VaadinSessionScope;
 import de.baleipzig.iris.configuration.LanguageConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,8 +12,8 @@ import java.util.Locale;
 
 @Component
 @VaadinSessionScope
-//@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class LanguageHandler {
+
     private final ApplicationContext context;
     private final LanguageConfiguration languageConfiguration;
 
@@ -30,28 +31,18 @@ public class LanguageHandler {
         setLanguage(languageConfiguration.getLanguages().get(0));
     }
 
-    public void setLanguage(LanguageConfiguration.Language language) {
-        if (language == null) {
-            throw new RuntimeException("languageEntry cant be null");
-        }
-
-        Locale localeByLanguage =  new Locale(language.getLocaleKey());
-
-        if(localeByLanguage == null) {
-            throw new RuntimeException(language + " is not a valid entry");
-        }
-        this.language = language;
-        locale = localeByLanguage;
-
-    }
-
     public String getTranslation(String translationKey) {
         return getTranslation(translationKey, null);
     }
 
-
     public String getTranslation(String translationKey, Object[] args) {
-        return context.getMessage(translationKey, args, locale);
+        String translation = translationKey;
+        try {
+            translation = context.getMessage(translationKey, args, locale);
+        } catch (NoSuchMessageException e) {
+            System.out.println(e);
+        }
+        return translation;
     }
 
     public List<LanguageConfiguration.Language> getAvailableLanguages() {
@@ -68,5 +59,16 @@ public class LanguageHandler {
         } else {
             return getDefaultLanguage();
         }
+    }
+
+    public void setLanguage(LanguageConfiguration.Language language) {
+        if (language == null) {
+            throw new RuntimeException("languageEntry cant be null");
+        }
+
+        Locale localeByLanguage = new Locale(language.getLocaleKey());
+
+        this.language = language;
+        locale = localeByLanguage;
     }
 }
