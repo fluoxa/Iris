@@ -1,5 +1,6 @@
 package de.baleipzig.iris.logic.neuralnettrainer.gradientdescent;
 
+import de.baleipzig.iris.enums.ResultType;
 import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
 import de.baleipzig.iris.logic.neuralnettrainer.BaseTrainer;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
@@ -48,7 +49,7 @@ public class MiniBadgeTrainer<InputType, OutputType>
         while( cycle < params.getTrainingCycles()){
 
             if( interrupted ) {
-                return new Result(false);
+                return new Result(ResultType.FAILURE);
             }
 
             trainingData.forEach( (inputData, expectedResult) -> {
@@ -64,7 +65,7 @@ public class MiniBadgeTrainer<InputType, OutputType>
         }
 
         interrupted = false;
-        return new Result(true);
+        return new Result(ResultType.SUCCESS);
     }
 
     public void interruptTraining() {

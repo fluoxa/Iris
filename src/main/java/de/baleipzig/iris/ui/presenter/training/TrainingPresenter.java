@@ -3,6 +3,7 @@ package de.baleipzig.iris.ui.presenter.training;
 import com.vaadin.ui.UI;
 import de.baleipzig.iris.common.utils.ImageUtils;
 import de.baleipzig.iris.enums.ImageType;
+import de.baleipzig.iris.enums.ResultType;
 import de.baleipzig.iris.logic.neuralnettrainer.INeuralNetTrainer;
 import de.baleipzig.iris.logic.neuralnettrainer.gradientdescent.*;
 import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
@@ -70,7 +71,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
         Result trainingResult = trainer.train(trainingData);
 
-        if(!trainingResult.isSuccess()) {
+        if(trainingResult.getResultType() != ResultType.SUCCESS) {
             UI.getCurrent().access(() -> view.setTrainingLock(false));
             return null;
         }
@@ -80,7 +81,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
         TestResult testResult = trainer.getTestResult(testData);
 
-        if(testResult.isSuccess()) {
+        if(testResult.getResultType() == ResultType.SUCCESS) {
             view.addInfoText(String.format("Neural Net %s: error rate %4f", model.getNeuralNet().getNeuralNetMetaData().getName(), testResult.getErrorRate()));
         }
 

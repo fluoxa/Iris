@@ -1,5 +1,6 @@
 package de.baleipzig.iris.logic.neuralnettrainer;
 
+import de.baleipzig.iris.enums.ResultType;
 import de.baleipzig.iris.logic.converter.neuralnet.IAssembler;
 import de.baleipzig.iris.logic.converter.neuralnet.IEntityLayerAssembler;
 import de.baleipzig.iris.logic.neuralnettrainer.result.TestResult;
@@ -45,7 +46,7 @@ public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTr
         for(Map.Entry<InputType, OutputType> testEntity : testData.entrySet()) {
 
             if(interrupted) {
-                return new TestResult(false, -1.);
+                return new TestResult(ResultType.FAILURE, -1.);
             }
 
             inputConverter.copy(testEntity.getKey(), neuralNet.getNeuralNetCore().getInputLayer());
@@ -59,7 +60,7 @@ public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTr
             }
         }
 
-        return new TestResult(true, 1. - ((double) numberOfCorrectPredictions / (double) testData.size()));
+        return new TestResult(ResultType.SUCCESS, 1. - ((double) numberOfCorrectPredictions / (double) testData.size()));
     }
 
     public void interruptTest() {

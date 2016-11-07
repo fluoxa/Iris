@@ -1,5 +1,6 @@
 package de.baleipzig.iris.logic.neuralnettrainer.result;
 
+import de.baleipzig.iris.enums.ResultType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -7,5 +8,5 @@ import lombok.Data;
 @Data
 public class Result {
 
-    private boolean success;
+    private ResultType resultType;
 }
