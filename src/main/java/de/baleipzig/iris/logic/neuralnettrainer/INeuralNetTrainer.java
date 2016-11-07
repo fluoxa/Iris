@@ -1,6 +1,9 @@
 package de.baleipzig.iris.logic.neuralnettrainer;
 
+import de.baleipzig.iris.logic.neuralnettrainer.result.TestResult;
+import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
+
 import java.util.Map;
 
 public interface INeuralNetTrainer<InputType, OutputType> {
@@ -11,7 +14,7 @@ public interface INeuralNetTrainer<InputType, OutputType> {
     void interruptTraining();
     void interruptTest();
 
-    void train (Map<InputType, OutputType> trainingData);
+    Result train (Map<InputType, OutputType> trainingData);
 
-    double getErrorRate(Map<InputType, OutputType> testData);
+    TestResult getTestResult(Map<InputType, OutputType> testData);
 }

@@ -1,4 +1,4 @@
-package de.baleipzig.iris.logic.neuralnettrainer.GradientDescent;
+package de.baleipzig.iris.logic.neuralnettrainer.gradientdescent;
 
 import de.baleipzig.iris.logic.converter.neuralnet.IAssembler;
 import de.baleipzig.iris.logic.converter.neuralnet.IEntityLayerAssembler;

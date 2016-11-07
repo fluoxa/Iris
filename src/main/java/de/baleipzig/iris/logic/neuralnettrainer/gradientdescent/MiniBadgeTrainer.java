@@ -1,5 +1,6 @@
-package de.baleipzig.iris.logic.neuralnettrainer.GradientDescent;
+package de.baleipzig.iris.logic.neuralnettrainer.gradientdescent;
 
+import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
 import de.baleipzig.iris.logic.neuralnettrainer.BaseTrainer;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
@@ -38,15 +39,17 @@ public class MiniBadgeTrainer<InputType, OutputType>
         this.nodeTrainer.updateBiasWeightCache(neuralNet);
     }
 
-    public void train(Map<InputType, OutputType> trainingData) {
+    public Result train(Map<InputType, OutputType> trainingData) {
 
         interrupted = false;
 
         int cycle = 0;
 
-        while( cycle < params.getTrainingCycles() && !interrupted){
+        while( cycle < params.getTrainingCycles()){
 
-            System.out.print(cycle + " ");
+            if( interrupted ) {
+                return new Result(false);
+            }
 
             trainingData.forEach( (inputData, expectedResult) -> {
 
@@ -61,6 +64,7 @@ public class MiniBadgeTrainer<InputType, OutputType>
         }
 
         interrupted = false;
+        return new Result(true);
     }
 
     public void interruptTraining() {
