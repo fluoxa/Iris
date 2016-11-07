@@ -1,5 +1,6 @@
 package de.baleipzig.iris.ui.presenter.base;
 
+import de.baleipzig.iris.configuration.LanguageConfiguration;
 import de.baleipzig.iris.ui.service.base.IBaseService;
 import de.baleipzig.iris.ui.view.base.IBaseView;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,10 @@ public abstract class BasePresenter<V extends IBaseView, S extends IBaseService>
         view.setSelectedLanguage(service.getLanguageHandler().getLanguage());
     }
 
-    public void changeLanguage() {
-        //do something
+    public void changeLanguage(LanguageConfiguration.Language language) {
+        if(!service.getLanguageHandler().getLanguage().equals(language)) {
+            service.getLanguageHandler().setLanguage(language);
+            view.reload();
+        }
     }
 }

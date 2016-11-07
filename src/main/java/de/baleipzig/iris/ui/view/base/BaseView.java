@@ -13,6 +13,7 @@ import java.util.List;
 public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout implements IBaseView<P> {
 
     private final HorizontalLayout bodyLayout = new HorizontalLayout();
+    private final CssLayout languageComboBoxLayout = new CssLayout();
     private final ComboBox languageComboBox = new ComboBox();
     protected P presenter;
 
@@ -33,6 +34,7 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
         languageComboBox.setItemCaptionMode(AbstractSelect.ItemCaptionMode.PROPERTY);
         languageComboBox.setNullSelectionAllowed(false);
         languageComboBox.setWidth("100px");
+        languageComboBox.addValueChangeListener(e -> presenter.changeLanguage((LanguageConfiguration.Language) e.getProperty().getValue()));
 
         final HorizontalLayout headerLayout = new HorizontalLayout();
         headerLayout.addStyleName("iris-header-layout");
@@ -69,13 +71,20 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
 
     public void setAvailableLanguages(List<LanguageConfiguration.Language> languages) {
         languageComboBox.clear();
+        //languageComboBox.getListeners(Property.ValueChangeListener.class).forEach(l -> languageComboBox.removeListener((Listener) l));
         BeanItemContainer<LanguageConfiguration.Language> languagesAsContainer = new BeanItemContainer<>(LanguageConfiguration.Language.class, languages);
         languageComboBox.setContainerDataSource(languagesAsContainer);
         languageComboBox.setItemCaptionPropertyId("displayName");
+
+
     }
 
     public void setSelectedLanguage(LanguageConfiguration.Language language) {
         languageComboBox.setValue(language);
+    }
+
+    public void reload() {
+        //UI.getCurrent().getNavigator().getCurrentView().enter();
     }
 
     protected void setBodyContent(Component content) {

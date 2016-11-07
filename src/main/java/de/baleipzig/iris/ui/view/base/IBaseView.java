@@ -11,4 +11,5 @@ public interface IBaseView<P extends BasePresenter> extends View {
     public LanguageHandler getLanguageHandler();
     public void setAvailableLanguages(List<LanguageConfiguration.Language> languages);
     public void setSelectedLanguage(LanguageConfiguration.Language language);
+    public void reload();
 }

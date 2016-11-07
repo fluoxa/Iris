@@ -27,7 +27,7 @@ public class IrisUi extends UI {
     @Override
     protected void init(VaadinRequest request) {
 
-        initLanguageHandler();
+        //initLanguageHandler();
 
         final CssLayout root = new CssLayout();
         root.setSizeFull();

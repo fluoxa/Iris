@@ -1,6 +1,6 @@
 package de.baleipzig.iris.ui.language;
 
-import com.vaadin.spring.annotation.UIScope;
+import com.vaadin.spring.annotation.VaadinSessionScope;
 import de.baleipzig.iris.configuration.LanguageConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Component
-@UIScope
+@VaadinSessionScope
 //@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class LanguageHandler {
     private final ApplicationContext context;
