@@ -28,6 +28,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
     @PostConstruct
     private void init() {
+        System.out.println("BaseSearchNNView");
         createLayout();
         addListeners();
     }

@@ -1,20 +1,24 @@
 package de.baleipzig.iris.ui.view.base;
 
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.*;
+import de.baleipzig.iris.configuration.LanguageConfiguration;
 import de.baleipzig.iris.ui.presenter.base.BasePresenter;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout implements IBaseView<P> {
 
     private final HorizontalLayout bodyLayout = new HorizontalLayout();
-
+    private final ComboBox languageComboBox = new ComboBox();
     protected P presenter;
 
     @PostConstruct
     private void init() {
+        System.out.println("BaseView");
         createLayout();
     }
 
@@ -26,7 +30,9 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
         Label applicationLabel = new Label("Iris - Ziffernerkennung");
         applicationLabel.addStyleName("iris-name-label");
 
-        ComboBox languageComboBox = new ComboBox();
+        languageComboBox.setItemCaptionMode(AbstractSelect.ItemCaptionMode.PROPERTY);
+        languageComboBox.setNullSelectionAllowed(false);
+        languageComboBox.setWidth("100px");
 
         final HorizontalLayout headerLayout = new HorizontalLayout();
         headerLayout.addStyleName("iris-header-layout");
@@ -59,6 +65,17 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
         setSizeFull();
         setMargin(true);
         addComponent(headerAndBodyLayout);
+    }
+
+    public void setAvailableLanguages(List<LanguageConfiguration.Language> languages) {
+        languageComboBox.clear();
+        BeanItemContainer<LanguageConfiguration.Language> languagesAsContainer = new BeanItemContainer<>(LanguageConfiguration.Language.class, languages);
+        languageComboBox.setContainerDataSource(languagesAsContainer);
+        languageComboBox.setItemCaptionPropertyId("displayName");
+    }
+
+    public void setSelectedLanguage(LanguageConfiguration.Language language) {
+        languageComboBox.setValue(language);
     }
 
     protected void setBodyContent(Component content) {

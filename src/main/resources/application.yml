@@ -18,6 +18,15 @@ de:
         trainingCycles: 50
         trainingSetSize: 2000
         miniBadgeSize: 25
+      languageconfiguration:
+        #die erste ist Standard
+        languages:
+          -
+            localeKey: de
+            displayName: DE
+          -
+            localeKey: en
+            displayName: EN
       example:
         exampleString: foo
         exampleBoolean: true

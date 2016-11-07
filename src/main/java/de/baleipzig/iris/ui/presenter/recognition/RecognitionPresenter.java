@@ -13,7 +13,7 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
 
     @Override
     public void init() {
-
+        super.init();
     }
 
     @Override
