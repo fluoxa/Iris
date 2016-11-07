@@ -34,6 +34,8 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     private Button resetNeuralNet = new Button();
     private Button configNeuralNet = new Button();
 
+    private HorizontalLayout buttonLine;
+
     //endregion
 
     // region -- methods --
@@ -60,7 +62,10 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
 
     private void setupListeners() {
 
-        startTraining.addClickListener(e -> presenter.startTraining());
+        startTraining.addClickListener(e -> presenter.runEventAsynchronously(presenter::startTraining));
+        stopTraining.addClickListener(e -> presenter.runEventAsynchronously(presenter::stopTraining));
+        resetNeuralNet.addClickListener(e -> presenter.runEventAsynchronously(presenter::resetNeuralNet));
+        saveNeuralNet.addClickListener(e -> presenter.runEventAsynchronously(presenter::saveNeuralNet));
     }
 
     private void setupLayout() {
@@ -83,7 +88,8 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         settingLayout.addComponent(miniBadgeSizeLabel);
         settingLayout.addComponent(miniBadgeSizeField);
 
-        HorizontalLayout buttonLine = new HorizontalLayout();
+        buttonLine = new HorizontalLayout();
+        stopTraining.setEnabled(false);
         buttonLine.addComponent(configNeuralNet);
         buttonLine.addComponent(saveNeuralNet);
         buttonLine.addComponent(resetNeuralNet);
@@ -134,17 +140,19 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     public void addInfoText(String message) {
 
         String newline = infoTextArea.getValue().isEmpty() ? "" : System.lineSeparator();
-        infoTextArea.setValue(String.format("%s%s%s",infoTextArea.getValue(), newline, message));
+        UI.getCurrent().access(() -> infoTextArea.setValue(String.format("%s%s%s",infoTextArea.getValue(), newline, message)));
     }
 
     @Override
     public void setTrainingLock(boolean isLocked) {
 
-        for (Component comp : this) {
+        for (Component comp : buttonLine) {
             if (comp instanceof Button && comp != stopTraining) {
-                comp.setEnabled(isLocked);
+                comp.setEnabled(!isLocked);
             }
         }
+
+        stopTraining.setEnabled(isLocked);
 
         lockSearchResultTable(isLocked);
     }

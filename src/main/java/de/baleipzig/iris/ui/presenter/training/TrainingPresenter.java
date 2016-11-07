@@ -1,9 +1,12 @@
 package de.baleipzig.iris.ui.presenter.training;
 
+import com.vaadin.ui.UI;
 import de.baleipzig.iris.common.utils.ImageUtils;
 import de.baleipzig.iris.enums.ImageType;
-import de.baleipzig.iris.logic.neuralnettrainer.GradientDescent.*;
 import de.baleipzig.iris.logic.neuralnettrainer.INeuralNetTrainer;
+import de.baleipzig.iris.logic.neuralnettrainer.gradientdescent.*;
+import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
+import de.baleipzig.iris.logic.neuralnettrainer.result.TestResult;
 import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
@@ -41,17 +44,16 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         model.setSelectedNeuralNetId(metaData.getId());
     }
 
-    public void startTraining() {
-
-        view.setTrainingLock(true);
+    public Void startTraining() {
 
         loadNeuralNet();
 
         if (model.getNeuralNet() == null ){
             view.addInfoText("No Neural Net chosen. Please select a Neural Net.");
-            view.setTrainingLock(false);
-            return;
+            return null;
         }
+
+        UI.getCurrent().access(() -> view.setTrainingLock(true));
 
         GradientDescentParams params= new GradientDescentParams(
                 model.getLearningRate(),
@@ -65,14 +67,49 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         testData = testData == null ? ImageUtils.convertToResultMap(service.getImageWorker().loadAllImagesByType(ImageType.TEST)) : testData;
 
         view.addInfoText(String.format("Neural Net %s: training started...", model.getNeuralNet().getNeuralNetMetaData().getName()));
-        trainer.train(trainingData);
+
+        Result trainingResult = trainer.train(trainingData);
+
+        if(!trainingResult.isSuccess()) {
+            UI.getCurrent().access(() -> view.setTrainingLock(false));
+            return null;
+        }
+
         view.addInfoText(String.format("Neural Net %s: training finished...", model.getNeuralNet().getNeuralNetMetaData().getName()));
-
         view.addInfoText(String.format("Neural Net %s: starting tests...", model.getNeuralNet().getNeuralNetMetaData().getName()));
-        double errorRate = trainer.getErrorRate(testData);
-        view.addInfoText(String.format("Neural Net %s: error rate %4f", model.getNeuralNet().getNeuralNetMetaData().getName(), errorRate));
 
-        view.setTrainingLock(false);
+        TestResult testResult = trainer.getTestResult(testData);
+
+        if(testResult.isSuccess()) {
+            view.addInfoText(String.format("Neural Net %s: error rate %4f", model.getNeuralNet().getNeuralNetMetaData().getName(), testResult.getErrorRate()));
+        }
+
+        UI.getCurrent().access(() -> view.setTrainingLock(false));
+        return null;
+    }
+
+    public Void stopTraining() {
+
+        trainer.interruptTraining();
+        trainer.interruptTest();
+
+        view.addInfoText(String.format("Neural Net %s: training interrupted...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+
+        return null;
+    }
+
+    public Void resetNeuralNet() {
+
+        model.setNeuralNet(service.getNeuralNetWorker().load(model.getSelectedNeuralNetId()));
+        view.addInfoText(String.format("Neural Net %s: reset to initial state...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+        return null;
+    }
+
+    public Void saveNeuralNet() {
+
+        service.getNeuralNetWorker().save(model.getNeuralNet());
+        view.addInfoText(String.format("Neural Net %s: saved neural net...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+        return null;
     }
 
     private INeuralNetTrainer<BufferedImage, Integer> getGradDescTrainer(GradientDescentParams params) {
