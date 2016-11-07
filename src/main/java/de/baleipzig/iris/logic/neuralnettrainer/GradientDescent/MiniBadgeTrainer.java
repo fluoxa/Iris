@@ -40,11 +40,11 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
     public void train(Map<InputType, OutputType> trainingData) {
 
-        isInterrupted = false;
+        interrupted = false;
 
         int cycle = 0;
 
-        while( cycle < params.getTrainingCycles() && !isInterrupted){
+        while( cycle < params.getTrainingCycles() && !interrupted){
 
             System.out.print(cycle + " ");
 
@@ -60,11 +60,11 @@ public class MiniBadgeTrainer<InputType, OutputType>
             cycle++;
         }
 
-        isInterrupted = false;
+        interrupted = false;
     }
 
     public void interruptTraining() {
-        isInterrupted = true;
+        interrupted = true;
     }
 
     //endregion

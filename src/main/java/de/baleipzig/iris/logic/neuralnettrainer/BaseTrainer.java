@@ -19,7 +19,7 @@ public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTr
     protected final IAssembler<OutputType> outputConverter;
     protected final INeuralNetWorker neuralNetWorker;
 
-    protected boolean isInterrupted;
+    protected boolean interrupted;
 
     //endregion
 
@@ -39,12 +39,12 @@ public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTr
     public double getErrorRate(Map<InputType, OutputType> testData) {
 
         int numberOfCorrectPredictions = 0;
-        isInterrupted = false;
+        interrupted = false;
 
         for(Map.Entry<InputType, OutputType> testEntity : testData.entrySet()) {
 
-            if(isInterrupted) {
-                break;
+            if(interrupted) {
+                return -1.;
             }
 
             inputConverter.copy(testEntity.getKey(), neuralNet.getNeuralNetCore().getInputLayer());
@@ -62,7 +62,7 @@ public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTr
     }
 
     public void interruptTest() {
-        isInterrupted = true;
+        interrupted = true;
     }
 
     //endregion

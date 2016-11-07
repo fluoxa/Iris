@@ -9,7 +9,6 @@ import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
 import de.baleipzig.iris.ui.view.training.ITrainingView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingViewModel;
-import org.dozer.DozerBeanMapper;
 
 import java.awt.image.BufferedImage;
 import java.util.Map;
@@ -17,9 +16,9 @@ import java.util.Map;
 public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITrainingService> {
 
     private TrainingViewModel model = new TrainingViewModel();
-    private final DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 
     private INeuralNetTrainer<BufferedImage, Integer> trainer;
+    private Map<BufferedImage, Integer> testData;
 
     public TrainingPresenter(ITrainingView view, ITrainingService service) {
 
@@ -63,7 +62,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         trainer = getGradDescTrainer(params);
         trainer.setNeuralNet(model.getNeuralNet());
         Map<BufferedImage, Integer> trainingData = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(params.getBadgeSize(), ImageType.TRAIN));
-        Map<BufferedImage, Integer> testData = ImageUtils.convertToResultMap(service.getImageWorker().loadAllImagesByType(ImageType.TEST));
+        testData = testData == null ? ImageUtils.convertToResultMap(service.getImageWorker().loadAllImagesByType(ImageType.TEST)) : testData;
 
         view.addInfoText(String.format("Neural Net %s: training started...", model.getNeuralNet().getNeuralNetMetaData().getName()));
         trainer.train(trainingData);
@@ -109,14 +108,11 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     private void initViewModel() {
 
-        dozerBeanMapper.map(service.getNeuralNetConfig(), model);
+        service.getDozerBeanMapper().map(service.getNeuralNetConfig(), model);
     }
 
     private void bindViewModelToView() {
 
         view.bindTrainingsConfiguration(model);
     }
-
-
-
 }

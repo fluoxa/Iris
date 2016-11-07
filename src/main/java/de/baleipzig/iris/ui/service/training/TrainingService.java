@@ -7,6 +7,7 @@ import de.baleipzig.iris.logic.worker.IImageWorker;
 import de.baleipzig.iris.logic.worker.INeuralNetWorker;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,4 +24,5 @@ public class TrainingService implements ITrainingService {
 
     private final IEntityLayerAssembler<BufferedImage> imageAssembler;
     private final IAssembler<Integer> digitAssembler;
+    private final DozerBeanMapper dozerBeanMapper;
 }
