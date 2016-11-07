@@ -9,4 +9,5 @@ public interface ITrainingView extends IBaseSearchNNView<TrainingPresenter> {
 
     void bindTrainingsConfiguration(TrainingViewModel trainingViewModel);
     void addInfoText(String message);
+    void setTrainingLock(boolean isLocked);
 }

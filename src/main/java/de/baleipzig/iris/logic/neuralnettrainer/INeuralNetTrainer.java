@@ -8,5 +8,10 @@ public interface INeuralNetTrainer<InputType, OutputType> {
     void setNeuralNet(INeuralNet neuralNet);
     INeuralNet getNeuralNet();
 
+    void interruptTraining();
+    void interruptTest();
+
     void train (Map<InputType, OutputType> trainingData);
+
+    double getErrorRate(Map<InputType, OutputType> testData);
 }

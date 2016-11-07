@@ -1,35 +1,19 @@
 package de.baleipzig.iris.logic.neuralnettrainer.GradientDescent;
 
-import lombok.Getter;
+import de.baleipzig.iris.logic.converter.neuralnet.IAssembler;
+import de.baleipzig.iris.logic.converter.neuralnet.IEntityLayerAssembler;
+import de.baleipzig.iris.logic.worker.INeuralNetWorker;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-public class GradientDescentConfig {
+@Data
+@NoArgsConstructor
+public class GradientDescentConfig<InputType, OutputType> {
 
-    //region -- member --
-
-    private final double learningRate;
-    private final int trainingSetSize;
-    private final int trainingCycles;
-    private final int badgeSize;
-
-    //endregion
-
-    //region -- Constructor --
-
-    public GradientDescentConfig(double learningRate,
-                                 int    trainingSetSize,
-                                 int    trainingCycles,
-                                 int    badgeSize) {
-
-        this.learningRate = learningRate;
-        this.trainingSetSize = trainingSetSize;
-        this.trainingCycles = trainingCycles;
-        this.badgeSize = badgeSize;
-
-        if( Math.abs(learningRate * trainingCycles * trainingSetSize * badgeSize) < 1e-10 ) {
-            throw new RuntimeException("invalid GradientDescentConfig");
-        }
-    }
-
-    //endregion
+    private IEntityLayerAssembler<InputType> inputConverter;
+    private IAssembler<OutputType> outputConverter;
+    private GradientDescentParams params;
+    private IGradientDescentNeuralNetTrainer neuralNetTrainingWorker;
+    private INeuralNetWorker neuralNetWorker;
+    private IMiniBadgeNodeTrainer nodeTrainer;
 }

@@ -20,6 +20,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
     private final TextField searchTextField = new TextField();
     private final Button searchButton = new Button();
     private final Panel searchResultPanel = new Panel();
+    private Table searchResultTable;
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
@@ -95,7 +96,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
     public void setSearchResult(List<NeuralNetMetaData> neuralNetMetaDatas) {
         BeanItemContainer<NeuralNetMetaData> resultAsContainer = new BeanItemContainer<>(NeuralNetMetaData.class, neuralNetMetaDatas);
 
-        Table searchResultTable = new Table();
+        searchResultTable = new Table();
         searchResultTable.setContainerDataSource(resultAsContainer);
         searchResultTable.setVisibleColumns("name");
         searchResultTable.setColumnHeaderMode(Table.ColumnHeaderMode.HIDDEN);
@@ -105,6 +106,14 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         searchResultTable.addStyleName(ValoTheme.TABLE_BORDERLESS);
         searchResultTable.addValueChangeListener(e -> presenter.handleSelection((NeuralNetMetaData) searchResultTable.getValue()));
         searchResultPanel.setContent(searchResultTable);
+    }
+
+    @Override
+    public void lockSearchResultTable(boolean isLocked) {
+
+        if(searchResultTable != null ) {
+            searchResultTable.setEnabled(!isLocked);
+        }
     }
 
     @Override

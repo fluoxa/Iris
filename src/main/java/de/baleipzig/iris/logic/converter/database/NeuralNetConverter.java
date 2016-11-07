@@ -222,8 +222,10 @@ public class NeuralNetConverter {
         neuralNetSubsets.forEach(neuralNetSubset -> {
             NeuralNetMetaData neuralNetMetaData = new NeuralNetMetaData();
             dozerBeanMapper.map(neuralNetSubset, neuralNetMetaData);
+            neuralNetMetaData.setId(UUID.fromString(neuralNetSubset.getNeuralNetId()));
             neuralNetMetaDatas.add(neuralNetMetaData);
         });
+
         return neuralNetMetaDatas;
     }
 }
