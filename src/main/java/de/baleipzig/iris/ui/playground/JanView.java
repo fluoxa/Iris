@@ -37,8 +37,8 @@ public class JanView extends VerticalLayout implements View {
     double numberOfCorrectPredictions = 0.;
 
     private boolean train = false;
-    private Button trainButton = new Button("train hard");
-    private Button breakButton = new Button("Take a break");
+    private Button createNNButton = new Button("train hard");
+    private Button loadDBButton = new Button("loadDB");
     private Label resultLabel = new Label();
     private Label oldResultLabel = new Label();
     private Label iterationLabel = new Label();
@@ -46,74 +46,21 @@ public class JanView extends VerticalLayout implements View {
     @PostConstruct
     void init() {
 //        this.addComponent(new Label("Jans Spielwiese"));
-        this.addComponent(trainButton);
-        trainButton.addClickListener(e -> createNeuralNet());
-//        this.addComponent(breakButton);
-//        this.addComponent(resultLabel);
-//        this.addComponent(oldResultLabel);
-//        trainButton.addClickListener(event -> {
-//
-//            testMapper = null;
-//            trainMapper = null;
-//
-//            if(train == false) {
-//                Runnable r = new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        train = true;
-//                        while(train) {
-//                            trainAndSaveNeuralNet();
-//                            oldResultLabel.setValue("old: " + resultLabel.getValue());
-//                            resultLabel.setValue("new: " +testNeuralNet("eac2abd8-f993-41f8-8b74-6712521eef3a"));
-//                        }
-//                    }
-//                };
-//                (new Thread(r)).start();
-//            }
-//
-//        });
-//        breakButton.addClickListener(e -> {
-//            train = false;
-//        });
+        this.addComponent(createNNButton);
+        this.addComponent(loadDBButton);
+        createNNButton.addClickListener(e -> createNeuralNet());
+        loadDBButton.addClickListener(e -> loadDB());
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-//        imageWorker.exportImageToDb();
-//        trainAndSaveNeuralNet("ba48995a-e781-4d26-8207-f5b6ad4b4de2");
-//        testNeuralNet("ba48995a-e781-4d26-8207-f5b6ad4b4de2");
     }
 
-//    private String testNeuralNet(String id) {
-//        numberOfCorrectPredictions = 0;
-//        IEntityLayerAssembler<BufferedImage> imageAssembler = new ImageAssembler();
-//        ILayerEntityAssembler<Integer> digitAssembler = new DigitAssembler();
-//        INeuralNet neuralNet = neuralNetWorker.load(UUID.fromString(id));
-//
-//        if(testMapper == null) {
-//            testMapper = ImageUtils.convertToResultMap(imageWorker.loadRandomImagesByType(10000,ImageType.TEST));
-//        }
-//
-//
-//        testMapper.forEach((image, expectedDigit) -> {
-//
-//            imageAssembler.copy(image, neuralNet.getNeuralNetCore().getInputLayer());
-//
-//            neuralNetWorker.propagateForward(neuralNet);
-//
-//            int result = digitAssembler.convert(neuralNet.getNeuralNetCore().getOutputLayer());
-//
-//            if(expectedDigit == result){
-//                numberOfCorrectPredictions++;
-//            }
-//        });
-//
-//        String result = "Richtige Ergebnisse: " + (100.*numberOfCorrectPredictions/ testMapper.size()) + "%";
-//        System.out.println(result);
-//        System.out.println(neuralNet);
-//        return result;
-//    }
+    private void loadDB() {
+
+        imageWorker.exportImageToDb();
+    }
 
     private void trainAndSaveNeuralNet() {
 

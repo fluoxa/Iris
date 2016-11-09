@@ -144,7 +144,10 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     public void addInfoText(String message) {
 
         String newline = infoTextArea.getValue().isEmpty() ? "" : System.lineSeparator();
-        UI.getCurrent().access(() -> infoTextArea.setValue(String.format("%s%s%s",infoTextArea.getValue(), newline, message)));
+        UI.getCurrent().access(() -> {
+            infoTextArea.setValue(String.format("%s%s%s",infoTextArea.getValue(), newline, message));
+            infoTextArea.setCursorPosition(infoTextArea.getValue().length());
+        });
     }
 
     @Override
