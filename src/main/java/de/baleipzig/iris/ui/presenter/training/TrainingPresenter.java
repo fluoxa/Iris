@@ -4,6 +4,7 @@ import com.vaadin.ui.UI;
 import de.baleipzig.iris.common.utils.ImageUtils;
 import de.baleipzig.iris.enums.ImageType;
 import de.baleipzig.iris.enums.ResultType;
+import de.baleipzig.iris.logic.neuralnettrainer.INeuralNetListener;
 import de.baleipzig.iris.logic.neuralnettrainer.INeuralNetTrainer;
 import de.baleipzig.iris.logic.neuralnettrainer.gradientdescent.*;
 import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
@@ -17,7 +18,8 @@ import de.baleipzig.iris.ui.viewmodel.training.TrainingViewModel;
 import java.awt.image.BufferedImage;
 import java.util.Map;
 
-public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITrainingService> {
+public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITrainingService>
+                               implements INeuralNetListener {
 
     private TrainingViewModel model = new TrainingViewModel();
 
@@ -94,8 +96,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     public Void stopTraining() {
 
-        trainer.interruptTraining();
-        trainer.interruptTest();
+        trainer.interrupt();
 
         view.addInfoText(String.format("Neural Net %s: training interrupted...", model.getNeuralNet().getNeuralNetMetaData().getName()));
 
@@ -114,6 +115,14 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         service.getNeuralNetWorker().save(model.getNeuralNet());
         view.addInfoText(String.format("Neural Net %s: saved neural net...", model.getNeuralNet().getNeuralNetMetaData().getName()));
         return null;
+    }
+
+    @Override
+    public void receiveTrainingProgress(double overallProgress, double cycleProgress) {
+
+        model.setOverallTrainingProgress(overallProgress);
+        model.setCycleProgress(cycleProgress);
+        view.updateTrainingProgress(model);
     }
 
     private INeuralNetTrainer<BufferedImage, Integer> getGradDescTrainer(GradientDescentParams params) {
@@ -141,7 +150,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         }
 
         if( model.getNeuralNet() == null ||
-                model.getSelectedNeuralNetId().compareTo(model.getNeuralNet().getNeuralNetMetaData().getId()) != 0) {
+                !model.getSelectedNeuralNetId().equals(model.getNeuralNet().getNeuralNetMetaData().getId())) {
 
             model.setNeuralNet(service.getNeuralNetWorker().load(model.getSelectedNeuralNetId()));
         }
@@ -150,6 +159,8 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
     private void initViewModel() {
 
         service.getDozerBeanMapper().map(service.getNeuralNetConfig(), model);
+        model.setCycleProgress(0.);
+        model.setOverallTrainingProgress(0.);
     }
 
     private void bindViewModelToView() {

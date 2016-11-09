@@ -72,6 +72,13 @@
             <artifactId>vaadin-spring-boot-starter</artifactId>
             <version>1.0.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-push</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-client-compiler</artifactId>
@@ -97,12 +104,6 @@
             <groupId>org.vaadin.addons</groupId>
             <artifactId>canvas</artifactId>
             <version>2.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-push</artifactId>
-            <version>${vaadin.version}</version>
         </dependency>
 
         <!--lombok-->

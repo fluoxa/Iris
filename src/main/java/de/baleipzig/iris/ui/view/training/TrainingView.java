@@ -38,6 +38,9 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     private Button resetNeuralNet = new Button();
     private Button configNeuralNet = new Button();
 
+    private ProgressBar oneCycleProgressBar = new ProgressBar();
+    private ProgressBar overallTrainingProgressBar = new ProgressBar();
+
     private HorizontalLayout buttonLine;
 
     //endregion
@@ -68,8 +71,8 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
 
         startTraining.addClickListener(e -> presenter.runEventAsynchronously(presenter::startTraining));
         stopTraining.addClickListener(e -> presenter.runEventAsynchronously(presenter::stopTraining));
-        resetNeuralNet.addClickListener(e -> presenter.runEventAsynchronously(presenter::resetNeuralNet));
-        saveNeuralNet.addClickListener(e -> presenter.runEventAsynchronously(presenter::saveNeuralNet));
+        resetNeuralNet.addClickListener(e -> presenter.resetNeuralNet());
+        saveNeuralNet.addClickListener(e -> presenter.saveNeuralNet());
     }
 
     private void setupLayout() {
@@ -108,9 +111,16 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         verticalLayout.addComponent(settingLayout);
         verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.infolabel")));
 
-        infoTextArea.setSizeFull();
         infoTextArea.addStyleName("iris-info-textarea");
         verticalLayout.addComponent(infoTextArea);
+
+        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.overalltrainingprogress")));
+        overallTrainingProgressBar.addStyleName("iris-progressbar-onetrainingcycle");
+        verticalLayout.addComponent(overallTrainingProgressBar);
+        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.onecycleprogress")));
+        oneCycleProgressBar.addStyleName("iris-progressbar-onetrainingcycle");
+        verticalLayout.addComponent(oneCycleProgressBar);
+
         verticalLayout.setWidth(100, Unit.PERCENTAGE);
         verticalLayout.addComponent(buttonLine);
 
@@ -164,5 +174,13 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         lockSearchResultTable(isLocked);
     }
 
+    @Override
+    public void updateTrainingProgress(TrainingViewModel model) {
+
+        UI.getCurrent().access(() -> {
+            overallTrainingProgressBar.setValue((float) model.getOverallTrainingProgress());
+            oneCycleProgressBar.setValue((float) model.getCycleProgress());
+        });
+    }
     //endregion
 }
