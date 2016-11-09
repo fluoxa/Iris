@@ -36,7 +36,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         initViewModel();
         bindViewModelToView();
 
-        view.addInfoText("Training config loaded...");
+        view.addInfoText(service.getLanguageHandler().getTranslation("training.base.trainingdataloaded"));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         loadNeuralNet();
 
         if (model.getNeuralNet() == null ){
-            view.addInfoText("No Neural Net chosen. Please select a Neural Net.");
+            view.addInfoText(service.getLanguageHandler().getTranslation("training.base.noneuralnetselected"));
             return null;
         }
 

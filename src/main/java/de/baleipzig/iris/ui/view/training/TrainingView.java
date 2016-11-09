@@ -10,7 +10,6 @@ import de.baleipzig.iris.ui.presenter.training.TrainingPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
 import de.baleipzig.iris.ui.view.base.BaseSearchNNView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingViewModel;
-import lombok.RequiredArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,19 +76,19 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
 
         GridLayout settingLayout = new GridLayout(4,2);
         settingLayout.setSpacing(true);
-        Label learningRateLabel = new Label("Learning Rate:");
+        Label learningRateLabel = new Label(languageHandler.getTranslation("training.view.learningrate"));
         settingLayout.addComponent(learningRateLabel);
         settingLayout.addComponent(learningRateField);
 
-        Label trainingCyclesRateLabel = new Label("Training Cycles:");
+        Label trainingCyclesRateLabel = new Label(languageHandler.getTranslation("training.view.cycles"));
         settingLayout.addComponent(trainingCyclesRateLabel);
         settingLayout.addComponent(trainingCyclesField);
 
-        Label trainingSetSizeLabel = new Label("Number of TRaining Pictures:");
+        Label trainingSetSizeLabel = new Label(languageHandler.getTranslation("training.view.trainingsetsize"));
         settingLayout.addComponent(trainingSetSizeLabel);
         settingLayout.addComponent(trainingSetSizeField);
 
-        Label miniBadgeSizeLabel = new Label("Number of MiniBadge Pictures:");
+        Label miniBadgeSizeLabel = new Label(languageHandler.getTranslation("training.view.minibadgesize"));
         settingLayout.addComponent(miniBadgeSizeLabel);
         settingLayout.addComponent(miniBadgeSizeField);
 
@@ -105,9 +104,9 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         VerticalLayout verticalLayout = new VerticalLayout();
         verticalLayout.setSpacing(true);
 
-        verticalLayout.addComponent(new Label("Settings:"));
+        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.parameterlabel")));
         verticalLayout.addComponent(settingLayout);
-        verticalLayout.addComponent(new Label("Infos:"));
+        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.infolabel")));
 
         infoTextArea.setSizeFull();
         infoTextArea.addStyleName("iris-info-textarea");
