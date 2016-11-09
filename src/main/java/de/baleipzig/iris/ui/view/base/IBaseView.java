@@ -8,8 +8,9 @@ import de.baleipzig.iris.ui.presenter.base.BasePresenter;
 import java.util.List;
 
 public interface IBaseView<P extends BasePresenter> extends View {
-    public LanguageHandler getLanguageHandler();
-    public void setAvailableLanguages(List<LanguageConfiguration.Language> languages);
-    public void setSelectedLanguage(LanguageConfiguration.Language language);
-    public void reload();
+
+    LanguageHandler getLanguageHandler();
+    void setAvailableLanguages(List<LanguageConfiguration.Language> languages);
+    void setSelectedLanguage(LanguageConfiguration.Language language);
+    void reload();
 }

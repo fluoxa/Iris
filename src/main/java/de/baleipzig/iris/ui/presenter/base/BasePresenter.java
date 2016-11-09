@@ -1,5 +1,6 @@
 package de.baleipzig.iris.ui.presenter.base;
 
+import com.vaadin.ui.UI;
 import de.baleipzig.iris.configuration.LanguageConfiguration;
 import de.baleipzig.iris.ui.service.base.IBaseService;
 import de.baleipzig.iris.ui.view.base.IBaseView;
@@ -26,6 +27,7 @@ public abstract class BasePresenter<V extends IBaseView, S extends IBaseService>
     public void changeLanguage(LanguageConfiguration.Language language) {
         if (!service.getLanguageHandler().getLanguage().equals(language)) {
             service.getLanguageHandler().setLanguage(language);
+            UI.getCurrent().setLocale(service.getLanguageHandler().getLocale());
             view.reload();
         }
     }

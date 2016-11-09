@@ -19,6 +19,7 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
 
     @PostConstruct
     private void init() {
+
         createLayout();
     }
 
@@ -26,6 +27,8 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
         ThemeResource imageResource = new ThemeResource("img/logo.png");
         Image logoImage = new Image(null, imageResource);
         logoImage.addStyleName("iris-logo-image");
+
+        UI.getCurrent().setLocale(getLanguageHandler().getLocale());
 
         Label applicationLabel = new Label(getLanguageHandler().getTranslation("base.application.name"));
         applicationLabel.addStyleName("iris-name-label");
@@ -77,10 +80,12 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
     }
 
     public void setSelectedLanguage(LanguageConfiguration.Language language) {
+
         languageComboBox.setValue(language);
     }
 
     public void reload() {
+
         Page.getCurrent().reload();
     }
 

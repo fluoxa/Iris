@@ -1,6 +1,5 @@
 package de.baleipzig.iris.ui;
 
-import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Widgetset;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Theme("iris")
 @SpringUI
-@PreserveOnRefresh
 @Push(transport = Transport.LONG_POLLING)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Widgetset("de.baleipzig.iris.IrisWidgetset")

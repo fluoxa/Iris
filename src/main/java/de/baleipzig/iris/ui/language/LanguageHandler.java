@@ -2,6 +2,7 @@ package de.baleipzig.iris.ui.language;
 
 import com.vaadin.spring.annotation.VaadinSessionScope;
 import de.baleipzig.iris.configuration.LanguageConfiguration;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.NoSuchMessageException;
@@ -17,6 +18,7 @@ public class LanguageHandler {
     private final ApplicationContext context;
     private final LanguageConfiguration languageConfiguration;
 
+    @Getter
     private Locale locale;
     private LanguageConfiguration.Language language;
 
