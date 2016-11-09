@@ -68,8 +68,8 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
 
         startTraining.addClickListener(e -> presenter.runEventAsynchronously(presenter::startTraining));
         stopTraining.addClickListener(e -> presenter.runEventAsynchronously(presenter::stopTraining));
-        resetNeuralNet.addClickListener(e -> presenter.runEventAsynchronously(presenter::resetNeuralNet));
-        saveNeuralNet.addClickListener(e -> presenter.runEventAsynchronously(presenter::saveNeuralNet));
+        resetNeuralNet.addClickListener(e -> presenter.resetNeuralNet());
+        saveNeuralNet.addClickListener(e -> presenter.saveNeuralNet());
     }
 
     private void setupLayout() {

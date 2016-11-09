@@ -68,9 +68,5 @@ public class MiniBadgeTrainer<InputType, OutputType>
         return new Result(ResultType.SUCCESS);
     }
 
-    public void interruptTraining() {
-        interrupted = true;
-    }
-
     //endregion
 }

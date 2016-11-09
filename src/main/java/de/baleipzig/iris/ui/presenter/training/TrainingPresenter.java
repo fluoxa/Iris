@@ -94,8 +94,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     public Void stopTraining() {
 
-        trainer.interruptTraining();
-        trainer.interruptTest();
+        trainer.interrupt();
 
         view.addInfoText(String.format("Neural Net %s: training interrupted...", model.getNeuralNet().getNeuralNetMetaData().getName()));
 
@@ -141,7 +140,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         }
 
         if( model.getNeuralNet() == null ||
-                model.getSelectedNeuralNetId().compareTo(model.getNeuralNet().getNeuralNetMetaData().getId()) != 0) {
+                !model.getSelectedNeuralNetId().equals(model.getNeuralNet().getNeuralNetMetaData().getId())) {
 
             model.setNeuralNet(service.getNeuralNetWorker().load(model.getSelectedNeuralNetId()));
         }

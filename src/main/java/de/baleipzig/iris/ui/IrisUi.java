@@ -10,7 +10,6 @@ import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
-import de.baleipzig.iris.ui.language.LanguageHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,10 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Widgetset("de.baleipzig.iris.IrisWidgetset")
 public class IrisUi extends UI {
 
-    public static String SESSION_KEY_LANGUAGE = "languageKey";
-
     private final SpringViewProvider viewProvider;
-    private final LanguageHandler languageHandler;
 
     @Override
     protected void init(VaadinRequest request) {

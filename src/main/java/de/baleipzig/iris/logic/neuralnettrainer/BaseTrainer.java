@@ -63,7 +63,7 @@ public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTr
         return new TestResult(ResultType.SUCCESS, 1. - ((double) numberOfCorrectPredictions / (double) testData.size()));
     }
 
-    public void interruptTest() {
+    public void interrupt() {
         interrupted = true;
     }
 
