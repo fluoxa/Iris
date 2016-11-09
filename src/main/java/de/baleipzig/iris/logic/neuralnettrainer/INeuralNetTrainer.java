@@ -8,6 +8,9 @@ import java.util.Map;
 
 public interface INeuralNetTrainer<InputType, OutputType> {
 
+    void addTrainingListener(INeuralNetListener listener);
+    void removeTrainingListener(INeuralNetListener listener);
+
     void setNeuralNet(INeuralNet neuralNet);
     INeuralNet getNeuralNet();
 

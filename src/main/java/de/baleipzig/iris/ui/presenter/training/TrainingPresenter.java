@@ -56,7 +56,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
             return null;
         }
 
-        UI.getCurrent().access(() -> view.setTrainingLock(true));
+        initTrainingProcess();
 
         GradientDescentParams params= new GradientDescentParams(
                 model.getLearningRate(),
@@ -65,6 +65,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
                 model.getMiniBadgeSize());
 
         trainer = getGradDescTrainer(params);
+        trainer.addTrainingListener(this);
         trainer.setNeuralNet(model.getNeuralNet());
         Map<BufferedImage, Integer> trainingData = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(params.getTrainingSetSize(), ImageType.TRAIN));
         testData = testData == null ? ImageUtils.convertToResultMap(service.getImageWorker().loadAllImagesByType(ImageType.TEST)) : testData;
@@ -166,5 +167,13 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
     private void bindViewModelToView() {
 
         view.bindTrainingsConfiguration(model);
+    }
+
+    private void initTrainingProcess() {
+
+        UI.getCurrent().access(() -> view.setTrainingLock(true));
+        model.setOverallTrainingProgress(0.);
+        model.setCycleProgress(0.);
+        view.updateTrainingProgress(model);
     }
 }
