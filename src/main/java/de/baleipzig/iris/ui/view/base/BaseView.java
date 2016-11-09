@@ -6,7 +6,6 @@ import com.vaadin.server.ThemeResource;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.*;
 import de.baleipzig.iris.configuration.LanguageConfiguration;
-import de.baleipzig.iris.ui.language.MessageKeys;
 import de.baleipzig.iris.ui.presenter.base.BasePresenter;
 
 import javax.annotation.PostConstruct;
@@ -28,7 +27,7 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
         Image logoImage = new Image(null, imageResource);
         logoImage.addStyleName("iris-logo-image");
 
-        Label applicationLabel = new Label(getLanguageHandler().getTranslation(MessageKeys.APPLICATION_NAME));
+        Label applicationLabel = new Label(getLanguageHandler().getTranslation("base.application.name"));
         applicationLabel.addStyleName("iris-name-label");
 
         languageComboBox.setItemCaptionMode(AbstractSelect.ItemCaptionMode.PROPERTY);
