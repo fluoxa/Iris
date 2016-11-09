@@ -64,7 +64,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
         trainer = getGradDescTrainer(params);
         trainer.setNeuralNet(model.getNeuralNet());
-        Map<BufferedImage, Integer> trainingData = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(params.getBadgeSize(), ImageType.TRAIN));
+        Map<BufferedImage, Integer> trainingData = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(params.getTrainingSetSize(), ImageType.TRAIN));
         testData = testData == null ? ImageUtils.convertToResultMap(service.getImageWorker().loadAllImagesByType(ImageType.TEST)) : testData;
 
         view.addInfoText(String.format("Neural Net %s: training started...", model.getNeuralNet().getNeuralNetMetaData().getName()));
