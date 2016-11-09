@@ -82,7 +82,10 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         TestResult testResult = trainer.getTestResult(testData);
 
         if(testResult.getResultType() == ResultType.SUCCESS) {
-            view.addInfoText(String.format("Neural Net %s: error rate %4f", model.getNeuralNet().getNeuralNetMetaData().getName(), testResult.getErrorRate()));
+
+            String message = service.getLanguageHandler().getTranslation("training.presenter.errorrate", new Object[] {model.getNeuralNet().getNeuralNetMetaData().getName(), testResult.getErrorRate()});
+
+            view.addInfoText(message);
         }
 
         UI.getCurrent().access(() -> view.setTrainingLock(false));
