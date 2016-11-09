@@ -111,6 +111,8 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         verticalLayout.addComponent(settingLayout);
         verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.infolabel")));
 
+        infoTextArea.setSizeFull();
+        infoTextArea.setReadOnly(true);
         infoTextArea.addStyleName("iris-info-textarea");
         verticalLayout.addComponent(infoTextArea);
 
@@ -155,8 +157,10 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
 
         String newline = infoTextArea.getValue().isEmpty() ? "" : System.lineSeparator();
         UI.getCurrent().access(() -> {
+            infoTextArea.setReadOnly(false);
             infoTextArea.setValue(String.format("%s%s%s",infoTextArea.getValue(), newline, message));
             infoTextArea.setCursorPosition(infoTextArea.getValue().length());
+            infoTextArea.setReadOnly(true);
         });
     }
 
