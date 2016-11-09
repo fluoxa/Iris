@@ -5,10 +5,13 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.*;
+import de.baleipzig.iris.ui.language.LanguageHandler;
 import de.baleipzig.iris.ui.presenter.training.TrainingPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
 import de.baleipzig.iris.ui.view.base.BaseSearchNNView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingViewModel;
+import lombok.RequiredArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -22,6 +25,8 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     public static final String VIEW_NAME = "training";
 
     private final ApplicationContext context;
+    @Getter
+    private final LanguageHandler languageHandler;
 
     private TextField learningRateField = new TextField();
     private TextField trainingCyclesField = new TextField();
