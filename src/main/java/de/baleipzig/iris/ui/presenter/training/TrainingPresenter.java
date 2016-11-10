@@ -103,18 +103,6 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         return null;
     }
 
-    private void terminatingTraining() {
-
-        progressHandler.cancel(true);
-        model.setCycleProgress(0.);
-        model.setOverallTrainingProgress(0.);
-
-        UI.getCurrent().access(() -> {
-            view.setTrainingLock(false);
-            view.updateTrainingProgress(model);
-        });
-    }
-
     public Void stopTraining() {
 
         trainer.interrupt();
@@ -135,6 +123,18 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         service.getNeuralNetWorker().save(model.getNeuralNet());
         view.addInfoText(String.format("Neural Net %s: saved neural net...", model.getNeuralNet().getNeuralNetMetaData().getName()));
         return null;
+    }
+
+    private void terminatingTraining() {
+
+        progressHandler.cancel(true);
+        model.setCycleProgress(0.);
+        model.setOverallTrainingProgress(0.);
+
+        UI.getCurrent().access(() -> {
+            view.setTrainingLock(false);
+            view.updateTrainingProgress(model);
+        });
     }
 
     private INeuralNetTrainer<BufferedImage, Integer> getGradDescTrainer(GradientDescentParams params) {
@@ -191,7 +191,6 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
     private Runnable createProgressThread(INeuralNetTrainer<BufferedImage, Integer> trainer) {
 
         return () -> {
-
             TrainingProgress progress = trainer.getProgress();
             model.setOverallTrainingProgress(progress.getOverallProgress());
             model.setCycleProgress(progress.getCycleProgress());
