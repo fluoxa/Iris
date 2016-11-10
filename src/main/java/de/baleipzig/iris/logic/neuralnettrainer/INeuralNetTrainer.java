@@ -12,6 +12,7 @@ public interface INeuralNetTrainer<InputType, OutputType> {
     INeuralNet getNeuralNet();
 
     void interrupt();
+    TrainingProgress getProgress();
 
     Result train (Map<InputType, OutputType> trainingData);
 

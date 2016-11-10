@@ -17,6 +17,9 @@ public class TrainingViewModel {
     private int trainingSetSize;
     private int trainingCycles;
 
+    private double overallTrainingProgress;
+    private double cycleProgress;
+
     private INeuralNet neuralNet;
     private UUID selectedNeuralNetId;
 }

@@ -27,5 +27,4 @@ public class AssemblerConfiguration {
     public DozerBeanMapper dozerBeanMapper() {
         return new DozerBeanMapper();
     }
-
 }
