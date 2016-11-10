@@ -186,5 +186,6 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
             oneCycleProgressBar.setValue((float) model.getCycleProgress());
         });
     }
+
     //endregion
 }

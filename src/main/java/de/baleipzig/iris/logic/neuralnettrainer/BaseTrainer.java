@@ -8,8 +8,6 @@ import de.baleipzig.iris.logic.worker.INeuralNetWorker;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTrainer<InputType, OutputType> {
@@ -18,12 +16,12 @@ public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTr
 
     @Getter
     protected INeuralNet neuralNet = null;
+    @Getter
+    protected TrainingProgress progress = new TrainingProgress();
 
     protected final IEntityLayerAssembler<InputType> inputConverter;
     protected final IAssembler<OutputType> outputConverter;
     protected final INeuralNetWorker neuralNetWorker;
-
-    protected List<INeuralNetListener> listeners = new ArrayList<>();
 
     protected boolean interrupted;
 
@@ -41,20 +39,6 @@ public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTr
     //endregion
 
     //region -- methods --
-
-    public void addTrainingListener(INeuralNetListener listener) {
-
-        if(!listeners.contains(listener)) {
-            listeners.add(listener);
-        }
-    }
-
-    public void removeTrainingListener(INeuralNetListener listener) {
-
-        if(listeners.contains(listener)) {
-            listeners.remove(listener);
-        }
-    }
 
     public TestResult getTestResult(Map<InputType, OutputType> testData) {
 

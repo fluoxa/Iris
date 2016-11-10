@@ -2,15 +2,11 @@ package de.baleipzig.iris.logic.neuralnettrainer.gradientdescent;
 
 import de.baleipzig.iris.enums.ResultType;
 import de.baleipzig.iris.logic.neuralnettrainer.BaseTrainer;
-import de.baleipzig.iris.logic.neuralnettrainer.INeuralNetListener;
 import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -52,6 +48,9 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
         interrupted = false;
 
+        progress.setCycleProgress(0.);
+        progress.setOverallProgress(0.);
+
         int cycle = 0;
         int trainingCycles = params.getTrainingCycles();
         int trainingRun = 0;
@@ -60,7 +59,8 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
         while( cycle < trainingCycles) {
 
-            notifyListeners(((double) cycle)/trainingCycles, 0.);
+            progress.setCycleProgress(0.);
+            progress.setOverallProgress(((double) cycle)/trainingCycles);
 
             for(Map.Entry<InputType, OutputType> trainingDatum : trainingData.entrySet()) {
 
@@ -73,7 +73,7 @@ public class MiniBadgeTrainer<InputType, OutputType>
                 trainingRun++;
 
                 if( trainingRun % stepSize == 0) {
-                    notifyListeners(((double) cycle)/trainingCycles, ((double) trainingRun)/cycleLength);
+                    progress.setCycleProgress((double) trainingRun /cycleLength);
                 }
 
                 inputConverter.copy(trainingDatum.getKey(), neuralNet.getNeuralNetCore().getInputLayer());
@@ -83,33 +83,14 @@ public class MiniBadgeTrainer<InputType, OutputType>
                 neuralNetTrainingWorker.propagateBackward(neuralNet, expectedResultLayer);
             }
 
+            progress.setCycleProgress(1.);
             cycle++;
-            notifyListeners(((double) cycle)/trainingCycles, 1.);
             trainingRun = 0;
         }
 
+        progress.setOverallProgress(1.);
         interrupted = false;
         return new Result(ResultType.SUCCESS);
-    }
-
-    private void notifyListeners(double overallProgress, double cycleProgress) {
-
-        Collection<Callable<Void>> callables = new ArrayList<>(1);
-
-        for (INeuralNetListener listener : listeners) {
-            callables.add(() -> {
-                listener.receiveTrainingProgress(overallProgress, cycleProgress);
-                return null;
-            });
-        }
-
-        try {
-            executorService.invokeAll(callables);
-        }
-        catch(InterruptedException ex){
-            System.err.println("Thread aborted:\n" + ex.getMessage());
-        }
-
     }
 
     //endregion
