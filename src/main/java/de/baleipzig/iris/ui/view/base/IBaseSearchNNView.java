@@ -8,4 +8,5 @@ import java.util.List;
 public interface IBaseSearchNNView<P extends BaseSearchNNPresenter> extends IBaseView<P> {
     void setSearchResult(List<NeuralNetMetaData> neuralNetMetaDatas);
     void lockSearchResultTable(boolean isLocked);
+    void setBodyContentLayoutMargin(boolean enabled);
 }

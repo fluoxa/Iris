@@ -1,9 +1,11 @@
 package de.baleipzig.iris.ui.view.recognition;
 
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import de.baleipzig.iris.ui.language.LanguageHandler;
 import de.baleipzig.iris.ui.presenter.recognition.RecognitionPresenter;
 import de.baleipzig.iris.ui.service.recognition.IRecognitionService;
@@ -43,22 +45,45 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
 
         VerticalLayout recognitionLayout = new VerticalLayout();
+        recognitionLayout.setMargin(true);
 
 
-        VerticalLayout additionalInfoLayout = new VerticalLayout();
+        VerticalLayout infoLayout = new VerticalLayout();
+        infoLayout.setMargin(true);
         for (int i = 0; i < 5; i++) {
-            additionalInfoLayout.addComponent(new Button(i + ""));
+            infoLayout.addComponent(new Button(i + ""));
         }
 
-        Panel additionalInfoPanel = new Panel();
-        additionalInfoPanel.setContent(additionalInfoLayout);
+        Button toggleInfoButton = new Button();
+        toggleInfoButton.setCaptionAsHtml(true);
+        toggleInfoButton.setCaption(FontAwesome.ANGLE_DOUBLE_RIGHT.getHtml());
+        toggleInfoButton.addStyleName(ValoTheme.BUTTON_BORDERLESS);
+        toggleInfoButton.addStyleName("iris-toggle-info-button");
 
-        AbsoluteLayout minimizableLayout = new AbsoluteLayout();
-        minimizableLayout
+        Panel infoPanel = new Panel();
+        infoPanel.setSizeFull();
+        infoPanel.addStyleName(ValoTheme.PANEL_BORDERLESS);
+        infoPanel.setContent(infoLayout);
+
+
+        CssLayout minimizableLayout = new CssLayout();
+        minimizableLayout.addStyleName("iris-minimizable-layout");
+        minimizableLayout.setHeight("100%");
+        minimizableLayout.addComponents(toggleInfoButton, infoPanel);
+        //minimizableLayout.setComponentAlignment(toggleInfoButton, Alignment.MIDDLE_CENTER);
+
 
         HorizontalLayout recognitionMainLayout = new HorizontalLayout();
+        recognitionMainLayout.addComponents(recognitionLayout, minimizableLayout);
 
 
-        setBodyContent(new Label("RecognitionView"));
+
+        recognitionMainLayout.addStyleName("bla");
+        recognitionMainLayout.setSizeFull();
+        recognitionMainLayout.setExpandRatio(recognitionLayout, 1);
+        recognitionMainLayout.setExpandRatio(minimizableLayout, 0);
+
+        setBodyContent(recognitionMainLayout);
+        setBodyContentLayoutMargin(false);
     }
 }
