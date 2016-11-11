@@ -75,12 +75,6 @@
 
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-push</artifactId>
-            <version>${vaadin.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vaadin</groupId>
             <artifactId>vaadin-client-compiler</artifactId>
             <version>${vaadin.version}</version>
             <exclusions>
@@ -97,6 +91,12 @@
                     <artifactId>jetty-util</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-push</artifactId>
+            <version>${vaadin.version}</version>
         </dependency>
 
         <!--vaadin addons-->

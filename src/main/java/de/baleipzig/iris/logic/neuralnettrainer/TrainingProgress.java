@@ -9,4 +9,10 @@ public class TrainingProgress {
 
     public double overallProgress;
     public double cycleProgress;
+
+    public void reset() {
+
+        overallProgress = 0.;
+        cycleProgress = 0.;
+    }
 }

@@ -7,8 +7,6 @@ import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
 
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class MiniBadgeTrainer<InputType, OutputType>
         extends BaseTrainer<InputType, OutputType> {
@@ -18,8 +16,6 @@ public class MiniBadgeTrainer<InputType, OutputType>
     private final GradientDescentParams params;
     private final IGradientDescentNeuralNetTrainer neuralNetTrainingWorker;
     private final IMiniBadgeNodeTrainer nodeTrainer;
-
-    private static final ExecutorService executorService = Executors.newFixedThreadPool(1);
 
     //endregion
 
@@ -48,14 +44,12 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
         interrupted = false;
 
-        progress.setCycleProgress(0.);
-        progress.setOverallProgress(0.);
+        progress.reset();
 
         int cycle = 0;
         int trainingCycles = params.getTrainingCycles();
         int trainingRun = 0;
         int cycleLength = params.getTrainingSetSize();
-        int stepSize = cycleLength > 100 ? cycleLength/100 : 1;
 
         while( cycle < trainingCycles) {
 
@@ -72,9 +66,7 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
                 trainingRun++;
 
-                if( trainingRun % stepSize == 0) {
-                    progress.setCycleProgress((double) trainingRun /cycleLength);
-                }
+                progress.setCycleProgress((double) trainingRun /cycleLength);
 
                 inputConverter.copy(trainingDatum.getKey(), neuralNet.getNeuralNetCore().getInputLayer());
                 neuralNetWorker.propagateForward(neuralNet);
