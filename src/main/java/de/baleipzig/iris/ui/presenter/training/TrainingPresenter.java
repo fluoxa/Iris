@@ -12,6 +12,7 @@ import de.baleipzig.iris.logic.neuralnettrainer.result.TestResult;
 import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
+import de.baleipzig.iris.ui.view.neuralnetconfig.NeuralNetConfigView;
 import de.baleipzig.iris.ui.view.training.ITrainingView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingViewModel;
 
@@ -122,6 +123,13 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
         service.getNeuralNetWorker().save(model.getNeuralNet());
         view.addInfoText(String.format("Neural Net %s: saved neural net...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+        return null;
+    }
+
+    public Void redirectToConfigView() {
+
+        String parameterString = model.getSelectedNeuralNetId() == null ? "" : String.format("/%s=%s", "uuid", model.getSelectedNeuralNetId());
+        UI.getCurrent().getNavigator().navigateTo(String.format("%s%s",NeuralNetConfigView.VIEW_NAME,parameterString));
         return null;
     }
 

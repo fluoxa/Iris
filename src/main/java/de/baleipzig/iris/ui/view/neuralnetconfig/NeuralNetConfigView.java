@@ -47,6 +47,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
 
         setupElements();
         setupLayout();
+        setupListeners();
 
         presenter = new NeuralNetConfigPresenter(this, (INeuralNetConfigService) context.getBean("neuralNetConfigService"));
         presenter.init();
@@ -117,6 +118,11 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         totalLayout.addComponent(buttonLayout);
 
         this.setBodyContent(totalLayout);
+    }
+
+    private void setupListeners() {
+
+        trainNeuralNet.addClickListener(e -> presenter.redirectToTrainingView());
     }
 
     //endregion

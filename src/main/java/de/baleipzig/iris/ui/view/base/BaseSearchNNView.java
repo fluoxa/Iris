@@ -8,10 +8,12 @@ import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
+import de.baleipzig.iris.ui.helper.UrlHelper;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Map;
 
 public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends BaseView<P> implements IBaseSearchNNView<P> {
 
@@ -24,7 +26,22 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
+
         presenter.searchAllNeuralNets();
+
+        Map<String, String> parameters = UrlHelper.getParameterMap(viewChangeEvent.getParameters());
+
+        if(!parameters.containsKey("uuid")) {
+            return;
+        }
+
+        for (Object item : searchResultTable.getVisibleItemIds()) {
+            if( ((NeuralNetMetaData) item).getId().toString().equals(parameters.get("uuid"))) {
+                searchResultTable.setValue(item);
+                break;
+            }
+        }
+
     }
 
     @PostConstruct
