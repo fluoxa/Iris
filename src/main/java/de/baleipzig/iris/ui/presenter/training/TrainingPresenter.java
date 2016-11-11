@@ -74,7 +74,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
         trainer = getGradDescTrainer(params);
         trainer.setNeuralNet(model.getNeuralNet());
-        progressHandler = progressService.scheduleAtFixedRate(createProgressThread(trainer), 0, 50, TimeUnit.MILLISECONDS );
+        progressHandler = progressService.scheduleAtFixedRate(createProgressThread(trainer), 0, service.getUiConfig().getProgressUpdateInterval(), TimeUnit.MILLISECONDS );
 
         Map<BufferedImage, Integer> trainingData = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(params.getTrainingSetSize(), ImageType.TRAIN));
         testData = testData == null ? ImageUtils.convertToResultMap(service.getImageWorker().loadAllImagesByType(ImageType.TEST)) : testData;

@@ -2,6 +2,7 @@ package de.baleipzig.iris.ui.service.training;
 
 import com.vaadin.spring.annotation.UIScope;
 import de.baleipzig.iris.configuration.NeuralNetConfig;
+import de.baleipzig.iris.configuration.UiConfig;
 import de.baleipzig.iris.logic.converter.neuralnet.IAssembler;
 import de.baleipzig.iris.logic.converter.neuralnet.IEntityLayerAssembler;
 import de.baleipzig.iris.logic.worker.IImageWorker;
@@ -23,6 +24,7 @@ public class TrainingService implements ITrainingService {
 
     private final INeuralNetWorker neuralNetWorker;
     private final NeuralNetConfig neuralNetConfig;
+    private final UiConfig uiConfig;
     private final IImageWorker imageWorker;
 
     private final IEntityLayerAssembler<BufferedImage> imageAssembler;
