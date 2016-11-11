@@ -30,7 +30,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
     private Map<BufferedImage, Integer> testData;
 
     private ScheduledExecutorService progressService = new ScheduledThreadPoolExecutor(1);
-    Future<?> progressHandler;
+    private Future<?> progressHandler;
 
     public TrainingPresenter(ITrainingView view, ITrainingService service) {
 
@@ -64,7 +64,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
             return null;
         }
 
-        initTrainingProcess();
+        initTraining();
 
         GradientDescentParams params= new GradientDescentParams(
                 model.getLearningRate(),
@@ -99,14 +99,14 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
             view.addInfoText(message);
         }
 
-        terminatingTraining();
+        terminateTraining();
         return null;
     }
 
     public Void stopTraining() {
 
         trainer.interrupt();
-        terminatingTraining();
+        terminateTraining();
         view.addInfoText(String.format("Neural Net %s: training interrupted...", model.getNeuralNet().getNeuralNetMetaData().getName()));
         return null;
     }
@@ -125,7 +125,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         return null;
     }
 
-    private void terminatingTraining() {
+    private void terminateTraining() {
 
         progressHandler.cancel(true);
         model.setCycleProgress(0.);
@@ -180,7 +180,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         view.bindTrainingsConfiguration(model);
     }
 
-    private void initTrainingProcess() {
+    private void initTraining() {
 
         UI.getCurrent().access(() -> view.setTrainingLock(true));
         model.setOverallTrainingProgress(0.);

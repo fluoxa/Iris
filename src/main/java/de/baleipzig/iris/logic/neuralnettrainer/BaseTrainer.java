@@ -17,7 +17,7 @@ public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTr
     @Getter
     protected INeuralNet neuralNet = null;
     @Getter
-    protected TrainingProgress progress = new TrainingProgress();
+    protected final TrainingProgress progress = new TrainingProgress();
 
     protected final IEntityLayerAssembler<InputType> inputConverter;
     protected final IAssembler<OutputType> outputConverter;

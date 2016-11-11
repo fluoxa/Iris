@@ -38,8 +38,8 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     private Button resetNeuralNet = new Button();
     private Button configNeuralNet = new Button();
 
-    private ProgressBar oneCycleProgressBar = new ProgressBar();
-    private ProgressBar overallTrainingProgressBar = new ProgressBar();
+    private final ProgressBar oneCycleProgressBar = new ProgressBar();
+    private final ProgressBar overallTrainingProgressBar = new ProgressBar();
 
     private HorizontalLayout buttonLine;
 
@@ -117,10 +117,10 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         verticalLayout.addComponent(infoTextArea);
 
         verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.overalltrainingprogress")));
-        overallTrainingProgressBar.addStyleName("iris-progressbar-onetrainingcycle");
+        overallTrainingProgressBar.addStyleName("iris-progressbar-training");
         verticalLayout.addComponent(overallTrainingProgressBar);
         verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.onecycleprogress")));
-        oneCycleProgressBar.addStyleName("iris-progressbar-onetrainingcycle");
+        oneCycleProgressBar.addStyleName("iris-progressbar-training");
         verticalLayout.addComponent(oneCycleProgressBar);
 
         verticalLayout.setWidth(100, Unit.PERCENTAGE);

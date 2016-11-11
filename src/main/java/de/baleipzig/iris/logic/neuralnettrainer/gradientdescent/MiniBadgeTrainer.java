@@ -44,8 +44,7 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
         interrupted = false;
 
-        progress.setCycleProgress(0.);
-        progress.setOverallProgress(0.);
+        progress.reset();
 
         int cycle = 0;
         int trainingCycles = params.getTrainingCycles();
