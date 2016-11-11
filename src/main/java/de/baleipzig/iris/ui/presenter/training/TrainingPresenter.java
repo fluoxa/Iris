@@ -5,6 +5,7 @@ import de.baleipzig.iris.common.utils.ImageUtils;
 import de.baleipzig.iris.enums.ImageType;
 import de.baleipzig.iris.enums.ResultType;
 import de.baleipzig.iris.logic.neuralnettrainer.INeuralNetTrainer;
+import de.baleipzig.iris.logic.neuralnettrainer.TrainingProgress;
 import de.baleipzig.iris.logic.neuralnettrainer.gradientdescent.*;
 import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
 import de.baleipzig.iris.logic.neuralnettrainer.result.TestResult;
@@ -16,6 +17,10 @@ import de.baleipzig.iris.ui.viewmodel.training.TrainingViewModel;
 
 import java.awt.image.BufferedImage;
 import java.util.Map;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITrainingService> {
 
@@ -23,6 +28,9 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     private INeuralNetTrainer<BufferedImage, Integer> trainer;
     private Map<BufferedImage, Integer> testData;
+
+    private ScheduledExecutorService progressService = new ScheduledThreadPoolExecutor(1);
+    private Future<?> progressHandler;
 
     public TrainingPresenter(ITrainingView view, ITrainingService service) {
 
@@ -47,6 +55,8 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     public Void startTraining() {
 
+        view.addInfoText("setting up training environment...");
+
         loadNeuralNet();
 
         if (model.getNeuralNet() == null ){
@@ -54,7 +64,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
             return null;
         }
 
-        UI.getCurrent().access(() -> view.setTrainingLock(true));
+        initTraining();
 
         GradientDescentParams params= new GradientDescentParams(
                 model.getLearningRate(),
@@ -64,6 +74,8 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
         trainer = getGradDescTrainer(params);
         trainer.setNeuralNet(model.getNeuralNet());
+        progressHandler = progressService.scheduleAtFixedRate(createProgressThread(trainer), 0, service.getUiConfig().getProgressUpdateInterval(), TimeUnit.MILLISECONDS );
+
         Map<BufferedImage, Integer> trainingData = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(params.getTrainingSetSize(), ImageType.TRAIN));
         testData = testData == null ? ImageUtils.convertToResultMap(service.getImageWorker().loadAllImagesByType(ImageType.TEST)) : testData;
 
@@ -84,20 +96,18 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         if(testResult.getResultType() == ResultType.SUCCESS) {
 
             String message = service.getLanguageHandler().getTranslation("training.presenter.errorrate", new Object[] {model.getNeuralNet().getNeuralNetMetaData().getName(), testResult.getErrorRate()});
-
             view.addInfoText(message);
         }
 
-        UI.getCurrent().access(() -> view.setTrainingLock(false));
+        terminateTraining();
         return null;
     }
 
     public Void stopTraining() {
 
         trainer.interrupt();
-
+        terminateTraining();
         view.addInfoText(String.format("Neural Net %s: training interrupted...", model.getNeuralNet().getNeuralNetMetaData().getName()));
-
         return null;
     }
 
@@ -113,6 +123,18 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         service.getNeuralNetWorker().save(model.getNeuralNet());
         view.addInfoText(String.format("Neural Net %s: saved neural net...", model.getNeuralNet().getNeuralNetMetaData().getName()));
         return null;
+    }
+
+    private void terminateTraining() {
+
+        progressHandler.cancel(true);
+        model.setCycleProgress(0.);
+        model.setOverallTrainingProgress(0.);
+
+        UI.getCurrent().access(() -> {
+            view.setTrainingLock(false);
+            view.updateTrainingProgress(model);
+        });
     }
 
     private INeuralNetTrainer<BufferedImage, Integer> getGradDescTrainer(GradientDescentParams params) {
@@ -149,10 +171,30 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
     private void initViewModel() {
 
         service.getDozerBeanMapper().map(service.getNeuralNetConfig(), model);
+        model.setCycleProgress(0.);
+        model.setOverallTrainingProgress(0.);
     }
 
     private void bindViewModelToView() {
 
         view.bindTrainingsConfiguration(model);
+    }
+
+    private void initTraining() {
+
+        UI.getCurrent().access(() -> view.setTrainingLock(true));
+        model.setOverallTrainingProgress(0.);
+        model.setCycleProgress(0.);
+        view.updateTrainingProgress(model);
+    }
+
+    private Runnable createProgressThread(INeuralNetTrainer<BufferedImage, Integer> trainer) {
+
+        return () -> {
+            TrainingProgress progress = trainer.getProgress();
+            model.setOverallTrainingProgress(progress.getOverallProgress());
+            model.setCycleProgress(progress.getCycleProgress());
+            view.updateTrainingProgress(model);
+        };
     }
 }

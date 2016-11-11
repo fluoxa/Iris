@@ -16,6 +16,8 @@ public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTr
 
     @Getter
     protected INeuralNet neuralNet = null;
+    @Getter
+    protected final TrainingProgress progress = new TrainingProgress();
 
     protected final IEntityLayerAssembler<InputType> inputConverter;
     protected final IAssembler<OutputType> outputConverter;
@@ -64,6 +66,7 @@ public abstract class BaseTrainer<InputType, OutputType> implements INeuralNetTr
     }
 
     public void interrupt() {
+
         interrupted = true;
     }
 

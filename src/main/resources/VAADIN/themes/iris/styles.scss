@@ -1,8 +1,6 @@
 @import "../valo/valo.scss";
 @import "addons.scss";
 
-
-
 .iris {
   @include valo;
   @include addons;
@@ -51,6 +49,10 @@
 
   .v-textarea-readonly.iris-info-textarea {
     background: #FFF
+  }
+
+  .v-progressbar.iris-progressbar-training {
+    width: 100%;
   }
 
   .test {

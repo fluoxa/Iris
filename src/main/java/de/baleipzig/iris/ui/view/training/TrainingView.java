@@ -38,6 +38,9 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     private Button resetNeuralNet = new Button();
     private Button configNeuralNet = new Button();
 
+    private final ProgressBar oneCycleProgressBar = new ProgressBar();
+    private final ProgressBar overallTrainingProgressBar = new ProgressBar();
+
     private HorizontalLayout buttonLine;
 
     //endregion
@@ -112,6 +115,14 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         infoTextArea.setReadOnly(true);
         infoTextArea.addStyleName("iris-info-textarea");
         verticalLayout.addComponent(infoTextArea);
+
+        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.overalltrainingprogress")));
+        overallTrainingProgressBar.addStyleName("iris-progressbar-training");
+        verticalLayout.addComponent(overallTrainingProgressBar);
+        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.onecycleprogress")));
+        oneCycleProgressBar.addStyleName("iris-progressbar-training");
+        verticalLayout.addComponent(oneCycleProgressBar);
+
         verticalLayout.setWidth(100, Unit.PERCENTAGE);
         verticalLayout.addComponent(buttonLine);
 
@@ -165,6 +176,15 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         stopTraining.setEnabled(isLocked);
 
         lockSearchResultTable(isLocked);
+    }
+
+    @Override
+    public void updateTrainingProgress(TrainingViewModel model) {
+
+        UI.getCurrent().access(() -> {
+            overallTrainingProgressBar.setValue((float) model.getOverallTrainingProgress());
+            oneCycleProgressBar.setValue((float) model.getCycleProgress());
+        });
     }
 
     //endregion
