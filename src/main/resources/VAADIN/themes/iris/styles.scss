@@ -1,6 +1,8 @@
+@import "../valo/valo.scss";
 @import "addons.scss";
 
 .iris {
+  @include valo;
   @include addons;
 
   $iris-margin: 12px;

@@ -55,9 +55,9 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     public Void startTraining() {
 
-        loadNeuralNet();
+        view.addInfoText("setting up training environment...");
 
-        view.addInfoText(String.format("Neural Net %s: setup training environment...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+        loadNeuralNet();
 
         if (model.getNeuralNet() == null ){
             view.addInfoText(service.getLanguageHandler().getTranslation("training.base.noneuralnetselected"));
