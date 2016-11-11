@@ -2,6 +2,7 @@ package de.baleipzig.iris.ui.view.neuralnetconfig;
 
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
+import com.vaadin.ui.*;
 import de.baleipzig.iris.ui.language.LanguageHandler;
 import de.baleipzig.iris.ui.presenter.neuralnetconfig.NeuralNetConfigPresenter;
 import de.baleipzig.iris.ui.service.neuralnetconfig.INeuralNetConfigService;
@@ -27,12 +28,25 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     @Getter
     private final LanguageHandler languageHandler;
 
+    private TextArea descriptionTextArea = new TextArea();
+    private TextField nameTextField = new TextField();
+    private Button trainNeuralNet = new Button();
+    private Button saveNeuralNet = new Button();
+    private Button resetNeuralNet = new Button();
+    private Button createNeuralNet = new Button();
+
+    private TabSheet neuralNetEditor = new TabSheet();
+    private TextArea jsonEditor = new TextArea();
+
     //endregion
 
     //region -- methods --
 
     @PostConstruct
     void init() {
+
+        setupElements();
+        setupLayout();
 
         presenter = new NeuralNetConfigPresenter(this, (INeuralNetConfigService) context.getBean("neuralNetConfigService"));
         presenter.init();
@@ -46,6 +60,63 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     @Override
     public void updateNeuralNetStructure(String neuralNetStructure) {
 
+    }
+
+    private void setupElements(){
+
+        trainNeuralNet.setCaption("train");
+        saveNeuralNet.setCaption("save");
+        resetNeuralNet.setCaption("reset");
+        createNeuralNet.setCaption("new");
+    }
+
+    private void setupLayout(){
+
+        Label settingsLabel = new Label("Settings:");
+        GridLayout settingsGrid = new GridLayout(2,2);
+        settingsGrid.setSpacing(true);
+        Label nameLabel = new Label("Name:");
+        Label descriptionLabel = new Label("Description:");
+        settingsGrid.addComponent(nameLabel);
+        settingsGrid.addComponent(nameTextField);
+        settingsGrid.addComponent(descriptionLabel);
+        settingsGrid.addComponent(descriptionTextArea);
+
+        VerticalLayout leftColumn = new VerticalLayout();
+        leftColumn.setSpacing(true);
+        leftColumn.addComponent(settingsLabel);
+        leftColumn.addComponent(settingsGrid);
+
+        VerticalLayout rightColumn = new VerticalLayout();
+        rightColumn.setSpacing(true);
+        jsonEditor.setStyleName("iris-json-editor");
+        VerticalLayout jsonEditorTab = new VerticalLayout(jsonEditor);
+        jsonEditorTab.setSpacing(true);
+        neuralNetEditor.addTab(jsonEditorTab, "Json Editor");
+        VerticalLayout autoCreaterTab = new VerticalLayout();
+        autoCreaterTab.setSpacing(true);
+        neuralNetEditor.addTab(autoCreaterTab, "Auto Creator");
+        rightColumn.addComponent(neuralNetEditor);
+
+        HorizontalLayout totalSettingLayout = new HorizontalLayout();
+        totalSettingLayout.setSpacing(true);
+        totalSettingLayout.addComponent(leftColumn);
+        totalSettingLayout.addComponent(rightColumn);
+
+        HorizontalLayout buttonLayout = new HorizontalLayout();
+        buttonLayout.setSpacing(true);
+        buttonLayout.addComponent(createNeuralNet);
+        buttonLayout.addComponent(trainNeuralNet);
+        buttonLayout.addComponent(resetNeuralNet);
+        buttonLayout.addComponent(saveNeuralNet);
+
+        VerticalLayout totalLayout = new VerticalLayout();
+        totalLayout.setSizeFull();
+        totalLayout.setSpacing(true);
+        totalLayout.addComponent(totalSettingLayout);
+        totalLayout.addComponent(buttonLayout);
+
+        this.setBodyContent(totalLayout);
     }
 
     //endregion

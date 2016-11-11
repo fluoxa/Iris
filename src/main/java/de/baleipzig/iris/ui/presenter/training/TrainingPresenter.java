@@ -55,7 +55,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     public Void startTraining() {
 
-        view.addInfoText(String.format("setting up training environment..."));
+        view.addInfoText("setting up training environment...");
 
         loadNeuralNet();
 
