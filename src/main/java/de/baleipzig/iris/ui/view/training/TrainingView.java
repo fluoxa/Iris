@@ -21,6 +21,9 @@ import javax.annotation.PostConstruct;
 @SpringView(name = TrainingView.VIEW_NAME)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements ITrainingView {
+
+    //region -- member --
+
     public static final String VIEW_NAME = "training";
 
     private final ApplicationContext context;
