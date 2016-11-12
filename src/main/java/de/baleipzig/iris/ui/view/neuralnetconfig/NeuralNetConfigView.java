@@ -1,5 +1,6 @@
 package de.baleipzig.iris.ui.view.neuralnetconfig;
 
+import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.*;
@@ -56,11 +57,20 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     @Override
     public void bindTrainingsConfiguration(NeuralNetConfigViewModel viewModel) {
 
+        BeanFieldGroup<NeuralNetConfigViewModel> group = new BeanFieldGroup<>(NeuralNetConfigViewModel.class);
+        group.setItemDataSource(viewModel);
+
+        bindNeuralNetConfigViewModelToView(group);
+
+        group.setBuffered(false);
     }
 
     @Override
-    public void updateNeuralNetStructure(String neuralNetStructure) {
+    public void update(NeuralNetConfigViewModel model) {
 
+        nameTextField.setValue(model.getName());
+        descriptionTextArea.setValue(model.getDescription());
+        jsonEditor.setValue(model.getNetStructure());
     }
 
     private void setupElements(){
@@ -123,6 +133,13 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     private void setupListeners() {
 
         trainNeuralNet.addClickListener(e -> presenter.redirectToTrainingView());
+    }
+
+    private void  bindNeuralNetConfigViewModelToView(BeanFieldGroup<NeuralNetConfigViewModel> group) {
+
+        group.bind(nameTextField, "name");
+        group.bind(descriptionTextArea, "description");
+        group.bind(jsonEditor, "netStructure");
     }
 
     //endregion

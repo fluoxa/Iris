@@ -16,6 +16,6 @@ public class NeuralNetConfigViewModel {
     private UUID selectedNeuralNetId;
 
     private String name;
-    private String info;
+    private String description;
     private String netStructure;
 }

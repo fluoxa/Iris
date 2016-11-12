@@ -22,12 +22,20 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
     public void init() {
 
         super.init();
+        initViewModel();
+        bindViewModelToView();
     }
 
     @Override
     public void handleSelection(NeuralNetMetaData metaData) {
 
         model.setSelectedNeuralNetId(metaData.getId());
+        model.setNeuralNet(service.getNeuralNetWorker().load(metaData.getId()));
+        model.setDescription(metaData.getDescription());
+        model.setName(metaData.getName());
+        model.setNetStructure(service.getNeuralNetWorker().toJson(model.getNeuralNet()));
+
+        UI.getCurrent().access(() -> view.update(model));
     }
 
     public  Void redirectToTrainingView() {
@@ -35,5 +43,19 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         String parameterString = model.getSelectedNeuralNetId() == null ? "" : String.format("/%s=%s", "uuid", model.getSelectedNeuralNetId());
         UI.getCurrent().getNavigator().navigateTo(String.format("%s%s", TrainingView.VIEW_NAME,parameterString));
         return null;
+    }
+
+    private void bindViewModelToView() {
+
+        view.bindTrainingsConfiguration(model);
+    }
+
+    private void initViewModel() {
+
+        model.setName("");
+        model.setNetStructure("");
+        model.setDescription("");
+        model.setNeuralNet(null);
+        model.setSelectedNeuralNetId(null);
     }
 }

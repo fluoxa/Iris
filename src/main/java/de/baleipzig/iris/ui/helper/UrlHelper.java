@@ -18,6 +18,10 @@ public class UrlHelper {
         Map<String, String> parameterMap = new HashMap<>(parameters.length);
 
         for (String parameter : parameters) {
+            if(parameter.isEmpty()) {
+                continue;
+            }
+
             String[] keyValue = parameter.split("=");
             parameterMap.put(keyValue[0], keyValue[1]);
         }

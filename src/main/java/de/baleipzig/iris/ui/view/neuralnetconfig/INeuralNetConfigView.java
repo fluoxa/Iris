@@ -7,5 +7,5 @@ import de.baleipzig.iris.ui.viewmodel.neuralnetconfig.NeuralNetConfigViewModel;
 public interface INeuralNetConfigView extends IBaseSearchNNView<NeuralNetConfigPresenter> {
 
     void bindTrainingsConfiguration(NeuralNetConfigViewModel trainingViewModel);
-    void updateNeuralNetStructure(String message);
+    void update(NeuralNetConfigViewModel model);
 }
