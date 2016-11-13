@@ -7,6 +7,23 @@ import java.util.regex.Pattern;
 
 public class UrlHelper {
 
+    public static String getUrl(final String viewName, Map<String, String> parameters) {
+
+        String parameterString = "";
+
+        for (Map.Entry<String, String> parameter : parameters.entrySet()) {
+
+            if(parameterString.isEmpty()) {
+                parameterString = String.format("%s%s=%s", parameterString, parameter.getKey(), parameter.getValue());
+            }
+            else {
+                parameterString = String.format("%s&%s=%s", parameterString, parameter.getKey(), parameter.getValue());
+            }
+        }
+
+        return String.format("%s/%s",viewName, parameterString );
+    }
+
     public static Map<String, String> getParameterMap(String parameterString) {
 
         if(!isValidParameterString(parameterString)) {

@@ -18,13 +18,11 @@ import org.springframework.context.ApplicationContext;
 import javax.annotation.PostConstruct;
 
 @UIScope
-@SpringView(name = TrainingView.VIEW_NAME)
+@SpringView(name = ITrainingView.VIEW_NAME)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements ITrainingView {
 
     //region -- member --
-
-    public static final String VIEW_NAME = "training";
 
     private final ApplicationContext context;
     @Getter
@@ -76,7 +74,7 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         stopTraining.addClickListener(e -> presenter.runEventAsynchronously(presenter::stopTraining));
         resetNeuralNet.addClickListener(e -> presenter.resetNeuralNet());
         saveNeuralNet.addClickListener(e -> presenter.saveNeuralNet());
-        configNeuralNet.addClickListener(e -> presenter.redirectToConfigView());
+        configNeuralNet.addClickListener(e -> presenter.navigateToConfigView());
     }
 
     private void setupLayout() {

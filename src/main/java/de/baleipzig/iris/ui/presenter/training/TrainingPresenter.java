@@ -10,13 +10,15 @@ import de.baleipzig.iris.logic.neuralnettrainer.gradientdescent.*;
 import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
 import de.baleipzig.iris.logic.neuralnettrainer.result.TestResult;
 import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
+import de.baleipzig.iris.ui.helper.UrlHelper;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
-import de.baleipzig.iris.ui.view.neuralnetconfig.NeuralNetConfigView;
+import de.baleipzig.iris.ui.view.neuralnetconfig.INeuralNetConfigView;
 import de.baleipzig.iris.ui.view.training.ITrainingView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingViewModel;
 
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
@@ -126,10 +128,12 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         return null;
     }
 
-    public Void redirectToConfigView() {
+    public Void navigateToConfigView() {
 
-        String parameterString = model.getSelectedNeuralNetId() == null ? "" : String.format("/%s=%s", "uuid", model.getSelectedNeuralNetId());
-        UI.getCurrent().getNavigator().navigateTo(String.format("%s%s",NeuralNetConfigView.VIEW_NAME,parameterString));
+        Map<String, String> parameters = new HashMap<>(1);
+        parameters.put("uuid", model.getSelectedNeuralNetId().toString());
+
+        UI.getCurrent().getNavigator().navigateTo(UrlHelper.getUrl(INeuralNetConfigView.VIEW_NAME, parameters));
         return null;
     }
 

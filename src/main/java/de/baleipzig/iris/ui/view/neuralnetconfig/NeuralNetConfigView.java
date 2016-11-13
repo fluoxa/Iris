@@ -17,13 +17,11 @@ import org.springframework.context.ApplicationContext;
 import javax.annotation.PostConstruct;
 
 @UIScope
-@SpringView(name = NeuralNetConfigView.VIEW_NAME)
+@SpringView(name = INeuralNetConfigView.VIEW_NAME)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresenter> implements INeuralNetConfigView {
 
     //region -- member --
-
-    public static final String VIEW_NAME = "neuralnetconfig";
 
     private final ApplicationContext context;
     @Getter
@@ -132,7 +130,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
 
     private void setupListeners() {
 
-        trainNeuralNet.addClickListener(e -> presenter.redirectToTrainingView());
+        trainNeuralNet.addClickListener(e -> presenter.navigateToTrainingView());
     }
 
     private void  bindNeuralNetConfigViewModelToView(BeanFieldGroup<NeuralNetConfigViewModel> group) {
