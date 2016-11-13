@@ -2,7 +2,6 @@ package de.baleipzig.iris.ui.presenter.neuralnetconfig;
 
 import com.vaadin.ui.UI;
 import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
-import de.baleipzig.iris.ui.helper.UrlHelper;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.neuralnetconfig.INeuralNetConfigService;
 import de.baleipzig.iris.ui.view.neuralnetconfig.INeuralNetConfigView;
@@ -44,11 +43,15 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
 
     public  Void navigateToTrainingView() {
 
-        Map<String, String> parameters = new HashMap<>(1);
-        parameters.put("uuid", model.getSelectedNeuralNetId().toString());
+        if(model.getSelectedNeuralNetId() != null) {
+            Map<String, String> parameters = new HashMap<>(1);
+            parameters.put("uuid", model.getSelectedNeuralNetId().toString());
 
-        UI.getCurrent().getNavigator().navigateTo(UrlHelper.getUrl(ITrainingView.VIEW_NAME, parameters));
-        return null;
+            return this.navigateToView(ITrainingView.VIEW_NAME, parameters);
+        }
+        else {
+            return this.navigateToView(ITrainingView.VIEW_NAME);
+        }
     }
 
     private void bindViewModelToView() {

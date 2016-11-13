@@ -80,6 +80,8 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         searchAndResultLayout.setExpandRatio(searchResultPanel, 1);
 
         contentLayout.setMargin(true);
+        contentLayout.setWidth(100, Unit.PERCENTAGE);
+
 
         Panel contentPanel = new Panel();
         contentPanel.setSizeFull();

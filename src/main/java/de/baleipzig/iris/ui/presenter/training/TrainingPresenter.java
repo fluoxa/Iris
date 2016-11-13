@@ -10,7 +10,6 @@ import de.baleipzig.iris.logic.neuralnettrainer.gradientdescent.*;
 import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
 import de.baleipzig.iris.logic.neuralnettrainer.result.TestResult;
 import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
-import de.baleipzig.iris.ui.helper.UrlHelper;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
 import de.baleipzig.iris.ui.view.neuralnetconfig.INeuralNetConfigView;
@@ -130,11 +129,15 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     public Void navigateToConfigView() {
 
-        Map<String, String> parameters = new HashMap<>(1);
-        parameters.put("uuid", model.getSelectedNeuralNetId().toString());
+        if(model.getSelectedNeuralNetId() != null) {
+            Map<String, String> parameters = new HashMap<>(1);
+            parameters.put("uuid", model.getSelectedNeuralNetId().toString());
 
-        UI.getCurrent().getNavigator().navigateTo(UrlHelper.getUrl(INeuralNetConfigView.VIEW_NAME, parameters));
-        return null;
+            return this.navigateToView(INeuralNetConfigView.VIEW_NAME, parameters);
+        }
+        else {
+            return this.navigateToView(INeuralNetConfigView.VIEW_NAME);
+        }
     }
 
     private void terminateTraining() {
