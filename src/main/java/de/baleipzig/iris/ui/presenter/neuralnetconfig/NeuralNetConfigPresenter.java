@@ -48,8 +48,11 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
 
     public Void saveNeuralNet() {
 
-        if(model.getSelectedNeuralNetId() == null || model.getNeuralNet() == null) {
+        if(model.getSelectedNeuralNetId() == null && model.getNeuralNet() == null) {
             return null;
+        }
+        if(model.getSelectedNeuralNetId() == null && model.getNeuralNet() != null) {
+            model.setSelectedNeuralNetId(model.getNeuralNet().getNeuralNetMetaData().getId());
         }
 
         INeuralNet savedNet;
@@ -83,7 +86,7 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
 
         service.getDozerBeanMapper().map(neuralNet.getNeuralNetMetaData(), model);
         model.setNeuralNet(neuralNet);
-        model.setSelectedNeuralNetId(neuralNet.getNeuralNetMetaData().getId());
+        model.setSelectedNeuralNetId(null);
         model.setNetStructure(service.getNeuralNetWorker().toJson(model.getNeuralNet()));
         model.setOriginalNetStructure(model.getNetStructure());
 
