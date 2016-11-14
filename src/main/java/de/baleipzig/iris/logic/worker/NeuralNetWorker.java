@@ -3,17 +3,22 @@ package de.baleipzig.iris.logic.worker;
 import de.baleipzig.iris.enums.NeuralNetCoreType;
 import de.baleipzig.iris.logic.converter.database.NeuralNetConverter;
 import de.baleipzig.iris.model.neuralnet.neuralnet.*;
+import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetCoreEntity;
 import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetEntity;
 import de.baleipzig.iris.persistence.repository.INeuralNetEntityRepository;
 import de.baleipzig.iris.persistence.subset.NeuralNetSubset;
 import lombok.RequiredArgsConstructor;
-import org.dozer.DozerBeanMapper;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,7 +31,9 @@ public class NeuralNetWorker implements INeuralNetWorker {
     private final INeuralNetEntityRepository neuralNetEntityRepository;
     private final ILayerWorker layerWorker;
 
-    private final DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
+    private final ApplicationContext context;
+
+    private final ObjectMapper mapper = new ObjectMapper();
 
     //endregion
 
@@ -66,8 +73,47 @@ public class NeuralNetWorker implements INeuralNetWorker {
     @Override
     public String toJson(INeuralNet neuralNet) {
 
-        return "dummy string";
+        String neuralNetJson = "";
+
+        try {
+            neuralNetJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(NeuralNetConverter.toNeuralNetCoreEntity(neuralNet.getNeuralNetCore()));
+        }
+        catch(IOException ex) {
+            System.out.println(ex);
+        }
+
+        return neuralNetJson;
     }
+
+    @Override
+    public INeuralNet fromJson(String jsonString, NeuralNetCoreType neuralNetType) {
+
+        INeuralNet neuralNet = context.getBean(INeuralNet.class);
+        INeuralNetMetaData metaData = context.getBean(INeuralNetMetaData.class);
+
+        neuralNet.setNeuralNetMetaData(metaData);
+
+        NeuralNetCoreEntity neuralNetCoreEntity;
+
+        try {
+            neuralNetCoreEntity = mapper.readValue(jsonString, NeuralNetCoreEntity.class);
+
+        } catch (JsonGenerationException e) {
+            e.printStackTrace();
+            return null;
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        neuralNet.setNeuralNetCore(NeuralNetConverter.fromNeuralNetCoreEntity(neuralNetCoreEntity, neuralNetType));
+
+        return neuralNet;
+    }
+
 
     @Override
     public List<NeuralNetMetaData> findAllNeuralNetMetaDataByName(String name) {

@@ -41,7 +41,7 @@ public class NeuralNetWorkerTest {
         when(netCore.getOutputLayer()).thenReturn(outputLayer);
         when(netCore.getInputLayer()).thenReturn(inputLayer);
 
-        INeuralNetWorker worker = new NeuralNetWorker(repo, layerWorker);
+        INeuralNetWorker worker = new NeuralNetWorker(repo, layerWorker,null);
 
         worker.propagateForward(net);
 
@@ -67,7 +67,7 @@ public class NeuralNetWorkerTest {
         iLayer.getNode(0,0).setActivation(input1);
         iLayer.getNode(1,0).setActivation(input2);
 
-        INeuralNetWorker worker = new NeuralNetWorker(repo, new LayerWorker(new NodeWorker()));
+        INeuralNetWorker worker = new NeuralNetWorker(repo, new LayerWorker(new NodeWorker()), null);
 
         worker.propagateForward(net);
 

@@ -102,9 +102,7 @@ public class NeuralNetConverter {
         return layer;
     }
 
-    public static NeuralNetEntity toNeuralNetEntity(INeuralNet neuralNet) {
-
-        INeuralNetCore neuralNetCore = neuralNet.getNeuralNetCore();
+    public static NeuralNetCoreEntity toNeuralNetCoreEntity(INeuralNetCore neuralNetCore) {
 
         int totalNumberOfNodes = NeuralNetCoreUtils.getNumberOfNodes(neuralNetCore);
 
@@ -127,19 +125,25 @@ public class NeuralNetConverter {
 
         Map<String,AxonEntity> axonEntities = getAxonEntities(orderedNodes, nodeIdMapper);
 
+        NeuralNetCoreEntity neuralNetCoreEntity = new NeuralNetCoreEntity();
+        neuralNetCoreEntity.setNodes(idNodeEntityMapper);
+        neuralNetCoreEntity.setLayers(layers);
+        neuralNetCoreEntity.setAxons(axonEntities);
+
+        return neuralNetCoreEntity;
+    }
+
+    public static NeuralNetEntity toNeuralNetEntity(INeuralNet neuralNet) {
+
+        INeuralNetCore neuralNetCore = neuralNet.getNeuralNetCore();
+
         NeuralNetEntity neuralNetEntity = new NeuralNetEntity();
 
         neuralNetEntity.setNeuralNetId(neuralNet.getNeuralNetMetaData().getId().toString());
         neuralNetEntity.setName(neuralNet.getNeuralNetMetaData().getName());
         neuralNetEntity.setDescription(neuralNet.getNeuralNetMetaData().getDescription());
         neuralNetEntity.setType(NeuralNetCoreUtils.getNeuralNetType(neuralNetCore).toString());
-
-        NeuralNetCoreEntity neuralNetCoreEntity = new NeuralNetCoreEntity();
-        neuralNetCoreEntity.setNodes(idNodeEntityMapper);
-        neuralNetCoreEntity.setLayers(layers);
-        neuralNetCoreEntity.setAxons(axonEntities);
-
-        neuralNetEntity.setNeuralNetCoreEntity(neuralNetCoreEntity);
+        neuralNetEntity.setNeuralNetCoreEntity(toNeuralNetCoreEntity(neuralNetCore));
 
         return neuralNetEntity;
     }
