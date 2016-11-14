@@ -1,6 +1,5 @@
 package de.baleipzig.iris.ui.presenter.neuralnetconfig;
 
-import com.vaadin.ui.UI;
 import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.neuralnetconfig.INeuralNetConfigService;
