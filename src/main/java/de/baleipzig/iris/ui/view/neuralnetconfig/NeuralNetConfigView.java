@@ -37,6 +37,8 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     private TabSheet neuralNetEditor = new TabSheet();
     private TextArea jsonEditor = new TextArea();
 
+    private final BeanFieldGroup<NeuralNetConfigViewModel> beanFieldGroup = new BeanFieldGroup<>(NeuralNetConfigViewModel.class);
+
     //endregion
 
     //region -- methods --
@@ -54,21 +56,15 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
 
     @Override
     public void bindTrainingsConfiguration(NeuralNetConfigViewModel viewModel) {
+        beanFieldGroup.setBuffered(false);
+        beanFieldGroup.setItemDataSource(viewModel);
 
-        BeanFieldGroup<NeuralNetConfigViewModel> group = new BeanFieldGroup<>(NeuralNetConfigViewModel.class);
-        group.setItemDataSource(viewModel);
-
-        bindNeuralNetConfigViewModelToView(group);
-
-        group.setBuffered(false);
+        bindNeuralNetConfigViewModelToView(beanFieldGroup);
     }
 
     @Override
-    public void update(NeuralNetConfigViewModel model) {
-
-        nameTextField.setValue(model.getName());
-        descriptionTextArea.setValue(model.getDescription());
-        jsonEditor.setValue(model.getNetStructure());
+    public void update(NeuralNetConfigViewModel viewModel) {
+        beanFieldGroup.setItemDataSource(viewModel);
     }
 
     private void setupElements(){

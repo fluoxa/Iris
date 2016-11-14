@@ -1,5 +1,6 @@
 package de.baleipzig.iris.ui.presenter.neuralnetconfig;
 
+import com.vaadin.ui.UI;
 import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.neuralnetconfig.INeuralNetConfigService;
@@ -36,7 +37,6 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         model.setDescription(metaData.getDescription());
         model.setName(metaData.getName());
         model.setNetStructure(service.getNeuralNetWorker().toJson(model.getNeuralNet()));
-
         view.update(model);
     }
 
