@@ -11,4 +11,5 @@ public interface INeuralNetConfigView extends IBaseSearchNNView<NeuralNetConfigP
     void bindTrainingsConfiguration(NeuralNetConfigViewModel trainingViewModel);
     void update(NeuralNetConfigViewModel model);
     void unselectSearchList();
+    void resetView();
 }

@@ -93,6 +93,17 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         return null;
     }
 
+    public void deleteNeuralNet() {
+
+        if(model.getSelectedNeuralNetId() == null) {
+            return;
+        }
+
+        service.getNeuralNetWorker().delete(model.getSelectedNeuralNetId());
+        view.resetView();
+        searchAllNeuralNets();
+    }
+
     public  Void navigateToTrainingView() {
 
         if(model.getSelectedNeuralNetId() != null) {

@@ -33,6 +33,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     private Button saveNeuralNet = new Button();
     private Button resetNeuralNet = new Button();
     private Button createNeuralNet = new Button();
+    private Button deleteNeuralNet = new Button();
 
     private TabSheet neuralNetEditor = new TabSheet();
     private TextArea jsonEditor = new TextArea();
@@ -63,6 +64,14 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     }
 
     @Override
+    public void resetView() {
+
+        jsonEditor.setValue("");
+        nameTextField.setValue("");
+        descriptionTextArea.setValue("");
+    }
+
+    @Override
     public void update(NeuralNetConfigViewModel viewModel) {
         beanFieldGroup.setItemDataSource(viewModel);
     }
@@ -73,6 +82,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         saveNeuralNet.setCaption("save");
         resetNeuralNet.setCaption("reset");
         createNeuralNet.setCaption("new");
+        deleteNeuralNet.setCaption("delete");
     }
 
     private void setupLayout(){
@@ -111,10 +121,11 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
 
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.setSpacing(true);
-        buttonLayout.addComponent(createNeuralNet);
         buttonLayout.addComponent(trainNeuralNet);
         buttonLayout.addComponent(resetNeuralNet);
         buttonLayout.addComponent(saveNeuralNet);
+        buttonLayout.addComponent(createNeuralNet);
+        buttonLayout.addComponent(deleteNeuralNet);
 
         VerticalLayout totalLayout = new VerticalLayout();
         totalLayout.setSizeFull();
@@ -130,6 +141,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         trainNeuralNet.addClickListener(e -> presenter.navigateToTrainingView());
         saveNeuralNet.addClickListener(e -> presenter.saveNeuralNet());
         createNeuralNet.addClickListener(e -> presenter.createNeuralNet());
+        deleteNeuralNet.addClickListener(e -> presenter.deleteNeuralNet());
     }
 
     private void  bindNeuralNetConfigViewModelToView(BeanFieldGroup<NeuralNetConfigViewModel> group) {
