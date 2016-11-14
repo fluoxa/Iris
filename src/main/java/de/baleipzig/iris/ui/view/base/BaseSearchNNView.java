@@ -14,6 +14,7 @@ import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends BaseView<P> implements IBaseSearchNNView<P> {
 
@@ -35,13 +36,22 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
             return;
         }
 
+        selectSearchListItem(UUID.fromString(parameters.get("uuid")));
+    }
+
+    @Override
+    public void selectSearchListItem(UUID neuralNetId) {
+
+        if(neuralNetId == null) {
+            return;
+        }
+
         for (Object item : searchResultTable.getVisibleItemIds()) {
-            if( ((NeuralNetMetaData) item).getId().toString().equals(parameters.get("uuid"))) {
+            if( ((NeuralNetMetaData) item).getId().equals(neuralNetId)) {
                 searchResultTable.setValue(item);
                 break;
             }
         }
-
     }
 
     @PostConstruct

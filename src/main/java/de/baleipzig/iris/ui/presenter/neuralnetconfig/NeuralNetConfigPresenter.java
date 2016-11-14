@@ -72,6 +72,7 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
 
         service.getNeuralNetWorker().save(savedNet);
         searchAllNeuralNets();
+        view.selectSearchListItem(model.getSelectedNeuralNetId());
 
         return null;
     }
