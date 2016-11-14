@@ -54,6 +54,12 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         }
     }
 
+    @Override
+    public void unselectSearchList() {
+        searchResultTable.unselect(searchResultTable.getValue());
+    }
+
+
     @PostConstruct
     private void init() {
         createLayout();

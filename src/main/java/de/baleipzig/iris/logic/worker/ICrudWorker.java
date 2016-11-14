@@ -6,5 +6,7 @@ public interface ICrudWorker<T, ID> {
 
     T load(ID id);
 
+    T create();
+
     void delete(ID id);
 }

@@ -2,6 +2,7 @@ package de.baleipzig.iris.logic.worker;
 
 import de.baleipzig.iris.enums.NeuralNetCoreType;
 import de.baleipzig.iris.logic.converter.database.NeuralNetConverter;
+import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.*;
 import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetCoreEntity;
 import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetEntity;
@@ -67,6 +68,29 @@ public class NeuralNetWorker implements INeuralNetWorker {
 
         neuralNetEntityRepository.delete(neuralNetId.toString());
     }
+
+    @Override
+
+    public INeuralNet create() {
+
+        INeuralNet neuralNet = context.getBean(INeuralNet.class);
+        INeuralNetMetaData metaData = context.getBean(INeuralNetMetaData.class);
+        INeuralNetCore core = context.getBean(INeuralNetCore.class);
+        ILayer inputLayer = context.getBean(ILayer.class);
+        ILayer outputLayer = context.getBean(ILayer.class);
+
+        neuralNet.setNeuralNetCore(core);
+        neuralNet.setNeuralNetMetaData(metaData);
+        neuralNet.getNeuralNetCore().setInputLayer(inputLayer);
+        neuralNet.getNeuralNetCore().setOutputLayer(outputLayer);
+
+        neuralNet.getNeuralNetMetaData().setName("name...");
+        neuralNet.getNeuralNetMetaData().setDescription("description...");
+        neuralNet.getNeuralNetMetaData().setId(UUID.randomUUID());
+
+        return neuralNet;
+    }
+
 
     @Override
     public String toJson(INeuralNet neuralNet) {
