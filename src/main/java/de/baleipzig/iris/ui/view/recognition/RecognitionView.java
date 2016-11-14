@@ -27,6 +27,14 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     @Getter
     private final LanguageHandler languageHandler;
 
+
+    private final Button toggleInfoButton = new Button();
+
+    private final AbsoluteLayout minimizedLayout = new AbsoluteLayout();
+    private final AbsoluteLayout maximizedLayout = new AbsoluteLayout();
+
+    private boolean infoVisible = true;
+
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
         super.enter(viewChangeEvent);
@@ -36,8 +44,11 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     private void init() {
         createLayout();
 
+
         presenter = new RecognitionPresenter(this, (IRecognitionService)  context.getBean("recognitionService"));
         presenter.init();
+
+        initListeners();
     }
 
     private void createLayout() {
@@ -53,11 +64,11 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
             infoLayout.addComponent(new Button(i + ""));
         }
 
-        Button toggleInfoButton = new Button();
+
         toggleInfoButton.setCaptionAsHtml(true);
-        toggleInfoButton.setCaption(FontAwesome.ANGLE_DOUBLE_RIGHT.getHtml());
         toggleInfoButton.addStyleName(ValoTheme.BUTTON_BORDERLESS);
         toggleInfoButton.addStyleName("iris-toggle-info-button");
+        toggleInfoPanelVisibility(true);
 
         Panel infoPanel = new Panel();
         infoPanel.setSizeFull();
@@ -65,10 +76,9 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         infoPanel.setContent(infoLayout);
 
 
-        CssLayout minimizableLayout = new CssLayout();
+        HorizontalLayout minimizableLayout = new HorizontalLayout();
         minimizableLayout.addStyleName("iris-minimizable-layout");
-        minimizableLayout.setHeight("100%");
-        minimizableLayout.addComponents(toggleInfoButton, infoPanel);
+
         //minimizableLayout.setComponentAlignment(toggleInfoButton, Alignment.MIDDLE_CENTER);
 
 
@@ -84,5 +94,28 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         setBodyContent(recognitionMainLayout);
         setBodyContentLayoutMargin(false);
+    }
+
+    private void initMinimizedLayout() {
+        //minimizableLayout.addComponent(toggleInfoButton, "top: 50%; left: 2px;");
+        //minimizableLayout.addComponent(infoLayout, "top: 0px; left: 0px;");
+    }
+
+    private void createContentOfMinimizedLayout() {
+    }
+
+    private void initListeners() {
+        toggleInfoButton.addClickListener(e -> toggleInfoPanelVisibility(!infoVisible));
+    }
+
+    private void toggleInfoPanelVisibility(boolean show) {
+        infoVisible = show;
+        if(show) {
+            toggleInfoButton.setCaption(FontAwesome.ANGLE_DOUBLE_RIGHT.getHtml());
+        } else {
+            toggleInfoButton.setCaption(FontAwesome.ANGLE_DOUBLE_LEFT.getHtml());
+        }
+
+
     }
 }

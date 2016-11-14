@@ -48,11 +48,17 @@
   }
 
   .iris-toggle-info-button {
-    padding: 0 3px;
+    padding: 0 1px;
   }
 
   .iris-minimizable-layout {
     border-left: 1px solid #d5d5d5;
+    height: 100%;
+    width: 200px;
+  }
+
+  .iris-minimizable-layout.minimized {
+    width: 10px;
   }
 
   .v-textarea-readonly.iris-info-textarea {
