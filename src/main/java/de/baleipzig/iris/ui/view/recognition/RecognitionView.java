@@ -28,8 +28,6 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     private final LanguageHandler languageHandler;
 
 
-    private final Button toggleInfoButton = new Button();
-
     private final AbsoluteLayout minimizedLayout = new AbsoluteLayout();
     private final AbsoluteLayout maximizedLayout = new AbsoluteLayout();
 
@@ -48,7 +46,6 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         presenter = new RecognitionPresenter(this, (IRecognitionService)  context.getBean("recognitionService"));
         presenter.init();
 
-        initListeners();
     }
 
     private void createLayout() {
@@ -63,12 +60,6 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         for (int i = 0; i < 5; i++) {
             infoLayout.addComponent(new Button(i + ""));
         }
-
-
-        toggleInfoButton.setCaptionAsHtml(true);
-        toggleInfoButton.addStyleName(ValoTheme.BUTTON_BORDERLESS);
-        toggleInfoButton.addStyleName("iris-toggle-info-button");
-        toggleInfoPanelVisibility(true);
 
         Panel infoPanel = new Panel();
         infoPanel.setSizeFull();
@@ -97,24 +88,34 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     }
 
     private void initMinimizedLayout() {
+        Button button = createToggleButton(FontAwesome.ANGLE_DOUBLE_LEFT.getHtml());
+
+        minimizedLayout.setSizeFull();
+        minimizedLayout.addComponent(button);
         //minimizableLayout.addComponent(toggleInfoButton, "top: 50%; left: 2px;");
         //minimizableLayout.addComponent(infoLayout, "top: 0px; left: 0px;");
     }
 
-    private void createContentOfMinimizedLayout() {
+    private void initMaximizedLayout() {
+        Button button = createToggleButton(FontAwesome.ANGLE_DOUBLE_RIGHT.getHtml());
+
+        maximizedLayout.setSizeFull();
+        maximizedLayout.addComponent(button);
     }
 
-    private void initListeners() {
-        toggleInfoButton.addClickListener(e -> toggleInfoPanelVisibility(!infoVisible));
+    private Button createToggleButton(String caption) {
+        Button button = new Button();
+        button.setCaptionAsHtml(true);
+        button.setCaption(caption);
+        button.addStyleName(ValoTheme.BUTTON_BORDERLESS);
+        button.addStyleName("iris-toggle-info-button");
+        return button;
     }
+
+
 
     private void toggleInfoPanelVisibility(boolean show) {
-        infoVisible = show;
-        if(show) {
-            toggleInfoButton.setCaption(FontAwesome.ANGLE_DOUBLE_RIGHT.getHtml());
-        } else {
-            toggleInfoButton.setCaption(FontAwesome.ANGLE_DOUBLE_LEFT.getHtml());
-        }
+
 
 
     }
