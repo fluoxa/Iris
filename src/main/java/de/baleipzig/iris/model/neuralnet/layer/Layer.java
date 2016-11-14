@@ -34,7 +34,6 @@ public class Layer implements ILayer {
 
         layer = new Vector<> ();
         layer.add(new Vector<>());
-        layer.elementAt(0).add(null);
     }
 
     //endregion

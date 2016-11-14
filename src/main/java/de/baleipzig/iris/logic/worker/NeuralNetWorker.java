@@ -1,5 +1,6 @@
 package de.baleipzig.iris.logic.worker;
 
+import de.baleipzig.iris.enums.NeuralNetCoreType;
 import de.baleipzig.iris.logic.converter.database.NeuralNetConverter;
 import de.baleipzig.iris.model.neuralnet.neuralnet.*;
 import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetEntity;
@@ -47,7 +48,7 @@ public class NeuralNetWorker implements INeuralNetWorker {
             return null;
         }
 
-        INeuralNetCore core = NeuralNetConverter.fromNeuralNetCoreEntity(neuralNetEntity);
+        INeuralNetCore core = NeuralNetConverter.fromNeuralNetCoreEntity(neuralNetEntity.getNeuralNetCoreEntity(), NeuralNetCoreType.valueOf(neuralNetEntity.getType()));
         INeuralNetMetaData metaData = NeuralNetConverter.fromMetaDataEntity(neuralNetEntity);
         INeuralNet net = new NeuralNet();
         net.setNeuralNetCore(core);

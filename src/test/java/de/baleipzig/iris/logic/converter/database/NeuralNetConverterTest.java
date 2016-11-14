@@ -198,9 +198,9 @@ public class NeuralNetConverterTest {
         Assert.assertEquals(result.getNeuralNetId(),id.toString());
         Assert.assertEquals(result.getDescription(), "jan ist cool");
         Assert.assertEquals(result.getName(), "jan");
-        Assert.assertEquals(result.getNodes().size(), 4);
-        Assert.assertEquals(result.getAxons().size(), 3);
-        Assert.assertEquals(result.getLayers().size(), 3);
+        Assert.assertEquals(result.getNeuralNetCoreEntity().getNodes().size(), 4);
+        Assert.assertEquals(result.getNeuralNetCoreEntity().getAxons().size(), 3);
+        Assert.assertEquals(result.getNeuralNetCoreEntity().getLayers().size(), 3);
     }
 
     //endregion
