@@ -115,6 +115,10 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     public Void resetNeuralNet() {
 
+        if(model.getSelectedNeuralNetId() == null) {
+            return null;
+        }
+
         model.setNeuralNet(service.getNeuralNetWorker().load(model.getSelectedNeuralNetId()));
         view.addInfoText(String.format("Neural Net %s: reset to initial state...", model.getNeuralNet().getNeuralNetMetaData().getName()));
         return null;
