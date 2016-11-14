@@ -20,17 +20,25 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class NeuralNetWorker implements INeuralNetWorker {
 
+    //region -- member --
+
     private final INeuralNetEntityRepository neuralNetEntityRepository;
     private final ILayerWorker layerWorker;
 
     private final DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 
+    //endregion
+
+    //region -- methods --
+
+    @Override
     public void save(INeuralNet neuralNet) {
 
         NeuralNetEntity neuralNetEntity = NeuralNetConverter.toNeuralNetEntity(neuralNet);
         neuralNetEntityRepository.save(neuralNetEntity);
     }
 
+    @Override
     public INeuralNet load(UUID neuralNetId) {
 
         NeuralNetEntity neuralNetEntity = neuralNetEntityRepository.findByNeuralNetId(neuralNetId.toString());
@@ -48,9 +56,16 @@ public class NeuralNetWorker implements INeuralNetWorker {
         return net;
     }
 
+    @Override
     public void delete(UUID neuralNetId) {
 
         neuralNetEntityRepository.delete(neuralNetId.toString());
+    }
+
+    @Override
+    public String toJson(INeuralNet neuralNet) {
+
+        return "dummy string";
     }
 
     @Override
@@ -73,4 +88,6 @@ public class NeuralNetWorker implements INeuralNetWorker {
         neuralNetCore.getHiddenLayers().forEach(layerWorker::propagateForward);
         layerWorker.propagateForward(neuralNetCore.getOutputLayer());
     }
+
+    //endregion
 }

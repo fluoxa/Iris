@@ -1,4 +1,4 @@
-package de.baleipzig.iris.ui.viewmodel.training;
+package de.baleipzig.iris.ui.viewmodel.neuralnetconfig;
 
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
 import lombok.AllArgsConstructor;
@@ -10,16 +10,12 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrainingViewModel {
-
-    private double learningRate;
-    private int miniBadgeSize;
-    private int trainingSetSize;
-    private int trainingCycles;
-
-    private double overallTrainingProgress;
-    private double cycleProgress;
+public class NeuralNetConfigViewModel {
 
     private INeuralNet neuralNet;
     private UUID selectedNeuralNetId;
+
+    private String name;
+    private String description;
+    private String netStructure;
 }

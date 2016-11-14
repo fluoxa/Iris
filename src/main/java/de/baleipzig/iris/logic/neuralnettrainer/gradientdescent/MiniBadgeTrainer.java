@@ -1,6 +1,8 @@
-package de.baleipzig.iris.logic.neuralnettrainer.GradientDescent;
+package de.baleipzig.iris.logic.neuralnettrainer.gradientdescent;
 
+import de.baleipzig.iris.enums.ResultType;
 import de.baleipzig.iris.logic.neuralnettrainer.BaseTrainer;
+import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
 
@@ -38,33 +40,49 @@ public class MiniBadgeTrainer<InputType, OutputType>
         this.nodeTrainer.updateBiasWeightCache(neuralNet);
     }
 
-    public void train(Map<InputType, OutputType> trainingData) {
+    public Result train(Map<InputType, OutputType> trainingData) {
 
         interrupted = false;
+
+        progress.reset();
 
         int cycle = 0;
+        int trainingCycles = params.getTrainingCycles();
+        int trainingRun = 0;
+        int cycleLength = params.getTrainingSetSize();
 
-        while( cycle < params.getTrainingCycles() && !interrupted){
+        while( cycle < trainingCycles) {
 
-            System.out.print(cycle + " ");
+            progress.setCycleProgress(0.);
+            progress.setOverallProgress(((double) cycle)/trainingCycles);
 
-            trainingData.forEach( (inputData, expectedResult) -> {
+            for(Map.Entry<InputType, OutputType> trainingDatum : trainingData.entrySet()) {
 
-                inputConverter.copy(inputData, neuralNet.getNeuralNetCore().getInputLayer());
+                if( interrupted ) {
+
+                    interrupted = false;
+                    return new Result(ResultType.FAILURE);
+                }
+
+                trainingRun++;
+
+                progress.setCycleProgress((double) trainingRun /cycleLength);
+
+                inputConverter.copy(trainingDatum.getKey(), neuralNet.getNeuralNetCore().getInputLayer());
                 neuralNetWorker.propagateForward(neuralNet);
 
-                ILayer expectedResultLayer = outputConverter.convert(expectedResult, null);
+                ILayer expectedResultLayer = outputConverter.convert(trainingDatum.getValue(), null);
                 neuralNetTrainingWorker.propagateBackward(neuralNet, expectedResultLayer);
-            });
+            }
 
+            progress.setCycleProgress(1.);
             cycle++;
+            trainingRun = 0;
         }
 
+        progress.setOverallProgress(1.);
         interrupted = false;
-    }
-
-    public void interruptTraining() {
-        interrupted = true;
+        return new Result(ResultType.SUCCESS);
     }
 
     //endregion

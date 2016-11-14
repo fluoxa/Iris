@@ -18,10 +18,9 @@ import org.springframework.context.ApplicationContext;
 import javax.annotation.PostConstruct;
 
 @UIScope
-@SpringView(name = RecognitionView.VIEW_NAME)
+@SpringView(name = IRecognitionView.VIEW_NAME)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> implements IRecognitionView {
-    public static final String VIEW_NAME = "";
 
     private final ApplicationContext context;
 

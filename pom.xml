@@ -72,6 +72,7 @@
             <artifactId>vaadin-spring-boot-starter</artifactId>
             <version>1.0.1</version>
         </dependency>
+
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-client-compiler</artifactId>
@@ -90,6 +91,12 @@
                     <artifactId>jetty-util</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-push</artifactId>
+            <version>${vaadin.version}</version>
         </dependency>
 
         <!--vaadin addons-->

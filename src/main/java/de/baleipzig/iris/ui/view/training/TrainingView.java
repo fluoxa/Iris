@@ -10,7 +10,6 @@ import de.baleipzig.iris.ui.presenter.training.TrainingPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
 import de.baleipzig.iris.ui.view.base.BaseSearchNNView;
 import de.baleipzig.iris.ui.viewmodel.training.TrainingViewModel;
-import lombok.RequiredArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +18,11 @@ import org.springframework.context.ApplicationContext;
 import javax.annotation.PostConstruct;
 
 @UIScope
-@SpringView(name = TrainingView.VIEW_NAME)
+@SpringView(name = ITrainingView.VIEW_NAME)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements ITrainingView {
-    public static final String VIEW_NAME = "training";
+
+    //region -- member --
 
     private final ApplicationContext context;
     @Getter
@@ -38,6 +38,11 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     private Button saveNeuralNet = new Button();
     private Button resetNeuralNet = new Button();
     private Button configNeuralNet = new Button();
+
+    private final ProgressBar oneCycleProgressBar = new ProgressBar();
+    private final ProgressBar overallTrainingProgressBar = new ProgressBar();
+
+    private HorizontalLayout buttonLine;
 
     //endregion
 
@@ -65,30 +70,35 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
 
     private void setupListeners() {
 
-        startTraining.addClickListener(e -> presenter.startTraining());
+        startTraining.addClickListener(e -> presenter.runEventAsynchronously(presenter::startTraining));
+        stopTraining.addClickListener(e -> presenter.runEventAsynchronously(presenter::stopTraining));
+        resetNeuralNet.addClickListener(e -> presenter.resetNeuralNet());
+        saveNeuralNet.addClickListener(e -> presenter.saveNeuralNet());
+        configNeuralNet.addClickListener(e -> presenter.navigateToConfigView());
     }
 
     private void setupLayout() {
 
         GridLayout settingLayout = new GridLayout(4,2);
         settingLayout.setSpacing(true);
-        Label learningRateLabel = new Label("Learning Rate:");
+        Label learningRateLabel = new Label(languageHandler.getTranslation("training.view.learningrate"));
         settingLayout.addComponent(learningRateLabel);
         settingLayout.addComponent(learningRateField);
 
-        Label trainingCyclesRateLabel = new Label("Training Cycles:");
+        Label trainingCyclesRateLabel = new Label(languageHandler.getTranslation("training.view.cycles"));
         settingLayout.addComponent(trainingCyclesRateLabel);
         settingLayout.addComponent(trainingCyclesField);
 
-        Label trainingSetSizeLabel = new Label("Number of TRaining Pictures:");
+        Label trainingSetSizeLabel = new Label(languageHandler.getTranslation("training.view.trainingsetsize"));
         settingLayout.addComponent(trainingSetSizeLabel);
         settingLayout.addComponent(trainingSetSizeField);
 
-        Label miniBadgeSizeLabel = new Label("Number of MiniBadge Pictures:");
+        Label miniBadgeSizeLabel = new Label(languageHandler.getTranslation("training.view.minibadgesize"));
         settingLayout.addComponent(miniBadgeSizeLabel);
         settingLayout.addComponent(miniBadgeSizeField);
 
-        HorizontalLayout buttonLine = new HorizontalLayout();
+        buttonLine = new HorizontalLayout();
+        stopTraining.setEnabled(false);
         buttonLine.addComponent(configNeuralNet);
         buttonLine.addComponent(saveNeuralNet);
         buttonLine.addComponent(resetNeuralNet);
@@ -99,13 +109,22 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
         VerticalLayout verticalLayout = new VerticalLayout();
         verticalLayout.setSpacing(true);
 
-        verticalLayout.addComponent(new Label("Settings:"));
+        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.parameterlabel")));
         verticalLayout.addComponent(settingLayout);
-        verticalLayout.addComponent(new Label("Infos:"));
+        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.infolabel")));
 
         infoTextArea.setSizeFull();
+        infoTextArea.setReadOnly(true);
         infoTextArea.addStyleName("iris-info-textarea");
         verticalLayout.addComponent(infoTextArea);
+
+        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.overalltrainingprogress")));
+        overallTrainingProgressBar.addStyleName("iris-progressbar-training");
+        verticalLayout.addComponent(overallTrainingProgressBar);
+        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.onecycleprogress")));
+        oneCycleProgressBar.addStyleName("iris-progressbar-training");
+        verticalLayout.addComponent(oneCycleProgressBar);
+
         verticalLayout.setWidth(100, Unit.PERCENTAGE);
         verticalLayout.addComponent(buttonLine);
 
@@ -139,19 +158,35 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     public void addInfoText(String message) {
 
         String newline = infoTextArea.getValue().isEmpty() ? "" : System.lineSeparator();
-        infoTextArea.setValue(String.format("%s%s%s",infoTextArea.getValue(), newline, message));
+        UI.getCurrent().access(() -> {
+            infoTextArea.setReadOnly(false);
+            infoTextArea.setValue(String.format("%s%s%s",infoTextArea.getValue(), newline, message));
+            infoTextArea.setCursorPosition(infoTextArea.getValue().length());
+            infoTextArea.setReadOnly(true);
+        });
     }
 
     @Override
     public void setTrainingLock(boolean isLocked) {
 
-        for (Component comp : this) {
+        for (Component comp : buttonLine) {
             if (comp instanceof Button && comp != stopTraining) {
-                comp.setEnabled(isLocked);
+                comp.setEnabled(!isLocked);
             }
         }
 
+        stopTraining.setEnabled(isLocked);
+
         lockSearchResultTable(isLocked);
+    }
+
+    @Override
+    public void updateTrainingProgress(TrainingViewModel model) {
+
+        UI.getCurrent().access(() -> {
+            overallTrainingProgressBar.setValue((float) model.getOverallTrainingProgress());
+            oneCycleProgressBar.setValue((float) model.getCycleProgress());
+        });
     }
 
     //endregion

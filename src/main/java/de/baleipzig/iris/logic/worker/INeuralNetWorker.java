@@ -8,11 +8,7 @@ import java.util.UUID;
 
 public interface INeuralNetWorker extends ICrudWorker<INeuralNet, UUID> {
 
-    void save(INeuralNet neuralNet);
-
-    INeuralNet load(UUID neuralNetId);
-
-    void delete(UUID neuralNetId);
+    String toJson(INeuralNet net);
 
     List<NeuralNetMetaData> findAllNeuralNetMetaDataByName(String name);
 
