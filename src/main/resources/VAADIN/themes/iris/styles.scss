@@ -48,17 +48,23 @@
   }
 
   .iris-toggle-info-button {
-    padding: 0 1px;
+    padding: 0 0px;
   }
 
   .iris-minimizable-layout {
     border-left: 1px solid #d5d5d5;
-    height: 100%;
-    width: 200px;
   }
 
-  .iris-minimizable-layout.minimized {
-    width: 10px;
+  .iris-info-layout {
+    min-width: 250px;
+    .v-spacing {
+      width: $iris-spacing;
+      height: $iris-spacing;
+    }
+  }
+
+  .iris-info-attribute-label {
+    margin-top: 6px;
   }
 
   .v-textarea-readonly.iris-info-textarea {
