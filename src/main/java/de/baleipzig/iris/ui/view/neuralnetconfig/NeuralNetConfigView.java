@@ -81,36 +81,37 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
 
     private void setupLayout(){
 
-        Label settingsLabel = new Label("Settings:");
         GridLayout settingsGrid = new GridLayout(2,2);
         settingsGrid.setSpacing(true);
+        settingsGrid.setWidth(75, Unit.PERCENTAGE);
+        settingsGrid.setHeight(100, Unit.PERCENTAGE);
         Label nameLabel = new Label("Name:");
         Label descriptionLabel = new Label("Description:");
         settingsGrid.addComponent(nameLabel);
+        nameTextField.setWidth(100, Unit.PERCENTAGE);
         settingsGrid.addComponent(nameTextField);
         settingsGrid.addComponent(descriptionLabel);
+        descriptionTextArea.setWidth(100, Unit.PERCENTAGE);
         settingsGrid.addComponent(descriptionTextArea);
 
-        VerticalLayout leftColumn = new VerticalLayout();
-        leftColumn.setSpacing(true);
-        leftColumn.addComponent(settingsLabel);
-        leftColumn.addComponent(settingsGrid);
+        VerticalLayout metaDataTab = new VerticalLayout();
+        metaDataTab.setSpacing(true);
+        metaDataTab.setSizeFull();
+        metaDataTab.addComponent(settingsGrid);
 
-        VerticalLayout rightColumn = new VerticalLayout();
-        rightColumn.setSpacing(true);
-        jsonEditor.setStyleName("iris-json-editor");
         VerticalLayout jsonEditorTab = new VerticalLayout(jsonEditor);
+        jsonEditor.setSizeFull();
         jsonEditorTab.setSpacing(true);
-        neuralNetEditor.addTab(jsonEditorTab, "Json Editor");
+        jsonEditorTab.setSizeFull();
+
         VerticalLayout autoCreaterTab = new VerticalLayout();
         autoCreaterTab.setSpacing(true);
-        neuralNetEditor.addTab(autoCreaterTab, "Auto Creator");
-        rightColumn.addComponent(neuralNetEditor);
+        autoCreaterTab.setSizeFull();
 
-        HorizontalLayout totalSettingLayout = new HorizontalLayout();
-        totalSettingLayout.setSpacing(true);
-        totalSettingLayout.addComponent(leftColumn);
-        totalSettingLayout.addComponent(rightColumn);
+        neuralNetEditor.addTab(metaDataTab, "Meta Data Setting");
+        neuralNetEditor.addTab(jsonEditorTab, "Json Editor");
+        neuralNetEditor.addTab(autoCreaterTab, "Auto Creator");
+
 
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.setSpacing(true);
@@ -122,7 +123,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         VerticalLayout totalLayout = new VerticalLayout();
         totalLayout.setSizeFull();
         totalLayout.setSpacing(true);
-        totalLayout.addComponent(totalSettingLayout);
+        totalLayout.addComponent(neuralNetEditor);
         totalLayout.addComponent(buttonLayout);
 
         this.setBodyContent(totalLayout);
