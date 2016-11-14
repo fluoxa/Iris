@@ -8,8 +8,6 @@ import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetEntity;
 import de.baleipzig.iris.persistence.repository.INeuralNetEntityRepository;
 import de.baleipzig.iris.persistence.subset.NeuralNetSubset;
 import lombok.RequiredArgsConstructor;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -98,12 +96,6 @@ public class NeuralNetWorker implements INeuralNetWorker {
         try {
             neuralNetCoreEntity = mapper.readValue(jsonString, NeuralNetCoreEntity.class);
 
-        } catch (JsonGenerationException e) {
-            e.printStackTrace();
-            return null;
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-            return null;
         } catch (IOException e) {
             e.printStackTrace();
             return null;

@@ -128,7 +128,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     private void setupListeners() {
 
         trainNeuralNet.addClickListener(e -> presenter.navigateToTrainingView());
-        saveNeuralNet.addClickListener(e -> presenter.runEventAsynchronously(presenter::saveNeuralNet));
+        saveNeuralNet.addClickListener(e -> presenter.saveNeuralNet());
     }
 
     private void  bindNeuralNetConfigViewModelToView(BeanFieldGroup<NeuralNetConfigViewModel> group) {
