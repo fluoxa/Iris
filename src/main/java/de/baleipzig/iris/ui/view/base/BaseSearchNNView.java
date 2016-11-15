@@ -55,7 +55,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
     }
 
     @Override
-    public void unselectSearchList() {
+    public void deselectSearchList() {
         searchResultTable.unselect(searchResultTable.getValue());
     }
 
@@ -96,8 +96,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         searchAndResultLayout.setExpandRatio(searchResultPanel, 1);
 
         contentLayout.setMargin(true);
-        contentLayout.setWidth(100, Unit.PERCENTAGE);
-
+        contentLayout.setSizeFull();
 
         Panel contentPanel = new Panel();
         contentPanel.setSizeFull();
@@ -149,6 +148,10 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         if(searchResultTable != null ) {
             searchResultTable.setEnabled(!isLocked);
         }
+    }
+
+    protected void setBodyContentLayoutMargin(boolean enabled) {
+        contentLayout.setMargin(enabled);
     }
 
     @Override
