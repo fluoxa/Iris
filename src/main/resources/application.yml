@@ -28,7 +28,7 @@ de:
             localeKey: en
             displayName: EN
       uiconfiguration:
-        progressUpdateInterval: 1000
+        progressUpdateInterval: 100
       example:
         exampleString: foo
         exampleBoolean: true

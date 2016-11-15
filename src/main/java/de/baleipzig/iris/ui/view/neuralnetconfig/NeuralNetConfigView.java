@@ -111,7 +111,10 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         VerticalLayout autoCreaterTab = new VerticalLayout();
         autoCreaterTab.setSpacing(true);
         autoCreaterTab.setSizeFull();
-        autoCreaterTab.addComponent(new Label("erzeugen eines neuen NeuralNetCores mit HiddenLayer der angegebenene Dimension:"));
+
+        Label explanationLText =  new Label("erzeugen eines neuen NeuralNetCores mit HiddenLayer der angegebenene Dimension:");
+        explanationLText.setStyleName("iris-explanation-text");
+        autoCreaterTab.addComponent(explanationLText);
         autoCreaterTab.addComponent(new Label("Hidden Layer Dimension:"));
         HorizontalLayout dimensionLayout = new HorizontalLayout(
                 new Label("x-Dimension:"),
