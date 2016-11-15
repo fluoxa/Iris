@@ -162,8 +162,8 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         if(show) {
             minimizableLayout.setSizeFull();
-            recognitionMainLayout.setExpandRatio(recognitionLayout, 3);
-            recognitionMainLayout.setExpandRatio(minimizableLayout, 1);
+            recognitionMainLayout.setExpandRatio(recognitionLayout, 11);
+            recognitionMainLayout.setExpandRatio(minimizableLayout, 5);
 
         } else {
             minimizableLayout.setHeight("100%");
