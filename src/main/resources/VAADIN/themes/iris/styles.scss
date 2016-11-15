@@ -31,9 +31,14 @@
   }
 
   .iris-name-label {
-    font-size: 70px;
+    font-size: 50px;
     font-weight: 900;
-    line-height: 80px;
+    line-height: 70px;
+    /*text-align: center;*/
+  }
+
+  .border-test {
+    border: solid 1px black;
   }
 
   .iris-search-result-layout {
@@ -47,6 +52,13 @@
     width: 100%;
   }
 
+  .iris-recognition-layout {
+    .v-spacing {
+      width: $iris-spacing;
+      height: $iris-spacing;
+    }
+  }
+
   .iris-toggle-info-button {
     padding: 0 0px;
   }
@@ -56,10 +68,13 @@
   }
 
   .iris-info-layout {
-    min-width: 250px;
+    /*min-width: 250px;*/
     .v-spacing {
       width: $iris-spacing;
       height: $iris-spacing;
+    }
+    .v-textfield {
+      padding: 4px 6px;
     }
   }
 

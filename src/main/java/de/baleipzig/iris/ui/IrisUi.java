@@ -5,6 +5,7 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.shared.ui.ui.Transport;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.ui.CssLayout;
@@ -14,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Theme("iris")
 @SpringUI
-@Push
+@Push(transport= Transport.LONG_POLLING)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Widgetset("de.baleipzig.iris.IrisWidgetset")
 public class IrisUi extends UI {

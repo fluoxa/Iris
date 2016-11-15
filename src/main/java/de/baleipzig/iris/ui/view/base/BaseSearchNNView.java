@@ -85,7 +85,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
         VerticalLayout searchAndResultLayout = new VerticalLayout();
         searchAndResultLayout.setHeight("100%");
-        searchAndResultLayout.setWidth("300px");
+        searchAndResultLayout.setWidth("250px");
         searchAndResultLayout.setSpacing(true);
         searchAndResultLayout.addStyleName("iris-search-result-layout");
         searchAndResultLayout.setMargin(new MarginInfo(false, true, false, false));
