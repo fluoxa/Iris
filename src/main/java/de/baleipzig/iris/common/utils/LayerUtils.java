@@ -96,8 +96,12 @@ public class LayerUtils {
                 axon.setWeight(useRandomWeights ? gaussDistribution.nextGaussian() : 0);
                 axon.setParentNode(parentNode);
                 axon.setChildNode(childNode);
-                parentNode.addChildAxon(axon);
-                childNode.addParentAxon(axon);
+                if(parentNode != null) {
+                    parentNode.addChildAxon(axon);
+                }
+                if(childNode != null) {
+                    childNode.addParentAxon(axon);
+                }
             }
         }
     }
