@@ -46,10 +46,10 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         view.update(model);
     }
 
-    public Void saveNeuralNet() {
+    public void saveNeuralNet() {
 
         if(model.getSelectedNeuralNetId() == null && model.getNeuralNet() == null) {
-            return null;
+            return;
         }
         if(model.getSelectedNeuralNetId() == null && model.getNeuralNet() != null) {
             model.setSelectedNeuralNetId(model.getNeuralNet().getNeuralNetMetaData().getId());
@@ -64,7 +64,7 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
             savedNet = service.getNeuralNetWorker().fromJson(model.getNetStructure(), NeuralNetCoreType.TRAIN);
 
             if(savedNet == null ) {
-                return null;
+                return;
             }
 
             savedNet.getNeuralNetMetaData().setId(model.getSelectedNeuralNetId());
@@ -76,11 +76,9 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         service.getNeuralNetWorker().save(savedNet);
         searchAllNeuralNets();
         view.selectSearchListItem(model.getSelectedNeuralNetId());
-
-        return null;
     }
 
-    public Void createNeuralNet() {
+    public void createNeuralNet() {
 
         INeuralNet neuralNet = service.getNeuralNetWorker().create();
 
@@ -92,8 +90,6 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
 
         view.deselectSearchList();
         view.update(model);
-
-        return null;
     }
 
     public void deleteNeuralNet() {
@@ -107,14 +103,14 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         searchAllNeuralNets();
     }
 
-    public Void resetNeuralNet() {
+    public void resetNeuralNet() {
 
         if(model.getSelectedNeuralNetId() == null && model.getNeuralNet() == null) {
-            return null;
+            return;
         }
         else if( model.getSelectedNeuralNetId()== null &&  model.getNeuralNet() != null) {
             createNeuralNet();
-            return null;
+            return;
         }
 
         INeuralNet neuralNet = service.getNeuralNetWorker().load(model.getSelectedNeuralNetId());
@@ -125,8 +121,6 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         model.setNetStructure(service.getNeuralNetWorker().toJson(neuralNet));
         model.setOriginalNetStructure(model.getNetStructure());
         view.update(model);
-
-        return null;
     }
 
     public  Void navigateToTrainingView() {
