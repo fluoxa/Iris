@@ -56,8 +56,8 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     }
 
     private void createLayout() {
+        initRecognitionLayout();
 
-        recognitionLayout.setMargin(true);
 
         minimizableLayout.addStyleName("iris-minimizable-layout");
         minimizableLayout.addComponents(minimizedLayout, maximizedLayout);
@@ -71,6 +71,10 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         setBodyContent(recognitionMainLayout);
         setBodyContentLayoutMargin(false);
+    }
+
+    private void initRecognitionLayout() {
+        recognitionLayout.setMargin(true);
     }
 
     private void initMinimizedLayout() {
