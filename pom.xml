@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <vaadin.version>7.7.3</vaadin.version>
+        <vaadin.version>7.7.4</vaadin.version>
         <vaadinWidgetsetsDirectory>${resourceDirectory}/VAADIN/widgetsets</vaadinWidgetsetsDirectory>
         <resourceDirectory>${basedir}/src/main/resources</resourceDirectory>
         <start-class>de.baleipzig.iris.starter.DemoApplication</start-class>
@@ -33,17 +33,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
         <!--spring data fuer mongo db-->
@@ -70,7 +59,7 @@
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-spring-boot-starter</artifactId>
-            <version>1.0.1</version>
+            <version>1.1.0</version>
         </dependency>
 
         <dependency>
