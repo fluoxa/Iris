@@ -82,6 +82,13 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
 
     public Void generateNeuralNetCore() {
 
+        INeuralNet tmpNet = service.getNeuralNetWorker().createImageDigitNet(view.getHiddenLayerDimensions());
+        model.getNeuralNet().setNeuralNetCore(tmpNet.getNeuralNetCore());
+        model.setNetStructure(service.getNeuralNetWorker().toJson(model.getNeuralNet()));
+        model.setOriginalNetStructure(model.getNetStructure());
+
+        view.update(model);
+        return null;
     }
 
     public Void createNeuralNet() {

@@ -192,6 +192,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         createNeuralNet.addClickListener(e -> presenter.createNeuralNet());
         deleteNeuralNet.addClickListener(e -> presenter.deleteNeuralNet());
         resetNeuralNet.addClickListener(e -> presenter.resetNeuralNet());
+        generateNeuralNet.addClickListener(e -> presenter.generateNeuralNetCore());
     }
 
     private void  bindNeuralNetConfigViewModelToView(BeanFieldGroup<NeuralNetConfigViewModel> group) {
