@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+//TODO: Umbauen als Singelton und DI des ApplicationContext zum Anlegen der Korrekten Knoten
 public class LayerUtils {
 
     private static final Random gaussDistribution = new Random();

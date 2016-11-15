@@ -2,8 +2,10 @@ package de.baleipzig.iris.logic.worker;
 
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.common.utils.LayerUtils;
+import de.baleipzig.iris.enums.FunctionType;
 import de.baleipzig.iris.enums.NeuralNetCoreType;
 import de.baleipzig.iris.logic.converter.database.NeuralNetConverter;
+import de.baleipzig.iris.model.neuralnet.activationfunction.ActivationFunctionContainerFactory;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.*;
 import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetCoreEntity;
@@ -97,14 +99,13 @@ public class NeuralNetWorker implements INeuralNetWorker {
 
         INeuralNet net = create();
 
-        net.getNeuralNetCore().getInputLayer().resize(new Dimension(28,28));
-        net.getNeuralNetCore().getOutputLayer().resize(new Dimension(10,1));
+        net.getNeuralNetCore().setInputLayer(LayerUtils.createLayerWithOptionalRandomBias(new Dimension(28,28), ActivationFunctionContainerFactory.create(FunctionType.NONE), false));
+        net.getNeuralNetCore().setOutputLayer(LayerUtils.createLayerWithOptionalRandomBias(new Dimension(10,1), ActivationFunctionContainerFactory.create(FunctionType.SIGMOID), true));
 
         ILayer prevLayer = net.getNeuralNetCore().getInputLayer();
 
         for (Dimension hiddenDimension : hiddenDimensions) {
-            ILayer hiddenLayer = context.getBean(ILayer.class);
-            hiddenLayer.resize(hiddenDimension);
+            ILayer hiddenLayer = LayerUtils.createLayerWithOptionalRandomBias(hiddenDimension, ActivationFunctionContainerFactory.create(FunctionType.SIGMOID), true);
             LayerUtils.fullyConnectLayers(prevLayer, hiddenLayer, true);
             net.getNeuralNetCore().addHiddenLayer(hiddenLayer);
             prevLayer = hiddenLayer;
