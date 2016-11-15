@@ -55,7 +55,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
     }
 
     @Override
-    public void unselectSearchList() {
+    public void deselectSearchList() {
         searchResultTable.unselect(searchResultTable.getValue());
     }
 

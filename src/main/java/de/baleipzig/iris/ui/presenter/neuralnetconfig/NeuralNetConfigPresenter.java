@@ -90,7 +90,7 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         model.setNetStructure(service.getNeuralNetWorker().toJson(model.getNeuralNet()));
         model.setOriginalNetStructure(model.getNetStructure());
 
-        view.unselectSearchList();
+        view.deselectSearchList();
         view.update(model);
 
         return null;
