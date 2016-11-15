@@ -10,5 +10,5 @@ public interface IBaseSearchNNView<P extends BaseSearchNNPresenter> extends IBas
     void setSearchResult(List<NeuralNetMetaData> neuralNetMetaDatas);
     void lockSearchResultTable(boolean isLocked);
     void selectSearchListItem(UUID neuralNetId);
-    void unselectSearchList();
+    void deselectSearchList();
 }
