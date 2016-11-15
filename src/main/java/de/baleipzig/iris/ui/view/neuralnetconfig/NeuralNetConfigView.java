@@ -19,8 +19,6 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
-import static sun.plugin.javascript.navig.JSType.Layer;
-
 @UIScope
 @SpringView(name = INeuralNetConfigView.VIEW_NAME)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -85,21 +83,33 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     }
 
     @Override
-    List<Dimension> getHiddenLayerDimensions( ){
+    public List<Dimension> getHiddenLayerDimensions( ){
 
         List<Dimension> dimensions = new ArrayList<>(dimensionLayouts.size());
 
         for (HorizontalLayout dimensionLayout : dimensionLayouts) {
 
             Dimension dim = new Dimension();
+            int count = 0;
 
             for (Component component : dimensionLayout) {
-                if(component instanceof TextField) {
-                    dim.setX(Integer.parseInt(((TextField) component).getValue()));
+                if(component instanceof TextField && count == 0) {
+                    int dimX = Integer.parseInt(((TextField) component).getValue());
+                    dimX = dimX > -1 ? dimX : 0;
+                    dim.setX(dimX);
+                    count++;
+                }
+                else if(component instanceof TextField && count == 1) {
+                    int dimY = Integer.parseInt(((TextField) component).getValue());
+                    dimY = dimY > -1 ? dimY : 0;
+                    dim.setY(dimY);
                 }
             }
+
+            dimensions.add(dim);
         }
 
+        return  dimensions;
     }
 
     private void setupElements(){
@@ -152,6 +162,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         dimensionLayouts.add(dimensionLayout);
         dimensionLayouts.forEach(layout -> autoCreaterTab.addComponent(layout));
         autoCreaterTab.addComponent(generateNeuralNet);
+        autoCreaterTab.setComponentAlignment(generateNeuralNet, Alignment.MIDDLE_RIGHT);
 
         neuralNetEditor.addTab(metaDataTab, "Meta Data Setting");
         neuralNetEditor.addTab(jsonEditorTab, "Json Editor");

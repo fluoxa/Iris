@@ -1,5 +1,7 @@
 package de.baleipzig.iris.logic.worker;
 
+import de.baleipzig.iris.common.Dimension;
+import de.baleipzig.iris.common.utils.LayerUtils;
 import de.baleipzig.iris.enums.NeuralNetCoreType;
 import de.baleipzig.iris.logic.converter.database.NeuralNetConverter;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
@@ -70,7 +72,6 @@ public class NeuralNetWorker implements INeuralNetWorker {
     }
 
     @Override
-
     public INeuralNet create() {
 
         INeuralNet neuralNet = context.getBean(INeuralNet.class);
@@ -91,6 +92,28 @@ public class NeuralNetWorker implements INeuralNetWorker {
         return neuralNet;
     }
 
+    @Override
+    public INeuralNet createImageDigitNet(List<Dimension> hiddenDimensions) {
+
+        INeuralNet net = create();
+
+        net.getNeuralNetCore().getInputLayer().resize(new Dimension(28,28));
+        net.getNeuralNetCore().getOutputLayer().resize(new Dimension(10,1));
+
+        ILayer prevLayer = net.getNeuralNetCore().getInputLayer();
+
+        for (Dimension hiddenDimension : hiddenDimensions) {
+            ILayer hiddenLayer = context.getBean(ILayer.class);
+            hiddenLayer.resize(hiddenDimension);
+            LayerUtils.fullyConnectLayers(prevLayer, hiddenLayer, true);
+            net.getNeuralNetCore().addHiddenLayer(hiddenLayer);
+            prevLayer = hiddenLayer;
+        }
+
+        LayerUtils.fullyConnectLayers(prevLayer, net.getNeuralNetCore().getOutputLayer(), true);
+
+        return net;
+    }
 
     @Override
     public String toJson(INeuralNet neuralNet) {

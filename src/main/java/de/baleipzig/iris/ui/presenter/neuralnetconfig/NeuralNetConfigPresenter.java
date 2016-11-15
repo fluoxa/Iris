@@ -80,6 +80,10 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         return null;
     }
 
+    public Void generateNeuralNetCore() {
+
+    }
+
     public Void createNeuralNet() {
 
         INeuralNet neuralNet = service.getNeuralNetWorker().create();
