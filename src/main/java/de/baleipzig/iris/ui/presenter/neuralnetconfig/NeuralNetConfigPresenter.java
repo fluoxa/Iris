@@ -80,6 +80,22 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         return null;
     }
 
+    public Void createNeuralNet() {
+
+        INeuralNet neuralNet = service.getNeuralNetWorker().create();
+
+        service.getDozerBeanMapper().map(neuralNet.getNeuralNetMetaData(), model);
+        model.setNeuralNet(neuralNet);
+        model.setSelectedNeuralNetId(null);
+        model.setNetStructure(service.getNeuralNetWorker().toJson(model.getNeuralNet()));
+        model.setOriginalNetStructure(model.getNetStructure());
+
+        view.deselectSearchList();
+        view.update(model);
+
+        return null;
+    }
+
     public  Void navigateToTrainingView() {
 
         if(model.getSelectedNeuralNetId() != null) {
