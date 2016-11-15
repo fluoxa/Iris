@@ -13,10 +13,7 @@ import de.baleipzig.iris.model.neuralnet.layer.Layer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.*;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 import de.baleipzig.iris.model.neuralnet.node.Node;
-import de.baleipzig.iris.persistence.entity.neuralnet.AxonEntity;
-import de.baleipzig.iris.persistence.entity.neuralnet.LayerEntity;
-import de.baleipzig.iris.persistence.entity.neuralnet.NeuralNetEntity;
-import de.baleipzig.iris.persistence.entity.neuralnet.NodeEntity;
+import de.baleipzig.iris.persistence.entity.neuralnet.*;
 import de.baleipzig.iris.persistence.subset.NeuralNetSubset;
 import org.dozer.DozerBeanMapper;
 
@@ -27,20 +24,21 @@ public class NeuralNetConverter {
 
     private static DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 
-    public static INeuralNetCore fromNeuralNetCoreEntity(NeuralNetEntity neuralNetEntity) {
-        Map<Long, INode> allNodes = createAllNodesFromEntity(neuralNetEntity);
+    public static INeuralNetCore fromNeuralNetCoreEntity(NeuralNetCoreEntity neuralNetCoreEntity, NeuralNetCoreType neuralNetType) {
 
-        createAxonsAndAddToNodes(neuralNetEntity, allNodes);
+        Map<Long, INode> allNodes = createAllNodesFromEntity(neuralNetCoreEntity);
 
-        int layerCount = neuralNetEntity.getLayers().size();
-        ILayer inputLayer = fromLayerEntity(neuralNetEntity.getLayers().get(0), allNodes);
+        createAxonsAndAddToNodes(neuralNetCoreEntity, neuralNetType, allNodes);
+
+        int layerCount = neuralNetCoreEntity.getLayers().size();
+        ILayer inputLayer = fromLayerEntity(neuralNetCoreEntity.getLayers().get(0), allNodes);
 
         List<ILayer> hiddenLayers = new ArrayList<>(layerCount-2);
         for(int count = 1; count < layerCount-1; count++){
-            hiddenLayers.add(fromLayerEntity(neuralNetEntity.getLayers().get(count), allNodes));
+            hiddenLayers.add(fromLayerEntity(neuralNetCoreEntity.getLayers().get(count), allNodes));
         }
 
-        ILayer outputLayer = fromLayerEntity(neuralNetEntity.getLayers().get(layerCount-1), allNodes);
+        ILayer outputLayer = fromLayerEntity(neuralNetCoreEntity.getLayers().get(layerCount-1), allNodes);
 
         INeuralNetCore net = new NeuralNetCore();
         net.setInputLayer(inputLayer);
@@ -60,11 +58,11 @@ public class NeuralNetConverter {
         return metaData;
     }
 
-    public static Map<Long, INode> createAllNodesFromEntity(NeuralNetEntity neuralNetEntity) {
+    public static Map<Long, INode> createAllNodesFromEntity(NeuralNetCoreEntity neuralNetCoreEntity) {
 
-        Map<Long, INode> allNodes = new HashMap<>(neuralNetEntity.getNodes().size());
+        Map<Long, INode> allNodes = new HashMap<>(neuralNetCoreEntity.getNodes().size());
 
-        neuralNetEntity.getNodes().forEach((nodeId, nodeEntity) -> {
+        neuralNetCoreEntity.getNodes().forEach((nodeId, nodeEntity) -> {
             INode node = new Node();
             node.setBias(nodeEntity.getBias());
             node.setActivationFunctionContainer(ActivationFunctionContainerFactory.create(FunctionType.valueOf(nodeEntity.getActivationFunctionType())));
@@ -74,8 +72,8 @@ public class NeuralNetConverter {
         return allNodes;
     }
 
-    public static void createAxonsAndAddToNodes(NeuralNetEntity neuralNetEntity, Map<Long, INode> allNodes) {
-        neuralNetEntity.getAxons().forEach((key, axonEntity) -> {
+    private static void createAxonsAndAddToNodes(NeuralNetCoreEntity neuralNetCoreEntity, NeuralNetCoreType type, Map<Long, INode> allNodes) {
+        neuralNetCoreEntity.getAxons().forEach((key, axonEntity) -> {
             String[] parentAndChild = key.split(AxonEntity.PARENT_TO_CHILD_DELIMITER);
 
             INode parentNode = allNodes.get(Long.valueOf(parentAndChild[0]));
@@ -86,14 +84,14 @@ public class NeuralNetConverter {
             axon.setChildNode(childNode);
             axon.setWeight(axonEntity.getWeight());
 
-            if(neuralNetEntity.getType().equals(NeuralNetCoreType.TRAIN.toString())){
+            if(type.equals(NeuralNetCoreType.TRAIN)){
                 parentNode.addChildAxon(axon);
             }
             childNode.addParentAxon(axon);
         });
     }
 
-    public static ILayer fromLayerEntity(LayerEntity layerEntity, Map<Long, INode> allNodes) {
+    private static ILayer fromLayerEntity(LayerEntity layerEntity, Map<Long, INode> allNodes) {
         ILayer layer = new Layer();
         layer.resize(new Dimension(layerEntity.getDimX(), layerEntity.getDimY()));
 
@@ -104,9 +102,7 @@ public class NeuralNetConverter {
         return layer;
     }
 
-    public static NeuralNetEntity toNeuralNetEntity(INeuralNet neuralNet) {
-
-        INeuralNetCore neuralNetCore = neuralNet.getNeuralNetCore();
+    public static NeuralNetCoreEntity toNeuralNetCoreEntity(INeuralNetCore neuralNetCore) {
 
         int totalNumberOfNodes = NeuralNetCoreUtils.getNumberOfNodes(neuralNetCore);
 
@@ -129,16 +125,25 @@ public class NeuralNetConverter {
 
         Map<String,AxonEntity> axonEntities = getAxonEntities(orderedNodes, nodeIdMapper);
 
+        NeuralNetCoreEntity neuralNetCoreEntity = new NeuralNetCoreEntity();
+        neuralNetCoreEntity.setNodes(idNodeEntityMapper);
+        neuralNetCoreEntity.setLayers(layers);
+        neuralNetCoreEntity.setAxons(axonEntities);
+
+        return neuralNetCoreEntity;
+    }
+
+    public static NeuralNetEntity toNeuralNetEntity(INeuralNet neuralNet) {
+
+        INeuralNetCore neuralNetCore = neuralNet.getNeuralNetCore();
+
         NeuralNetEntity neuralNetEntity = new NeuralNetEntity();
 
         neuralNetEntity.setNeuralNetId(neuralNet.getNeuralNetMetaData().getId().toString());
         neuralNetEntity.setName(neuralNet.getNeuralNetMetaData().getName());
         neuralNetEntity.setDescription(neuralNet.getNeuralNetMetaData().getDescription());
         neuralNetEntity.setType(NeuralNetCoreUtils.getNeuralNetType(neuralNetCore).toString());
-        neuralNetEntity.setNodes(idNodeEntityMapper);
-
-        neuralNetEntity.setLayers(layers);
-        neuralNetEntity.setAxons(axonEntities);
+        neuralNetEntity.setNeuralNetCoreEntity(toNeuralNetCoreEntity(neuralNetCore));
 
         return neuralNetEntity;
     }

@@ -1,5 +1,7 @@
 package de.baleipzig.iris.ui.presenter.neuralnetconfig;
 
+import de.baleipzig.iris.enums.NeuralNetCoreType;
+import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
 import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.neuralnetconfig.INeuralNetConfigService;
@@ -31,12 +33,67 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
     @Override
     public void handleSelection(NeuralNetMetaData metaData) {
 
+        if(metaData == null) {
+            return;
+        }
+
         model.setSelectedNeuralNetId(metaData.getId());
         model.setNeuralNet(service.getNeuralNetWorker().load(metaData.getId()));
         model.setDescription(metaData.getDescription());
         model.setName(metaData.getName());
         model.setNetStructure(service.getNeuralNetWorker().toJson(model.getNeuralNet()));
+        model.setOriginalNetStructure(model.getNetStructure());
         view.update(model);
+    }
+
+    public Void saveNeuralNet() {
+
+        if(model.getSelectedNeuralNetId() == null && model.getNeuralNet() == null) {
+            return null;
+        }
+        if(model.getSelectedNeuralNetId() == null && model.getNeuralNet() != null) {
+            model.setSelectedNeuralNetId(model.getNeuralNet().getNeuralNetMetaData().getId());
+        }
+
+        INeuralNet savedNet;
+
+        if(model.getOriginalNetStructure().equals(model.getNetStructure())) {
+            savedNet = model.getNeuralNet();
+        }
+        else {
+            savedNet = service.getNeuralNetWorker().fromJson(model.getNetStructure(), NeuralNetCoreType.TRAIN);
+
+            if(savedNet == null ) {
+                return null;
+            }
+
+            savedNet.getNeuralNetMetaData().setId(model.getSelectedNeuralNetId());
+        }
+
+        savedNet.getNeuralNetMetaData().setName(model.getName());
+        savedNet.getNeuralNetMetaData().setDescription(model.getDescription());
+
+        service.getNeuralNetWorker().save(savedNet);
+        searchAllNeuralNets();
+        view.selectSearchListItem(model.getSelectedNeuralNetId());
+
+        return null;
+    }
+
+    public Void createNeuralNet() {
+
+        INeuralNet neuralNet = service.getNeuralNetWorker().create();
+
+        service.getDozerBeanMapper().map(neuralNet.getNeuralNetMetaData(), model);
+        model.setNeuralNet(neuralNet);
+        model.setSelectedNeuralNetId(null);
+        model.setNetStructure(service.getNeuralNetWorker().toJson(model.getNeuralNet()));
+        model.setOriginalNetStructure(model.getNetStructure());
+
+        view.deselectSearchList();
+        view.update(model);
+
+        return null;
     }
 
     public  Void navigateToTrainingView() {

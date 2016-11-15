@@ -18,4 +18,5 @@ public class NeuralNetConfigViewModel {
     private String name;
     private String description;
     private String netStructure;
+    private String originalNetStructure;
 }

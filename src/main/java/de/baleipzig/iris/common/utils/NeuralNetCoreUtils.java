@@ -66,6 +66,10 @@ public class NeuralNetCoreUtils {
 
     public static NeuralNetCoreType getNeuralNetType(INeuralNetCore net){
 
+        if(net.getInputLayer() == null || LayerUtils.getNumberOfNodes(net.getInputLayer()) == 0) {
+            return NeuralNetCoreType.UNDEFINED;
+        }
+
         INode node = net.getInputLayer().getNode(0,0);
         if(node instanceof Node){
             return NeuralNetCoreType.TRAIN;
