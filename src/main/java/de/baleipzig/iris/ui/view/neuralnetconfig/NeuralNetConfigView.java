@@ -70,14 +70,6 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     }
 
     @Override
-    public void resetView() {
-
-        jsonEditor.setValue("");
-        nameTextField.setValue("");
-        descriptionTextArea.setValue("");
-    }
-
-    @Override
     public void update(NeuralNetConfigViewModel viewModel) {
         beanFieldGroup.setItemDataSource(viewModel);
     }

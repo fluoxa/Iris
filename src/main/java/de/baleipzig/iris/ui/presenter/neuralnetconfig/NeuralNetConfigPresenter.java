@@ -101,7 +101,7 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         model.setNetStructure(service.getNeuralNetWorker().toJson(model.getNeuralNet()));
         model.setOriginalNetStructure(model.getNetStructure());
 
-        view.unselectSearchList();
+        view.deselectSearchList();
         view.update(model);
 
         return null;
@@ -114,7 +114,7 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         }
 
         service.getNeuralNetWorker().delete(model.getSelectedNeuralNetId());
-        view.resetView();
+        resetView();
         searchAllNeuralNets();
     }
 
@@ -165,5 +165,11 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         model.setDescription("");
         model.setNeuralNet(null);
         model.setSelectedNeuralNetId(null);
+    }
+
+    private void resetView() {
+
+        model = new NeuralNetConfigViewModel();
+        view.update(model);
     }
 }
