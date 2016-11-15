@@ -134,8 +134,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         }
     }
 
-    @Override
-    public void setBodyContentLayoutMargin(boolean enabled) {
+    protected void setBodyContentLayoutMargin(boolean enabled) {
         contentLayout.setMargin(enabled);
     }
 
@@ -144,6 +143,4 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         contentLayout.removeAllComponents();
         contentLayout.addComponent(content);
     }
-
-
 }
