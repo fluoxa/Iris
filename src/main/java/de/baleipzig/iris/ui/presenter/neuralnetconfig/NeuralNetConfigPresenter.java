@@ -103,7 +103,7 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         }
 
         service.getNeuralNetWorker().delete(model.getSelectedNeuralNetId());
-        view.resetView();
+        resetView();
         searchAllNeuralNets();
     }
 
@@ -132,5 +132,11 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         model.setDescription("");
         model.setNeuralNet(null);
         model.setSelectedNeuralNetId(null);
+    }
+
+    private void resetView() {
+
+        model = new NeuralNetConfigViewModel();
+        view.update(model);
     }
 }
