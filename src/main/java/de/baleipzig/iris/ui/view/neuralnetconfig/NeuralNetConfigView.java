@@ -4,6 +4,7 @@ import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.*;
+import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.ui.language.LanguageHandler;
 import de.baleipzig.iris.ui.presenter.neuralnetconfig.NeuralNetConfigPresenter;
 import de.baleipzig.iris.ui.service.neuralnetconfig.INeuralNetConfigService;
@@ -15,6 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
+
+import static sun.plugin.javascript.navig.JSType.Layer;
 
 @UIScope
 @SpringView(name = INeuralNetConfigView.VIEW_NAME)
@@ -34,9 +39,12 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     private Button resetNeuralNet = new Button();
     private Button createNeuralNet = new Button();
     private Button deleteNeuralNet = new Button();
+    private Button generateNeuralNet = new Button();
 
     private TabSheet neuralNetEditor = new TabSheet();
     private TextArea jsonEditor = new TextArea();
+
+    private List<HorizontalLayout> dimensionLayouts = new ArrayList<>();
 
     private final BeanFieldGroup<NeuralNetConfigViewModel> beanFieldGroup = new BeanFieldGroup<>(NeuralNetConfigViewModel.class);
 
@@ -76,6 +84,24 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         beanFieldGroup.setItemDataSource(viewModel);
     }
 
+    @Override
+    List<Dimension> getHiddenLayerDimensions( ){
+
+        List<Dimension> dimensions = new ArrayList<>(dimensionLayouts.size());
+
+        for (HorizontalLayout dimensionLayout : dimensionLayouts) {
+
+            Dimension dim = new Dimension();
+
+            for (Component component : dimensionLayout) {
+                if(component instanceof TextField) {
+                    dim.setX(Integer.parseInt(((TextField) component).getValue()));
+                }
+            }
+        }
+
+    }
+
     private void setupElements(){
 
         trainNeuralNet.setCaption("train");
@@ -83,6 +109,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         resetNeuralNet.setCaption("reset");
         createNeuralNet.setCaption("new");
         deleteNeuralNet.setCaption("delete");
+        generateNeuralNet.setCaption("generate");
     }
 
     private void setupLayout(){
@@ -113,11 +140,22 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         VerticalLayout autoCreaterTab = new VerticalLayout();
         autoCreaterTab.setSpacing(true);
         autoCreaterTab.setSizeFull();
+        autoCreaterTab.addComponent(new Label("erzeugen eines neuen NeuralNetCores mit HiddenLayer der angegebenene Dimension:"));
+        autoCreaterTab.addComponent(new Label("Hidden Layer Dimension:"));
+        HorizontalLayout dimensionLayout = new HorizontalLayout(
+                new Label("x-Dimension:"),
+                new TextField(),
+                new Label("y-Dimension:"),
+                new TextField()
+        );
+        dimensionLayout.setSpacing(true);
+        dimensionLayouts.add(dimensionLayout);
+        dimensionLayouts.forEach(layout -> autoCreaterTab.addComponent(layout));
+        autoCreaterTab.addComponent(generateNeuralNet);
 
         neuralNetEditor.addTab(metaDataTab, "Meta Data Setting");
         neuralNetEditor.addTab(jsonEditorTab, "Json Editor");
         neuralNetEditor.addTab(autoCreaterTab, "Auto Creator");
-
 
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.setSpacing(true);
