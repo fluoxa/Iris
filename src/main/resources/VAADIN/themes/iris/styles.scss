@@ -43,7 +43,6 @@
     text-align: center;
   }
 
-
   .iris-boundary-layout {
     border: 1px solid #d5d5d5;
   }
@@ -64,6 +63,14 @@
       width: $iris-spacing;
       height: $iris-spacing;
     }
+  }
+
+  .iris-clear-drawing-button {
+    padding: 4px;
+    height: 28px;
+    width: 28px;
+    font-size: 24px;
+    line-height: 0px;
   }
 
   .iris-toggle-info-button {
@@ -104,8 +111,3 @@
     margin-bottom: 25px;
   }
 }
-
-
-
-
-

@@ -8,6 +8,8 @@ import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import de.baleipzig.iris.common.Dimension;
+import de.baleipzig.iris.ui.components.DigitImageLayout;
+import de.baleipzig.iris.ui.components.DrawingLayout;
 import de.baleipzig.iris.ui.language.LanguageHandler;
 import de.baleipzig.iris.ui.presenter.recognition.RecognitionPresenter;
 import de.baleipzig.iris.ui.service.recognition.IRecognitionService;
@@ -40,7 +42,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     private final LanguageHandler languageHandler;
 
     private final HorizontalLayout recognitionHeaderLayout = new HorizontalLayout();
-    private final CssLayout captureBoundaryLayout = new CssLayout();
+    private final AbsoluteLayout captureBoundaryLayout = new AbsoluteLayout();
     private final CssLayout resultBoundaryLayout = new CssLayout();
     private final VerticalLayout recognitionLayout = new VerticalLayout();
 
@@ -49,6 +51,9 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     private final HorizontalLayout maximizedLayout = new HorizontalLayout();
 
     private final HorizontalLayout recognitionMainLayout = new HorizontalLayout();
+
+    private final DrawingLayout drawingLayout= new DrawingLayout();
+    private final DigitImageLayout digitImageLayout = new DigitImageLayout();
 
     private boolean infoPanelVisible = false;
 
@@ -101,9 +106,19 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         recognitionHeaderLayout.setWidth("100%");
         recognitionHeaderLayout.setHeight("25px");
 
+        Button clearDrawingButton = new Button();
+        clearDrawingButton.setCaptionAsHtml(true);
+        clearDrawingButton.addStyleName(ValoTheme.BUTTON_BORDERLESS);
+        clearDrawingButton.addStyleName("iris-clear-drawing-button");
+        clearDrawingButton.setCaption(FontAwesome.TIMES.getHtml());
+        clearDrawingButton.addClickListener(e -> drawingLayout.clear());
+
         captureBoundaryLayout.addStyleName("iris-boundary-layout");
+        captureBoundaryLayout.addComponent(drawingLayout);
+        captureBoundaryLayout.addComponent(clearDrawingButton, "right:2%; top:2%");
 
         resultBoundaryLayout.addStyleName("iris-boundary-layout");
+        resultBoundaryLayout.addComponent(digitImageLayout);
 
         HorizontalLayout captureAndResultLayout = new HorizontalLayout();
         captureAndResultLayout.setWidth("100%");
@@ -246,6 +261,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         recalculateBoundaryLayoutSize();
         showOrHideInfoPanel();
+
     }
 
     private void showOrHideInfoPanel() {
@@ -278,7 +294,6 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
             recognitionLayoutWidht = parentBodyLayoutDimension.getY() - MINIMIZED_WIDTH;
         }
 
-
         double availableHeight = (recognitionLayoutHeight - 2*MARGIN_WIDTH - recognitionHeaderLayout.getHeight()) * TOP_EXPAND_RATIO/(BOTTOM_EXPAND_RATIO + TOP_EXPAND_RATIO);
         double availableWidth = (recognitionLayoutWidht - 2*MARGIN_WIDTH) / 2;
 
@@ -289,6 +304,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         resultBoundaryLayout.setWidth(availableSize + "px");
         resultBoundaryLayout.setHeight(availableSize + "px");
 
-        System.out.println(availableHeight + ", " + availableWidth + ": " + availableSize);
+        drawingLayout.clear();
+        drawingLayout.setSize(availableSize);
     }
 }

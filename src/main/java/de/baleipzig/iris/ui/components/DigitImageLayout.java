@@ -1,5 +1,6 @@
 package de.baleipzig.iris.ui.components;
 
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Image;
 
@@ -17,8 +18,12 @@ public class DigitImageLayout extends CssLayout {
     private static String DIGIT_9_PATH = "img/9.svg";
     private static String UNKNOWN_PATH = "img/unknown.svg";
 
+    public DigitImageLayout() {
+        setSizeFull();
+    }
 
     public void setDigit(int digit) {
+
         String path;
 
         switch (digit) {
@@ -54,7 +59,6 @@ public class DigitImageLayout extends CssLayout {
                 break;
             default:
                 path = UNKNOWN_PATH;
-                return;
         }
 
         setImage(path);
@@ -65,10 +69,13 @@ public class DigitImageLayout extends CssLayout {
     }
 
     private void setImage(String path) {
-        this.removeAllComponents();
-        Image image = new Image(path);
-        this.addComponent(image);
-        image.setSizeFull();
-    }
 
+        this.removeAllComponents();
+
+        ThemeResource imageResource = new ThemeResource(path);
+        Image image = new Image(null, imageResource);
+        image.setSizeFull();
+
+        this.addComponent(image);
+    }
 }
