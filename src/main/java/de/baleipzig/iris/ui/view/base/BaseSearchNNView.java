@@ -19,8 +19,6 @@ import java.util.UUID;
 
 public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends BaseView<P> implements IBaseSearchNNView<P> {
 
-
-
     private final HorizontalLayout contentLayout = new HorizontalLayout();
 
     private VerticalLayout searchAndResultLayout = new VerticalLayout();
@@ -63,14 +61,15 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
         searchResultTable.unselect(searchResultTable.getValue());
     }
 
-
     @PostConstruct
     private void init() {
+
         createLayout();
         addListeners();
     }
 
     private void createLayout() {
+
         searchButton.setCaptionAsHtml(true);
         searchButton.setCaption(FontAwesome.SEARCH.getHtml());
         searchTextField.setWidth("100%");
@@ -117,12 +116,14 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
     }
 
     private void addListeners() {
+
         searchButton.addClickListener(e -> presenter.searchNeuralNets(searchTextField.getValue()));
 
         searchTextField.addFocusListener(e -> toggleSearchButtonClickListener(true));
     }
 
     private void toggleSearchButtonClickListener(boolean activated) {
+
         if (activated) {
             searchButton.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         } else {
@@ -132,6 +133,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
     @Override
     public void setSearchResult(List<NeuralNetMetaData> neuralNetMetaDatas) {
+
         BeanItemContainer<NeuralNetMetaData> resultAsContainer = new BeanItemContainer<>(NeuralNetMetaData.class, neuralNetMetaDatas);
 
         searchResultTable = new Table();
@@ -160,12 +162,14 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
     @Override
     protected void setBodyContent(Component content) {
+
         contentLayout.removeAllComponents();
         contentLayout.addComponent(content);
     }
 
     @Override
     protected Dimension getEstimatedBodyLayoutDim() {
+
         Dimension parentBodyLayoutDimension = super.getEstimatedBodyLayoutDim();
 
         int parentBodyLayoutHeight = parentBodyLayoutDimension.getX();
