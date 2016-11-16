@@ -23,7 +23,6 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
 
     @PostConstruct
     private void init() {
-
         createLayout();
     }
 
@@ -85,12 +84,10 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
     }
 
     public void setSelectedLanguage(LanguageConfiguration.Language language) {
-
         languageComboBox.setValue(language);
     }
 
     public void reload() {
-
         Page.getCurrent().reload();
     }
 
