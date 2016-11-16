@@ -86,7 +86,6 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
         searchResultPanel.setSizeFull();
 
-
         searchAndResultLayout.setHeight("100%");
         searchAndResultLayout.setWidth("250px");
         searchAndResultLayout.setSpacing(true);
