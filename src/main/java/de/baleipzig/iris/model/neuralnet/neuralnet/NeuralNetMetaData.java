@@ -8,6 +8,6 @@ import java.util.UUID;
 public class NeuralNetMetaData implements INeuralNetMetaData {
 
     private UUID id = UUID.randomUUID();
-    private String name;
-    private String description;
+    private String name = "";
+    private String description = "";
 }
