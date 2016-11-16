@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+//TODO: Umbauen als Singelton und DI des ApplicationContext zum Anlegen der Korrekten Knoten
 public class LayerUtils {
 
     private static final Random gaussDistribution = new Random();
@@ -96,8 +97,12 @@ public class LayerUtils {
                 axon.setWeight(useRandomWeights ? gaussDistribution.nextGaussian() : 0);
                 axon.setParentNode(parentNode);
                 axon.setChildNode(childNode);
-                parentNode.addChildAxon(axon);
-                childNode.addParentAxon(axon);
+                if(parentNode != null) {
+                    parentNode.addChildAxon(axon);
+                }
+                if(childNode != null) {
+                    childNode.addParentAxon(axon);
+                }
             }
         }
     }

@@ -4,6 +4,7 @@ import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.*;
+import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.ui.language.LanguageHandler;
 import de.baleipzig.iris.ui.presenter.neuralnetconfig.NeuralNetConfigPresenter;
 import de.baleipzig.iris.ui.service.neuralnetconfig.INeuralNetConfigService;
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 
 @UIScope
 @SpringView(name = INeuralNetConfigView.VIEW_NAME)
@@ -29,14 +32,10 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
 
     private TextArea descriptionTextArea = new TextArea();
     private TextField nameTextField = new TextField();
-    private Button trainNeuralNet = new Button();
-    private Button saveNeuralNet = new Button();
-    private Button resetNeuralNet = new Button();
-    private Button createNeuralNet = new Button();
-    private Button deleteNeuralNet = new Button();
 
-    private TabSheet neuralNetEditor = new TabSheet();
     private TextArea jsonEditor = new TextArea();
+
+    private List<HorizontalLayout> dimensionLayouts = new ArrayList<>();
 
     private final BeanFieldGroup<NeuralNetConfigViewModel> beanFieldGroup = new BeanFieldGroup<>(NeuralNetConfigViewModel.class);
 
@@ -47,9 +46,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     @PostConstruct
     void init() {
 
-        setupElements();
         setupLayout();
-        setupListeners();
 
         presenter = new NeuralNetConfigPresenter(this, (INeuralNetConfigService) context.getBean("neuralNetConfigService"));
         presenter.init();
@@ -68,16 +65,88 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         beanFieldGroup.setItemDataSource(viewModel);
     }
 
-    private void setupElements(){
+    @Override
+    public List<Dimension> getHiddenLayerDimensions( ){
 
-        trainNeuralNet.setCaption("train");
-        saveNeuralNet.setCaption("save");
-        resetNeuralNet.setCaption("reset");
-        createNeuralNet.setCaption("new");
-        deleteNeuralNet.setCaption("delete");
+        List<Dimension> dimensions = new ArrayList<>(dimensionLayouts.size());
+
+        for (HorizontalLayout dimensionLayout : dimensionLayouts) {
+
+            Dimension dim = new Dimension();
+            int count = 0;
+
+            for (Component component : dimensionLayout) {
+                if(component instanceof TextField && count == 0) {
+                    int dimX = Integer.parseInt(((TextField) component).getValue());
+                    dimX = dimX > 0 ? dimX : 1;
+                    dim.setX(dimX);
+                    count++;
+                }
+                else if(component instanceof TextField && count == 1) {
+                    int dimY = Integer.parseInt(((TextField) component).getValue());
+                    dimY = dimY > 0 ? dimY : 1;
+                    dim.setY(dimY);
+                }
+            }
+
+            dimensions.add(dim);
+        }
+
+        return  dimensions;
     }
 
     private void setupLayout(){
+
+        VerticalLayout totalLayout = new VerticalLayout();
+        totalLayout.setSizeFull();
+        totalLayout.setSpacing(true);
+        totalLayout.addComponent(getNeuralNetEditor());
+        totalLayout.addComponent(getButtonLine());
+
+        this.setBodyContent(totalLayout);
+    }
+
+    private VerticalLayout getAutoCreaterTab() {
+
+        VerticalLayout autoCreaterTab = new VerticalLayout();
+        autoCreaterTab.setSpacing(true);
+        autoCreaterTab.setSizeFull();
+
+        Label explanationLText =  new Label("erzeugen eines neuen NeuralNetCores mit HiddenLayer der angegebenene Dimension:");
+        explanationLText.setStyleName("iris-explanation-text");
+        autoCreaterTab.addComponent(explanationLText);
+        autoCreaterTab.addComponent(new Label("Hidden Layer Dimension:"));
+        HorizontalLayout dimensionLayout = new HorizontalLayout(
+                new Label("x-Dimension:"),
+                new TextField(),
+                new Label("y-Dimension:"),
+                new TextField()
+        );
+
+        dimensionLayout.setSpacing(true);
+        dimensionLayouts.add(dimensionLayout);
+
+        Button generateNeuralNet = new Button("generate");
+        dimensionLayouts.forEach(layout -> autoCreaterTab.addComponent(layout));
+        autoCreaterTab.addComponent(generateNeuralNet);
+        autoCreaterTab.setComponentAlignment(generateNeuralNet, Alignment.MIDDLE_RIGHT);
+
+        generateNeuralNet.addClickListener(e -> presenter.generateNeuralNetCore());
+
+        return autoCreaterTab;
+    }
+
+    private VerticalLayout getJsonEditorTab() {
+
+        VerticalLayout jsonEditorTab = new VerticalLayout(jsonEditor);
+        jsonEditor.setSizeFull();
+        jsonEditorTab.setSpacing(true);
+        jsonEditorTab.setSizeFull();
+
+        return jsonEditorTab;
+    }
+
+    private VerticalLayout getMetaDataTab() {
 
         GridLayout settingsGrid = new GridLayout(2,2);
         settingsGrid.setSpacing(true);
@@ -97,19 +166,22 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         metaDataTab.setSizeFull();
         metaDataTab.addComponent(settingsGrid);
 
-        VerticalLayout jsonEditorTab = new VerticalLayout(jsonEditor);
-        jsonEditor.setSizeFull();
-        jsonEditorTab.setSpacing(true);
-        jsonEditorTab.setSizeFull();
+        return metaDataTab;
+    }
 
-        VerticalLayout autoCreaterTab = new VerticalLayout();
-        autoCreaterTab.setSpacing(true);
-        autoCreaterTab.setSizeFull();
+    private HorizontalLayout getButtonLine() {
 
-        neuralNetEditor.addTab(metaDataTab, "Meta Data Setting");
-        neuralNetEditor.addTab(jsonEditorTab, "Json Editor");
-        neuralNetEditor.addTab(autoCreaterTab, "Auto Creator");
+        Button trainNeuralNet = new Button("train");
+        Button saveNeuralNet = new Button("save");
+        Button resetNeuralNet = new Button("reset");
+        Button createNeuralNet = new Button("new");
+        Button deleteNeuralNet = new Button("delete");
 
+        trainNeuralNet.addClickListener(e -> presenter.navigateToTrainingView());
+        saveNeuralNet.addClickListener(e -> presenter.saveNeuralNet());
+        createNeuralNet.addClickListener(e -> presenter.createNeuralNet());
+        deleteNeuralNet.addClickListener(e -> presenter.deleteNeuralNet());
+        resetNeuralNet.addClickListener(e -> presenter.resetNeuralNet());
 
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.setSpacing(true);
@@ -119,22 +191,17 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         buttonLayout.addComponent(createNeuralNet);
         buttonLayout.addComponent(deleteNeuralNet);
 
-        VerticalLayout totalLayout = new VerticalLayout();
-        totalLayout.setSizeFull();
-        totalLayout.setSpacing(true);
-        totalLayout.addComponent(neuralNetEditor);
-        totalLayout.addComponent(buttonLayout);
-
-        this.setBodyContent(totalLayout);
+        return  buttonLayout;
     }
 
-    private void setupListeners() {
+    private TabSheet getNeuralNetEditor() {
 
-        trainNeuralNet.addClickListener(e -> presenter.navigateToTrainingView());
-        saveNeuralNet.addClickListener(e -> presenter.saveNeuralNet());
-        createNeuralNet.addClickListener(e -> presenter.createNeuralNet());
-        deleteNeuralNet.addClickListener(e -> presenter.deleteNeuralNet());
-        resetNeuralNet.addClickListener(e -> presenter.resetNeuralNet());
+        TabSheet neuralNetEditor = new TabSheet();
+        neuralNetEditor.addTab(getMetaDataTab(), "Meta Data Setting");
+        neuralNetEditor.addTab(getJsonEditorTab(), "Json Editor");
+        neuralNetEditor.addTab(getAutoCreaterTab(), "Auto Creator");
+
+        return neuralNetEditor;
     }
 
     private void  bindNeuralNetConfigViewModelToView(BeanFieldGroup<NeuralNetConfigViewModel> group) {

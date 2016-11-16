@@ -92,6 +92,23 @@ public class NeuralNetConfigPresenter extends BaseSearchNNPresenter<INeuralNetCo
         view.update(model);
     }
 
+    public void generateNeuralNetCore() {
+
+        INeuralNet tmpNet = service.getNeuralNetWorker().createImageDigitNet(view.getHiddenLayerDimensions());
+
+        if (model.getNeuralNet() == null) {
+            model.setNeuralNet(tmpNet);
+        }
+        else {
+            model.getNeuralNet().setNeuralNetCore(tmpNet.getNeuralNetCore());
+        }
+
+        model.setNetStructure(service.getNeuralNetWorker().toJson(model.getNeuralNet()));
+        model.setOriginalNetStructure(model.getNetStructure());
+
+        view.update(model);
+    }
+
     public void deleteNeuralNet() {
 
         if(model.getSelectedNeuralNetId() == null) {
