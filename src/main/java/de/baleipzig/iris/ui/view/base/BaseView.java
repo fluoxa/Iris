@@ -57,7 +57,6 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
         headerLayout.setExpandRatio(languageComboBox, 0);
         headerLayout.setComponentAlignment(applicationLabel, Alignment.MIDDLE_CENTER);
 
-
         headerPanel.setContent(headerLayout);
         headerPanel.setHeight("106px");
 
@@ -78,6 +77,7 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
     }
 
     public void setAvailableLanguages(List<LanguageConfiguration.Language> languages) {
+
         languageComboBox.clear();
         BeanItemContainer<LanguageConfiguration.Language> languagesAsContainer = new BeanItemContainer<>(LanguageConfiguration.Language.class, languages);
         languageComboBox.setContainerDataSource(languagesAsContainer);
@@ -95,11 +95,13 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
     }
 
     protected void setBodyContent(Component content) {
+
         bodyLayout.removeAllComponents();
         bodyLayout.addComponent(content);
     }
 
     protected Dimension getEstimatedBodyLayoutDim() {
+
         int browserHeight = UI.getCurrent().getPage().getBrowserWindowHeight();
         int browserWidth = UI.getCurrent().getPage().getBrowserWindowWidth();
 
