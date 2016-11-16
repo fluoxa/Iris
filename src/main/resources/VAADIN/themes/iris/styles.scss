@@ -22,7 +22,10 @@
   }
 
   .iris-header-layout {
-    /*border-bottom: 1px solid #d5d5d5;*/
+  }
+
+  .iris-bold {
+    font-weight: bold;
   }
 
   .iris-logo-image {
@@ -72,7 +75,6 @@
   }
 
   .iris-info-layout {
-    /*min-width: 250px;*/
     .v-spacing {
       width: $iris-spacing;
       height: $iris-spacing;
@@ -93,17 +95,6 @@
   .v-progressbar.iris-progressbar-training {
     width: 100%;
   }
-
-
-
-  .test {
-    background-color: black;
-  }
-
-  .iris-canvas {
-    border: solid black 2px;
-  }
-
 }
 
 

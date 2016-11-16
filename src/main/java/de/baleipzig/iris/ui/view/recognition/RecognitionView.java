@@ -81,7 +81,6 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         initMaximizedLayout();
 
         recognitionMainLayout.addComponents(recognitionLayout, minimizableLayout);
-
         recognitionMainLayout.setSizeFull();
 
         setBodyContent(recognitionMainLayout);
@@ -92,9 +91,11 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         Label captureLabel = new Label("Erfassung");
         captureLabel.addStyleName("iris-recognition-header-label");
+        captureLabel.addStyleName("iris-bold");
 
         Label resultLabel = new Label("Resultat");
         resultLabel.addStyleName("iris-recognition-header-label");
+        resultLabel.addStyleName("iris-bold");
 
         recognitionHeaderLayout.addComponents(captureLabel, resultLabel);
         recognitionHeaderLayout.setWidth("100%");
@@ -102,20 +103,22 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         captureBoundaryLayout.addStyleName("iris-boundary-layout");
 
-        HorizontalLayout captureLayout = new HorizontalLayout();
-        captureLayout.setSizeFull();
-        captureLayout.addComponent(captureBoundaryLayout);
-        captureLayout.setComponentAlignment(captureBoundaryLayout, Alignment.MIDDLE_CENTER);
-
         resultBoundaryLayout.addStyleName("iris-boundary-layout");
-        HorizontalLayout resultLayout = new HorizontalLayout();
-        resultLayout.setSizeFull();
-        resultLayout.addComponent(resultBoundaryLayout);
-        resultLayout.setComponentAlignment(resultBoundaryLayout, Alignment.MIDDLE_CENTER);
 
         HorizontalLayout captureAndResultLayout = new HorizontalLayout();
-        captureAndResultLayout.addComponents(captureLayout, resultLayout);
-        captureAndResultLayout.setSizeFull();
+        captureAndResultLayout.setWidth("100%");
+        captureAndResultLayout.addComponents(captureBoundaryLayout, resultBoundaryLayout);
+        captureAndResultLayout.setComponentAlignment(captureBoundaryLayout, Alignment.MIDDLE_CENTER);
+        captureAndResultLayout.setComponentAlignment(resultBoundaryLayout, Alignment.MIDDLE_CENTER);
+
+        VerticalLayout captureAndResultBoundaryLayout = new VerticalLayout();
+        captureAndResultBoundaryLayout.setSpacing(true);
+        captureAndResultBoundaryLayout.addComponents(recognitionHeaderLayout, captureAndResultLayout);
+
+        HorizontalLayout topLayout = new HorizontalLayout();
+        topLayout.addComponents(captureAndResultBoundaryLayout);
+        topLayout.setComponentAlignment(captureAndResultBoundaryLayout, Alignment.MIDDLE_CENTER);
+        topLayout.setSizeFull();
 
         CheckBox realTimeRecognition = new CheckBox("Echtzeitberechnung", true);
 
@@ -135,10 +138,9 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         recognitionLayout.setSpacing(true);
         recognitionLayout.addStyleName("iris-recognition-layout");
 
-        recognitionLayout.addComponents(recognitionHeaderLayout, captureAndResultLayout, bottomLayout);
+        recognitionLayout.addComponents(topLayout, bottomLayout);
 
-        recognitionLayout.setExpandRatio(recognitionHeaderLayout, 0);
-        recognitionLayout.setExpandRatio(captureAndResultLayout, TOP_EXPAND_RATIO);
+        recognitionLayout.setExpandRatio(topLayout, TOP_EXPAND_RATIO);
         recognitionLayout.setExpandRatio(bottomLayout, BOTTOM_EXPAND_RATIO);
     }
 
@@ -235,16 +237,19 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     }
 
     private void toggleInfoPanelVisibility(boolean show) {
+
         infoPanelVisible = show;
         reinitializeViewPort();
     }
 
     private void reinitializeViewPort() {
+
         recalculateBoundaryLayoutSize();
         showOrHideInfoPanel();
     }
 
     private void showOrHideInfoPanel() {
+
         minimizedLayout.setVisible(!infoPanelVisible);
         maximizedLayout.setVisible(infoPanelVisible);
 
@@ -262,6 +267,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     }
 
     private void recalculateBoundaryLayoutSize() {
+
         Dimension parentBodyLayoutDimension = super.getEstimatedBodyLayoutDim();
 
         int recognitionLayoutHeight = parentBodyLayoutDimension.getX();
