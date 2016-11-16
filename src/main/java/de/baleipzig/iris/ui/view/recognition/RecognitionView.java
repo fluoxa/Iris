@@ -271,16 +271,16 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         Dimension parentBodyLayoutDimension = super.getEstimatedBodyLayoutDim();
 
         int recognitionLayoutHeight = parentBodyLayoutDimension.getX();
-        int recognitionLayoutWidht;
+        int recognitionLayoutWidth;
         if(infoPanelVisible) {
-            recognitionLayoutWidht = parentBodyLayoutDimension.getY() * LEFT_EXPAND_RATIO/(LEFT_EXPAND_RATIO + RIGHT_EXPAND_RATIO);
+            recognitionLayoutWidth = parentBodyLayoutDimension.getY() * LEFT_EXPAND_RATIO/(LEFT_EXPAND_RATIO + RIGHT_EXPAND_RATIO);
         } else {
-            recognitionLayoutWidht = parentBodyLayoutDimension.getY() - MINIMIZED_WIDTH;
+            recognitionLayoutWidth = parentBodyLayoutDimension.getY() - MINIMIZED_WIDTH;
         }
 
 
         double availableHeight = (recognitionLayoutHeight - 2*MARGIN_WIDTH - recognitionHeaderLayout.getHeight()) * TOP_EXPAND_RATIO/(BOTTOM_EXPAND_RATIO + TOP_EXPAND_RATIO);
-        double availableWidth = (recognitionLayoutWidht - 2*MARGIN_WIDTH) / 2;
+        double availableWidth = (recognitionLayoutWidth - 2*MARGIN_WIDTH) / 2;
 
         long availableSize = Math.round(Math.min(availableHeight, availableWidth) - BETTER_SAVE_THAN_SORRY);
 
