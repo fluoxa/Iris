@@ -7,11 +7,11 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.ui.language.LanguageHandler;
 import de.baleipzig.iris.ui.presenter.recognition.RecognitionPresenter;
 import de.baleipzig.iris.ui.service.recognition.IRecognitionService;
 import de.baleipzig.iris.ui.view.base.BaseSearchNNView;
-import elemental.json.JsonArray;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,12 @@ import javax.annotation.PostConstruct;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> implements IRecognitionView {
 
-    private static String ELEMENT_ID = "RecognitionView.ElementId";
+    public static final int LEFT_EXPAND_RATIO = 11;
+    public static final int RIGHT_EXPAND_RATIO = 5;
+    public static final int TOP_EXPAND_RATIO = 2;
+    public static final int BOTTOM_EXPAND_RATIO = 1;
+    public static final int MINIMIZED_WIDTH = 16;
+    public static final double BETTER_SAVE_THAN_SORRY = 20;
 
     public static final String TOGGLE_AREA_WIDTH = "16px";
     public static final String INFO_AREA_LABEL_WIDTH = "60px";
@@ -34,6 +39,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     @Getter
     private final LanguageHandler languageHandler;
 
+    private final HorizontalLayout recognitionHeaderLayout = new HorizontalLayout();
     private final CssLayout captureBoundaryLayout = new CssLayout();
     private final CssLayout resultBoundaryLayout = new CssLayout();
     private final VerticalLayout recognitionLayout = new VerticalLayout();
@@ -44,37 +50,26 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
     private final HorizontalLayout recognitionMainLayout = new HorizontalLayout();
 
+    private boolean infoPanelVisible = false;
+
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
         super.enter(viewChangeEvent);
-
-
-
     }
 
     @PostConstruct
     private void init() {
-        addJavaScriptFunction();
-        UI.getCurrent().getPage().addBrowserWindowResizeListener(event -> updateCaptureLayoutSize());
 
         createLayout();
 
-        toggleInfoPanelVisibility(isWindowBigEnough());
-
-
+        infoPanelVisible = isWindowBigEnough();
 
         presenter = new RecognitionPresenter(this, (IRecognitionService) context.getBean("recognitionService"));
         presenter.init();
-        /*
-        presenter.runEventAsynchronously(() -> {
-            UI.getCurrent().access(() -> {
-                updateCaptureLayoutSize();
-            });
-            return null;
-        });*/
+
+        reinitializeViewPort();
+        UI.getCurrent().getPage().addBrowserWindowResizeListener(event -> reinitializeViewPort());
     }
-
-
 
     private void createLayout() {
         initRecognitionLayout();
@@ -95,51 +90,56 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
     private void initRecognitionLayout() {
 
-        captureBoundaryLayout.addStyleName("border-test");
+        Label captureLabel = new Label("Erfassung");
+        captureLabel.addStyleName("iris-recognition-header-label");
+
+        Label resultLabel = new Label("Resultat");
+        resultLabel.addStyleName("iris-recognition-header-label");
+
+        recognitionHeaderLayout.addComponents(captureLabel, resultLabel);
+        recognitionHeaderLayout.setWidth("100%");
+        recognitionHeaderLayout.setHeight("25px");
+
+        captureBoundaryLayout.addStyleName("iris-boundary-layout");
 
         HorizontalLayout captureLayout = new HorizontalLayout();
         captureLayout.setSizeFull();
-        captureLayout.setId(ELEMENT_ID);
-        captureLayout.addStyleName("border-test");
         captureLayout.addComponent(captureBoundaryLayout);
         captureLayout.setComponentAlignment(captureBoundaryLayout, Alignment.MIDDLE_CENTER);
 
-        resultBoundaryLayout.addStyleName("border-test");
-
+        resultBoundaryLayout.addStyleName("iris-boundary-layout");
         HorizontalLayout resultLayout = new HorizontalLayout();
         resultLayout.setSizeFull();
-        resultLayout.addStyleName("border-test");
         resultLayout.addComponent(resultBoundaryLayout);
         resultLayout.setComponentAlignment(resultBoundaryLayout, Alignment.MIDDLE_CENTER);
 
         HorizontalLayout captureAndResultLayout = new HorizontalLayout();
         captureAndResultLayout.addComponents(captureLayout, resultLayout);
         captureAndResultLayout.setSizeFull();
-        captureAndResultLayout.setSpacing(true);
 
         CheckBox realTimeRecognition = new CheckBox("Echtzeitberechnung", true);
-
-        Label textAreaLabel = new Label("Informationen");
 
         TextArea infoTextArea = new TextArea();
         infoTextArea.setSizeFull();
         infoTextArea.setReadOnly(true);
         infoTextArea.addStyleName("iris-info-textarea");
 
+        VerticalLayout bottomLayout = new VerticalLayout();
+        bottomLayout.setSizeFull();
+        bottomLayout.addComponents(realTimeRecognition, infoTextArea);
+        bottomLayout.setExpandRatio(realTimeRecognition, 0);
+        bottomLayout.setExpandRatio(infoTextArea, 1);
+
         recognitionLayout.setMargin(true);
         recognitionLayout.setSizeFull();
         recognitionLayout.setSpacing(true);
         recognitionLayout.addStyleName("iris-recognition-layout");
 
-        recognitionLayout.addComponent(captureAndResultLayout);
-        recognitionLayout.addComponent(realTimeRecognition);
-        //recognitionLayout.addComponent(textAreaLabel);
-        recognitionLayout.addComponent(infoTextArea);
+        recognitionLayout.addComponents(recognitionHeaderLayout, captureAndResultLayout, bottomLayout);
 
-        recognitionLayout.setExpandRatio(captureAndResultLayout, 2);
-        recognitionLayout.setExpandRatio(realTimeRecognition, 0);
-        //recognitionLayout.setExpandRatio(textAreaLabel, 0);
-        recognitionLayout.setExpandRatio(infoTextArea, 1);
+        recognitionLayout.setExpandRatio(recognitionHeaderLayout, 0);
+        recognitionLayout.setExpandRatio(captureAndResultLayout, TOP_EXPAND_RATIO);
+        recognitionLayout.setExpandRatio(bottomLayout, BOTTOM_EXPAND_RATIO);
     }
 
     private void initMinimizedLayout() {
@@ -235,55 +235,54 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     }
 
     private void toggleInfoPanelVisibility(boolean show) {
+        infoPanelVisible = show;
+        reinitializeViewPort();
+    }
 
-        minimizedLayout.setVisible(!show);
-        maximizedLayout.setVisible(show);
+    private void reinitializeViewPort() {
+        recalculateBoundaryLayoutSize();
+        showOrHideInfoPanel();
+    }
 
-        if (show) {
+    private void showOrHideInfoPanel() {
+        minimizedLayout.setVisible(!infoPanelVisible);
+        maximizedLayout.setVisible(infoPanelVisible);
+
+        if (infoPanelVisible) {
             minimizableLayout.setSizeFull();
-            recognitionMainLayout.setExpandRatio(recognitionLayout, 11);
-            recognitionMainLayout.setExpandRatio(minimizableLayout, 5);
+            recognitionMainLayout.setExpandRatio(recognitionLayout, LEFT_EXPAND_RATIO);
+            recognitionMainLayout.setExpandRatio(minimizableLayout, RIGHT_EXPAND_RATIO);
 
         } else {
             minimizableLayout.setHeight("100%");
-            minimizableLayout.setWidth("16px");
+            minimizableLayout.setWidth(MINIMIZED_WIDTH, Unit.PIXELS);
             recognitionMainLayout.setExpandRatio(recognitionLayout, 1);
             recognitionMainLayout.setExpandRatio(minimizableLayout, 0);
         }
     }
 
-    private void recalculateBoundaryLayoutSize(int height, int width) {
-        System.out.println(height + ", " + width);
+    private void recalculateBoundaryLayoutSize() {
+        Dimension parentBodyLayoutDimension = super.getEstimatedBodyLayoutDim();
 
-        int size = Math.min(height, width);
-
-        captureBoundaryLayout.setSizeUndefined();
-
-        captureBoundaryLayout.setHeight(size, Unit.PIXELS);
-        captureBoundaryLayout.setWidth(size, Unit.PIXELS);
-
-        resultBoundaryLayout.setHeight(size, Unit.PIXELS);
-        resultBoundaryLayout.setWidth(size, Unit.PIXELS);
-    }
-
-    private void addJavaScriptFunction() {
-        JavaScript.getCurrent().addFunction("getHeight4" + RecognitionView.class.getSimpleName(), new JavaScriptFunction() {
-            private int captureLayoutWidth;
-            private int captureLayoutHeight;
-
-            @Override
-            public void call(final JsonArray arguments) {
-                captureLayoutHeight = (int) arguments.getNumber(0);
-                captureLayoutWidth = (int) arguments.getNumber(1);
-                recalculateBoundaryLayoutSize(captureLayoutHeight, captureLayoutWidth);
-            }
-        });
-    }
+        int recognitionLayoutHeight = parentBodyLayoutDimension.getX();
+        int recognitionLayoutWidht;
+        if(infoPanelVisible) {
+            recognitionLayoutWidht = parentBodyLayoutDimension.getY() * LEFT_EXPAND_RATIO/(LEFT_EXPAND_RATIO + RIGHT_EXPAND_RATIO);
+        } else {
+            recognitionLayoutWidht = parentBodyLayoutDimension.getY() - MINIMIZED_WIDTH;
+        }
 
 
-    private void updateCaptureLayoutSize() {
-        JavaScript.getCurrent().execute(""
-                + "var element = document.getElementById('" + ELEMENT_ID + "');"
-                + "getHeight4" + RecognitionView.class.getSimpleName() + "(element.clientHeight, element.clientWidth);");
+        double availableHeight = (recognitionLayoutHeight - 2*MARGIN_WIDTH - recognitionHeaderLayout.getHeight()) * TOP_EXPAND_RATIO/(BOTTOM_EXPAND_RATIO + TOP_EXPAND_RATIO);
+        double availableWidth = (recognitionLayoutWidht - 2*MARGIN_WIDTH) / 2;
+
+        long availableSize = Math.round(Math.min(availableHeight, availableWidth) - BETTER_SAVE_THAN_SORRY);
+
+        captureBoundaryLayout.setWidth(availableSize + "px");
+        captureBoundaryLayout.setHeight(availableSize + "px");
+        resultBoundaryLayout.setWidth(availableSize + "px");
+        resultBoundaryLayout.setHeight(availableSize + "px");
+
+        System.out.println(availableHeight + ", " + availableWidth + ": " + availableSize);
     }
 }

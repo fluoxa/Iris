@@ -34,11 +34,15 @@
     font-size: 50px;
     font-weight: 900;
     line-height: 70px;
-    /*text-align: center;*/
   }
 
-  .border-test {
-    border: solid 1px black;
+  .iris-recognition-header-label {
+    text-align: center;
+  }
+
+
+  .iris-boundary-layout {
+    border: 1px solid #d5d5d5;
   }
 
   .iris-search-result-layout {
@@ -89,6 +93,8 @@
   .v-progressbar.iris-progressbar-training {
     width: 100%;
   }
+
+
 
   .test {
     background-color: black;

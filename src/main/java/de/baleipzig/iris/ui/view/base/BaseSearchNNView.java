@@ -7,6 +7,7 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
 import de.baleipzig.iris.ui.helper.UrlHelper;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
@@ -18,8 +19,11 @@ import java.util.UUID;
 
 public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends BaseView<P> implements IBaseSearchNNView<P> {
 
+
+
     private final HorizontalLayout contentLayout = new HorizontalLayout();
 
+    private VerticalLayout searchAndResultLayout = new VerticalLayout();
     private final TextField searchTextField = new TextField();
     private final Button searchButton = new Button();
     private final Panel searchResultPanel = new Panel();
@@ -83,7 +87,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
         searchResultPanel.setSizeFull();
 
-        VerticalLayout searchAndResultLayout = new VerticalLayout();
+
         searchAndResultLayout.setHeight("100%");
         searchAndResultLayout.setWidth("250px");
         searchAndResultLayout.setSpacing(true);
@@ -158,5 +162,17 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
     protected void setBodyContent(Component content) {
         contentLayout.removeAllComponents();
         contentLayout.addComponent(content);
+    }
+
+    @Override
+    protected Dimension getEstimatedBodyLayoutDim() {
+        Dimension parentBodyLayoutDimension = super.getEstimatedBodyLayoutDim();
+
+        int parentBodyLayoutHeight = parentBodyLayoutDimension.getX();
+        int parentBodyLayoutWidth = parentBodyLayoutDimension.getY();
+
+        Dimension resultingBodyLayoutDimension = new Dimension(parentBodyLayoutHeight, parentBodyLayoutWidth - Math.round(searchAndResultLayout.getWidth()));
+
+        return resultingBodyLayoutDimension;
     }
 }
