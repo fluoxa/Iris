@@ -10,6 +10,7 @@ public class DigitAssembler implements IAssembler<Integer> {
 
 	private final int MAX_DIGIT = 9;
 	private final int MIN_DIGIT = 0;
+	private final double RECOGNITION_THRESHOLD = 0.71;
 
 	public ILayer convert(Integer digit, IFunctionContainer funcContainer) {
 
@@ -50,6 +51,6 @@ public class DigitAssembler implements IAssembler<Integer> {
 			}
 		}
 
-		return  predictedValue.getValue();
+		return  predictedValue.getKey() > RECOGNITION_THRESHOLD ? predictedValue.getValue() : -1;
 	}
 }
