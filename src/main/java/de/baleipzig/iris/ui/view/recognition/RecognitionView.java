@@ -261,7 +261,6 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         recalculateBoundaryLayoutSize();
         showOrHideInfoPanel();
-
     }
 
     private void showOrHideInfoPanel() {
