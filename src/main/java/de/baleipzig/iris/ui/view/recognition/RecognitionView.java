@@ -72,13 +72,12 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         presenter = new RecognitionPresenter(this, (IRecognitionService) context.getBean("recognitionService"));
         presenter.init();
 
-        drawingLayout.setImageChangedListener(presenter::processImage);
-
         reinitializeViewPort();
-        UI.getCurrent().getPage().addBrowserWindowResizeListener(event -> reinitializeViewPort());
+        initAdditionalListeners();
     }
 
     private void createLayout() {
+
         initRecognitionLayout();
 
         minimizableLayout.addStyleName("iris-minimizable-layout");
@@ -95,6 +94,23 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     }
 
     private void initRecognitionLayout() {
+
+        AbstractOrderedLayout topLayout = createRecognitionCaptureAndResultLayout();
+
+        AbstractOrderedLayout bottomLayout = createRecognitionSettingsAndInfoLayout();
+
+        recognitionLayout.setMargin(true);
+        recognitionLayout.setSizeFull();
+        recognitionLayout.setSpacing(true);
+        recognitionLayout.addStyleName("iris-recognition-layout");
+
+        recognitionLayout.addComponents(topLayout, bottomLayout);
+
+        recognitionLayout.setExpandRatio(topLayout, TOP_EXPAND_RATIO);
+        recognitionLayout.setExpandRatio(bottomLayout, BOTTOM_EXPAND_RATIO);
+    }
+
+    private AbstractOrderedLayout createRecognitionCaptureAndResultLayout() {
 
         Label captureLabel = new Label("Erfassung");
         captureLabel.addStyleName("iris-recognition-header-label");
@@ -137,11 +153,12 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         topLayout.setComponentAlignment(captureAndResultBoundaryLayout, Alignment.MIDDLE_CENTER);
         topLayout.setSizeFull();
 
+        return topLayout;
+    }
+
+    private AbstractOrderedLayout createRecognitionSettingsAndInfoLayout() {
+
         CheckBox realTimeRecognition = new CheckBox("Echtzeitberechnung", true);
-
-        Button testButton = new Button("micha ist ein arscg");
-        //testButton.addClickListener(e -> drawingLayout.save());
-
 
         TextArea infoTextArea = new TextArea();
         infoTextArea.setSizeFull();
@@ -150,19 +167,18 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         VerticalLayout bottomLayout = new VerticalLayout();
         bottomLayout.setSizeFull();
-        bottomLayout.addComponents(realTimeRecognition, testButton, infoTextArea);
+        bottomLayout.addComponents(realTimeRecognition, infoTextArea);
         bottomLayout.setExpandRatio(realTimeRecognition, 0);
         bottomLayout.setExpandRatio(infoTextArea, 1);
 
-        recognitionLayout.setMargin(true);
-        recognitionLayout.setSizeFull();
-        recognitionLayout.setSpacing(true);
-        recognitionLayout.addStyleName("iris-recognition-layout");
 
-        recognitionLayout.addComponents(topLayout, bottomLayout);
+        return bottomLayout;
+    }
 
-        recognitionLayout.setExpandRatio(topLayout, TOP_EXPAND_RATIO);
-        recognitionLayout.setExpandRatio(bottomLayout, BOTTOM_EXPAND_RATIO);
+    private void initAdditionalListeners() {
+
+        drawingLayout.setImageChangedListener(presenter::processImage);
+        UI.getCurrent().getPage().addBrowserWindowResizeListener(event -> reinitializeViewPort());
     }
 
     private void initMinimizedLayout() {

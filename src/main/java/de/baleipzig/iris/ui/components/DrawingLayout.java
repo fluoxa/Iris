@@ -42,12 +42,14 @@ public class DrawingLayout extends CssLayout {
     }
 
     public void clear() {
+
         drawer = new ImageDrawer(size, size / STROKE_DIVIDER);
         canvas.clear();
         scheduleExecutor();
     }
 
     public void setSize(double size) {
+
         this.size = ((Double) size).intValue();
         clear();
         canvas.setStrokeStyle(0,0,0);
@@ -77,14 +79,15 @@ public class DrawingLayout extends CssLayout {
     }
 
     private void scheduleExecutor() {
+
         if (updateFuture != null && !updateFuture.isCancelled()) {
             updateFuture.cancel(false);
         }
-        updateFuture = executorService.schedule(this::notifyListener, 200, TimeUnit.MILLISECONDS);
+        updateFuture = executorService.schedule(this::notifyListener, 500, TimeUnit.MILLISECONDS);
     }
 
     private void notifyListener() {
-        System.out.println(Math.random() + "");
+
         if (imageChangedListener != null) {
             imageChangedListener.imageChangeEvent(drawer.getImage());
         }

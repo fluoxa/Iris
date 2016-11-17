@@ -113,11 +113,13 @@ public class JanView extends VerticalLayout implements View {
     private INeuralNet createNeuralNet(){
 
         ILayer inputLayer = LayerUtils.createLayerWithOptionalRandomBias(new Dimension(28,28), null, false);
-        ILayer hiddenLayer = LayerUtils.createLayerWithOptionalRandomBias(new Dimension(5,6), new SigmoidFunctionContainer(), true);
+        ILayer hiddenLayer = LayerUtils.createLayerWithOptionalRandomBias(new Dimension(10,10), new SigmoidFunctionContainer(), true);
+        ILayer hiddenLayer2 = LayerUtils.createLayerWithOptionalRandomBias(new Dimension(6,6), new SigmoidFunctionContainer(), true);
         ILayer outputLayer = LayerUtils.createLayerWithOptionalRandomBias(new Dimension(10,1), new SigmoidFunctionContainer(), true);
 
         LayerUtils.fullyConnectLayers(inputLayer, hiddenLayer, true);
-        LayerUtils.fullyConnectLayers(hiddenLayer, outputLayer, true);
+        LayerUtils.fullyConnectLayers(hiddenLayer, hiddenLayer2, true);
+        LayerUtils.fullyConnectLayers(hiddenLayer2, outputLayer, true);
 
         INeuralNet neuralNet = new NeuralNet();
         INeuralNetCore neuralNetCore = new NeuralNetCore();
@@ -125,8 +127,9 @@ public class JanView extends VerticalLayout implements View {
         neuralNetCore.setInputLayer(inputLayer);
         neuralNetCore.setOutputLayer(outputLayer);
         neuralNetCore.addHiddenLayer(hiddenLayer);
+        neuralNetCore.addHiddenLayer(hiddenLayer2);
         NeuralNetMetaData meta = new NeuralNetMetaData();
-        meta.setName("daniel " + System.currentTimeMillis());
+        meta.setName("28 100 36 10");
         meta.setDescription("daniel " + System.currentTimeMillis());
         neuralNet.setNeuralNetMetaData(meta);
         neuralNetWorker.save(neuralNet);

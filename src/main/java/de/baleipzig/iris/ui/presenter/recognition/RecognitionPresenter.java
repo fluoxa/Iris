@@ -44,6 +44,11 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
         service.getNeuralNetWorker().propagateForward(neuralNet);
         Integer digit = service.getDigitAssembler().convert(neuralNet.getNeuralNetCore().getOutputLayer());
 
+        for(int x = 0; x < 10; x++ ) {
+            System.out.printf("%1.2f ", neuralNet.getNeuralNetCore().getOutputLayer().getNode(x, 0).getActivation());
+        }
+        System.out.println("");
+
         view.setResult(digit);
 
         try {
