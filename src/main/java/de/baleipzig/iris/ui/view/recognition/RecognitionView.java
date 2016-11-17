@@ -72,6 +72,8 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         presenter = new RecognitionPresenter(this, (IRecognitionService) context.getBean("recognitionService"));
         presenter.init();
 
+        drawingLayout.setImageChangedListener(presenter::processImage);
+
         reinitializeViewPort();
         UI.getCurrent().getPage().addBrowserWindowResizeListener(event -> reinitializeViewPort());
     }
@@ -137,6 +139,10 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         CheckBox realTimeRecognition = new CheckBox("Echtzeitberechnung", true);
 
+        Button testButton = new Button("micha ist ein arscg");
+        //testButton.addClickListener(e -> drawingLayout.save());
+
+
         TextArea infoTextArea = new TextArea();
         infoTextArea.setSizeFull();
         infoTextArea.setReadOnly(true);
@@ -144,7 +150,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         VerticalLayout bottomLayout = new VerticalLayout();
         bottomLayout.setSizeFull();
-        bottomLayout.addComponents(realTimeRecognition, infoTextArea);
+        bottomLayout.addComponents(realTimeRecognition, testButton, infoTextArea);
         bottomLayout.setExpandRatio(realTimeRecognition, 0);
         bottomLayout.setExpandRatio(infoTextArea, 1);
 
@@ -303,7 +309,14 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         resultBoundaryLayout.setWidth(availableSize + "px");
         resultBoundaryLayout.setHeight(availableSize + "px");
 
-        drawingLayout.clear();
         drawingLayout.setSize(availableSize);
+    }
+
+    @Override
+    public void setResult(Integer digit) {
+        UI.getCurrent().access(() -> {
+            digitImageLayout.setDigit(digit);
+        });
+
     }
 }
