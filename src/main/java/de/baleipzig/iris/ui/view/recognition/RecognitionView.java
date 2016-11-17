@@ -14,6 +14,7 @@ import de.baleipzig.iris.ui.language.LanguageHandler;
 import de.baleipzig.iris.ui.presenter.recognition.RecognitionPresenter;
 import de.baleipzig.iris.ui.service.recognition.IRecognitionService;
 import de.baleipzig.iris.ui.view.base.BaseSearchNNView;
+import de.baleipzig.iris.ui.viewmodel.recognition.RecognitionViewModel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,8 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
     private final DrawingLayout drawingLayout= new DrawingLayout();
     private final DigitImageLayout digitImageLayout = new DigitImageLayout();
+
+    private final TextArea recognitioninfoTextArea = new TextArea();
 
     private boolean infoPanelVisible = false;
 
@@ -204,7 +207,6 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         Label propertiesLabel = new Label("Eigenschaften:");
 
         TextField nameTextField = new TextField();
-        TextArea infoTextArea = new TextArea();
 
         VerticalLayout infoLayout = new VerticalLayout();
         infoLayout.addStyleName("iris-info-layout");
@@ -213,7 +215,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         infoLayout.addComponent(propertiesLabel);
         infoLayout.addComponent(createAttributeLayout("Name:", nameTextField));
-        infoLayout.addComponent(createAttributeLayout("Info:", infoTextArea));
+        infoLayout.addComponent(createAttributeLayout("Info:", recognitioninfoTextArea));
 
         Panel infoPanel = new Panel();
         infoPanel.setSizeFull();
@@ -333,6 +335,25 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         UI.getCurrent().access(() -> {
             digitImageLayout.setDigit(digit);
         });
+    }
+
+    @Override
+    public void addInfoText(String info) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(recognitioninfoTextArea.getValue());
+        sb.append(info);
+        sb.append(System.lineSeparator());
+
+        UI.getCurrent().access(() -> {
+            recognitioninfoTextArea.setReadOnly(false);
+            recognitioninfoTextArea.setValue(sb.toString());
+            recognitioninfoTextArea.setCursorPosition(recognitioninfoTextArea.getValue().length());
+            recognitioninfoTextArea.setReadOnly(true);
+        });
+    }
+
+    @Override
+    public void bindViewModel(RecognitionViewModel viewModel) {
 
     }
 }

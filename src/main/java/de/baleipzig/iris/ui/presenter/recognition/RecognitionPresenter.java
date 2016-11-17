@@ -5,6 +5,7 @@ import de.baleipzig.iris.model.neuralnet.neuralnet.NeuralNetMetaData;
 import de.baleipzig.iris.ui.presenter.base.BaseSearchNNPresenter;
 import de.baleipzig.iris.ui.service.recognition.IRecognitionService;
 import de.baleipzig.iris.ui.view.recognition.IRecognitionView;
+import de.baleipzig.iris.ui.viewmodel.recognition.RecognitionViewModel;
 import org.imgscalr.Scalr;
 
 import javax.imageio.ImageIO;
@@ -17,6 +18,8 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
 
     private INeuralNet neuralNet;
 
+    private RecognitionViewModel viewModel = new RecognitionViewModel();
+
 
     public RecognitionPresenter(IRecognitionView view, IRecognitionService service) {
         super(view, service);
@@ -25,12 +28,17 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
     @Override
     public void init() {
         super.init();
+        view.bindViewModel(viewModel);
     }
 
     @Override
     public void handleSelection(NeuralNetMetaData metaData) {
-        System.out.println("RecognitionPresenter " + metaData.getId() + "selected");
-        neuralNet = service.getNeuralNetWorker().load(metaData.getId());
+        if(metaData != null) {
+            neuralNet = service.getNeuralNetWorker().load(metaData.getId());
+            view.addInfoText("neural net " + neuralNet.getNeuralNetMetaData().getName() + " loaded");
+        } else {
+
+        }
     }
 
     public void processImage(BufferedImage image) {
@@ -43,6 +51,8 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
         service.getImageAssembler().copy(scaledImage, neuralNet.getNeuralNetCore().getInputLayer());
         service.getNeuralNetWorker().propagateForward(neuralNet);
         Integer digit = service.getDigitAssembler().convert(neuralNet.getNeuralNetCore().getOutputLayer());
+
+        view.addInfoText(service.getLanguageHandler().getTranslation("training.base.trainingdataloaded"));
 
         for(int x = 0; x < 10; x++ ) {
             System.out.printf("%1.2f ", neuralNet.getNeuralNetCore().getOutputLayer().getNode(x, 0).getActivation());
