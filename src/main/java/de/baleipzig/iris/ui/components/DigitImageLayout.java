@@ -37,8 +37,9 @@ public class DigitImageLayout extends CssLayout {
         setImage(path);
     }
 
-    public void setUnknown() {
-        setImage(UNKNOWN_PATH);
+    public void setNothing() {
+
+        this.removeAllComponents();
     }
 
     private void setImage(String path) {

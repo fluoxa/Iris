@@ -86,7 +86,7 @@ public class DrawingLayout extends CssLayout {
         updateFuture = executorService.schedule(this::notifyListener, 500, TimeUnit.MILLISECONDS);
     }
 
-    private void notifyListener() {
+    public void notifyListener() {
 
         if (imageChangedListener != null) {
             imageChangedListener.imageChangeEvent(drawer.getImage());
@@ -95,5 +95,9 @@ public class DrawingLayout extends CssLayout {
 
     public interface ImageChangedListener {
         void imageChangeEvent(BufferedImage image);
+    }
+
+    public BufferedImage getCurrentDrawnImage() {
+        return drawer.getImage();
     }
 }

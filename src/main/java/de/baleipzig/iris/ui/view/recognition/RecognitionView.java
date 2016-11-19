@@ -1,5 +1,6 @@
 package de.baleipzig.iris.ui.view.recognition;
 
+import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.MarginInfo;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import javax.annotation.PostConstruct;
+import java.awt.image.BufferedImage;
 
 @UIScope
 @SpringView(name = IRecognitionView.VIEW_NAME)
@@ -56,9 +58,14 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     private final DrawingLayout drawingLayout= new DrawingLayout();
     private final DigitImageLayout digitImageLayout = new DigitImageLayout();
 
-    private final TextArea recognitioninfoTextArea = new TextArea();
+    private final TextArea recognitionInfoTextArea = new TextArea();
+
+    private final TextField nameTextField = new TextField();
+    private final TextArea descriptionTextArea = new TextArea();
 
     private boolean infoPanelVisible = false;
+
+    private BeanFieldGroup<RecognitionViewModel> viewModelGroup = new BeanFieldGroup<RecognitionViewModel>(RecognitionViewModel.class);
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
@@ -74,6 +81,8 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         presenter = new RecognitionPresenter(this, (IRecognitionService) context.getBean("recognitionService"));
         presenter.init();
+
+        bindViewModel();
 
         reinitializeViewPort();
         initAdditionalListeners();
@@ -104,7 +113,6 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         recognitionLayout.setMargin(true);
         recognitionLayout.setSizeFull();
-        recognitionLayout.setSpacing(true);
         recognitionLayout.addStyleName("iris-recognition-layout");
 
         recognitionLayout.addComponents(topLayout, bottomLayout);
@@ -161,19 +169,15 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
     private AbstractOrderedLayout createRecognitionSettingsAndInfoLayout() {
 
-        CheckBox realTimeRecognition = new CheckBox("Echtzeitberechnung", true);
-
-        TextArea infoTextArea = new TextArea();
-        infoTextArea.setSizeFull();
-        infoTextArea.setReadOnly(true);
-        infoTextArea.addStyleName("iris-info-textarea");
+        recognitionInfoTextArea.setSizeFull();
+        recognitionInfoTextArea.setReadOnly(true);
+        recognitionInfoTextArea.addStyleName("iris-info-textarea");
 
         VerticalLayout bottomLayout = new VerticalLayout();
         bottomLayout.setSizeFull();
-        bottomLayout.addComponents(realTimeRecognition, infoTextArea);
-        bottomLayout.setExpandRatio(realTimeRecognition, 0);
-        bottomLayout.setExpandRatio(infoTextArea, 1);
-
+        bottomLayout.addComponents(recognitionInfoTextArea);
+        bottomLayout.setExpandRatio(recognitionInfoTextArea, 1);
+        bottomLayout.setMargin(new MarginInfo(true, false, false, false));
 
         return bottomLayout;
     }
@@ -206,8 +210,6 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         Label propertiesLabel = new Label("Eigenschaften:");
 
-        TextField nameTextField = new TextField();
-
         VerticalLayout infoLayout = new VerticalLayout();
         infoLayout.addStyleName("iris-info-layout");
         infoLayout.setMargin(new MarginInfo(true, true, true, false));
@@ -215,7 +217,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
         infoLayout.addComponent(propertiesLabel);
         infoLayout.addComponent(createAttributeLayout("Name:", nameTextField));
-        infoLayout.addComponent(createAttributeLayout("Info:", recognitioninfoTextArea));
+        infoLayout.addComponent(createAttributeLayout("Info:", descriptionTextArea));
 
         Panel infoPanel = new Panel();
         infoPanel.setSizeFull();
@@ -240,6 +242,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         button.setCaption(caption);
         button.addStyleName(ValoTheme.BUTTON_BORDERLESS);
         button.addStyleName("iris-toggle-info-button");
+        button.setHeight("100%");
         return button;
     }
 
@@ -338,22 +341,37 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
     }
 
     @Override
+    public void clearResult() {
+        digitImageLayout.setNothing();
+    }
+
+    @Override
     public void addInfoText(String info) {
         StringBuilder sb = new StringBuilder();
-        sb.append(recognitioninfoTextArea.getValue());
+        sb.append(recognitionInfoTextArea.getValue());
         sb.append(info);
         sb.append(System.lineSeparator());
 
         UI.getCurrent().access(() -> {
-            recognitioninfoTextArea.setReadOnly(false);
-            recognitioninfoTextArea.setValue(sb.toString());
-            recognitioninfoTextArea.setCursorPosition(recognitioninfoTextArea.getValue().length());
-            recognitioninfoTextArea.setReadOnly(true);
+            recognitionInfoTextArea.setReadOnly(false);
+            recognitionInfoTextArea.setValue(sb.toString());
+            recognitionInfoTextArea.setCursorPosition(recognitionInfoTextArea.getValue().length());
+            recognitionInfoTextArea.setReadOnly(true);
         });
     }
 
     @Override
-    public void bindViewModel(RecognitionViewModel viewModel) {
+    public void updateViewModel(RecognitionViewModel viewModel) {
+        viewModelGroup.setItemDataSource(viewModel);
+    }
 
+    @Override
+    public BufferedImage getImage() {
+       return drawingLayout.getCurrentDrawnImage();
+    }
+
+    private void bindViewModel() {
+        viewModelGroup.bind(nameTextField, "name");
+        viewModelGroup.bind(descriptionTextArea, "description");
     }
 }

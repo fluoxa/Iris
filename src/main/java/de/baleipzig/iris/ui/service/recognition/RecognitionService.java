@@ -7,6 +7,7 @@ import de.baleipzig.iris.logic.worker.INeuralNetWorker;
 import de.baleipzig.iris.ui.language.LanguageHandler;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +22,6 @@ public class RecognitionService implements IRecognitionService {
 
     private final ImageAssembler imageAssembler;
     private final DigitAssembler digitAssembler;
+
+    private final DozerBeanMapper beanMapper;
 }
