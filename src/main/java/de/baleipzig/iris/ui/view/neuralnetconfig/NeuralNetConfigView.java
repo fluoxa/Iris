@@ -4,6 +4,7 @@ import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import de.baleipzig.iris.common.Dimension;
 import de.baleipzig.iris.ui.language.LanguageHandler;
 import de.baleipzig.iris.ui.presenter.neuralnetconfig.NeuralNetConfigPresenter;
@@ -96,26 +97,38 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     }
 
     private void setupLayout(){
+        VerticalLayout scrollableVerticalLayout = new VerticalLayout();
+        scrollableVerticalLayout.setSpacing(true);
 
-        VerticalLayout totalLayout = new VerticalLayout();
-        totalLayout.setSizeFull();
-        totalLayout.setSpacing(true);
-        totalLayout.addComponent(getNeuralNetEditor());
-        totalLayout.addComponent(getButtonLine());
+        scrollableVerticalLayout.setSizeFull();
+        scrollableVerticalLayout.setSpacing(true);
 
-        this.setBodyContent(totalLayout);
+        Panel scrollPanel = new Panel();
+        scrollPanel.addStyleName(ValoTheme.PANEL_BORDERLESS);
+        scrollPanel.setSizeFull();
+        scrollPanel.setContent(getNeuralNetEditor());
+
+        AbstractOrderedLayout buttonLine = getButtonLine();
+
+        VerticalLayout verticalLayout = new VerticalLayout();
+        verticalLayout.setSizeFull();
+        verticalLayout.addComponents(scrollPanel, buttonLine);
+        verticalLayout.setExpandRatio(scrollPanel,1);
+        verticalLayout.setExpandRatio(buttonLine, 0);
+
+        this.setBodyContent(verticalLayout);
     }
 
-    private VerticalLayout getAutoCreaterTab() {
+    private VerticalLayout getAutoCreatorTab() {
 
-        VerticalLayout autoCreaterTab = new VerticalLayout();
-        autoCreaterTab.setSpacing(true);
-        autoCreaterTab.setSizeFull();
+        VerticalLayout autoCreatorTab = new VerticalLayout();
+        autoCreatorTab.setSpacing(true);
+        autoCreatorTab.setSizeFull();
 
         Label explanationLText =  new Label("erzeugen eines neuen NeuralNetCores mit HiddenLayer der angegebenene Dimension:");
         explanationLText.setStyleName("iris-explanation-text");
-        autoCreaterTab.addComponent(explanationLText);
-        autoCreaterTab.addComponent(new Label("Hidden Layer Dimension:"));
+        autoCreatorTab.addComponent(explanationLText);
+        autoCreatorTab.addComponent(new Label("Hidden Layer Dimension:"));
         HorizontalLayout dimensionLayout = new HorizontalLayout(
                 new Label("x-Dimension:"),
                 new TextField(),
@@ -127,13 +140,13 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         dimensionLayouts.add(dimensionLayout);
 
         Button generateNeuralNet = new Button("generate");
-        dimensionLayouts.forEach(layout -> autoCreaterTab.addComponent(layout));
-        autoCreaterTab.addComponent(generateNeuralNet);
-        autoCreaterTab.setComponentAlignment(generateNeuralNet, Alignment.MIDDLE_RIGHT);
+        dimensionLayouts.forEach(layout -> autoCreatorTab.addComponent(layout));
+        autoCreatorTab.addComponent(generateNeuralNet);
+        autoCreatorTab.setComponentAlignment(generateNeuralNet, Alignment.MIDDLE_LEFT);
 
         generateNeuralNet.addClickListener(e -> presenter.generateNeuralNetCore());
 
-        return autoCreaterTab;
+        return autoCreatorTab;
     }
 
     private VerticalLayout getJsonEditorTab() {
@@ -199,7 +212,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         TabSheet neuralNetEditor = new TabSheet();
         neuralNetEditor.addTab(getMetaDataTab(), "Meta Data Setting");
         neuralNetEditor.addTab(getJsonEditorTab(), "Json Editor");
-        neuralNetEditor.addTab(getAutoCreaterTab(), "Auto Creator");
+        neuralNetEditor.addTab(getAutoCreatorTab(), "Auto Creator");
 
         return neuralNetEditor;
     }
