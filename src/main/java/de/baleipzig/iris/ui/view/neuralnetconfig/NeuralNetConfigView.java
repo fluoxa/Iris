@@ -99,9 +99,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     private void setupLayout(){
         VerticalLayout scrollableVerticalLayout = new VerticalLayout();
         scrollableVerticalLayout.setSpacing(true);
-
         scrollableVerticalLayout.setSizeFull();
-        scrollableVerticalLayout.setSpacing(true);
 
         Panel scrollPanel = new Panel();
         scrollPanel.addStyleName(ValoTheme.PANEL_BORDERLESS);
