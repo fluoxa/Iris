@@ -55,7 +55,6 @@ public class DrawingLayout extends CssLayout {
         canvas.setStrokeStyle(0,0,0);
         canvas.setLineWidth(size / STROKE_DIVIDER);
         canvas.setLineCap("round");
-
     }
 
     private void handleMouseEvent(MouseEventDetails mouseEventDetails) {

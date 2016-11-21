@@ -19,9 +19,7 @@ public class RecognitionService implements IRecognitionService {
 
     private final INeuralNetWorker neuralNetWorker;
     private final LanguageHandler languageHandler;
-
     private final ImageAssembler imageAssembler;
     private final DigitAssembler digitAssembler;
-
     private final DozerBeanMapper beanMapper;
 }

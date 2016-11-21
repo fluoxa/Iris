@@ -8,10 +8,7 @@ import de.baleipzig.iris.ui.view.recognition.IRecognitionView;
 import de.baleipzig.iris.ui.viewmodel.recognition.RecognitionViewModel;
 import org.imgscalr.Scalr;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView, IRecognitionService> {
 
@@ -37,7 +34,7 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
         if(metaData != null) {
             neuralNet = service.getNeuralNetWorker().load(metaData.getId());
             service.getBeanMapper().map(neuralNet.getNeuralNetMetaData(), viewModel);
-            view.addInfoText("neural net " + neuralNet.getNeuralNetMetaData().getName() + " loaded");
+            view.addInfoText(String.format("neural net %s loaded", neuralNet.getNeuralNetMetaData().getName()));
         }   else {
             view.addInfoText("unloaded net");
         }
@@ -47,29 +44,18 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
     }
 
     public void processImage(BufferedImage image) {
-        BufferedImage scaledImage = Scalr.resize(image, 28);
 
         if (neuralNet == null) {
             view.clearResult();
             return;
         }
 
+        BufferedImage scaledImage = Scalr.resize(image, 28);
+
         service.getImageAssembler().copy(scaledImage, neuralNet.getNeuralNetCore().getInputLayer());
         service.getNeuralNetWorker().propagateForward(neuralNet);
         Integer digit = service.getDigitAssembler().convert(neuralNet.getNeuralNetCore().getOutputLayer());
 
-        for(int x = 0; x < 10; x++ ) {
-            System.out.printf("%1.2f ", neuralNet.getNeuralNetCore().getOutputLayer().getNode(x, 0).getActivation());
-        }
-        System.out.println("");
-
         view.setResult(digit);
-
-        try {
-            File outputFile = new File("saved.png");
-            ImageIO.write(scaledImage, "png", outputFile);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
     }
 }
