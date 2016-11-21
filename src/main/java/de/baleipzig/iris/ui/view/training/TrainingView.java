@@ -5,6 +5,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import de.baleipzig.iris.ui.language.LanguageHandler;
 import de.baleipzig.iris.ui.presenter.training.TrainingPresenter;
 import de.baleipzig.iris.ui.service.training.ITrainingService;
@@ -114,26 +115,40 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     private void setupLayout() {
 
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.setSpacing(true);
+        verticalLayout.setSizeFull();
 
-        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.parameterlabel")));
-        verticalLayout.addComponent(getSettingLayout());
-        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.infolabel")));
+        VerticalLayout scrollableVerticalLayout = new VerticalLayout();
+        scrollableVerticalLayout.setSpacing(true);
+
+        scrollableVerticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.parameterlabel")));
+        scrollableVerticalLayout.addComponent(getSettingLayout());
+        scrollableVerticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.infolabel")));
 
         infoTextArea.setSizeFull();
         infoTextArea.setReadOnly(true);
         infoTextArea.addStyleName("iris-info-textarea");
-        verticalLayout.addComponent(infoTextArea);
+        scrollableVerticalLayout.addComponent(infoTextArea);
 
-        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.overalltrainingprogress")));
+        scrollableVerticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.overalltrainingprogress")));
         overallTrainingProgressBar.addStyleName("iris-progressbar-training");
-        verticalLayout.addComponent(overallTrainingProgressBar);
-        verticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.onecycleprogress")));
+        scrollableVerticalLayout.addComponent(overallTrainingProgressBar);
+        scrollableVerticalLayout.addComponent(new Label(languageHandler.getTranslation("training.view.onecycleprogress")));
         oneCycleProgressBar.addStyleName("iris-progressbar-training");
-        verticalLayout.addComponent(oneCycleProgressBar);
+        scrollableVerticalLayout.addComponent(oneCycleProgressBar);
 
-        verticalLayout.setWidth(100, Unit.PERCENTAGE);
-        verticalLayout.addComponent(getButtonLine());
+        scrollableVerticalLayout.setWidth(100, Unit.PERCENTAGE);
+
+        Panel scrollPanel = new Panel();
+        scrollPanel.addStyleName(ValoTheme.PANEL_BORDERLESS);
+        scrollPanel.setSizeFull();
+
+        scrollPanel.setContent(scrollableVerticalLayout);
+
+        AbstractOrderedLayout buttonLine = getButtonLine();
+
+        verticalLayout.addComponents(scrollPanel, buttonLine);
+        verticalLayout.setExpandRatio(scrollPanel,1);
+        verticalLayout.setExpandRatio(buttonLine, 0);
 
         this.setBodyContent(verticalLayout);
     }
