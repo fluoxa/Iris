@@ -123,11 +123,11 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
     private AbstractOrderedLayout createRecognitionCaptureAndResultLayout() {
 
-        Label captureLabel = new Label("Erfassung");
+        Label captureLabel = new Label(getLanguageHandler().getTranslation("recognition.view.capturelabel"));
         captureLabel.addStyleName("iris-recognition-header-label");
         captureLabel.addStyleName("iris-bold");
 
-        Label resultLabel = new Label("Resultat");
+        Label resultLabel = new Label(getLanguageHandler().getTranslation("recognition.view.resultlabel"));
         resultLabel.addStyleName("iris-recognition-header-label");
         resultLabel.addStyleName("iris-bold");
 
@@ -208,7 +208,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         leftLayout.addComponent(button);
         leftLayout.setComponentAlignment(button, Alignment.MIDDLE_CENTER);
 
-        Label propertiesLabel = new Label("Eigenschaften:");
+        Label propertiesLabel = new Label(getLanguageHandler().getTranslation("recognition.view.propertieslabel"));
 
         VerticalLayout infoLayout = new VerticalLayout();
         infoLayout.addStyleName("iris-info-layout");
@@ -216,8 +216,8 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         infoLayout.setSpacing(true);
 
         infoLayout.addComponent(propertiesLabel);
-        infoLayout.addComponent(createAttributeLayout("Name:", nameTextField));
-        infoLayout.addComponent(createAttributeLayout("Info:", descriptionTextArea));
+        infoLayout.addComponent(createAttributeLayout(getLanguageHandler().getTranslation("recognition.view.nametextfield"), nameTextField));
+        infoLayout.addComponent(createAttributeLayout(getLanguageHandler().getTranslation("recognition.view.infotextfield"), descriptionTextArea));
 
         Panel infoPanel = new Panel();
         infoPanel.setSizeFull();

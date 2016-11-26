@@ -180,11 +180,11 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
 
         buttonLine = new HorizontalLayout();
 
-        Button startTraining = new Button("start Training");
-        Button saveNeuralNet = new Button("save Neural Net");
-        Button resetNeuralNet = new Button("reset Neural Net");
-        Button configNeuralNet = new Button("config Neural Net");
-        stopTraining.setCaption("stop Training");
+        Button startTraining = new Button(languageHandler.getTranslation("training.view.starttraining"));
+        Button saveNeuralNet = new Button(languageHandler.getTranslation("training.view.saveneuralnet"));
+        Button resetNeuralNet = new Button(languageHandler.getTranslation("training.view.resetneuralnet"));
+        Button configNeuralNet = new Button(languageHandler.getTranslation("training.view.configneuralnet"));
+        stopTraining.setCaption(languageHandler.getTranslation("training.view.stoptraining"));
 
         startTraining.addClickListener(e -> presenter.runEventAsynchronously(presenter::startTraining));
         stopTraining.addClickListener(e -> presenter.runEventAsynchronously(presenter::stopTraining));

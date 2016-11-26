@@ -8,7 +8,10 @@ import de.baleipzig.iris.ui.view.recognition.IRecognitionView;
 import de.baleipzig.iris.ui.viewmodel.recognition.RecognitionViewModel;
 import org.imgscalr.Scalr;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView, IRecognitionService> {
 
@@ -34,9 +37,9 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
         if(metaData != null) {
             neuralNet = service.getNeuralNetWorker().load(metaData.getId());
             service.getBeanMapper().map(neuralNet.getNeuralNetMetaData(), viewModel);
-            view.addInfoText(String.format("neural net %s loaded", neuralNet.getNeuralNetMetaData().getName()));
+            view.addInfoText(service.getLanguageHandler().getTranslation("recognition.presenter.successinfotext", new Object[] {neuralNet.getNeuralNetMetaData().getName()}));
         }   else {
-            view.addInfoText("unloaded net");
+            view.addInfoText(service.getLanguageHandler().getTranslation("recognition.presenter.failinfotext"));
         }
 
         view.updateViewModel(viewModel);
@@ -57,5 +60,12 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
         Integer digit = service.getDigitAssembler().convert(neuralNet.getNeuralNetCore().getOutputLayer());
 
         view.setResult(digit);
+
+        try {
+            File outputFile = new File("saved" + System.currentTimeMillis() + ".png");
+            ImageIO.write(scaledImage, "png", outputFile);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }
