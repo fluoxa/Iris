@@ -14,7 +14,7 @@ import java.util.List;
 
 public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout implements IBaseView<P> {
 
-    protected static int MARGIN_WIDTH = 12;
+    protected final static int MARGIN_WIDTH = 12;
 
     private final Panel headerPanel = new Panel();
     private final HorizontalLayout bodyLayout = new HorizontalLayout();

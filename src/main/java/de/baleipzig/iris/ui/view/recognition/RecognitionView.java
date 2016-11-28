@@ -229,19 +229,14 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         abstractTextField.setValue(caption);
         abstractTextField.setEnabled(false);
 
-        AbstractOrderedLayout layout = null;
+        AbstractOrderedLayout layout = isWindowBigEnough() ? new HorizontalLayout() : new VerticalLayout();
+        layout.setWidth("100%");
+        layout.setSpacing(true);
+        layout.addComponents(label, abstractTextField);
+
         if (isWindowBigEnough()) {
-            layout = new HorizontalLayout();
-            layout.setWidth("100%");
-            layout.setSpacing(true);
-            layout.addComponents(label, abstractTextField);
             layout.setExpandRatio(label, 0);
             layout.setExpandRatio(abstractTextField, 1);
-        } else {
-            layout = new VerticalLayout();
-            layout.setWidth("100%");
-            layout.setSpacing(true);
-            layout.addComponents(label, abstractTextField);
         }
 
         return layout;

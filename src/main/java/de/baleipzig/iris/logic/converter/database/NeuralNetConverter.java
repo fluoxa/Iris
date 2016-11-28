@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 public class NeuralNetConverter {
 
-    private static DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
+    private final static DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 
     public static INeuralNetCore fromNeuralNetCoreEntity(NeuralNetCoreEntity neuralNetCoreEntity, NeuralNetCoreType neuralNetType) {
 

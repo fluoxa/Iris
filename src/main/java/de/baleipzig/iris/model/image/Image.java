@@ -11,5 +11,4 @@ public class Image implements IImage {
     private int digit = 0;
     private int imageNumber = 0;
     private String imageAsBase64 = "";
-
 }

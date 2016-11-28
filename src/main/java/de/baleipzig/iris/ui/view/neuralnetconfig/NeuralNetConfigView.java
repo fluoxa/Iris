@@ -30,10 +30,10 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     @Getter
     private final LanguageHandler languageHandler;
 
-    private TextArea descriptionTextArea = new TextArea();
-    private TextField nameTextField = new TextField();
+    private final TextArea descriptionTextArea = new TextArea();
+    private final TextField nameTextField = new TextField();
 
-    private TextArea jsonEditor = new TextArea();
+    private final TextArea jsonEditor = new TextArea();
 
     private List<HorizontalLayout> dimensionLayouts = new ArrayList<>();
 
@@ -127,7 +127,7 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         dimensionLayouts.add(dimensionLayout);
 
         Button generateNeuralNet = new Button("generate");
-        dimensionLayouts.forEach(layout -> autoCreaterTab.addComponent(layout));
+        dimensionLayouts.forEach(autoCreaterTab::addComponent);
         autoCreaterTab.addComponent(generateNeuralNet);
         autoCreaterTab.setComponentAlignment(generateNeuralNet, Alignment.MIDDLE_RIGHT);
 

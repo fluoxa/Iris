@@ -18,9 +18,7 @@ public class DrawingLayout extends CssLayout {
         canvas.setSizeFull();
 
         canvas.addMouseMoveListener(this::handleMouseEvent);
-        canvas.addMouseDownListener(() -> {
-            mousePressed = true;
-        });
+        canvas.addMouseDownListener(() -> mousePressed = true);
         canvas.addMouseUpListener(() -> mousePressed=false);
 
         addComponent(canvas);
