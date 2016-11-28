@@ -8,10 +8,8 @@ import de.baleipzig.iris.ui.view.recognition.IRecognitionView;
 import de.baleipzig.iris.ui.viewmodel.recognition.RecognitionViewModel;
 import org.imgscalr.Scalr;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+
 
 public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView, IRecognitionService> {
 
@@ -61,11 +59,5 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
 
         view.setResult(digit);
 
-        try {
-            File outputFile = new File("saved" + System.currentTimeMillis() + ".png");
-            ImageIO.write(scaledImage, "png", outputFile);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
     }
 }
