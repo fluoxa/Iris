@@ -10,6 +10,7 @@ import org.imgscalr.Scalr;
 
 import java.awt.image.BufferedImage;
 
+
 public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView, IRecognitionService> {
 
     private INeuralNet neuralNet;
@@ -34,9 +35,9 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
         if(metaData != null) {
             neuralNet = service.getNeuralNetWorker().load(metaData.getId());
             service.getBeanMapper().map(neuralNet.getNeuralNetMetaData(), viewModel);
-            view.addInfoText(String.format("neural net %s loaded", neuralNet.getNeuralNetMetaData().getName()));
+            view.addInfoText(service.getLanguageHandler().getTranslation("recognition.presenter.successinfotext", new Object[] {neuralNet.getNeuralNetMetaData().getName()}));
         }   else {
-            view.addInfoText("unloaded net");
+            view.addInfoText(service.getLanguageHandler().getTranslation("recognition.presenter.failinfotext"));
         }
 
         view.updateViewModel(viewModel);
@@ -57,5 +58,6 @@ public class RecognitionPresenter extends BaseSearchNNPresenter<IRecognitionView
         Integer digit = service.getDigitAssembler().convert(neuralNet.getNeuralNetCore().getOutputLayer());
 
         view.setResult(digit);
+
     }
 }
