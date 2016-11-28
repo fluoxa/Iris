@@ -8,9 +8,9 @@ import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 
 public class DigitAssembler implements IAssembler<Integer> {
 
-	private final int MAX_DIGIT = 9;
-	private final int MIN_DIGIT = 0;
-	private final double RECOGNITION_THRESHOLD = 0.71;
+	private final static int MAX_DIGIT = 9;
+	private final static int MIN_DIGIT = 0;
+	private final static double RECOGNITION_THRESHOLD = 0.71;
 
 	public ILayer convert(Integer digit, IFunctionContainer funcContainer) {
 

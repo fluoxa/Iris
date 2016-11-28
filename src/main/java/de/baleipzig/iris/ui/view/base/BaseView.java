@@ -14,7 +14,7 @@ import java.util.List;
 
 public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout implements IBaseView<P> {
 
-    protected static int MARGIN_WIDTH = 12;
+    protected final static int MARGIN_WIDTH = 12;
 
     private final Panel headerPanel = new Panel();
     private final HorizontalLayout bodyLayout = new HorizontalLayout();
@@ -104,7 +104,6 @@ public abstract class BaseView<P extends BasePresenter> extends HorizontalLayout
 
         int bodyLayoutHeight = browserHeight - Math.round(headerPanel.getHeight()) - 3*MARGIN_WIDTH;
         int bodyLayoutWidth = browserWidth - 2*MARGIN_WIDTH;
-
 
         Dimension dimension = new Dimension(bodyLayoutHeight, bodyLayoutWidth);
         return dimension;

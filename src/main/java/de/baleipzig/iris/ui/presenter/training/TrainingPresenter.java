@@ -26,12 +26,12 @@ import java.util.concurrent.TimeUnit;
 
 public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITrainingService> {
 
-    private TrainingViewModel model = new TrainingViewModel();
+    private final TrainingViewModel model = new TrainingViewModel();
 
     private INeuralNetTrainer<BufferedImage, Integer> trainer;
     private Map<BufferedImage, Integer> testData;
 
-    private ScheduledExecutorService progressService = new ScheduledThreadPoolExecutor(1);
+    private final ScheduledExecutorService progressService = new ScheduledThreadPoolExecutor(1);
     private Future<?> progressHandler;
 
     public TrainingPresenter(ITrainingView view, ITrainingService service) {

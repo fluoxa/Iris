@@ -65,7 +65,7 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
 
     private boolean infoPanelVisible = false;
 
-    private BeanFieldGroup<RecognitionViewModel> viewModelGroup = new BeanFieldGroup<RecognitionViewModel>(RecognitionViewModel.class);
+    private final BeanFieldGroup<RecognitionViewModel> viewModelGroup = new BeanFieldGroup<RecognitionViewModel>(RecognitionViewModel.class);
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
@@ -256,20 +256,18 @@ public class RecognitionView extends BaseSearchNNView<RecognitionPresenter> impl
         abstractTextField.setValue(caption);
         abstractTextField.setEnabled(false);
 
-        AbstractOrderedLayout layout = null;
+        AbstractOrderedLayout layout;
         if (isWindowBigEnough()) {
             layout = new HorizontalLayout();
-            layout.setWidth("100%");
-            layout.setSpacing(true);
-            layout.addComponents(label, abstractTextField);
             layout.setExpandRatio(label, 0);
             layout.setExpandRatio(abstractTextField, 1);
         } else {
             layout = new VerticalLayout();
-            layout.setWidth("100%");
-            layout.setSpacing(true);
-            layout.addComponents(label, abstractTextField);
         }
+
+        layout.setWidth("100%");
+        layout.setSpacing(true);
+        layout.addComponents(label, abstractTextField);
 
         return layout;
     }

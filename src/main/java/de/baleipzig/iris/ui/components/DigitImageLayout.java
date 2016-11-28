@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class DigitImageLayout extends CssLayout {
 
-    static final String UNKNOWN_PATH = "img/unknown.svg";
-    private static final Map<Integer, String> digitToPathMap = new HashMap();
+    private static final String UNKNOWN_PATH = "img/unknown.svg";
+    private static final Map<Integer, String> digitToPathMap = new HashMap<>();
 
     static {
         digitToPathMap.put(0, "img/0.svg");

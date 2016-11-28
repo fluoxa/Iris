@@ -26,7 +26,7 @@ public class ImageAssembler implements IEntityLayerAssembler<BufferedImage> {
         Dimension imgDim = new Dimension(img.getWidth(null), img.getHeight(null));
 
         if(!layer.getDim().equals(imgDim)) {
-            throw new RuntimeException("ImageCOnverter.copy: Image and Layer dimension have to match");
+            throw new RuntimeException("ImageConverter.copy: Image and Layer dimension have to match");
         }
 
         for(int y = 0; y < imgDim.getY(); y++){

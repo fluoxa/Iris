@@ -29,12 +29,12 @@ public class TrainingView extends BaseSearchNNView<TrainingPresenter> implements
     @Getter
     private final LanguageHandler languageHandler;
 
-    private Button stopTraining = new Button();
-    private TextField learningRateField = new TextField();
-    private TextField trainingCyclesField = new TextField();
-    private TextField trainingSetSizeField = new TextField();
-    private TextField miniBadgeSizeField = new TextField();
-    private TextArea infoTextArea = new TextArea();
+    private final Button stopTraining = new Button();
+    private final TextField learningRateField = new TextField();
+    private final TextField trainingCyclesField = new TextField();
+    private final TextField trainingSetSizeField = new TextField();
+    private final TextField miniBadgeSizeField = new TextField();
+    private final TextArea infoTextArea = new TextArea();
 
     private final ProgressBar oneCycleProgressBar = new ProgressBar();
     private final ProgressBar overallTrainingProgressBar = new ProgressBar();

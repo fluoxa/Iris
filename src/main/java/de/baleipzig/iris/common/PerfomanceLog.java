@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class PerfomanceLog {
 
-    private static Map<String, Long> nanos = new HashMap<>();
+    private final static Map<String, Long> nanos = new HashMap<>();
 
     public static void start(String name) {
         synchronized (nanos) {

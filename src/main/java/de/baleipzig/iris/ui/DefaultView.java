@@ -20,9 +20,6 @@ public class DefaultView extends VerticalLayout implements View {
         addComponent(new Label("defaultView"));
     }
 
-    private void createTestEntity() {
-    }
-
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
     }

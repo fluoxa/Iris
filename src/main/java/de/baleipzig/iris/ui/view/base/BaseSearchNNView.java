@@ -21,7 +21,7 @@ public abstract class BaseSearchNNView<P extends BaseSearchNNPresenter> extends 
 
     private final HorizontalLayout contentLayout = new HorizontalLayout();
 
-    private VerticalLayout searchAndResultLayout = new VerticalLayout();
+    private final VerticalLayout searchAndResultLayout = new VerticalLayout();
     private final TextField searchTextField = new TextField();
     private final Button searchButton = new Button();
     private final Panel searchResultPanel = new Panel();
