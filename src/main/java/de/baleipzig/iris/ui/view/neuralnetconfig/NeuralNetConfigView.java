@@ -123,21 +123,21 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         autoCreatorTab.setSpacing(true);
         autoCreatorTab.setSizeFull();
 
-        Label explanationLText =  new Label("erzeugen eines neuen NeuralNetCores mit HiddenLayer der angegebenene Dimension:");
+        Label explanationLText =  new Label(getLanguageHandler().getTranslation("neuralnetconfig.view.explanationltext"));
         explanationLText.setStyleName("iris-explanation-text");
         autoCreatorTab.addComponent(explanationLText);
-        autoCreatorTab.addComponent(new Label("Hidden Layer Dimension:"));
+        autoCreatorTab.addComponent(new Label(getLanguageHandler().getTranslation("neuralnetconfig.view.hldim")));
         HorizontalLayout dimensionLayout = new HorizontalLayout(
-                new Label("x-Dimension:"),
+                new Label(getLanguageHandler().getTranslation("neuralnetconfig.view.xdim")),
                 new TextField(),
-                new Label("y-Dimension:"),
+                new Label(getLanguageHandler().getTranslation("neuralnetconfig.view.ydim")),
                 new TextField()
         );
 
         dimensionLayout.setSpacing(true);
         dimensionLayouts.add(dimensionLayout);
 
-        Button generateNeuralNet = new Button("generate");
+        Button generateNeuralNet = new Button(getLanguageHandler().getTranslation("neuralnetconfig.view.generateneuralnet"));
         dimensionLayouts.forEach(layout -> autoCreatorTab.addComponent(layout));
         autoCreatorTab.addComponent(generateNeuralNet);
         autoCreatorTab.setComponentAlignment(generateNeuralNet, Alignment.MIDDLE_LEFT);
@@ -163,8 +163,8 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
         settingsGrid.setSpacing(true);
         settingsGrid.setWidth(75, Unit.PERCENTAGE);
         settingsGrid.setHeight(100, Unit.PERCENTAGE);
-        Label nameLabel = new Label("Name:");
-        Label descriptionLabel = new Label("Description:");
+        Label nameLabel = new Label(getLanguageHandler().getTranslation("neuralnetconfig.view.namelabel"));
+        Label descriptionLabel = new Label(getLanguageHandler().getTranslation("neuralnetconfig.view.descriptionlabel"));
         settingsGrid.addComponent(nameLabel);
         nameTextField.setWidth(100, Unit.PERCENTAGE);
         settingsGrid.addComponent(nameTextField);
@@ -182,11 +182,11 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
 
     private HorizontalLayout getButtonLine() {
 
-        Button trainNeuralNet = new Button("train");
-        Button saveNeuralNet = new Button("save");
-        Button resetNeuralNet = new Button("reset");
-        Button createNeuralNet = new Button("new");
-        Button deleteNeuralNet = new Button("delete");
+        Button trainNeuralNet = new Button(getLanguageHandler().getTranslation("neuralnetconfig.view.trainneuralnet"));
+        Button saveNeuralNet = new Button(getLanguageHandler().getTranslation("neuralnetconfig.view.saveneuralnet"));
+        Button resetNeuralNet = new Button(getLanguageHandler().getTranslation("neuralnetconfig.view.resetneuralnet"));
+        Button createNeuralNet = new Button(getLanguageHandler().getTranslation("neuralnetconfig.view.createneuralnet"));
+        Button deleteNeuralNet = new Button(getLanguageHandler().getTranslation("neuralnetconfig.view.deleteneuralnet"));
 
         trainNeuralNet.addClickListener(e -> presenter.navigateToTrainingView());
         saveNeuralNet.addClickListener(e -> presenter.saveNeuralNet());
@@ -208,9 +208,9 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
     private TabSheet getNeuralNetEditor() {
 
         TabSheet neuralNetEditor = new TabSheet();
-        neuralNetEditor.addTab(getMetaDataTab(), "Meta Data Setting");
-        neuralNetEditor.addTab(getJsonEditorTab(), "Json Editor");
-        neuralNetEditor.addTab(getAutoCreatorTab(), "Auto Creator");
+        neuralNetEditor.addTab(getMetaDataTab(), getLanguageHandler().getTranslation("neuralnetconfig.view.metadatatab"));
+        neuralNetEditor.addTab(getJsonEditorTab(), getLanguageHandler().getTranslation("neuralnetconfig.view.jsoneditortab"));
+        neuralNetEditor.addTab(getAutoCreatorTab(), getLanguageHandler().getTranslation("neuralnetconfig.view.autocreatortab"));
 
         return neuralNetEditor;
     }

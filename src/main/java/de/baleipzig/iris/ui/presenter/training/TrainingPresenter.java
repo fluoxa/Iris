@@ -57,7 +57,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
     public Void startTraining() {
 
-        view.addInfoText("setting up training environment...");
+        view.addInfoText(service.getLanguageHandler().getTranslation("training.base.setupinfotext"));
 
         loadNeuralNet();
 
@@ -81,7 +81,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         Map<BufferedImage, Integer> trainingData = ImageUtils.convertToResultMap(service.getImageWorker().loadRandomImagesByType(params.getTrainingSetSize(), ImageType.TRAIN));
         testData = testData == null ? ImageUtils.convertToResultMap(service.getImageWorker().loadAllImagesByType(ImageType.TEST)) : testData;
 
-        view.addInfoText(String.format("Neural Net %s: training started...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+        view.addInfoText(service.getLanguageHandler().getTranslation("training.presenter.trainingstarted", new Object[] {model.getNeuralNet().getNeuralNetMetaData().getName()}));
 
         Result trainingResult = trainer.train(trainingData);
 
@@ -90,8 +90,8 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
             return null;
         }
 
-        view.addInfoText(String.format("Neural Net %s: training finished...", model.getNeuralNet().getNeuralNetMetaData().getName()));
-        view.addInfoText(String.format("Neural Net %s: starting tests...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+        view.addInfoText(service.getLanguageHandler().getTranslation("training.presenter.trainingfinished", new Object[] {model.getNeuralNet().getNeuralNetMetaData().getName()}));
+        view.addInfoText(service.getLanguageHandler().getTranslation("training.presenter.startingtests", new Object[] {model.getNeuralNet().getNeuralNetMetaData().getName()}));
 
         TestResult testResult = trainer.getTestResult(testData);
 
@@ -109,7 +109,7 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
 
         trainer.interrupt();
         terminateTraining();
-        view.addInfoText(String.format("Neural Net %s: training interrupted...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+        view.addInfoText(service.getLanguageHandler().getTranslation("training.presenter.traininginterrupted", new Object[] {model.getNeuralNet().getNeuralNetMetaData().getName()}));
         return null;
     }
 
@@ -120,14 +120,14 @@ public class TrainingPresenter extends BaseSearchNNPresenter<ITrainingView, ITra
         }
 
         model.setNeuralNet(service.getNeuralNetWorker().load(model.getSelectedNeuralNetId()));
-        view.addInfoText(String.format("Neural Net %s: reset to initial state...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+        view.addInfoText(service.getLanguageHandler().getTranslation("training.presenter.resettoinitial", new Object[] {model.getNeuralNet().getNeuralNetMetaData().getName()}));
         return null;
     }
 
     public Void saveNeuralNet() {
 
         service.getNeuralNetWorker().save(model.getNeuralNet());
-        view.addInfoText(String.format("Neural Net %s: saved neural net...", model.getNeuralNet().getNeuralNetMetaData().getName()));
+        view.addInfoText(service.getLanguageHandler().getTranslation("training.presenter.neuralnetsaved", new Object[] {model.getNeuralNet().getNeuralNetMetaData().getName()}));
         return null;
     }
 
