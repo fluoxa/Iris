@@ -12,8 +12,8 @@ de:
   baleipzig:
     iris:
       neuralnetconfig:
-        pathTrainingImages: C:\mnist\mnist-training
-        pathTestImages: C:\mnist\mnist-test
+        pathTrainingImages: /home/sonny/Schreibtisch/mnist-training
+        pathTestImages: /home/sonny/Schreibtisch/mnist-test
         learningRate: 3.
         trainingCycles: 5
         trainingSetSize: 200

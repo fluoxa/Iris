@@ -6,6 +6,9 @@ import de.baleipzig.iris.logic.neuralnettrainer.result.Result;
 import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public class MiniBadgeTrainer<InputType, OutputType>
@@ -51,12 +54,17 @@ public class MiniBadgeTrainer<InputType, OutputType>
         int trainingRun = 0;
         int cycleLength = params.getTrainingSetSize();
 
+        List<Map.Entry<InputType, OutputType>> shuffledList = new ArrayList<>(trainingData.size());
+        shuffledList.addAll(trainingData.entrySet());
+
         while( cycle < trainingCycles) {
 
             progress.setCycleProgress(0.);
             progress.setOverallProgress(((double) cycle)/trainingCycles);
 
-            for(Map.Entry<InputType, OutputType> trainingDatum : trainingData.entrySet()) {
+            Collections.shuffle(shuffledList);
+
+            for(Map.Entry<InputType, OutputType> trainingDatum : shuffledList) {
 
                 if( interrupted ) {
 
