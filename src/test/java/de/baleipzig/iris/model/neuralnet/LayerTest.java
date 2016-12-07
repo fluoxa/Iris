@@ -20,6 +20,8 @@ public class LayerTest {
     private INode node2 = mock(INode.class);
     private int counter = 0;
 
+    private final Object lock = new Object();
+
     @BeforeMethod
     public void Setup(){
 
@@ -109,7 +111,13 @@ public class LayerTest {
             layer.addNode(mock(INode.class));
         }
 
-        Consumer<INode> func = x -> {x.setActivation(3.); this.counter++;};
+        Consumer<INode> func = x -> {
+
+            synchronized (lock) {
+                x.setActivation(3.);
+                this.counter++;
+            }
+        };
 
         layer.applyToLayerNodes(func);
 
@@ -131,7 +139,13 @@ public class LayerTest {
         Object[] params = new Object[1];
         params[0] = 2.;
 
-        BiConsumer<INode, Object[]> func = (x, param) -> {x.setActivation((double) params[0]); this.counter++;};
+        BiConsumer<INode, Object[]> func = (x, param) -> {
+
+            synchronized (lock) {
+                x.setActivation((double) params[0]);
+                this.counter++;
+            }
+        };
 
         layer.applyToLayerNodes(func, params);
 
@@ -145,7 +159,13 @@ public class LayerTest {
         Layer layer = new Layer();
         layer.resize(dim);
         this.counter = 0;
-        Consumer<INode> func = (x) -> {x.setActivation(3.); this.counter++;};
+
+        Consumer<INode> func = (x) -> {
+            synchronized (lock) {
+                x.setActivation(3.);
+                this.counter++;
+            }
+        };
 
         layer.applyToLayerNodes(func);
 
