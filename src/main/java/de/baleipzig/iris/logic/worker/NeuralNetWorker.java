@@ -154,7 +154,6 @@ public class NeuralNetWorker implements INeuralNetWorker {
         return neuralNet;
     }
 
-
     @Override
     public List<NeuralNetMetaData> findAllNeuralNetMetaDataByName(String name) {
         List<NeuralNetSubset> neuralNetSubsets = neuralNetEntityRepository.findAllByNameLikeIgnoreCase(name);

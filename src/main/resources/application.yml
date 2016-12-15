@@ -14,10 +14,10 @@ de:
       neuralnetconfig:
         pathTrainingImages: /home/sonny/Schreibtisch/mnist-training
         pathTestImages: /home/sonny/Schreibtisch/mnist-test
-        learningRate: 3.
-        trainingCycles: 5
-        trainingSetSize: 200
-        miniBadgeSize: 2
+        learningRate: 2.5
+        trainingCycles: 25
+        trainingSetSize: 2300
+        miniBadgeSize: 12
       languageconfiguration:
         #die erste ist Standard
         languages:
