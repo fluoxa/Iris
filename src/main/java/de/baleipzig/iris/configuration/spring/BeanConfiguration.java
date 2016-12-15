@@ -10,6 +10,7 @@ import de.baleipzig.iris.model.neuralnet.neuralnet.*;
 import org.dozer.DozerBeanMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import java.awt.image.BufferedImage;
 
@@ -27,15 +28,19 @@ public class BeanConfiguration {
     }
 
     @Bean
+    @Scope("prototype")
     public ILayer getLayer() { return new Layer(); }
 
     @Bean
+    @Scope("prototype")
     public INeuralNet getNeuralNet() { return new NeuralNet(); }
 
     @Bean
+    @Scope("prototype")
     public INeuralNetCore getNeuralNetCore() { return new NeuralNetCore(); }
 
     @Bean
+    @Scope("prototype")
     public INeuralNetMetaData getNeuralNetMetaData() { return new NeuralNetMetaData(); }
 
     @Bean

@@ -78,13 +78,13 @@ public class NeuralNetConfigView extends BaseSearchNNView<NeuralNetConfigPresent
 
             for (Component component : dimensionLayout) {
                 if(component instanceof TextField && count == 0) {
-                    int dimX = Integer.parseInt(((TextField) component).getValue());
+                    int dimX = ((TextField) component).getValue().isEmpty() ? 1 : Integer.parseInt(((TextField) component).getValue());
                     dimX = dimX > 0 ? dimX : 1;
                     dim.setX(dimX);
                     count++;
                 }
                 else if(component instanceof TextField && count == 1) {
-                    int dimY = Integer.parseInt(((TextField) component).getValue());
+                    int dimY = ((TextField) component).getValue().isEmpty() ? 1 : Integer.parseInt(((TextField) component).getValue());
                     dimY = dimY > 0 ? dimY : 1;
                     dim.setY(dimY);
                 }
