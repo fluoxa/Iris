@@ -5,4 +5,5 @@ import de.baleipzig.iris.model.neuralnet.layer.ILayer;
 public interface ILayerWorker {
 
     void propagateForward(ILayer layer);
+    void normalizeLayerActivations(ILayer layer);
 }

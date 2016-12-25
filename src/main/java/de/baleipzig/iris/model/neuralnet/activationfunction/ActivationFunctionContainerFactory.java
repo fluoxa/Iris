@@ -12,7 +12,9 @@ public class ActivationFunctionContainerFactory {
 
             case IDENTITY: return new IdentityFunctionContainer();
             case SIGMOID: return new SigmoidFunctionContainer();
-            default: return new IdentityFunctionContainer();
+            case EXP: return new ExpFunctionContainer();
+            case NONE: return new IdentityFunctionContainer();
+            default: throw new RuntimeException("Unknown FunctionType " + type.toString());
         }
     }
 

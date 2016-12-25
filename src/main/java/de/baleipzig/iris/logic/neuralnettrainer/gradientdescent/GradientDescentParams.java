@@ -26,7 +26,7 @@ public class GradientDescentParams {
         this.trainingCycles = trainingCycles;
         this.badgeSize = badgeSize;
 
-        if( Math.abs(learningRate * trainingCycles * trainingSetSize * badgeSize) < 1e-10 ) {
+        if( Math.abs(learningRate * trainingSetSize * badgeSize) < 1e-10 ) {
             throw new RuntimeException("invalid GradientDescentParams");
         }
     }

@@ -100,7 +100,7 @@ public class NeuralNetWorker implements INeuralNetWorker {
         INeuralNet net = create();
 
         net.getNeuralNetCore().setInputLayer(LayerUtils.createLayerWithOptionalRandomBias(new Dimension(28,28), ActivationFunctionContainerFactory.create(FunctionType.NONE), false));
-        net.getNeuralNetCore().setOutputLayer(LayerUtils.createLayerWithOptionalRandomBias(new Dimension(10,1), ActivationFunctionContainerFactory.create(FunctionType.SIGMOID), true));
+        net.getNeuralNetCore().setOutputLayer(LayerUtils.createLayerWithOptionalRandomBias(new Dimension(10,1), ActivationFunctionContainerFactory.create(FunctionType.EXP), true));
 
         ILayer prevLayer = net.getNeuralNetCore().getInputLayer();
 
@@ -173,6 +173,7 @@ public class NeuralNetWorker implements INeuralNetWorker {
 
         neuralNetCore.getHiddenLayers().forEach(layerWorker::propagateForward);
         layerWorker.propagateForward(neuralNetCore.getOutputLayer());
+        layerWorker.normalizeLayerActivations(neuralNetCore.getOutputLayer());
     }
 
     //endregion

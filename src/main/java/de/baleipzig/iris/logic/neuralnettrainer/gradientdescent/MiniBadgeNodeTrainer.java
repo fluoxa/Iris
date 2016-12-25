@@ -51,9 +51,7 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
             throw new RuntimeException("MiniBadgeNodeTrainer.propagateOutputNodeBackward: outputNode needs ActivationFunctionContainer != null");
         }
 
-        DoubleFunction<Double> derivative = outputNode.getActivationFunctionContainer().getDerivative();
-
-        double error = (outputNode.getActivation()-expectedNode.getActivation()) * derivative.apply(outputNode.getWeightedInput());
+        double error = outputNode.getActivation()-expectedNode.getActivation();
         outputNode.setError(error);
 
         updateBias(outputNode);
