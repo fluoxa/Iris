@@ -21,7 +21,6 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
     //region -- constructor --
 
     public MiniBadgeNodeTrainer(GradientDescentParams config) {
-
         this.config = config;
     }
 
@@ -117,14 +116,17 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
             double nodeWeight = node.getError()*axon.getParentNode().getActivation();
             prevWeights.add(nodeWeight);
 
-            double error = 0.;
+            if(prevWeights.size() == badgeSize) {
 
-            for(double prevWeight : prevWeights){
-                error += prevWeight;
-            }
+                double error = 0.;
 
-            axon.setWeight(axon.getWeight()-config.getLearningRate()/badgeSize * error);
-            prevWeights.clear();
+                for (double prevWeight : prevWeights) {
+                    error += prevWeight;
+                }
+
+                axon.setWeight(axon.getWeight() - config.getLearningRate() / badgeSize * error);
+                prevWeights.clear();
+           }
         }
     }
 

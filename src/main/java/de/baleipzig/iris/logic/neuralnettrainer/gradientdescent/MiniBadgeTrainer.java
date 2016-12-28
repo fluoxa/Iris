@@ -67,7 +67,6 @@ public class MiniBadgeTrainer<InputType, OutputType>
             for(Map.Entry<InputType, OutputType> trainingDatum : shuffledList) {
 
                 if( interrupted ) {
-
                     interrupted = false;
                     return new Result(ResultType.FAILURE);
                 }
@@ -78,8 +77,8 @@ public class MiniBadgeTrainer<InputType, OutputType>
 
                 inputConverter.copy(trainingDatum.getKey(), neuralNet.getNeuralNetCore().getInputLayer());
                 neuralNetWorker.propagateForward(neuralNet);
-
                 ILayer expectedResultLayer = outputConverter.convert(trainingDatum.getValue(), null);
+
                 neuralNetTrainingWorker.propagateBackward(neuralNet, expectedResultLayer);
             }
 

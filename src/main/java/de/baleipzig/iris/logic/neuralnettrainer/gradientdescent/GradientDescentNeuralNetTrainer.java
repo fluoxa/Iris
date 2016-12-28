@@ -26,8 +26,8 @@ public class GradientDescentNeuralNetTrainer implements IGradientDescentNeuralNe
 
         int numberOfHiddenLayer = netCore.getHiddenLayers().size();
         ListIterator<ILayer> lastHiddenLayer = netCore.getHiddenLayers().listIterator(numberOfHiddenLayer);
-        while(lastHiddenLayer.hasPrevious()) {
 
+        while(lastHiddenLayer.hasPrevious()) {
             layerTrainer.propagateBackward(lastHiddenLayer.previous());
         }
 
