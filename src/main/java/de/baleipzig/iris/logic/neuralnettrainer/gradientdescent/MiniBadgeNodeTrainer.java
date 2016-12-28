@@ -6,7 +6,6 @@ import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNet;
 import de.baleipzig.iris.model.neuralnet.neuralnet.INeuralNetCore;
 import de.baleipzig.iris.model.neuralnet.node.INode;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +14,10 @@ import java.util.function.DoubleFunction;
 public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
 
     private GradientDescentParams config = null;
-    private Map<INode, List<Double>> nodePrevBiasesMapper = null;
-    private Map<IAxon, List<Double>> axonPrevWeightsMapper = null;
+    private Map<INode, Double> nodePrevBiasesMapper = null;
+    private Map<IAxon, Double> axonPrevWeightsMapper = null;
+
+    private int currentBadgeSize = 0;
 
     //region -- constructor --
 
@@ -37,9 +38,9 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
         List<INode> nodeList = NeuralNetCoreUtils.getAllNodesLinewiseBottomToTop(core);
 
         for(INode node : nodeList) {
-            nodePrevBiasesMapper.put(node, new ArrayList<>(config.getBadgeSize()));
+            nodePrevBiasesMapper.put(node, 0.);
             for(IAxon axon : node.getParentAxons()){
-                axonPrevWeightsMapper.put(axon, new ArrayList<>(config.getBadgeSize()));
+                axonPrevWeightsMapper.put(axon, 0.);
             }
         }
     }
@@ -52,6 +53,8 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
 
         double error = outputNode.getActivation()-expectedNode.getActivation();
         outputNode.setError(error);
+
+        currentBadgeSize++;
 
         updateBias(outputNode);
         updateWeights(outputNode);
@@ -72,6 +75,8 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
         DoubleFunction<Double> derivative = node.getActivationFunctionContainer().getDerivative();
         node.setError(error * derivative.apply(node.getWeightedInput()));
 
+        currentBadgeSize++;
+
         updateBias(node);
         updateWeights(node);
     }
@@ -80,24 +85,11 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
 
         int badgeSize = config.getBadgeSize();
 
-        List<Double> prevBiases = nodePrevBiasesMapper.get(node);
+        nodePrevBiasesMapper.put(node, nodePrevBiasesMapper.get(node) + node.getError());
 
-        if(prevBiases == null){
-            prevBiases = new ArrayList<>(badgeSize);
-        }
-
-        prevBiases.add(node.getError());
-
-        if(prevBiases.size() == badgeSize) {
-
-            double error = 0.;
-
-            for(double prevBias : prevBiases){
-                error += prevBias;
-            }
-
-            node.setBias(node.getBias()-config.getLearningRate()/badgeSize * error);
-            prevBiases.clear();
+        if(currentBadgeSize % badgeSize == 0) {
+            node.setBias(node.getBias()-config.getLearningRate()/badgeSize * nodePrevBiasesMapper.get(node));
+            nodePrevBiasesMapper.put(node, 0.);
         }
     }
 
@@ -107,26 +99,13 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
 
         for(IAxon axon : node.getParentAxons()) {
 
-            List<Double> prevWeights = axonPrevWeightsMapper.get(axon);
-
-            if(prevWeights == null){
-                prevWeights = new ArrayList<>(badgeSize);
-            }
-
             double nodeWeight = node.getError()*axon.getParentNode().getActivation();
-            prevWeights.add(nodeWeight);
+            axonPrevWeightsMapper.put(axon, axonPrevWeightsMapper.get(axon) + nodeWeight);
 
-            if(prevWeights.size() == badgeSize) {
-
-                double error = 0.;
-
-                for (double prevWeight : prevWeights) {
-                    error += prevWeight;
-                }
-
-                axon.setWeight(axon.getWeight() - config.getLearningRate() / badgeSize * error);
-                prevWeights.clear();
-           }
+            if(currentBadgeSize % badgeSize == 0) {
+                axon.setWeight(axon.getWeight() - config.getLearningRate() / badgeSize * axonPrevWeightsMapper.get(axon));
+                axonPrevWeightsMapper.put(axon, 0.);
+            }
         }
     }
 
