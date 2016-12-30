@@ -18,6 +18,7 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
     private Map<IAxon, Double> axonPrevWeightsMapper = null;
 
     private int currentBadgeSize = 0;
+    private final Object synchronizer = new Object();
 
     //region -- constructor --
 
@@ -54,10 +55,7 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
         double error = outputNode.getActivation()-expectedNode.getActivation();
         outputNode.setError(error);
 
-        currentBadgeSize++;
-
-        updateBias(outputNode);
-        updateWeights(outputNode);
+        processMiniBadge(outputNode);
     }
 
     public void propagateBackward(INode node) {
@@ -75,8 +73,12 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
         DoubleFunction<Double> derivative = node.getActivationFunctionContainer().getDerivative();
         node.setError(error * derivative.apply(node.getWeightedInput()));
 
-        currentBadgeSize++;
+        processMiniBadge(node);
+    }
 
+    private void processMiniBadge(INode node) {
+
+        currentBadgeSize++;
         updateBias(node);
         updateWeights(node);
     }
@@ -88,8 +90,12 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
         nodePrevBiasesMapper.put(node, nodePrevBiasesMapper.get(node) + node.getError());
 
         if(currentBadgeSize % badgeSize == 0) {
-            node.setBias(node.getBias()-config.getLearningRate()/badgeSize * nodePrevBiasesMapper.get(node));
-            nodePrevBiasesMapper.put(node, 0.);
+            double newBias = node.getBias() - config.getLearningRate()*nodePrevBiasesMapper.get(node)/badgeSize;
+
+            synchronized(synchronizer) {
+                node.setBias(newBias);
+                nodePrevBiasesMapper.put(node, 0.);
+            }
         }
     }
 
@@ -99,12 +105,17 @@ public class MiniBadgeNodeTrainer implements IMiniBadgeNodeTrainer {
 
         for(IAxon axon : node.getParentAxons()) {
 
-            double nodeWeight = node.getError()*axon.getParentNode().getActivation();
-            axonPrevWeightsMapper.put(axon, axonPrevWeightsMapper.get(axon) + nodeWeight);
+            double weightUpdate = axonPrevWeightsMapper.get(axon) + node.getError()*axon.getParentNode().getActivation();
+            axonPrevWeightsMapper.put(axon, weightUpdate);
 
             if(currentBadgeSize % badgeSize == 0) {
-                axon.setWeight(axon.getWeight() - config.getLearningRate() / badgeSize * axonPrevWeightsMapper.get(axon));
-                axonPrevWeightsMapper.put(axon, 0.);
+
+                double newWeight = axon.getWeight() - config.getLearningRate()/badgeSize*axonPrevWeightsMapper.get(axon);
+
+                synchronized (synchronizer){
+                    axon.setWeight(newWeight);
+                    axonPrevWeightsMapper.put(axon, 0.);
+                }
             }
         }
     }
